@@ -9,13 +9,13 @@ CATEGORIES = [
         "id": "75102510",
         "name": "Программируемые реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
-        "max_pages": 14,  # на сайте 14 страниц
+        "max_pages": 15,
     },
     {
         "id": "751025",
         "name": "Модули расширения и ПЛК",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
-        "max_pages": 10,
+        "max_pages": 12,
     },
 ]
 
@@ -36,7 +36,7 @@ def extract_page_cards(page, category_name):
             const etm_code = match[1];
             if (seenCodes.has(etm_code)) continue;
 
-            // Ищем контейнер плитки товара
+            // Поднимаемся к карточке
             let card = a;
             let foundCard = null;
             for (let i = 0; i < 8; i++) {
@@ -51,7 +51,6 @@ def extract_page_cards(page, category_name):
             if (!foundCard) continue;
             seenCodes.add(etm_code);
 
-            // Очищаем текст от неразрывных пробелов
             const text = foundCard.innerText.replace(/\\u00a0/g, ' ');
             const lines = text.split('\\n').map(s => s.trim()).filter(Boolean);
 
@@ -90,6 +89,7 @@ def extract_page_cards(page, category_name):
                     }
                 }
             }
+
             const known = ['ОВЕН', 'INNOCONT', 'ONI', 'Segnetics', 'КЭАЗ', 'Autonics', 'Finder', 'Schneider Electric', 'Schneider', 'ABB', 'Siemens', 'Chint', 'IEK', 'DKC', 'WAGO', 'Rievtech', 'DEKraft', 'Relpol', 'MeyerTec'];
             for (const b of known) {
                 if (text.toLowerCase().includes(b.toLowerCase()) || name.toLowerCase().includes(b.toLowerCase())) {
@@ -98,9 +98,8 @@ def extract_page_cards(page, category_name):
                 }
             }
 
-            // 4. Цена (парсим с учетом ₽/шт, ₽/компл, руб)
+            // 4. Цена
             let price = 0;
-            // Ищем шаблон цены вида "17 446.00 ₽" или "2 960.01 ₽"
             const priceRegex = /([0-9][0-9\\s]{0,10}(?:[.,][0-9]{2})?)\\s*(?:₽|руб)/i;
             const priceMatch = text.match(priceRegex);
             if (priceMatch) {
@@ -108,7 +107,7 @@ def extract_page_cards(page, category_name):
                 price = parseFloat(cleanPrice) || 0;
             }
 
-            // 5. Остатки (числа перед "шт.")
+            // 5. Остатки
             let stock_etm = 0;
             let stock_vendor = 0;
             const stockMatches = Array.from(text.matchAll(/(\\d+)\\s*шт/g));
@@ -137,49 +136,50 @@ def extract_page_cards(page, category_name):
     return page.evaluate(js_code)
 
 
-def go_next_page(page, current_page_num):
+def switch_page(page, base_url, target_page_num):
     """
-    Листание пагинатора: ищет кнопку со следующим номером или стрелку 'Вперед' (>) и кликает.
+    Надежное переключение страницы: сначала прямой переход по URL,
+    если данные не изменились — клик по элементу пагинации.
     """
-    next_page_str = str(current_page_num + 1)
-
-    # 1. Пробуем кликнуть по конкретной цифре следующей страницы в пагинаторе
-    clicked = page.evaluate(
-        f"""
-        () => {{
-            const buttons = Array.from(document.querySelectorAll('button, a, div'));
-            for (const b of buttons) {{
-                // Ищем элемент пагинатора со следующим номером
-                if (b.innerText && b.innerText.trim() === '{next_page_str}' && b.offsetWidth > 0 && b.offsetHeight > 0) {{
-                    b.click();
-                    return true;
-                }}
-            }}
-            return false;
-        }}
-    """
-    )
-
-    if clicked:
+    url_with_page = f"{base_url}?page={target_page_num}"
+    try:
+        page.goto(url_with_page, wait_until="domcontentloaded", timeout=45000)
+        page.wait_for_timeout(3000)
         return True
+    except Exception as e:
+        print(f"Ошибка перехода по URL на страницу {target_page_num}: {e}")
 
-    # 2. Если кнопки с номером нет (скрыта за троеточием), ищем стрелку 'Вперед' / '>'
-    clicked_arrow = page.evaluate(
+    # Запасной вариант: поиск стрелки вправо на текущей странице
+    try:
+        next_clicked = page.evaluate(
+            f"""
+            () => {{
+                // Ищем кнопку с номером {target_page_num}
+                const els = Array.from(document.querySelectorAll('button, a, div[role="button"]'));
+                for (const el of els) {{
+                    if (el.innerText && el.innerText.trim() === '{target_page_num}') {{
+                        el.click();
+                        return true;
+                    }}
+                }}
+                // Ищем стрелку '>'
+                for (const el of els) {{
+                    if (el.innerText && (el.innerText.trim() === '>' || el.innerText.trim() === 'Вперед')) {{
+                        el.click();
+                        return true;
+                    }}
+                }}
+                return false;
+            }}
         """
-        () => {
-            const arrows = Array.from(document.querySelectorAll('button, a, svg, span'));
-            for (const el of arrows) {
-                const t = (el.getAttribute('aria-label') || el.innerText || '').trim();
-                if ((t === 'Вперед' || t === '>' || el.classList.contains('pagination-next')) && el.offsetWidth > 0) {
-                    el.click();
-                    return true;
-                }
-            }
-            return false;
-        }
-    """
-    )
-    return clicked_arrow
+        )
+        if next_clicked:
+            page.wait_for_timeout(3500)
+            return True
+    except Exception:
+        pass
+
+    return False
 
 
 def main():
@@ -208,65 +208,71 @@ def main():
             print(f"Категория: {cat['name']}")
             print(f"==========================================")
 
-            try:
-                page.goto(
-                    cat["url"], wait_until="domcontentloaded", timeout=50000
-                )
-                page.wait_for_selector("text=Код товара:", timeout=25000)
-            except Exception as e:
-                print(f"Ошибка начальной загрузки {cat['url']}: {e}")
-                continue
+            max_p = cat.get("max_pages", 10)
 
-            current_page = 1
-            max_p = cat.get("max_pages", 5)
+            for p_num in range(1, max_p + 1):
+                print(f"Загрузка страницы {p_num} из {max_p}...")
 
-            while current_page <= max_p:
-                print(f"Парсинг страницы {current_page} из {max_p}...")
+                if p_num == 1:
+                    try:
+                        page.goto(
+                            cat["url"],
+                            wait_until="domcontentloaded",
+                            timeout=50000,
+                        )
+                        page.wait_for_timeout(3000)
+                    except Exception as e:
+                        print(f"Ошибка загрузки категории {cat['url']}: {e}")
+                        break
+                else:
+                    success = switch_page(page, cat["url"], p_num)
+                    if not success:
+                        print(
+                            f"Не удалось переключиться на страницу {p_num}. Переход к следующей категории."
+                        )
+                        break
 
-                # Прокручиваем страницу вниз для подгрузки цен и остатков
+                # Прокрутка страницы вниз, чтобы прогрузились все плитки
                 for pos in [600, 1500, 2400, 3200]:
                     page.evaluate(f"window.scrollTo(0, {pos})")
-                    page.wait_for_timeout(350)
+                    page.wait_for_timeout(300)
 
                 items = extract_page_cards(page, cat["name"])
-                added_now = 0
+                new_added = 0
                 for it in items:
                     it["category"] = cat["name"]
-                    if it["etm_code"] not in collected_dict:
-                        collected_dict[it["etm_code"]] = it
-                        added_now += 1
+                    code = it["etm_code"]
+                    if code not in collected_dict:
+                        collected_dict[code] = it
+                        new_added += 1
                     else:
-                        # Обновляем цену, если раньше была 0
                         if (
-                            collected_dict[it["etm_code"]]["price"] == 0
+                            collected_dict[code]["price"] == 0
                             and it["price"] > 0
                         ):
-                            collected_dict[it["etm_code"]]["price"] = it[
-                                "price"
-                            ]
+                            collected_dict[code]["price"] = it["price"]
 
                 print(
-                    f"На странице {current_page} найдено товаров: {len(items)}, новых: {added_now} | Всего в базе: {len(collected_dict)}"
+                    f"Стр. {p_num}: найдено {len(items)}, новых {new_added} | Всего в базе: {len(collected_dict)}"
                 )
 
-                if current_page >= max_p:
-                    break
-
-                # Переходим на следующую страницу через клик по пагинатору
-                has_next = go_next_page(page, current_page)
-                if not has_next:
+                # Если на странице вообще нет товаров — каталог кончился
+                if len(items) == 0:
                     print(
-                        f"Кнопка перехода со страницы {current_page} не найдена. Завершение категории."
+                        f"На странице {p_num} нет товаров. Категория завершена."
                     )
                     break
-
-                current_page += 1
-                page.wait_for_timeout(3500)  # Даем SPA время обновить карточки
 
         browser.close()
 
     final_list = list(collected_dict.values())
-    print(f"\nСбор завершен! Всего уникальных позиций в базе: {len(final_list)}")
+    print(
+        f"\n=================================================================="
+    )
+    print(f"Сбор завершен! Всего уникальных позиций в базе: {len(final_list)}")
+    print(
+        f"=================================================================="
+    )
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime(
@@ -279,7 +285,7 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print("Файл data.json успешно записан.")
+    print("Файл data.json успешно сохранен.")
 
 
 if __name__ == "__main__":
