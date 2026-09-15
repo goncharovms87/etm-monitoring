@@ -168,7 +168,7 @@ def extract_page_cards(page, category_name):
 
 def switch_to_page(page, base_url, target_page_num):
     """Переход на следующую страницу каталога."""
-    url = f"{base_url}?page={target_page_num}"
+    url = f"{base_url}?page={target_page_num}&rows=48"
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=45000)
         page.wait_for_timeout(3500)
@@ -207,7 +207,7 @@ def main():
 
                 if p_num == 1:
                     try:
-                        page.goto(cat["url"], wait_until="domcontentloaded", timeout=50000)
+                        page.goto(f"{cat['url']}?rows=48", wait_until="domcontentloaded", timeout=50000)
                         page.wait_for_timeout(3000)
                     except Exception as e:
                         print(f"Ошибка загрузки {cat['url']}: {e}")
