@@ -9,42 +9,37 @@ CATEGORIES = [
         "id": "75102510",
         "name": "Программируемые реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
+        "max_pages": 14,  # на сайте 14 страниц
     },
     {
         "id": "751025",
         "name": "Модули расширения и ПЛК",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
+        "max_pages": 10,
     },
 ]
 
 
 def extract_page_cards(page, category_name):
-    """
-    Выполняем JS прямо в браузере: находим все карточки каталога строго изолированно,
-    не затрагивая сайдбар с фильтрами брендов.
-    """
+    """Извлечение данных карточек товаров на текущей странице."""
     js_code = """
     () => {
         const results = [];
-        // Находим все ссылки на карточки товаров, исключая меню и футер
         const links = Array.from(document.querySelectorAll('a[href*="/cat/nn/"]'));
-        
         const seenCodes = new Set();
 
         for (const a of links) {
             const href = a.getAttribute('href') || '';
             const match = href.match(/\\/cat\\/nn\\/(\\d+)/);
             if (!match) continue;
-            
+
             const etm_code = match[1];
             if (seenCodes.has(etm_code)) continue;
 
-            // Ищем контейнер именно отдельной карточки товара:
-            // поднимаемся до ближайшего элемента, у которого есть кнопка 'В корзину'
-            // или где выводится 'Код товара'
+            // Ищем контейнер плитки товара
             let card = a;
             let foundCard = null;
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 8; i++) {
                 if (!card || card.tagName === 'BODY' || card.tagName === 'MAIN') break;
                 if (card.innerText && card.innerText.includes('Код товара:')) {
                     foundCard = card;
@@ -56,12 +51,12 @@ def extract_page_cards(page, category_name):
             if (!foundCard) continue;
             seenCodes.add(etm_code);
 
-            const text = foundCard.innerText;
+            // Очищаем текст от неразрывных пробелов
+            const text = foundCard.innerText.replace(/\\u00a0/g, ' ');
             const lines = text.split('\\n').map(s => s.trim()).filter(Boolean);
 
             // 1. Наименование
-            // Ищем самую длинную строку описания либо берем текст ссылки
-            let name = a.innerText.trim();
+            let name = a.innerText.trim().replace(/\\u00a0/g, ' ');
             if (name.length < 15) {
                 for (const l of lines) {
                     if (l.length > 25 && !l.includes('Код товара') && !l.includes('В корзину') && !l.includes('Артикул')) {
@@ -75,9 +70,9 @@ def extract_page_cards(page, category_name):
             let vendor_code = '—';
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].includes('Артикул:')) {
-                    const p = lines[i].split('Артикул:');
-                    if (p[1] && p[1].trim()) {
-                        vendor_code = p[1].trim();
+                    const parts = lines[i].split('Артикул:');
+                    if (parts[1] && parts[1].trim()) {
+                        vendor_code = parts[1].trim();
                     } else if (lines[i+1]) {
                         vendor_code = lines[i+1].trim();
                     }
@@ -86,34 +81,31 @@ def extract_page_cards(page, category_name):
             }
 
             // 3. Производитель (бренд)
-            // В карточке ЭТМ бренд пишется синей отдельной строкой прямо над артикулом или под ним
             let brand = '—';
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i].includes('Артикул:') || lines[i].includes('Код товара:')) {
-                    // Бренд часто идет за 1 строчку ДО или ПОСЛЕ артикула
                     const candidate = lines[i+1] || '';
                     if (candidate && candidate.length < 30 && !candidate.includes('Упаковка') && !candidate.includes('₽') && !candidate.includes('шт')) {
                         brand = candidate;
                     }
                 }
             }
-
-            // Если не выделился бренд, определяем по сигнатуре названия
             const known = ['ОВЕН', 'INNOCONT', 'ONI', 'Segnetics', 'КЭАЗ', 'Autonics', 'Finder', 'Schneider Electric', 'Schneider', 'ABB', 'Siemens', 'Chint', 'IEK', 'DKC', 'WAGO', 'Rievtech', 'DEKraft', 'Relpol', 'MeyerTec'];
             for (const b of known) {
-                if (name.toLowerCase().includes(b.toLowerCase()) || text.toLowerCase().includes(b.toLowerCase())) {
-                    // Но не путать с другими
+                if (text.toLowerCase().includes(b.toLowerCase()) || name.toLowerCase().includes(b.toLowerCase())) {
                     brand = b;
                     break;
                 }
             }
 
-            // 4. Цена
+            // 4. Цена (парсим с учетом ₽/шт, ₽/компл, руб)
             let price = 0;
-            const priceMatch = text.match(/([\\d\\s]+(?:[.,]\\d{2})?)\\s*₽/);
+            // Ищем шаблон цены вида "17 446.00 ₽" или "2 960.01 ₽"
+            const priceRegex = /([0-9][0-9\\s]{0,10}(?:[.,][0-9]{2})?)\\s*(?:₽|руб)/i;
+            const priceMatch = text.match(priceRegex);
             if (priceMatch) {
-                const numStr = priceMatch[1].replace(/\\s+/g, '').replace(',', '.');
-                price = parseFloat(numStr) || 0;
+                const cleanPrice = priceMatch[1].replace(/\\s+/g, '').replace(',', '.');
+                price = parseFloat(cleanPrice) || 0;
             }
 
             // 5. Остатки (числа перед "шт.")
@@ -145,12 +137,57 @@ def extract_page_cards(page, category_name):
     return page.evaluate(js_code)
 
 
+def go_next_page(page, current_page_num):
+    """
+    Листание пагинатора: ищет кнопку со следующим номером или стрелку 'Вперед' (>) и кликает.
+    """
+    next_page_str = str(current_page_num + 1)
+
+    # 1. Пробуем кликнуть по конкретной цифре следующей страницы в пагинаторе
+    clicked = page.evaluate(
+        f"""
+        () => {{
+            const buttons = Array.from(document.querySelectorAll('button, a, div'));
+            for (const b of buttons) {{
+                // Ищем элемент пагинатора со следующим номером
+                if (b.innerText && b.innerText.trim() === '{next_page_str}' && b.offsetWidth > 0 && b.offsetHeight > 0) {{
+                    b.click();
+                    return true;
+                }}
+            }}
+            return false;
+        }}
+    """
+    )
+
+    if clicked:
+        return True
+
+    # 2. Если кнопки с номером нет (скрыта за троеточием), ищем стрелку 'Вперед' / '>'
+    clicked_arrow = page.evaluate(
+        """
+        () => {
+            const arrows = Array.from(document.querySelectorAll('button, a, svg, span'));
+            for (const el of arrows) {
+                const t = (el.getAttribute('aria-label') || el.innerText || '').trim();
+                if ((t === 'Вперед' || t === '>' || el.classList.contains('pagination-next')) && el.offsetWidth > 0) {
+                    el.click();
+                    return true;
+                }
+            }
+            return false;
+        }
+    """
+    )
+    return clicked_arrow
+
+
 def main():
     collected_dict = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            channel="chrome",  # используем системный Chrome/Edge
+            channel="chrome",  # если нет Chrome, укажите "msedge"
             headless=True,
             args=[
                 "--no-sandbox",
@@ -171,64 +208,78 @@ def main():
             print(f"Категория: {cat['name']}")
             print(f"==========================================")
 
-            # Обходим первые 5 страниц в каждой категории
-            for p_num in range(1, 6):
-                page_url = (
-                    f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
+            try:
+                page.goto(
+                    cat["url"], wait_until="domcontentloaded", timeout=50000
                 )
-                print(f"Загрузка страницы {p_num}: {page_url}")
+                page.wait_for_selector("text=Код товара:", timeout=25000)
+            except Exception as e:
+                print(f"Ошибка начальной загрузки {cat['url']}: {e}")
+                continue
 
-                try:
-                    page.goto(
-                        page_url,
-                        wait_until="domcontentloaded",
-                        timeout=50000,
+            current_page = 1
+            max_p = cat.get("max_pages", 5)
+
+            while current_page <= max_p:
+                print(f"Парсинг страницы {current_page} из {max_p}...")
+
+                # Прокручиваем страницу вниз для подгрузки цен и остатков
+                for pos in [600, 1500, 2400, 3200]:
+                    page.evaluate(f"window.scrollTo(0, {pos})")
+                    page.wait_for_timeout(350)
+
+                items = extract_page_cards(page, cat["name"])
+                added_now = 0
+                for it in items:
+                    it["category"] = cat["name"]
+                    if it["etm_code"] not in collected_dict:
+                        collected_dict[it["etm_code"]] = it
+                        added_now += 1
+                    else:
+                        # Обновляем цену, если раньше была 0
+                        if (
+                            collected_dict[it["etm_code"]]["price"] == 0
+                            and it["price"] > 0
+                        ):
+                            collected_dict[it["etm_code"]]["price"] = it[
+                                "price"
+                            ]
+
+                print(
+                    f"На странице {current_page} найдено товаров: {len(items)}, новых: {added_now} | Всего в базе: {len(collected_dict)}"
+                )
+
+                if current_page >= max_p:
+                    break
+
+                # Переходим на следующую страницу через клик по пагинатору
+                has_next = go_next_page(page, current_page)
+                if not has_next:
+                    print(
+                        f"Кнопка перехода со страницы {current_page} не найдена. Завершение категории."
                     )
+                    break
 
-                    # Ждем появления карточек с товарами
-                    page.wait_for_selector(
-                        "text=Код товара:", timeout=25000
-                    )
-
-                    # Динамическая прокрутка, чтобы прогрузить все 24 карточки на странице
-                    for s in [500, 1200, 2000, 3000]:
-                        page.evaluate(f"window.scrollTo(0, {s})")
-                        page.wait_for_timeout(400)
-
-                    # Извлекаем все карточки изолированно
-                    items = extract_page_cards(page, cat["name"])
-                    print(f"Найдено товаров на странице {p_num}: {len(items)}")
-
-                    if not items:
-                        break
-
-                    for item in items:
-                        item["category"] = cat["name"]
-                        collected_dict[item["etm_code"]] = item
-
-                    print(f"Всего накоплено в базе: {len(collected_dict)}")
-
-                except Exception as e:
-                    print(f"Ошибка при обработке страницы {p_num}: {e}")
-                    continue
+                current_page += 1
+                page.wait_for_timeout(3500)  # Даем SPA время обновить карточки
 
         browser.close()
 
-    final_items = list(collected_dict.values())
-    print(f"\nСбор завершен! Всего уникальных позиций в базе: {len(final_items)}")
+    final_list = list(collected_dict.values())
+    print(f"\nСбор завершен! Всего уникальных позиций в базе: {len(final_list)}")
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime(
             "%d.%m.%Y %H:%M UTC"
         ),
-        "total_items": len(final_items),
-        "items": final_items,
+        "total_items": len(final_list),
+        "items": final_list,
     }
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print("Файл data.json успешно сохранен.")
+    print("Файл data.json успешно записан.")
 
 
 if __name__ == "__main__":
