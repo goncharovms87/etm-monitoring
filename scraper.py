@@ -1,32 +1,36 @@
-from datetime import datetime, timezone
+import os
+import sys
+
+# Принудительно задаем кодировку UTF-8 для вывода в консоль Windows
+sys.stdout.reconfigure(encoding='utf-8')
+
 import json
 import re
 import time
+from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
-# Целевые категории ПЛК и программируемых реле
 CATEGORIES = [
     {
         "id": "751010",
         "name": "Контроллеры и модули свободнопрограммируемые",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye",
-        "max_pages": 15,
+        "max_pages": 15
     },
     {
         "id": "751025",
         "name": "Модули расширения и программируемые реле",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
-        "max_pages": 15,
+        "max_pages": 15
     },
     {
         "id": "75102510",
         "name": "Программируемые реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
-        "max_pages": 15,
-    },
+        "max_pages": 15
+    }
 ]
 
-# Целевой пул производителей
 TARGET_BRANDS = [
     {"name": "ОВЕН", "aliases": ["овен", "owen", "пр100", "пр102", "пр103", "пр200", "пр205", "плк110", "плк210", "плк200"]},
     {"name": "ONI", "aliases": ["oni", "plrs", "plrk"]},
@@ -40,29 +44,30 @@ TARGET_BRANDS = [
     {"name": "КЭАЗ", "aliases": ["кэаз", "keaz", "optilogic"]},
     {"name": "Schneider Electric", "aliases": ["schneider electric", "schneider", "zelio", "modicon"]},
     {"name": "Siemens", "aliases": ["siemens", "logo!", "s7-1200", "simatic"]},
-    ]
-
+    {"name": "Finder", "aliases": ["finder", "optan"]},
+    {"name": "INNOCONT", "aliases": ["innocont"]},
+    {"name": "Autonics", "aliases": ["autonics"]}
+]
 
 def identify_brand(text, vendor_code):
-    """Точное определение производителя по тексту карточки и артикулу."""
     combined = f"{text} {vendor_code}".lower()
     for b in TARGET_BRANDS:
         for alias in b["aliases"]:
-            # Ищем alias как отдельное слово или подстроку
-            if re.search(r"(?<![a-zA-Zа-яА-Я0-9])" + re.escape(alias) + r"(?![a-zA-Zа-яА-Я0-9])", combined) or alias in combined:
+            if re.search(r'(?<![a-zA-Zа-яА-Я0-9])' + re.escape(alias) + r'(?![a-zA-Zа-яА-Я0-9])', combined) or alias in combined:
                 return b["name"]
     return "Другой"
 
-
 def extract_page_cards(page, category_name):
-    """Сбор карточек товаров со страницы каталога."""
+    """Сбор каждой отдельной карточки товара без захвата общей сетки."""
     js_code = """
     () => {
         const results = [];
-        const links = Array.from(document.querySelectorAll('a[href*="/cat/nn/"]'));
+        
+        // Находим все ссылки с кодом номенклатуры /cat/nn/
+        const rawLinks = Array.from(document.querySelectorAll('a[href*="/cat/nn/"]'));
         const seenCodes = new Set();
 
-        for (const a of links) {
+        for (const a of rawLinks) {
             const href = a.getAttribute('href') || '';
             const match = href.match(/\\/cat\\/nn\\/(\\d+)/);
             if (!match) continue;
@@ -70,21 +75,28 @@ def extract_page_cards(page, category_name):
             const etm_code = match[1];
             if (seenCodes.has(etm_code)) continue;
 
-            let card = a;
-            let foundCard = null;
-            for (let i = 0; i < 8; i++) {
-                if (!card || card.tagName === 'BODY' || card.tagName === 'MAIN') break;
-                if (card.innerText && card.innerText.includes('Код товара:')) {
-                    foundCard = card;
+            // Находим минимальный контейнер карточки товара:
+            // Ищем ближайшего предка, который содержит кнопку корзины ИЛИ не является общим каталогом
+            let card = a.parentElement;
+            let targetCard = null;
+            
+            while (card && card.tagName !== 'BODY' && card.tagName !== 'MAIN') {
+                // Если элемент карточки содержит не более 800 символов текста и содержит "Код товара" - это плитка
+                const txt = card.innerText || '';
+                if (txt.includes('Код товара:') && txt.length < 1200) {
+                    targetCard = card;
                     break;
                 }
                 card = card.parentElement;
             }
 
-            if (!foundCard) continue;
+            if (!targetCard) {
+                targetCard = a.closest('article') || a.parentElement;
+            }
+
             seenCodes.add(etm_code);
 
-            const text = foundCard.innerText.replace(/\\u00a0/g, ' ');
+            const text = (targetCard ? targetCard.innerText : a.innerText).replace(/\\u00a0/g, ' ');
             const lines = text.split('\\n').map(s => s.trim()).filter(Boolean);
 
             // 1. Наименование
@@ -161,13 +173,11 @@ def extract_page_cards(page, category_name):
             "price": c["price"],
             "stock_etm": c["stock_etm"],
             "stock_vendor": c["stock_vendor"],
-            "url": c["url"],
+            "url": c["url"]
         })
     return processed
 
-
 def switch_to_page(page, base_url, target_page_num):
-    """Переход на следующую страницу каталога."""
     url = f"{base_url}?page={target_page_num}&rows=48"
     try:
         page.goto(url, wait_until="domcontentloaded", timeout=45000)
@@ -177,7 +187,6 @@ def switch_to_page(page, base_url, target_page_num):
         print(f"Ошибка перехода на страницу {target_page_num}: {e}")
         return False
 
-
 def main():
     collected_dict = {}
 
@@ -185,13 +194,17 @@ def main():
         browser = p.chromium.launch(
             channel="chrome",
             headless=True,
-            args=["--no-sandbox", "--disable-blink-features=AutomationControlled", "--window-size=1920,1080"],
+            args=[
+                "--no-sandbox",
+                "--disable-blink-features=AutomationControlled",
+                "--window-size=1920,1080"
+            ]
         )
 
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080},
             locale="ru-RU",
-            timezone_id="Europe/Moscow",
+            timezone_id="Europe/Moscow"
         )
         page = context.new_page()
 
@@ -203,21 +216,22 @@ def main():
             max_p = cat.get("max_pages", 15)
 
             for p_num in range(1, max_p + 1):
-                print(f"Загрузка страницы {p_num} из {max_p}...")
-
                 if p_num == 1:
+                    first_url = f"{cat['url']}?rows=48"
+                    print(f"Загрузка страницы 1: {first_url}")
                     try:
-                        page.goto(f"{cat['url']}?rows=48", wait_until="domcontentloaded", timeout=50000)
+                        page.goto(first_url, wait_until="domcontentloaded", timeout=50000)
                         page.wait_for_timeout(3000)
                     except Exception as e:
                         print(f"Ошибка загрузки {cat['url']}: {e}")
                         break
                 else:
+                    print(f"Загрузка страницы {p_num} из {max_p}...")
                     if not switch_to_page(page, cat["url"], p_num):
                         break
 
-                # Плавная прокрутка для срабатывания ленивой загрузки
-                for pos in [600, 1500, 2400, 3200]:
+                # Скроллим страницу, чтобы виртуальный список отрендерил все карточки
+                for pos in [600, 1400, 2200, 3200, 4200]:
                     page.evaluate(f"window.scrollTo(0, {pos})")
                     page.wait_for_timeout(250)
 
@@ -232,7 +246,7 @@ def main():
                         if collected_dict[code]["price"] == 0 and it["price"] > 0:
                             collected_dict[code]["price"] = it["price"]
 
-                print(f"Стр. {p_num}: получено {len(items)}, новых: {new_added} | Всего в базе: {len(collected_dict)}")
+                print(f"Стр. {p_num}: найдено на странице {len(items)}, новых: {new_added} | Всего в базе: {len(collected_dict)}")
 
                 if len(items) == 0:
                     print(f"На странице {p_num} нет товаров. Раздел завершен.")
@@ -246,14 +260,13 @@ def main():
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
         "total_items": len(final_list),
-        "items": final_list,
+        "items": final_list
     }
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
     print("Файл data.json успешно сохранен.")
-
 
 if __name__ == "__main__":
     main()
