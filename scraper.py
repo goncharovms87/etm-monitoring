@@ -13,207 +13,181 @@ CATEGORIES = [
     },
     {
         "id": "751025",
-        "name": "Модули расширения и контроллеры",
+        "name": "Модули расширения и ПЛК",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
     },
 ]
 
 
-def run():
-    all_products = {}
+def extract_items_from_json(obj, target_list):
+    """Рекурсивный поиск товаров в ответах API ЭТМ."""
+    if isinstance(obj, dict):
+        # Проверяем, похож ли объект на карточку товара ЭТМ
+        has_id = any(k in obj for k in ["id", "code", "etm_code", "etmCode"])
+        has_name = any(k in obj for k in ["name", "title", "nameRu"])
+
+        if has_id and has_name and isinstance(obj.get("name"), str):
+            code = str(obj.get("code") or obj.get("id") or obj.get("etm_code"))
+            if code.isdigit() and len(code) >= 5:
+                # Извлечение бренда
+                brand = "—"
+                if isinstance(obj.get("brand"), dict):
+                    brand = obj["brand"].get("name", "—")
+                elif isinstance(obj.get("producer"), dict):
+                    brand = obj["producer"].get("name", "—")
+                elif obj.get("brand"):
+                    brand = str(obj.get("brand"))
+                elif obj.get("producer"):
+                    brand = str(obj.get("producer"))
+
+                # Артикул
+                vendor_code = (
+                    obj.get("vendor_code")
+                    or obj.get("vendorCode")
+                    or obj.get("article")
+                    or "—"
+                )
+
+                # Цена
+                price = 0
+                price_data = obj.get("price") or obj.get("prices") or {}
+                if isinstance(price_data, dict):
+                    price = (
+                        price_data.get("val")
+                        or price_data.get("value")
+                        or price_data.get("final")
+                        or 0
+                    )
+                elif isinstance(price_data, (int, float)):
+                    price = price_data
+
+                # Остатки
+                stock_etm = 0
+                stock_vendor = 0
+                stocks = obj.get("stocks") or obj.get("remains") or []
+                if isinstance(stocks, list):
+                    for s in stocks:
+                        stype = str(s.get("type", "")).lower()
+                        qty = s.get("count", 0) or s.get("quantity", 0) or 0
+                        if any(
+                            x in stype
+                            for x in ["etm", "local", "склад", "город"]
+                        ):
+                            stock_etm += int(qty) if str(qty).isdigit() else 0
+                        elif any(
+                            x in stype
+                            for x in ["vendor", "remote", "изготов", "постав"]
+                        ):
+                            stock_vendor += (
+                                int(qty) if str(qty).isdigit() else 0
+                            )
+                elif isinstance(stocks, dict):
+                    stock_etm = (
+                        stocks.get("etm")
+                        or stocks.get("local")
+                        or obj.get("remains_etm")
+                        or 0
+                    )
+                    stock_vendor = (
+                        stocks.get("vendor")
+                        or stocks.get("remote")
+                        or obj.get("remains_vendor")
+                        or 0
+                    )
+
+                target_list.append(
+                    {
+                        "etm_code": code,
+                        "brand": brand,
+                        "vendor_code": str(vendor_code),
+                        "name": obj.get("name", "—"),
+                        "price": float(price or 0),
+                        "stock_etm": int(stock_etm or 0),
+                        "stock_vendor": int(stock_vendor or 0),
+                        "url": f"https://www.etm.ru/cat/nn/{code}",
+                    }
+                )
+                return
+
+        for v in obj.values():
+            extract_items_from_json(v, target_list)
+
+    elif isinstance(obj, list):
+        for item in obj:
+            extract_items_from_json(item, target_list)
+
+
+def main():
+    collected_dict = {}
 
     with sync_playwright() as p:
-        # Запуск с отключением флагов ботов
+        # Используем установленный Chrome/Edge в системе
         browser = p.chromium.launch(
-    channel="chrome",  # если установлен Google Chrome (или "msedge", если Edge)
-    headless=True,
-    args=[
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-blink-features=AutomationControlled",
-    ],
-)
+            channel="chrome",  # если нет Chrome, укажите "msedge"
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-blink-features=AutomationControlled",
+            ],
+        )
 
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
             viewport={"width": 1600, "height": 900},
             locale="ru-RU",
             timezone_id="Europe/Moscow",
         )
-
         page = context.new_page()
 
-        # Скрываем признаки webdriver
-        page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-            window.chrome = { runtime: {} };
-        """)
+        # Слушаем сетевой трафик браузера для перехвата API-ответов каталога
+        def on_response(response):
+            if response.status == 200 and "json" in response.headers.get(
+                "content-type", ""
+            ):
+                try:
+                    data = response.json()
+                    temp_items = []
+                    extract_items_from_json(data, temp_items)
+                    for item in temp_items:
+                        collected_dict[item["etm_code"]] = item
+                except Exception:
+                    pass
+
+        page.on("response", on_response)
 
         for cat in CATEGORIES:
-            print(f"\n--- Сканирование категории: {cat['name']} ---")
-
-            for page_num in range(1, 4):  # Первые 3 страницы каждого раздела
-                url = (
-                    cat["url"]
-                    if page_num == 1
-                    else f"{cat['url']}?page={page_num}"
+            print(f"Обработка категории: {cat['name']} ({cat['url']})")
+            for p_num in range(1, 4):  # Первые 3 страницы
+                page_url = (
+                    f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
                 )
-                print(f"Загрузка: {url}")
-
                 try:
-                    res = page.goto(
-                        url, wait_until="domcontentloaded", timeout=45000
+                    page.goto(
+                        page_url, wait_until="domcontentloaded", timeout=40000
                     )
-                    page.wait_for_timeout(4000)
+                    # Ждем подгрузки данных по сети
+                    page.wait_for_timeout(3000)
 
-                    title = page.title()
-                    print(f"Заголовок страницы: '{title}'")
-
-                    # Прокручиваем вниз для ленивой загрузки (lazy-load) товаров
-                    page.evaluate("window.scrollTo(0, document.body.scrollHeight / 2)")
+                    # Прокручиваем страницу вниз, чтобы стриггерить загрузку остатков
+                    page.evaluate(
+                        "window.scrollTo(0, document.body.scrollHeight / 2)"
+                    )
+                    page.wait_for_timeout(1500)
+                    page.evaluate(
+                        "window.scrollTo(0, document.body.scrollHeight)"
+                    )
                     page.wait_for_timeout(2000)
-                    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                    page.wait_for_timeout(2000)
-
                 except Exception as e:
-                    print(f"Ошибка при открытии {url}: {e}")
-                    continue
-
-                # Ищем все ссылки на товары вида /cat/nn/XXXXXX
-                links = page.query_selector_all("a[href*='/cat/nn/']")
-                print(
-                    f"Найдено ссылок вида /cat/nn/ на странице: {len(links)}"
-                )
-
-                if not links:
-                    # Проверяем, не вылезла ли капча/защита
-                    content_snip = page.inner_text("body")[:300].replace(
-                        "\n", " "
-                    )
-                    print(f"Текст страницы (первые 300 символов): {content_snip}")
-                    break
-
-                for link in links:
-                    try:
-                        href = link.get_attribute("href") or ""
-                        match = re.search(r"/cat/nn/(\d+)", href)
-                        if not match:
-                            continue
-
-                        etm_id = match.group(1)
-                        full_url = f"https://www.etm.ru/cat/nn/{etm_id}"
-
-                        card_text = link.inner_text().strip()
-                        # Если текст в самой ссылке пустой (ссылка-картинка), поднимаемся к родительской карточке
-                        if len(card_text) < 5:
-                            parent = link.evaluate_handle(
-                                "el => el.closest('div[class*=\"card\"], article, div[class*=\"item\"]')"
-                            )
-                            if parent:
-                                card_text = parent.as_element().inner_text()
-
-                        lines = [
-                            l.strip()
-                            for l in card_text.split("\n")
-                            if l.strip()
-                        ]
-
-                        name = "—"
-                        brand = "—"
-                        vendor_code = "—"
-                        price = 0
-                        stock_etm = 0
-                        stock_vendor = 0
-
-                        # Извлекаем данные из строк карточки
-                        for line in lines:
-                            l_lower = line.lower()
-                            if any(
-                                kw in l_lower
-                                for kw in [
-                                    "реле",
-                                    "модуль",
-                                    "плк",
-                                    "контроллер",
-                                    "блок",
-                                    "панель",
-                                ]
-                            ):
-                                if name == "—":
-                                    name = line
-                            if "арт" in l_lower or "код" in l_lower:
-                                vendor_code = (
-                                    line.split(":")[-1]
-                                    .replace("Арт.", "")
-                                    .strip()
-                                )
-                            if "₽" in line or "руб" in l_lower:
-                                digits = "".join(filter(str.isdigit, line))
-                                if digits:
-                                    price = int(digits)
-                            if (
-                                "склад этм" in l_lower
-                                or "в наличии" in l_lower
-                                or "на складе" in l_lower
-                            ):
-                                digits = "".join(filter(str.isdigit, line))
-                                stock_etm = int(digits) if digits else 1
-                            if (
-                                "производ" in l_lower
-                                or "изготовит" in l_lower
-                                or "поставщик" in l_lower
-                            ):
-                                digits = "".join(filter(str.isdigit, line))
-                                stock_vendor = int(digits) if digits else 1
-
-                        if name == "—" and len(lines) > 0:
-                            name = lines[0]
-
-                        # Определение производителя из наименования (ОВЕН, ONI, Segnetics, Finder, Chint и т.д.)
-                        for b in [
-                            "ОВЕН",
-                            "ONI",
-                            "Segnetics",
-                            "КЭАЗ",
-                            "MeyerTec",
-                            "Finder",
-                            "Schneider",
-                            "ABB",
-                            "Siemens",
-                            "Chint",
-                            "IEK",
-                            "DKC",
-                            "WAGO",
-                        ]:
-                            if b.lower() in name.lower():
-                                brand = b
-                                break
-
-                        if etm_id not in all_products:
-                            all_products[etm_id] = {
-                                "category": cat["name"],
-                                "etm_code": etm_id,
-                                "brand": brand,
-                                "vendor_code": vendor_code,
-                                "name": name,
-                                "price": price,
-                                "stock_etm": stock_etm,
-                                "stock_vendor": stock_vendor,
-                                "url": full_url,
-                            }
-                    except Exception:
-                        continue
+                    print(f"Таймаут или ошибка на странице {page_url}: {e}")
 
         browser.close()
 
-    items_list = list(all_products.values())
-    print(f"\nВсего успешно собрано уникальных товаров: {len(items_list)}")
+    result_items = list(collected_dict.values())
+    print(f"Итого собрано уникальных товаров: {len(result_items)}")
 
-    # Сохраняем результат
     payload = {
         "last_updated": datetime.utcnow().strftime("%d.%m.%Y %H:%M UTC"),
-        "total_items": len(items_list),
-        "items": items_list,
+        "total_items": len(result_items),
+        "items": result_items,
     }
 
     with open("data.json", "w", encoding="utf-8") as f:
@@ -221,4 +195,4 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    main()
