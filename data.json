@@ -1,39 +1,5 @@
 {
-  "last_updated": "15.09.2026 14:34 UTC",
-  "total_items": 3,
-  "items": [
-    {
-      "category": "Программируемые реле",
-      "etm_code": "568282",
-      "brand": "—",
-      "vendor_code": "—",
-      "name": "Температурный контроллер INNOCONT для управления охлаждением/размораживанием, 4 разряда, 77х35х61 мм, NTC, выход реле на компрессор, ON/OFF, 230VAC, встроенный фиксатор",
-      "price": 0,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/568282"
-    },
-    {
-      "category": "Программируемые реле",
-      "etm_code": "2487725",
-      "brand": "—",
-      "vendor_code": "—",
-      "name": "Реле промежуточное RP-402.ALTU",
-      "price": 0,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/2487725"
-    },
-    {
-      "category": "Программируемые реле",
-      "etm_code": "2178647",
-      "brand": "—",
-      "vendor_code": "—",
-      "name": "Пластиковый зажим BS-2/33P для реле PYF-023",
-      "price": 0,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/2178647"
-    }
-  ]
+  "last_updated": "15.09.2026 14:45 UTC",
+  "total_items": 0,
+  "items": []
 }
