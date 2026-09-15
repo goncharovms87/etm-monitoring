@@ -1,270 +1,666 @@
 {
-  "last_updated": "15.09.2026 15:01 UTC",
-  "total_items": 24,
+  "last_updated": "15.09.2026 15:07 UTC",
+  "total_items": 60,
   "items": [
     {
-      "category": "Программируемые реле",
+      "etm_code": "659553",
+      "brand": "INNOCONT",
+      "vendor_code": "TR-B-Y",
+      "name": "Температурный контроллер INNOCONT, 1 дисплей, 4 разряда, 72x36x64 мм, 2 аварийных выхода, 110-220VAC, выход: реле + твердотельное реле TR-B-Y",
+      "price": 4580,
+      "stock_etm": 72,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/659553",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "1800610",
+      "brand": "INNOCONT",
+      "vendor_code": "TR-C-S",
+      "name": "Температурный контроллер INNOCONT, 2 дисплея, 4 разряда, 48x48x60 мм, 2 аварийных выхода, 110-220VAC, выход: 4-20 мА + твердотельное реле TR-C-S",
+      "price": 5050.01,
+      "stock_etm": 59,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/1800610",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "8380405",
+      "brand": "ONI",
+      "vendor_code": "TK4S-14CC",
+      "name": "Температурный контроллер TK4S-14CC 48 х 48 мм 100-240 В~ выход1: токовый или ТТР выход2: токовый или ТТР выход сигнализации - 1 шт. (Китай)",
+      "price": 11870.01,
+      "stock_etm": 1,
+      "stock_vendor": 54,
+      "url": "https://www.etm.ru/cat/nn/8380405",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "4827305",
+      "brand": "INNOCONT",
+      "vendor_code": "TRT-F-Y-230-N-2",
+      "name": "Температурный контроллер INNOCONT для управления охлаждением/размораживанием, 4 разряда, 77х35х61 мм, NTC, выходы реле на компрессор и охладитель, ON/OFF, 230VAC, комплектный фиксатор",
+      "price": 5510,
+      "stock_etm": 47,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/4827305",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
       "etm_code": "6769945",
       "brand": "INNOCONT",
       "vendor_code": "TRT-A-S-230-PT-8-2",
       "name": "Температурный контроллер INNOCONT с аналоговым управлением, 48х48х82 мм,вход Pt100, 0...200C, выход реле, ON/OFF, 230VAC, электросоединение под розетку 8pin",
-      "price": 0.0,
+      "price": 4100.01,
       "stock_etm": 46,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/6769945"
+      "url": "https://www.etm.ru/cat/nn/6769945",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "3305159",
       "brand": "INNOCONT",
       "vendor_code": "TRT-F-Y-230-N",
       "name": "Температурный контроллер INNOCONT для управления охлаждением/размораживанием, 4 разряда, 77х35х61 мм, NTC, выход реле на компрессор, ON/OFF, 230VAC, комплектный фиксатор",
-      "price": 0.0,
+      "price": 5000,
       "stock_etm": 45,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/3305159"
+      "url": "https://www.etm.ru/cat/nn/3305159",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6520342",
       "brand": "INNOCONT",
       "vendor_code": "TRT-A-S-230-PT-8-4",
       "name": "Температурный контроллер INNOCONT с аналоговым управлением, 48х48х82 мм,вход Pt100, 0...400C, выход реле, ON/OFF, 230VAC, электросоединение под розетку 8pin",
-      "price": 0.0,
+      "price": 4100.01,
       "stock_etm": 43,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/6520342"
+      "url": "https://www.etm.ru/cat/nn/6520342",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "2174941",
       "brand": "INNOCONT",
       "vendor_code": "TR-B-MM",
       "name": "Температурный контроллер, 2 дисплея, 3 разряда, 72х72х62 мм, 110-220VAC, выход: реле, режим работы: ON/OFF",
-      "price": 0.0,
+      "price": 2960.01,
       "stock_etm": 41,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/2174941"
+      "url": "https://www.etm.ru/cat/nn/2174941",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "756643",
       "brand": "ONI",
       "vendor_code": "TAS-B4RK4C",
       "name": "Температурный контроллер TAS-B4RK4C 48 х 48 мм 100-240 В~ выход: релейный K(CA) 0…400°С (Китай)",
-      "price": 0.0,
+      "price": 4169.99,
       "stock_etm": 40,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/756643"
+      "url": "https://www.etm.ru/cat/nn/756643",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "8782771",
       "brand": "ОВЕН",
       "vendor_code": "ПР200-24.2.2.0",
       "name": "Программируемое реле ПР200-24.2.2.0",
-      "price": 0.0,
+      "price": 17446,
       "stock_etm": 39,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/8782771"
+      "url": "https://www.etm.ru/cat/nn/8782771",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6590075",
       "brand": "INNOCONT",
       "vendor_code": "TR-B-HM",
       "name": "Температурный контроллер, 2 дисплея, 3 разряда, 48х96х62 мм, 110-220VAC, выход: реле, режим работы: ON/OFF",
-      "price": 0.0,
+      "price": 2960.01,
       "stock_etm": 36,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/6590075"
+      "url": "https://www.etm.ru/cat/nn/6590075",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "568282",
       "brand": "INNOCONT",
       "vendor_code": "TRT-F-Y-230-N-N",
       "name": "Температурный контроллер INNOCONT для управления охлаждением/размораживанием, 4 разряда, 77х35х61 мм, NTC, выход реле на компрессор, ON/OFF, 230VAC, встроенный фиксатор",
-      "price": 0.0,
+      "price": 4790.01,
       "stock_etm": 35,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/568282"
+      "url": "https://www.etm.ru/cat/nn/568282",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
+      "etm_code": "6801468",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР100-24.1208.03.1",
+      "name": "Программируемое реле ПР100-24.1208.03.1 для локальных систем автоматизации",
+      "price": 10870.2,
+      "stock_etm": 22,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/6801468",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "1798625",
+      "brand": "Rievtech",
+      "vendor_code": "SR-12DC-DA-R",
+      "name": "Контроллер программируемый логический 12-24 VDC, 8DI(4AI/0_10V), 4DO(10A), RTC, FBD, Ethernet, LCD",
+      "price": 11115.83,
+      "stock_etm": 21,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/1798625",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "8791351",
+      "brand": "Rievtech",
+      "vendor_code": "SR-12AC-R",
+      "name": "Контроллер программируемый логический 110-240 VAC, 8DI, 4DO(10A), RTC, FBD, Ethernet, LCD",
+      "price": 11115.83,
+      "stock_etm": 21,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/8791351",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "9255601",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР100-24.0804.03.0",
+      "name": "Программируемое реле ПР100-24.0804.03.0 для локальных систем автоматизации",
+      "price": 8564.4,
+      "stock_etm": 18,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/9255601",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
       "etm_code": "3451119",
       "brand": "INNOCONT",
       "vendor_code": "TR-B-M",
       "name": "Температурный контроллер INNOCONT, 2 дисплея, 4 разряда, 72x72x60 мм, 2 аварийных выхода, 110-220VAC, выход: реле + твердотельное реле TR-B-M",
-      "price": 0.0,
+      "price": 6060.01,
       "stock_etm": 16,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/3451119"
+      "url": "https://www.etm.ru/cat/nn/3451119",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6171652",
-      "brand": "—",
+      "brand": "RP-407.AL",
       "vendor_code": "RP-407.AL",
       "name": "Реле промежуточное RP-407.AL",
-      "price": 0.0,
+      "price": 457.5,
       "stock_etm": 20,
       "stock_vendor": 15,
-      "url": "https://www.etm.ru/cat/nn/6171652"
+      "url": "https://www.etm.ru/cat/nn/6171652",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "336141",
       "brand": "ONI",
       "vendor_code": "TC4M-24R",
       "name": "Температурный контроллер TC4M-24R 72 х 72 мм 100-240 В~ выход: релейный или ТТР выход сигнализации - 2 шт. (Китай)",
-      "price": 0.0,
+      "price": 6810.01,
       "stock_etm": 2,
       "stock_vendor": 15,
-      "url": "https://www.etm.ru/cat/nn/336141"
+      "url": "https://www.etm.ru/cat/nn/336141",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "1593019",
-      "brand": "—",
+      "brand": "FSD-0544.ZD3",
       "vendor_code": "FSD-0544.ZD3",
       "name": "Реле твердотельное 1-ф, тип FSD, 5А FSD-0544.ZD3",
-      "price": 0.0,
+      "price": 811.3,
       "stock_etm": 20,
       "stock_vendor": 15,
-      "url": "https://www.etm.ru/cat/nn/1593019"
+      "url": "https://www.etm.ru/cat/nn/1593019",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "4047324",
       "brand": "ОВЕН",
       "vendor_code": "ПР103-24.1610.06.1.0",
       "name": "Программируемое реле с Ethernet ПР103-24.1610.06.1.0",
-      "price": 0.0,
+      "price": 21594,
       "stock_etm": 15,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/4047324"
+      "url": "https://www.etm.ru/cat/nn/4047324",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6840075",
       "brand": "ONI",
       "vendor_code": "TC4W-24R",
       "name": "Температурный контроллер TC4W-24R 98 х 48 мм 100-240 В~ выход: релейный или ТТР выход сигнализации - 2 шт. (Китай)",
-      "price": 0.0,
+      "price": 6620,
       "stock_etm": 2,
       "stock_vendor": 15,
-      "url": "https://www.etm.ru/cat/nn/6840075"
+      "url": "https://www.etm.ru/cat/nn/6840075",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "9332384",
       "brand": "ONI",
       "vendor_code": "TC4M-14R",
       "name": "Температурный контроллер TC4M-14R 72 х 72 мм 100-240 В~ выход: релейный или ТТР выход сигнализации - 1 шт. (Китай)",
-      "price": 0.0,
+      "price": 5539.99,
       "stock_etm": 1,
       "stock_vendor": 15,
-      "url": "https://www.etm.ru/cat/nn/9332384"
+      "url": "https://www.etm.ru/cat/nn/9332384",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "2487725",
-      "brand": "—",
+      "brand": "RP-402.ALTU",
       "vendor_code": "RP-402.ALTU",
       "name": "Реле промежуточное RP-402.ALTU",
-      "price": 0.0,
+      "price": 549,
       "stock_etm": 20,
       "stock_vendor": 14,
-      "url": "https://www.etm.ru/cat/nn/2487725"
+      "url": "https://www.etm.ru/cat/nn/2487725",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
+      "etm_code": "8135873",
+      "brand": "ONI",
+      "vendor_code": "TC4Y-14R",
+      "name": "Температурный контроллер TC4Y-14R 72 х 36 мм 100-240 В~ выход: релейный или ТТР выход сигнализации - 1 шт. (Юж.Корея)",
+      "price": 8680,
+      "stock_etm": 1,
+      "stock_vendor": 10,
+      "url": "https://www.etm.ru/cat/nn/8135873",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "8994749",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.2.1.0",
+      "name": "Программируемое реле ПР200-220.2.1.0",
+      "price": 16640.8,
+      "stock_etm": 10,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/8994749",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "3883862",
+      "brand": "ONI",
+      "vendor_code": "TC4Y-N4R",
+      "name": "Температурный контроллер TC4Y-N4R 72 х 36 мм 100-240 В~ выход: релейный или ТТР выхода сигнализации нет (Юж.Корея)",
+      "price": 9790,
+      "stock_etm": 9,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/3883862",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "4121773",
+      "brand": "Rievtech",
+      "vendor_code": "SR-22AC-R",
+      "name": "Контроллер программируемый логический 110-240 VAC,6 DI/AI(0...10V)+8 DI, 8DO(10A), RTC, FBD, Ethernet,LCD",
+      "price": 18717.52,
+      "stock_etm": 9,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/4121773",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
       "etm_code": "5553216",
       "brand": "ONI",
       "vendor_code": "TK4H-24RR",
       "name": "Температурный контроллер TK4H-24RR 48 х 96 мм 100-240 В~ выход1: релейный выход2: релейный выход сигнализации - 2 шт. (Китай)",
-      "price": 0.0,
+      "price": 13870,
       "stock_etm": 2,
       "stock_vendor": 9,
-      "url": "https://www.etm.ru/cat/nn/5553216"
+      "url": "https://www.etm.ru/cat/nn/5553216",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6844074",
       "brand": "ОВЕН",
       "vendor_code": "ПР200-220.4.1.0",
       "name": "Программируемое реле ПР200-220.4.1.0",
-      "price": 0.0,
+      "price": 16640.8,
       "stock_etm": 9,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/6844074"
+      "url": "https://www.etm.ru/cat/nn/6844074",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "7482454",
       "brand": "ОВЕН",
       "vendor_code": "ПР100-230.0804.01.1",
       "name": "Программируемое реле ПР100-230.0804.01.1 для локальных систем автоматизации",
-      "price": 0.0,
+      "price": 9618.48,
       "stock_etm": 9,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/7482454"
+      "url": "https://www.etm.ru/cat/nn/7482454",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "4311846",
       "brand": "ОВЕН",
       "vendor_code": "ПР200-220.3.0.0",
       "name": "Программируемое реле ПР200-220.3.0.0",
-      "price": 0.0,
+      "price": 14627.8,
       "stock_etm": 8,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/4311846"
+      "url": "https://www.etm.ru/cat/nn/4311846",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "189420",
       "brand": "ОВЕН",
       "vendor_code": "ПР200-24.2.0.0",
       "name": "Программируемое реле ПР200-24.2.0.0",
-      "price": 0.0,
+      "price": 14627.8,
       "stock_etm": 8,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/189420"
+      "url": "https://www.etm.ru/cat/nn/189420",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "8401946",
       "brand": "ОВЕН",
       "vendor_code": "ПР102-24.2416.06.1",
       "name": "Программируемое реле ПР102-24.2416.06.1",
-      "price": 0.0,
+      "price": 21203.6,
       "stock_etm": 8,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/8401946"
+      "url": "https://www.etm.ru/cat/nn/8401946",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "6510819",
       "brand": "ОВЕН",
       "vendor_code": "ПР200-24.1.2.0",
       "name": "Программируемое реле ПР200-24.1.2.0",
-      "price": 0.0,
+      "price": 15567.2,
       "stock_etm": 7,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/6510819"
+      "url": "https://www.etm.ru/cat/nn/6510819",
+      "category": "Модули расширения и ПЛК"
     },
     {
-      "category": "Программируемые реле",
       "etm_code": "2178647",
-      "brand": "—",
+      "brand": "BS-2/33P",
       "vendor_code": "BS-2/33P",
       "name": "Пластиковый зажим BS-2/33P для реле PYF-023",
-      "price": 0.0,
+      "price": 40.26,
       "stock_etm": 6,
       "stock_vendor": 0,
-      "url": "https://www.etm.ru/cat/nn/2178647"
+      "url": "https://www.etm.ru/cat/nn/2178647",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "5019097",
+      "brand": "ONI",
+      "vendor_code": "TK4L-24RR",
+      "name": "Температурный контроллер TK4L-24RR 96 х 96 мм 100-240 В~ выход1: релейный выход2: релейный выход сигнализации - 2 шт. (Китай)",
+      "price": 15410.01,
+      "stock_etm": 2,
+      "stock_vendor": 4,
+      "url": "https://www.etm.ru/cat/nn/5019097",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "5703899",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-24.1.1.0",
+      "name": "Программируемое реле ПР200-24.1.1.0",
+      "price": 14091,
+      "stock_etm": 4,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/5703899",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "5731543",
+      "brand": "ONI",
+      "vendor_code": "TC4SP-12R",
+      "name": "Температурный контроллер TC4SP-12R 48 х 48 мм (11-контактный штекер) 24-48 В= / 24 В~ выход: релейный или ТТР выход сигнализации - 1 шт. (Юж.Корея)",
+      "price": 10200.01,
+      "stock_etm": 1,
+      "stock_vendor": 4,
+      "url": "https://www.etm.ru/cat/nn/5731543",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "7260328",
+      "brand": "ONI",
+      "vendor_code": "TK4W-T4CR",
+      "name": "Температурный контроллер TK4W-T4CR 98 х 48 мм 100-240 В~ выход1: токовый или ТТР выход2: релейный выход сигнализации - 1 шт. + RS485 (Китай)",
+      "price": 16680,
+      "stock_etm": 1,
+      "stock_vendor": 4,
+      "url": "https://www.etm.ru/cat/nn/7260328",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "8593087",
+      "brand": "ONI",
+      "vendor_code": "TK4H-B4RR",
+      "name": "Температурный контроллер TK4H-B4RR 48 х 96 мм 100-240 В~ выход1: релейный выход2: релейный выход сигнализации - 2 шт. + RS485 (Китай)",
+      "price": 17680,
+      "stock_etm": 2,
+      "stock_vendor": 4,
+      "url": "https://www.etm.ru/cat/nn/8593087",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "4026810",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-24.5.2.0",
+      "name": "Программируемое реле ПР200-24.5.2.0",
+      "price": 17446,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/4026810",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "1278473",
+      "brand": "ONI",
+      "vendor_code": "TC3YF-34R",
+      "name": "Температурный контроллер TC3YF-34R 72 х 36 мм выход компрессора + выход антиобледенителя + выход вентилятора испарителя 100-240 В~ выход: релейный NTC (Юж.Корея)",
+      "price": 12470.01,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/1278473",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "2600772",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.23.0.0",
+      "name": "Программируемое реле ПР200-220.23.0.0",
+      "price": 14627.8,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/2600772",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "2999641",
+      "brand": "ONI",
+      "vendor_code": "TK4L-14CC",
+      "name": "Температурный контроллер TK4L-14CC 96 х 96 мм 100-240 В~ выход1: токовый или ТТР выход2: токовый или ТТР выход сигнализации - 1 шт. (Китай)",
+      "price": 14140,
+      "stock_etm": 1,
+      "stock_vendor": 3,
+      "url": "https://www.etm.ru/cat/nn/2999641",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "3373259",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР225-230.1208.04.2.0",
+      "name": "Устройство управляющее многофункциональное ПР225-230.1208.04.2.0",
+      "price": 24888,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/3373259",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "7047878",
+      "brand": "INNOCONT",
+      "vendor_code": "TRT-D-L-230-PT",
+      "name": "Температурный контроллер INNOCONT, монтаж на DIN-рейку,вход Pt100, выход реле, PID, 230VAC",
+      "price": 7040,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/7047878",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "7638043",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-24.8.2.0",
+      "name": "Устройство управляющее многофункциональное ПР200-24.8.2.0",
+      "price": 22948.2,
+      "stock_etm": 3,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/7638043",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "5972702",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.24.0.0",
+      "name": "Устройство управляющее многофункциональное ПР200-220.24.0.0",
+      "price": 15164.6,
+      "stock_etm": 2,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/5972702",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "7554389",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.24.1.0",
+      "name": "Устройство управляющее многофункциональное ПР200-220.24.1.0",
+      "price": 16640.8,
+      "stock_etm": 2,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/7554389",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "9115946",
+      "brand": "ONI",
+      "vendor_code": "TK4S-14SR",
+      "name": "Температурный контроллер TK4S-14SR 48 х 48 мм 100-240 В~ выход1: ТТР выход2: релейный выход сигнализации - 1 шт. (Китай)",
+      "price": 11870.01,
+      "stock_etm": 1,
+      "stock_vendor": 2,
+      "url": "https://www.etm.ru/cat/nn/9115946",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "6619921",
+      "brand": "ОВЕН",
+      "vendor_code": "ПЛК200-04-CS",
+      "name": "Контроллер ПЛК200-04-CS для малых и средних систем автоматизации",
+      "price": 58987,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/6619921",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "8961739",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.5.2.0",
+      "name": "Программируемое реле ПР200-220.5.2.0",
+      "price": 18049.9,
+      "stock_etm": 2,
+      "stock_vendor": 1,
+      "url": "https://www.etm.ru/cat/nn/8961739",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "312882",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР225-24.1210.06.2.0",
+      "name": "Устройство управляющее многофункциональное ПР225-24.1210.06.2.0",
+      "price": 26644.8,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/312882",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "1053361",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР205-230.1211.22.0.0",
+      "name": "Программируемое реле ПР205-230.1211.22.0.0 с графическим дисплеем и Ethernet",
+      "price": 23228.8,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/1053361",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "3295482",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.21.0.0",
+      "name": "Устройство управляющее многофункциональное ПР200-220.21.0.0",
+      "price": 12614.8,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/3295482",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "3426851",
+      "brand": "Rievtech",
+      "vendor_code": "PR-12DC-DA-R-N",
+      "name": "Контроллер программируемый 12-24VDC, 8DI(4DI/HSI + 4DI/AI (0--10V)), 4DO, RTC, RS485, Ethernet, ЖКИ",
+      "price": 22881.05,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/3426851",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "3621130",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР102-24.2416.03.1",
+      "name": "Программируемое реле ПР102-24.2416.03.1",
+      "price": 19459,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/3621130",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "6329368",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-24.3.1.0",
+      "name": "Программируемое реле ПР200-24.3.1.0",
+      "price": 15567.2,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/6329368",
+      "category": "Модули расширения и ПЛК"
+    },
+    {
+      "etm_code": "7435585",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР200-220.24.2.0",
+      "name": "Программируемое реле ПР200-220.24.2.0",
+      "price": 18049.9,
+      "stock_etm": 1,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/7435585",
+      "category": "Модули расширения и ПЛК"
     }
   ]
 }
