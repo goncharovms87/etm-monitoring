@@ -12,7 +12,6 @@ jobs:
   scrape-and-deploy:
     runs-on: self-hosted
     env:
-      # Отключает строгую валидацию сторонних SSL-перехватов для Node.js в actions
       NODE_TLS_REJECT_UNAUTHORIZED: '0'
     steps:
       - name: Настройка Git SSL
@@ -27,8 +26,8 @@ jobs:
         shell: cmd
         run: |
           python -m pip install --upgrade pip
-          pip install playwright
-          playwright install chromium
+          python -m pip install playwright
+          python -m playwright install chromium
 
       - name: Запуск сбора данных
         shell: cmd
