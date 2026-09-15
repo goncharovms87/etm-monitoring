@@ -1,5 +1,50 @@
 {
-  "last_updated": "15.09.2026 14:45 UTC",
-  "total_items": 0,
-  "items": []
+  "last_updated": "15.09.2026 14:56 UTC",
+  "total_items": 4,
+  "items": [
+    {
+      "category": "Модули расширения и ПЛК",
+      "etm_code": "9259164",
+      "brand": "DKC",
+      "vendor_code": "TK4S-14CC",
+      "name": "Температурный контроллер TX4S-B4S 48 х 48 мм 100-240 В~ выход: ТТР выход сигнализации - 2 шт. + RS485 (Китай)",
+      "price": 0.0,
+      "stock_etm": 2,
+      "stock_vendor": 100,
+      "url": "https://www.etm.ru/cat/nn/9259164"
+    },
+    {
+      "category": "Модули расширения и ПЛК",
+      "etm_code": "2174941",
+      "brand": "DKC",
+      "vendor_code": "TR-B-MM",
+      "name": "Температурный контроллер, 2 дисплея, 3 разряда, 72х72х62 мм, 110-220VAC, выход: реле, режим работы: ON/OFF",
+      "price": 0.0,
+      "stock_etm": 41,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/2174941"
+    },
+    {
+      "category": "Модули расширения и ПЛК",
+      "etm_code": "8893140",
+      "brand": "DKC",
+      "vendor_code": "ПР100-230.1208.01.0",
+      "name": "Программируемое реле ПР100-230.1208.01.0 для локальных систем автоматизации",
+      "price": 0.0,
+      "stock_etm": 29,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/8893140"
+    },
+    {
+      "category": "Модули расширения и ПЛК",
+      "etm_code": "9255601",
+      "brand": "DKC",
+      "vendor_code": "ПР100-24.0804.03.0",
+      "name": "Программируемое реле ПР100-24.0804.03.0 для локальных систем автоматизации",
+      "price": 0.0,
+      "stock_etm": 18,
+      "stock_vendor": 0,
+      "url": "https://www.etm.ru/cat/nn/9255601"
+    }
+  ]
 }
