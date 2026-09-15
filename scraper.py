@@ -1,7 +1,7 @@
 import os
 import sys
 
-# Принудительно задаем кодировку UTF-8 для вывода в консоль Windows
+# Принудительно задаем кодировку UTF-8 для вывода в консоль
 sys.stdout.reconfigure(encoding='utf-8')
 
 import json
@@ -58,16 +58,16 @@ def identify_brand(text, vendor_code):
     return "Другой"
 
 def extract_page_cards(page, category_name):
-    """Сбор каждой отдельной карточки товара без захвата общей сетки."""
+    """Извлечение карточек товаров со страницы каталога."""
     js_code = """
     () => {
         const results = [];
         
-        // Находим все ссылки с кодом номенклатуры /cat/nn/
-        const rawLinks = Array.from(document.querySelectorAll('a[href*="/cat/nn/"]'));
+        // Находим все ссылки с кодом /cat/nn/
+        const links = Array.from(document.querySelectorAll('a[href*="/cat/nn/"]'));
         const seenCodes = new Set();
 
-        for (const a of rawLinks) {
+        for (const a of links) {
             const href = a.getAttribute('href') || '';
             const match = href.match(/\\/cat\\/nn\\/(\\d+)/);
             if (!match) continue;
@@ -75,28 +75,20 @@ def extract_page_cards(page, category_name):
             const etm_code = match[1];
             if (seenCodes.has(etm_code)) continue;
 
-            // Находим минимальный контейнер карточки товара:
-            // Ищем ближайшего предка, который содержит кнопку корзины ИЛИ не является общим каталогом
-            let card = a.parentElement;
-            let targetCard = null;
-            
-            while (card && card.tagName !== 'BODY' && card.tagName !== 'MAIN') {
-                // Если элемент карточки содержит не более 800 символов текста и содержит "Код товара" - это плитка
-                const txt = card.innerText || '';
-                if (txt.includes('Код товара:') && txt.length < 1200) {
-                    targetCard = card;
+            // Находим родительскую карточку конкретного товара:
+            // Ищем контейнер, где есть этот etm_code или кнопка "В корзину", но не выходим за пределы карточки
+            let card = a;
+            for (let i = 0; i < 6; i++) {
+                if (!card.parentElement || card.parentElement.tagName === 'BODY' || card.parentElement.tagName === 'MAIN') break;
+                card = card.parentElement;
+                if (card.innerText && card.innerText.includes('В корзину')) {
                     break;
                 }
-                card = card.parentElement;
-            }
-
-            if (!targetCard) {
-                targetCard = a.closest('article') || a.parentElement;
             }
 
             seenCodes.add(etm_code);
 
-            const text = (targetCard ? targetCard.innerText : a.innerText).replace(/\\u00a0/g, ' ');
+            const text = (card.innerText || '').replace(/\\u00a0/g, ' ');
             const lines = text.split('\\n').map(s => s.trim()).filter(Boolean);
 
             // 1. Наименование
@@ -177,16 +169,6 @@ def extract_page_cards(page, category_name):
         })
     return processed
 
-def switch_to_page(page, base_url, target_page_num):
-    url = f"{base_url}?page={target_page_num}&rows=48"
-    try:
-        page.goto(url, wait_until="domcontentloaded", timeout=45000)
-        page.wait_for_timeout(3500)
-        return True
-    except Exception as e:
-        print(f"Ошибка перехода на страницу {target_page_num}: {e}")
-        return False
-
 def main():
     collected_dict = {}
 
@@ -216,24 +198,29 @@ def main():
             max_p = cat.get("max_pages", 15)
 
             for p_num in range(1, max_p + 1):
-                if p_num == 1:
-                    first_url = f"{cat['url']}?rows=48"
-                    print(f"Загрузка страницы 1: {first_url}")
-                    try:
-                        page.goto(first_url, wait_until="domcontentloaded", timeout=50000)
-                        page.wait_for_timeout(3000)
-                    except Exception as e:
-                        print(f"Ошибка загрузки {cat['url']}: {e}")
-                        break
-                else:
-                    print(f"Загрузка страницы {p_num} из {max_p}...")
-                    if not switch_to_page(page, cat["url"], p_num):
-                        break
+                url = f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
+                print(f"Загрузка страницы {p_num} из {max_p}: {url}")
 
-                # Скроллим страницу, чтобы виртуальный список отрендерил все карточки
-                for pos in [600, 1400, 2200, 3200, 4200]:
-                    page.evaluate(f"window.scrollTo(0, {pos})")
-                    page.wait_for_timeout(250)
+                try:
+                    page.goto(url, wait_until="domcontentloaded", timeout=45000)
+                    
+                    # КРИТИЧЕСКИ ВАЖНО: ждем реального появления карточек товаров
+                    try:
+                        page.wait_for_selector("a[href*='/cat/nn/']", timeout=20000)
+                    except Exception:
+                        print("Товары не успели отрисоваться по селектору")
+
+                    # Плавный скролл страницы вниз для lazy-load
+                    page.evaluate("window.scrollTo(0, 1000)")
+                    page.wait_for_timeout(500)
+                    page.evaluate("window.scrollTo(0, 2500)")
+                    page.wait_for_timeout(500)
+                    page.evaluate("window.scrollTo(0, 3800)")
+                    page.wait_for_timeout(800)
+
+                except Exception as e:
+                    print(f"Ошибка загрузки страницы {p_num}: {e}")
+                    break
 
                 items = extract_page_cards(page, cat["name"])
                 new_added = 0
@@ -255,7 +242,9 @@ def main():
         browser.close()
 
     final_list = list(collected_dict.values())
-    print(f"\nСбор завершен! Всего уникальных позиций в базе: {len(final_list)}")
+    print(f"\n==========================================")
+    print(f"Сбор завершен! Всего уникальных позиций: {len(final_list)}")
+    print(f"==========================================")
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
