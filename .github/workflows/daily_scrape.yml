@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   scrape-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout репозитория
         uses: actions/checkout@v4
