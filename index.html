@@ -72,13 +72,18 @@
                 return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
               }
             },
-            { 
-              name: "Цена, ₽", 
-              id: "price", 
-              sort: true, 
-              width: "120px",
-              formatter: (cell) => cell > 0 ? Number(cell).toLocaleString('ru-RU') + ' ₽' : '<span class="text-muted">По запросу</span>'
-            },
+           { 
+  name: "Цена, ₽", 
+  id: "price", 
+  sort: true, 
+  width: "130px",
+  formatter: (cell) => {
+    const p = Number(cell) || 0;
+    return p > 0 
+      ? gridjs.html(`<span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>`)
+      : gridjs.html(`<span class="text-muted fst-italic">По запросу</span>`);
+  }
+},
             { 
               name: "Склад ЭТМ", 
               id: "stock_etm", 
