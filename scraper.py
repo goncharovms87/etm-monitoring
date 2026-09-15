@@ -1,77 +1,146 @@
-import os
-import sys
-
-# Принудительно задаем кодировку UTF-8 для логов Windows
-sys.stdout.reconfigure(encoding='utf-8')
-
 import json
+import os
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
+# Принудительно задаем UTF-8 для вывода в консоль Windows
+sys.stdout.reconfigure(encoding="utf-8")
+
+# Целевые категории каталога ЭТМ
 CATEGORIES = [
     {
         "id": "751010",
         "name": "Контроллеры и модули свободнопрограммируемые",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye",
-        "max_pages": 15
+        "max_pages": 15,
     },
     {
         "id": "751025",
         "name": "Модули расширения и программируемые реле",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
-        "max_pages": 15
+        "max_pages": 15,
     },
     {
         "id": "75102510",
         "name": "Программируемые реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
-        "max_pages": 15
-    }
+        "max_pages": 15,
+    },
 ]
 
+# Целевые производители автоматизации
 TARGET_BRANDS = [
-    {"name": "ОВЕН", "aliases": ["овен", "owen", "пр100", "пр102", "пр103", "пр200", "пр205", "плк110", "плк210", "плк200"]},
+    {
+        "name": "ОВЕН",
+        "aliases": [
+            "овен",
+            "owen",
+            "пр100",
+            "пр102",
+            "пр103",
+            "пр200",
+            "пр205",
+            "плк110",
+            "плк210",
+            "плк200",
+        ],
+    },
     {"name": "ONI", "aliases": ["oni", "plrs", "plrk"]},
     {"name": "EKF", "aliases": ["ekf", "про-реле", "pro-relay", "pro-logic"]},
-    {"name": "Rievtech", "aliases": ["rievtech", "pr-12", "pr-18", "pr-24", "sr-12", "sr-22"]},
-    {"name": "Systeme Electric", "aliases": ["systeme electric", "систэм электрик", "systeme", "se "]},
+    {
+        "name": "Rievtech",
+        "aliases": ["rievtech", "pr-12", "pr-18", "pr-24", "sr-12", "sr-22"],
+    },
+    {
+        "name": "Systeme Electric",
+        "aliases": ["systeme electric", "систэм электрик", "systeme", "se "],
+    },
     {"name": "DKC", "aliases": ["dkc", "дкс"]},
-    {"name": "Segnetics", "aliases": ["segnetics", "сегнетикс", "pixel", "smh", "matrix"]},
-    {"name": "ЕвроАвтоматика", "aliases": ["евроавтоматика", "fif", "f&f", "евроавтоматика fif"]},
-    {"name": "Тракт-Автоматика", "aliases": ["тракт-автоматика", "тракт автоматика", "тракт"]},
+    {
+        "name": "Segnetics",
+        "aliases": ["segnetics", "сегнетикс", "pixel", "smh", "matrix"],
+    },
+    {
+        "name": "ЕвроАвтоматика",
+        "aliases": ["евроавтоматика", "fif", "f&f", "евроавтоматика fif"],
+    },
+    {
+        "name": "Тракт-Автоматика",
+        "aliases": ["тракт-автоматика", "тракт автоматика", "тракт"],
+    },
     {"name": "КЭАЗ", "aliases": ["кэаз", "keaz", "optilogic"]},
-    {"name": "Schneider Electric", "aliases": ["schneider electric", "schneider", "zelio", "modicon"]},
+    {
+        "name": "Schneider Electric",
+        "aliases": ["schneider electric", "schneider", "zelio", "modicon"],
+    },
     {"name": "Siemens", "aliases": ["siemens", "logo!", "s7-1200", "simatic"]},
     {"name": "Finder", "aliases": ["finder", "optan"]},
     {"name": "INNOCONT", "aliases": ["innocont"]},
-    {"name": "Autonics", "aliases": ["autonics"]}
+    {"name": "Autonics", "aliases": ["autonics"]},
 ]
 
+# Стоп-слова для фильтрации нецелевой радиоэлектроники
 STOP_WORDS = [
-    "диод", "тиристор", "симистор", "igbt", "конденсатор", 
-    "варистор", "резистор", "транзистор", "электролитический", "косинусный", "предохранитель"
+    "диод",
+    "тиристор",
+    "симистор",
+    "igbt",
+    "конденсатор",
+    "варистор",
+    "резистор",
+    "транзистор",
+    "электролитический",
+    "косинусный",
+    "предохранитель",
 ]
+
 
 def identify_brand(text, vendor_code):
+    """Точное сопоставление производителя по справочнику."""
     combined = f"{text} {vendor_code}".lower()
     for b in TARGET_BRANDS:
         for alias in b["aliases"]:
-            if re.search(r'(?<![a-zA-Zа-яА-Я0-9])' + re.escape(alias) + r'(?![a-zA-Zа-яА-Я0-9])', combined) or alias in combined:
+            if (
+                re.search(
+                    r"(?<![a-zA-Zа-яА-Я0-9])"
+                    + re.escape(alias)
+                    + r"(?![a-zA-Zа-яА-Я0-9])",
+                    combined,
+                )
+                or alias in combined
+            ):
                 return b["name"]
     return "Другой"
 
+
 def is_target_product(name, brand):
+    """Отсечение радиодеталей и пассивных компонентов."""
     name_lower = name.lower()
     if any(sw in name_lower for sw in STOP_WORDS):
         return False
     if brand != "Другой":
         return True
-    keywords = ["контроллер", "плк", "plc", "программируем", "модуль расширения", "модуль ввода", "модуль вывода", "логический модуль"]
+    keywords = [
+        "контроллер",
+        "плк",
+        "plc",
+        "программируем",
+        "модуль расширения",
+        "модуль ввода",
+        "модуль вывода",
+        "логический модуль",
+    ]
     return any(k in name_lower for k in keywords)
 
+
 def extract_card_data(link_el, category_name):
+    """
+    Извлечение данных из плитки товара:
+    Поднимаемся ровно до блока с кнопкой корзины/наличием, чтобы гарантированно захватить цену.
+    """
     href = link_el.get_attribute("href") or ""
     m = re.search(r"/cat/nn/(\d+)", href)
     if not m:
@@ -80,36 +149,47 @@ def extract_card_data(link_el, category_name):
     etm_code = m.group(1)
     card_url = f"https://www.etm.ru/cat/nn/{etm_code}"
 
-    # Поднимаемся до карточки товара
+    # Ищем родительский контейнер всей плитки (с обязательным ценником и кнопкой корзины)
     card_container = link_el.evaluate_handle(
         """el => {
             let cur = el;
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 9; i++) {
                 if (!cur.parentElement || cur.parentElement.tagName === 'BODY' || cur.parentElement.tagName === 'MAIN') break;
                 cur = cur.parentElement;
-                if (cur.innerText && (cur.innerText.includes('В корзину') || cur.innerText.includes('Код товара:'))) {
+                if (cur.innerText && (cur.innerText.includes('В корзину') || cur.innerText.includes('В корзине') || cur.innerText.includes('По запросу'))) {
                     return cur;
                 }
             }
-            return el.parentElement;
+            return el.parentElement ? el.parentElement.parentElement : el;
         }"""
     )
 
-    text = ""
     try:
-        text = card_container.as_element().inner_text().replace('\u00a0', ' ')
+        text = card_container.as_element().inner_text().replace("\u00a0", " ")
     except Exception:
-        text = (link_el.inner_text() or '').replace('\u00a0', ' ')
+        text = (link_el.inner_text() or "").replace("\u00a0", " ")
 
-    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    lines = [l.strip() for l in text.split("\n") if l.strip()]
 
-    name = link_el.inner_text().strip().replace('\u00a0', ' ')
+    # 1. Наименование
+    name = link_el.inner_text().strip().replace("\u00a0", " ")
     if len(name) < 15:
         for l in lines:
-            if len(l) > 25 and not any(k in l for k in ["Код товара", "Артикул", "В корзину", "₽", "Показано", "Упаковка"]):
+            if len(l) > 25 and not any(
+                k in l
+                for k in [
+                    "Код товара",
+                    "Артикул",
+                    "В корзину",
+                    "₽",
+                    "Показано",
+                    "Упаковка",
+                ]
+            ):
                 name = l
                 break
 
+    # 2. Артикул
     vendor_code = "—"
     for i, line in enumerate(lines):
         if "Артикул:" in line:
@@ -117,24 +197,27 @@ def extract_card_data(link_el, category_name):
             if len(parts) > 1 and parts[1].strip():
                 vendor_code = parts[1].strip()
             elif i + 1 < len(lines):
-                vendor_code = lines[i+1].strip()
+                vendor_code = lines[i + 1].strip()
             break
 
+    # 3. Производитель
     brand = identify_brand(text, vendor_code)
 
+    # 4. Цена (число перед знаком ₽ или словом руб)
     price = 0.0
-    price_regex = r'([0-9][0-9\s]{0,10}(?:[.,][0-9]{2})?)\s*(?:₽|руб)'
+    price_regex = r"([0-9][0-9\s]{0,10}(?:[.,][0-9]{2})?)\s*(?:₽|руб)"
     price_match = re.search(price_regex, text, re.IGNORECASE)
     if price_match:
-        clean = price_match.group(1).replace(' ', '').replace(',', '.')
+        clean = price_match.group(1).replace(" ", "").replace(",", ".")
         try:
             price = float(clean)
         except ValueError:
             price = 0.0
 
+    # 5. Остатки (числа перед словом "шт")
     stock_etm = 0
     stock_vendor = 0
-    stock_matches = re.findall(r'(\d+)\s*шт', text)
+    stock_matches = re.findall(r"(\d+)\s*шт", text)
     if stock_matches:
         stock_etm = int(stock_matches[0])
         if len(stock_matches) > 1:
@@ -149,27 +232,28 @@ def extract_card_data(link_el, category_name):
         "price": price,
         "stock_etm": stock_etm,
         "stock_vendor": stock_vendor,
-        "url": card_url
+        "url": card_url,
     }
+
 
 def main():
     collected_dict = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            channel="chrome",
+            channel="chrome",  # если нет Chrome, укажите "msedge"
             headless=True,
             args=[
                 "--no-sandbox",
                 "--disable-blink-features=AutomationControlled",
-                "--window-size=1920,1080"
-            ]
+                "--window-size=1920,1080",
+            ],
         )
 
         context = browser.new_context(
             viewport={"width": 1920, "height": 1080},
             locale="ru-RU",
-            timezone_id="Europe/Moscow"
+            timezone_id="Europe/Moscow",
         )
         page = context.new_page()
 
@@ -181,34 +265,44 @@ def main():
             max_p = cat.get("max_pages", 15)
 
             for p_num in range(1, max_p + 1):
-                page_url = f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
+                page_url = (
+                    f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
+                )
                 print(f"Загрузка страницы {p_num} из {max_p}: {page_url}")
 
                 try:
-                    page.goto(page_url, wait_until="domcontentloaded", timeout=45000)
+                    page.goto(
+                        page_url, wait_until="domcontentloaded", timeout=45000
+                    )
 
-                    # ГАРАНТИРОВАННОЕ ОЖИДАНИЕ КАРТОЧЕК
+                    # Ждем появления карточек товаров
                     try:
-                        page.wait_for_selector("a[href*='/cat/nn/']", timeout=25000)
+                        page.wait_for_selector(
+                            "a[href*='/cat/nn/']", timeout=25000
+                        )
                     except Exception:
-                        print("Карточки не появились вовремя, пробуем собрать текущее состояние...")
+                        print("Предупреждение: таймаут ожидания карточек")
 
-                    # Пошаговая прокрутка для подгрузки всех 24 карточек
+                    # Пошаговая прокрутка для срабатывания lazy-loading и рендера цен
                     for scroll_pos in [700, 1500, 2400, 3200]:
                         page.evaluate(f"window.scrollTo(0, {scroll_pos})")
-                        page.wait_for_timeout(400)
+                        page.wait_for_timeout(350)
 
-                    # Собираем все ссылки на товары
+                    # Даем 1 секунду на дозагрузку цен
+                    page.wait_for_timeout(1000)
+
                     all_links = page.query_selector_all("a[href*='/cat/nn/']")
-                    print(f"Найдено ссылок на странице {p_num}: {len(all_links)}")
+                    print(
+                        f"Найдено ссылок на странице {p_num}: {len(all_links)}"
+                    )
 
                     page_added = 0
                     for link in all_links:
                         item = extract_card_data(link, cat["name"])
                         if not item:
                             continue
-                        
-                        # Фильтруем радиодетали (диоды, конденсаторы)
+
+                        # Отсекаем диоды и конденсаторы
                         if not is_target_product(item["name"], item["brand"]):
                             continue
 
@@ -218,19 +312,26 @@ def main():
                                 collected_dict[code] = item
                                 page_added += 1
                         else:
-                            # Обновляем цену, если раньше была 0
-                            if collected_dict[code]["price"] == 0 and item["price"] > 0:
+                            # Обновляем цену, если она появилась
+                            if (
+                                collected_dict[code]["price"] == 0
+                                and item["price"] > 0
+                            ):
                                 collected_dict[code]["price"] = item["price"]
 
-                    print(f"Добавлено со страницы {p_num}: {page_added} | Всего в базе: {len(collected_dict)}")
+                    print(
+                        f"Добавлено со страницы {p_num}: {page_added} | Всего в базе: {len(collected_dict)}"
+                    )
 
-                    # Если ссылок нет совсем — категория закончилась
+                    # Если ссылок на странице нет совсем — категория закончилась
                     if len(all_links) == 0:
-                        print("Страница пуста. Переход к следующей категории.")
+                        print(
+                            f"Страница {p_num} пуста. Переход к следующей категории."
+                        )
                         break
 
                 except Exception as e:
-                    print(f"Ошибка на странице {p_num}: {e}")
+                    print(f"Ошибка при обработке страницы {p_num}: {e}")
                     continue
 
         browser.close()
@@ -241,15 +342,18 @@ def main():
     print(f"==========================================")
 
     payload = {
-        "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
+        "last_updated": datetime.now(timezone.utc).strftime(
+            "%d.%m.%Y %H:%M UTC"
+        ),
         "total_items": len(items),
-        "items": items
+        "items": items,
     }
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
     print("Файл data.json успешно записан.")
+
 
 if __name__ == "__main__":
     main()
