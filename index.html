@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мониторинг цен и остатков: Программируемые контроллеры и реле | ЭТМ</title>
+  <title>Мониторинг цен и остатков: ПЛК и Программируемые реле | ЭТМ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
   <style>
     body { background-color: #f4f6f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    .badge-stock { min-width: 52px; font-size: 0.85rem; padding: 0.35em 0.55em; text-align: center; }
+    .badge-stock { min-width: 50px; font-size: 0.85rem; padding: 0.35em 0.55em; text-align: center; }
     .product-link { color: #0d6efd; text-decoration: none; font-weight: 500; line-height: 1.35; display: inline-block; }
     .product-link:hover { text-decoration: underline; color: #0a58ca; }
     .etm-code-badge { font-family: monospace; font-size: 0.85rem; }
     
-    /* Стилизация заголовков и ячеек таблицы */
     th.gridjs-th {
       white-space: nowrap !important;
       padding: 10px 12px !important;
@@ -25,21 +24,17 @@
       vertical-align: middle;
       font-size: 0.9rem;
     }
-    .gridjs-wrapper {
-      box-shadow: none;
-      border-radius: 8px;
-    }
   </style>
 </head>
 <body class="py-4">
   <div class="container-fluid px-4">
     <!-- Header Card -->
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="card border-0 shadow-sm mb-3">
       <div class="card-body d-flex flex-wrap justify-content-between align-items-center gap-3">
         <div>
           <h4 class="fw-bold mb-1">Остатки и цены: ПЛК и Программируемые реле</h4>
           <div class="text-muted small">
-            Каталог ЭТМ: группы <code>751025</code> (Модули и ПЛК) и <code>75102510</code> (Программируемые реле)
+            Группы каталога ЭТМ: <code>751010</code> (ПЛК), <code>751025</code> (Модули) и <code>75102510</code> (Реле)
           </div>
         </div>
         <div class="d-flex align-items-center gap-3">
@@ -49,6 +44,29 @@
             <div class="small text-muted mt-1" id="total-count">Всего позиций: —</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Quick Brand Filter -->
+    <div class="card border-0 shadow-sm mb-3">
+      <div class="card-body py-2 d-flex flex-wrap align-items-center gap-2">
+        <span class="small fw-bold text-secondary me-2">Быстрый фильтр бренда:</span>
+        <select id="brand-select" class="form-select form-select-sm" style="max-width: 260px;">
+          <option value="">Все производители</option>
+          <option value="ОВЕН">ОВЕН</option>
+          <option value="ONI">ONI</option>
+          <option value="EKF">EKF</option>
+          <option value="Rievtech">Rievtech</option>
+          <option value="Systeme Electric">Systeme Electric</option>
+          <option value="DKC">DKC</option>
+          <option value="Segnetics">Segnetics</option>
+          <option value="ЕвроАвтоматика">ЕвроАвтоматика</option>
+          <option value="Тракт-Автоматика">Тракт-Автоматика</option>
+          <option value="КЭАЗ">КЭАЗ</option>
+          <option value="Siemens">Siemens</option>
+          <option value="Schneider Electric">Schneider Electric</option>
+        </select>
+        <span class="text-muted small ms-2" id="filtered-badge"></span>
       </div>
     </div>
 
@@ -63,105 +81,130 @@
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
   <script>
     let globalItems = [];
+    let gridInstance = null;
+
+    function renderGrid(data) {
+      if (gridInstance) {
+        gridInstance.updateConfig({ data: data }).forceRender();
+        return;
+      }
+
+      gridInstance = new gridjs.Grid({
+        columns: [
+          { 
+            name: "Код ЭТМ", 
+            id: "etm_code", 
+            width: "105px",
+            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-dark border etm-code-badge text-decoration-none">${cell}</a>`)
+          },
+          { 
+            name: "Производитель", 
+            id: "brand", 
+            sort: true, 
+            width: "140px",
+            formatter: (cell) => {
+              if (cell === "Другой" || cell === "—") return gridjs.html('<span class="text-muted">—</span>');
+              return gridjs.html(`<strong class="text-primary">${cell}</strong>`);
+            }
+          },
+          { 
+            name: "Артикул", 
+            id: "vendor_code", 
+            sort: true, 
+            width: "150px" 
+          },
+          { 
+            name: "Наименование продукции", 
+            id: "name",
+            sort: true,
+            formatter: (cell, row) => {
+              const url = row.cells[7].data;
+              return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
+            }
+          },
+          { 
+            name: "Цена, ₽", 
+            id: "price", 
+            sort: true, 
+            width: "125px",
+            formatter: (cell) => {
+              const p = Number(cell) || 0;
+              return p > 0 
+                ? gridjs.html(`<span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>`)
+                : gridjs.html(`<span class="text-muted fst-italic">По запросу</span>`);
+            }
+          },
+          { 
+            name: "Склад ЭТМ", 
+            id: "stock_etm", 
+            sort: true, 
+            width: "115px",
+            formatter: (cell) => {
+              const val = Number(cell) || 0;
+              return gridjs.html(val > 0 
+                ? `<span class="badge bg-success badge-stock">${val} шт.</span>` 
+                : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
+            }
+          },
+          { 
+            name: "Склад вендора", 
+            id: "stock_vendor", 
+            sort: true, 
+            width: "125px",
+            formatter: (cell) => {
+              const val = Number(cell) || 0;
+              return gridjs.html(val > 0 
+                ? `<span class="badge bg-info text-dark badge-stock">${val} шт.</span>` 
+                : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
+            }
+          },
+          { name: "URL", id: "url", hidden: true }
+        ],
+        data: data,
+        search: true,
+        pagination: { limit: 25 },
+        sort: true,
+        language: {
+          search: { placeholder: 'Поиск (производитель, артикул, код, название)...' },
+          pagination: {
+            previous: 'Назад',
+            next: 'Вперед',
+            showing: 'Показано с',
+            to: 'по',
+            of: 'из',
+            results: 'позиций'
+          },
+          loading: 'Загрузка...',
+          noRecordsFound: 'Товары не найдены'
+        }
+      }).render(document.getElementById("grid-container"));
+    }
 
     fetch('data.json')
       .then(res => res.json())
       .then(payload => {
         globalItems = payload.items || [];
         document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
-        document.getElementById('total-count').textContent = 'Всего позиций: ' + (payload.total_items || 0);
-
-        new gridjs.Grid({
-          columns: [
-            { 
-              name: "Код ЭТМ", 
-              id: "etm_code", 
-              width: "105px",
-              formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-dark border etm-code-badge text-decoration-none">${cell}</a>`)
-            },
-            { 
-              name: "Производитель", 
-              id: "brand", 
-              sort: true, 
-              width: "140px",
-              formatter: (cell) => cell === "—" ? gridjs.html('<span class="text-muted">—</span>') : gridjs.html(`<strong>${cell}</strong>`)
-            },
-            { 
-              name: "Артикул", 
-              id: "vendor_code", 
-              sort: true, 
-              width: "150px" 
-            },
-            { 
-              name: "Наименование продукции", 
-              id: "name",
-              sort: true,
-              formatter: (cell, row) => {
-                const url = row.cells[7].data;
-                return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
-              }
-            },
-            { 
-              name: "Цена, ₽", 
-              id: "price", 
-              sort: true, 
-              width: "125px",
-              formatter: (cell) => {
-                const p = Number(cell) || 0;
-                return p > 0 
-                  ? gridjs.html(`<span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>`)
-                  : gridjs.html(`<span class="text-muted fst-italic">По запросу</span>`);
-              }
-            },
-            { 
-              name: "Склад ЭТМ", 
-              id: "stock_etm", 
-              sort: true, 
-              width: "115px",
-              formatter: (cell) => {
-                const val = Number(cell) || 0;
-                return gridjs.html(val > 0 
-                  ? `<span class="badge bg-success badge-stock">${val} шт.</span>` 
-                  : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
-              }
-            },
-            { 
-              name: "Склад вендора", 
-              id: "stock_vendor", 
-              sort: true, 
-              width: "125px",
-              formatter: (cell) => {
-                const val = Number(cell) || 0;
-                return gridjs.html(val > 0 
-                  ? `<span class="badge bg-info text-dark badge-stock">${val} шт.</span>` 
-                  : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
-              }
-            },
-            { name: "URL", id: "url", hidden: true }
-          ],
-          data: globalItems,
-          search: true,
-          pagination: { limit: 25 },
-          sort: true,
-          language: {
-            search: { placeholder: 'Поиск (производитель, артикул, код, название)...' },
-            pagination: {
-              previous: 'Назад',
-              next: 'Вперед',
-              showing: 'Показано с',
-              to: 'по',
-              of: 'из',
-              results: 'позиций'
-            },
-            loading: 'Загрузка данных...',
-            noRecordsFound: 'Товары не найдены'
-          }
-        }).render(document.getElementById("grid-container"));
+        document.getElementById('total-count').textContent = 'Всего в базе: ' + globalItems.length;
+        renderGrid(globalItems);
       })
       .catch(err => {
         document.getElementById('grid-container').innerHTML = 
-          `<div class="alert alert-danger mb-0">Ошибка загрузки файла data.json: ${err.message}</div>`;
+          `<div class="alert alert-danger mb-0">Ошибка загрузки data.json: ${err.message}</div>`;
       });
+
+    // Фильтрация по производителю
+    document.getElementById('brand-select').addEventListener('change', (e) => {
+      const selected = e.target.value;
+      if (!selected) {
+        renderGrid(globalItems);
+        document.getElementById('filtered-badge').textContent = '';
+      } else {
+        const filtered = globalItems.filter(item => item.brand === selected);
+        renderGrid(filtered);
+        document.getElementById('filtered-badge').textContent = `(выбрано: ${filtered.length})`;
+      }
+    });
 
     // Экспорт в CSV
     document.getElementById('btn-export').addEventListener('click', () => {
@@ -181,7 +224,7 @@
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = `etm_products_${new Date().toISOString().slice(0, 10)}.csv`;
+      link.download = `etm_automation_${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
     });
   </script>
