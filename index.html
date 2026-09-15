@@ -180,7 +180,7 @@
       }).render(document.getElementById("grid-container"));
     }
 
-    fetch('data.json')
+    fetch('data.json?t=' + new Date().getTime())
       .then(res => res.json())
       .then(payload => {
         globalItems = payload.items || [];
