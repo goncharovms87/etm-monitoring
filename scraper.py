@@ -188,6 +188,17 @@ def build_page_url(base_url, page_number):
     ))
 
 
+def clean_article_brand(value):
+    """Удаляет прилипшие названия брендов и лишние пробелы из артикула."""
+    if not value or value == "—":
+        return "—"
+    
+    # Удаляем имена брендов в конце артикула
+    brands_regex = r"(?:\s+|\n)+(?:КЭАЗ|Rievtech|ОВЕН|ONI|EKF|Systeme(?:\s+Electric)?|DKC|ДКС|Segnetics|ЕвроАвтоматика|Schneider(?:\s+Electric)?|Siemens|Autonics|Finder|KEAZ|OWEN)\b.*$"
+    cleaned = re.sub(brands_regex, "", value, flags=re.IGNORECASE).strip()
+    return cleaned if cleaned else value.strip()
+
+
 def identify_brand(text, vendor_code, fallback_brand=""):
     combined = normalize_text(f"{text} {vendor_code}").lower()
     for b in TARGET_BRANDS:
@@ -239,14 +250,10 @@ def parse_price(text):
 
 
 def parse_stock(text):
-    """
-    Разделение складов ЭТМ и поставщика по контексту строки.
-    """
     norm = normalize_text(text)
     stock_etm = 0
     stock_vendor = 0
 
-    # Шаблоны для склада поставщика / производителя
     vendor_patterns = [
         r"(?:поставщик|производител|изготовител|позже|заказ|удален)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
         r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:поставщик|производител|изготовител|позже|заказ)",
@@ -257,7 +264,6 @@ def parse_stock(text):
             stock_vendor = int(vm.group(1).replace(" ", ""))
             break
 
-    # Шаблоны для локального склада ЭТМ
     etm_patterns = [
         r"(?:склад этм|в наличии|на складе|сегодня|завтра|город)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
         r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:склад этм|в наличии|на складе|сегодня)",
@@ -273,7 +279,6 @@ def parse_stock(text):
         for x in re.findall(r"(\d[\d\s]*)\s*шт\b", norm, re.IGNORECASE)
     ]
 
-    # Если контекстный парсинг не распределил числа, разбираем по позиции
     if stock_etm == 0 and stock_vendor == 0 and all_matches:
         if any(w in norm.lower() for w in ["поставщик", "производит", "позже", "заказ"]):
             stock_vendor = all_matches[0]
@@ -293,15 +298,17 @@ def parse_vendor_code(lines):
             after = line.split("Артикул:", 1)[1].strip()
             if after:
                 clean = re.split(
-                    r"(?:\s{2,}|Упаковка|Код товара|В корзину|₽|руб\.?)",
+                    r"(?:\s{2,}|\n|Упаковка|Код товара|В корзину|₽|руб\.?)",
                     after,
                     maxsplit=1,
                 )[0].strip()
+                clean = clean_article_brand(clean)
                 if clean and len(clean) < 80:
                     return clean
 
             if i + 1 < len(lines):
                 candidate = lines[i + 1].strip()
+                candidate = clean_article_brand(candidate)
                 if (
                     candidate
                     and len(candidate) < 80
@@ -407,6 +414,8 @@ def card_to_item(card, category):
 
     vendor_code = parse_vendor_code(lines)
     brand = identify_brand(card_text, vendor_code, category["brand_hint"])
+    vendor_code = clean_article_brand(vendor_code)
+
     price = parse_price(card_text)
     stock_etm, stock_vendor, stock_all = parse_stock(card_text)
     product_type = classify_product(name, card_text)
@@ -552,7 +561,6 @@ def collect_category(page, category, collected, stats, errors):
             f"  Найдено на странице: {len(cards)} | Новых: {added} | Всего в базе: {len(collected)}"
         )
 
-        # Выходим, если новых товаров на странице не обнаружено
         if added == 0 and page_number > 1:
             print("  Новые позиции отсутствуют — завершение среза.")
             break
@@ -650,7 +658,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "3.3-pagination-fixed",
+        "parser_version": "3.4-clean-articles",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
