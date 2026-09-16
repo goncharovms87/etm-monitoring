@@ -1,24 +1,17 @@
 {
-  "last_updated": "16.09.2026 11:22 UTC",
-  "parser_version": "3.0-fast",
-  "elapsed_seconds": 126.9,
-  "settings": {
-    "rows_per_page": 48,
-    "max_pages_safety": 1000,
-    "adaptive_scroll": true,
-    "bulk_js_extraction": true,
-    "filter_during_collection": "light"
-  },
-  "total_items": 13,
+  "last_updated": "16.09.2026 11:36 UTC",
+  "parser_version": "3.1-balanced",
+  "elapsed_seconds": 170.8,
+  "total_items": 12,
   "statistics": {
     "categories": 16,
     "pages": 13,
-    "cards_seen": 14,
-    "relevant": 13,
-    "added": 13,
+    "cards_seen": 13,
+    "relevant": 12,
+    "added": 12,
     "by_product_type": {
-      "I/O module": 4,
       "Communication module": 3,
+      "I/O module": 3,
       "PLC": 2,
       "Programmable relay": 2,
       "Other controller": 1,
@@ -27,13 +20,13 @@
     "by_brand": {
       "EKF": 2,
       "Rievtech": 2,
-      "КЭАЗ": 2,
       "DKC": 1,
       "ONI": 1,
       "Schneider Electric": 1,
       "Segnetics": 1,
       "Siemens": 1,
       "Systeme Electric": 1,
+      "КЭАЗ": 1,
       "ОВЕН": 1
     }
   },
@@ -41,11 +34,11 @@
     {
       "category": "КЭАЗ: OptiLogic",
       "pages": 1,
-      "cards_seen": 2,
-      "relevant": 2,
-      "added": 2,
-      "unique_after": 2,
-      "unique_added": 2
+      "cards_seen": 1,
+      "relevant": 1,
+      "added": 1,
+      "unique_after": 1,
+      "unique_added": 1
     },
     {
       "category": "Rievtech: ПЛК и модули",
@@ -53,7 +46,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 3,
+      "unique_after": 2,
       "unique_added": 1
     },
     {
@@ -62,7 +55,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 4,
+      "unique_after": 3,
       "unique_added": 1
     },
     {
@@ -71,7 +64,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 5,
+      "unique_after": 4,
       "unique_added": 1
     },
     {
@@ -80,7 +73,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 6,
+      "unique_after": 5,
       "unique_added": 1
     },
     {
@@ -89,7 +82,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 6,
+      "unique_after": 5,
       "unique_added": 0
     },
     {
@@ -98,7 +91,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 7,
+      "unique_after": 6,
       "unique_added": 1
     },
     {
@@ -107,7 +100,7 @@
       "cards_seen": 1,
       "relevant": 0,
       "added": 0,
-      "unique_after": 7,
+      "unique_after": 6,
       "unique_added": 0
     },
     {
@@ -116,7 +109,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 8,
+      "unique_after": 7,
       "unique_added": 1
     },
     {
@@ -125,7 +118,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 9,
+      "unique_after": 8,
       "unique_added": 1
     },
     {
@@ -134,7 +127,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 10,
+      "unique_after": 9,
       "unique_added": 1
     },
     {
@@ -143,7 +136,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 11,
+      "unique_after": 10,
       "unique_added": 1
     },
     {
@@ -152,7 +145,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 11,
+      "unique_after": 10,
       "unique_added": 0
     },
     {
@@ -161,7 +154,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 11,
+      "unique_after": 10,
       "unique_added": 0
     },
     {
@@ -170,7 +163,7 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 12,
+      "unique_after": 11,
       "unique_added": 1
     },
     {
@@ -179,31 +172,12 @@
       "cards_seen": 1,
       "relevant": 1,
       "added": 1,
-      "unique_after": 13,
+      "unique_after": 12,
       "unique_added": 1
     }
   ],
   "errors": [],
   "items": [
-    {
-      "category": "КЭАЗ: OptiLogic",
-      "category_brand_hint": "КЭАЗ",
-      "etm_code": "6352818",
-      "brand": "КЭАЗ",
-      "vendor_code": "288025 КЭАЗ",
-      "name": "Модуль дискретного вывода OptiLogic L-DO-16",
-      "product_type": "I/O module",
-      "price": 14637.18,
-      "stock_etm": 12,
-      "stock_vendor": 0,
-      "stock_all": [
-        12
-      ],
-      "url": "https://www.etm.ru/cat/nn/6352818",
-      "sources": [
-        "КЭАЗ: OptiLogic"
-      ]
-    },
     {
       "category": "КЭАЗ: OptiLogic",
       "category_brand_hint": "КЭАЗ",
