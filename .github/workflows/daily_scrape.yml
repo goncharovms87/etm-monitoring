@@ -1,34 +1,14 @@
-name: Daily ETM Scraper
-
-on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  scrape-and-deploy:
-    runs-on: self-hosted
-    env:
-      NODE_TLS_REJECT_UNAUTHORIZED: '0'
-    steps:
-      - name: Checkout репозитория
-        uses: actions/checkout@v4
-
-      - name: Запуск сбора данных
-        shell: cmd
+- name: Запуск сбора данных v2
         run: |
-          python scraper.py
+          python etm_parser_v2.py
 
       - name: Фиксация изменений и отправка в репозиторий
         shell: cmd
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          git commit -m "Auto-update ETM data [skip ci]" || echo No changes to commit
+          git add data_v2.json errors_v2.json index.html
+          git commit -m "Auto-update ETM data v2 [skip ci]" || echo No changes to commit
           
           for /l %%i in (1, 1, 3) do (
             git push origin main && goto :push_success
@@ -37,4 +17,4 @@ jobs:
           )
           exit 1
           :push_success
-          echo Данные успешно отправлены на GitHub!
+          echo Данные v2 успешно отправлены на GitHub!
