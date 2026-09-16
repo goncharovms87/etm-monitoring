@@ -8,36 +8,118 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# Целевые категории
+# Прямые срезы каталога по ключевым производителям автоматизации
 CATEGORIES = [
+    # --- КЭАЗ (OptiLogic) ---
     {
-        "id": "751010",
-        "name": "Контроллеры и модули свободнопрограммируемые",
-        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye",
-        "max_pages": 15,
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz",
+        "max_pages": 4,
+    },
+    # --- Rievtech ---
+    {
+        "brand_hint": "Rievtech",
+        "name": "Rievtech: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-4094_rievtech",
+        "max_pages": 4,
     },
     {
-        "id": "751025",
-        "name": "Модули расширения и программируемые реле",
-        "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
-        "max_pages": 15,
+        "brand_hint": "Rievtech",
+        "name": "Rievtech: Программируемые реле",
+        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-4094_rievtech",
+        "max_pages": 4,
+    },
+    # --- ОВЕН ---
+    {
+        "brand_hint": "ОВЕН",
+        "name": "ОВЕН: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-20_owen",
+        "max_pages": 8,
     },
     {
-        "id": "75102510",
-        "name": "Программируемые реле",
-        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
-        "max_pages": 15,
+        "brand_hint": "ОВЕН",
+        "name": "ОВЕН: Программируемые реле и модули",
+        "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija-20_owen",
+        "max_pages": 8,
+    },
+    # --- ONI ---
+    {
+        "brand_hint": "ONI",
+        "name": "ONI: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-3392_oni",
+        "max_pages": 5,
+    },
+    {
+        "brand_hint": "ONI",
+        "name": "ONI: Программируемые реле",
+        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-3392_oni",
+        "max_pages": 5,
+    },
+    # --- EKF ---
+    {
+        "brand_hint": "EKF",
+        "name": "EKF: Контроллеры и реле",
+        "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija-18_ekf",
+        "max_pages": 6,
+    },
+    # --- Systeme Electric ---
+    {
+        "brand_hint": "Systeme Electric",
+        "name": "Systeme Electric: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-7002_systeme_electric",
+        "max_pages": 6,
+    },
+    {
+        "brand_hint": "Systeme Electric",
+        "name": "Systeme Electric: Реле интеллектуальные",
+        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-7002_systeme_electric",
+        "max_pages": 5,
+    },
+    # --- Segnetics ---
+    {
+        "brand_hint": "Segnetics",
+        "name": "Segnetics: Контроллеры",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-1845_segnetics",
+        "max_pages": 4,
+    },
+    # --- DKC ---
+    {
+        "brand_hint": "DKC",
+        "name": "DKC: Модули и контроллеры",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-2_dkc",
+        "max_pages": 5,
+    },
+    # --- ЕвроАвтоматика F&F ---
+    {
+        "brand_hint": "ЕвроАвтоматика",
+        "name": "ЕвроАвтоматика: Реле и модули",
+        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-82_evroavtomatika_fif",
+        "max_pages": 4,
+    },
+    # --- Siemens ---
+    {
+        "brand_hint": "Siemens",
+        "name": "Siemens: Контроллеры и LOGO!",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-13_siemens",
+        "max_pages": 8,
+    },
+    # --- Schneider Electric ---
+    {
+        "brand_hint": "Schneider Electric",
+        "name": "Schneider Electric: ПЛК и Zelio",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-8_schneider_electric",
+        "max_pages": 6,
     },
 ]
 
-# Целевые бренды (без пересечений подстрок)
+# Точные правила проверки бренда
 TARGET_BRANDS = [
-    {"name": "КЭАЗ", "patterns": [r"\bкэаз\b", r"\bkeaz\b", r"optilogic"]},
-    {"name": "Autonics", "patterns": [r"autonics", r"\btc[34][a-z]", r"\btk4[a-z]", r"\btas-"]},
+    {"name": "КЭАЗ", "patterns": [r"\bкэаз\b", r"\bkeaz\b", r"optilogic", r"гжик"]},
+    {"name": "Rievtech", "patterns": [r"rievtech", r"\bpr-[12][0-9]\b", r"\bsr-[12][0-9]\b", r"\bba-[0-9]"]},
     {"name": "ОВЕН", "patterns": [r"\bовен\b", r"\bowen\b", r"\bпр10[023]\b", r"\bпр20[05]\b", r"\bплк[12]10\b", r"\bплк200\b"]},
     {"name": "ONI", "patterns": [r"\boni\b", r"plc-410", r"plrs-", r"plrk-"]},
     {"name": "EKF", "patterns": [r"\bekf\b", r"про-реле", r"pro-relay", r"pro-logic"]},
-    {"name": "Rievtech", "patterns": [r"rievtech", r"\bpr-[12][0-9]\b", r"\bsr-[12][0-9]\b"]},
     {"name": "Systeme Electric", "patterns": [r"systeme electric", r"систэм электрик", r"\bsysteme\b", r"\bsm3[a-z0-9]"]},
     {"name": "DKC", "patterns": [r"\bdkc\b", r"\bдкс\b", r"\bc1000\b"]},
     {"name": "Segnetics", "patterns": [r"segnetics", r"сегнетикс", r"pixel", r"smh", r"matrix"]},
@@ -45,8 +127,8 @@ TARGET_BRANDS = [
     {"name": "Тракт-Автоматика", "patterns": [r"тракт-автоматика", r"тракт автоматика"]},
     {"name": "Schneider Electric", "patterns": [r"schneider electric", r"schneider", r"zelio", r"modicon"]},
     {"name": "Siemens", "patterns": [r"siemens", r"logo!", r"s7-1200", r"s7-1500", r"simatic"]},
+    {"name": "Autonics", "patterns": [r"autonics", r"\btc[34][a-z]", r"\btk4[a-z]"]},
     {"name": "Finder", "patterns": [r"\bfinder\b", r"optan"]},
-    {"name": "INNOCONT", "patterns": [r"innocont"]},
 ]
 
 STOP_WORDS = [
@@ -54,41 +136,28 @@ STOP_WORDS = [
     "варистор", "резистор", "транзистор", "электролитический", "косинусный", "предохранитель"
 ]
 
-TARGET_KEYWORDS = [
-    "контроллер",
-    "плк",
-    "plc",
-    "программируем",
-    "модуль расширения",
-    "модуль ввода",
-    "модуль вывода",
-    "логический модуль",
-    "процессорный модуль",
-    "модуль",
-    "программируемое реле",
-    "интеллектуальное реле",
-    "реле интеллектуальное",
-    "контроллер программируемый",
-]
 
-
-def identify_brand(text, vendor_code):
+def identify_brand(text, vendor_code, fallback_brand=""):
     combined = f"{text} {vendor_code}".lower()
     for b in TARGET_BRANDS:
         for p in b["patterns"]:
             if re.search(p, combined):
                 return b["name"]
-    return "Другой"
+    return fallback_brand if fallback_brand else "Другой"
 
 
-def is_target_product(name, brand):
+def is_target_product(name):
     name_lower = name.lower()
     if any(sw in name_lower for sw in STOP_WORDS):
         return False
-    return any(k in name_lower for k in TARGET_KEYWORDS)
+    # Оставляем любые модули и контроллеры
+    if "модуль" in name_lower or "контроллер" in name_lower:
+        return True
+    automation_terms = ["плк", "plc", "программируем", "логический", "интеллектуальное реле", "реле интеллектуальное", "панель оператора"]
+    return any(term in name_lower for term in automation_terms)
 
 
-def extract_card_data(link_el, category_name):
+def extract_card_data(link_el, default_brand):
     href = link_el.get_attribute("href") or ""
     m = re.search(r"/cat/nn/(\d+)", href)
     if not m:
@@ -97,7 +166,6 @@ def extract_card_data(link_el, category_name):
     etm_code = m.group(1)
     card_url = f"https://www.etm.ru/cat/nn/{etm_code}"
 
-    # Контейнер карточки до кнопки корзины/наличия
     card_container = link_el.evaluate_handle(
         """el => {
             let cur = el;
@@ -127,21 +195,24 @@ def extract_card_data(link_el, category_name):
                 name = l
                 break
 
-    # 2. Артикул: очистка от склеенного текста
+    # 2. Артикул
     vendor_code = "—"
     for i, line in enumerate(lines):
         if "Артикул:" in line:
-            raw_v = line.replace("Артикул:", "").strip()
-            if not raw_v and i + 1 < len(lines):
-                raw_v = lines[i + 1].strip()
-            # Отсекаем хвосты вроде 'Упаковка:', ценников и названий брендов
-            raw_v = re.split(r"(?:Упаковка|ONI|ОВЕН|EKF|КЭАЗ|Systeme|DKC|₽|\d+\s*шт)", raw_v, flags=re.IGNORECASE)[0].strip()
-            if raw_v:
-                vendor_code = raw_v[:40]
-            break
+            after = line.split("Артикул:", 1)[1].strip()
+            if after:
+                clean_v = re.split(r"(?:\s{2,}|Упаковка|Код|В корзину|₽)", after)[0].strip()
+                if clean_v and clean_v != name:
+                    vendor_code = clean_v
+                    break
+            elif i + 1 < len(lines):
+                candidate = lines[i + 1].strip()
+                if candidate and candidate != name and not candidate.startswith("ПЛК") and len(candidate) < 35:
+                    vendor_code = candidate
+                    break
 
-    # 3. Производитель
-    brand = identify_brand(text, vendor_code)
+    # 3. Бренд (если в карточке не распознан, берем из категории среза)
+    brand = identify_brand(text, vendor_code, default_brand)
 
     # 4. Цена
     price = 0.0
@@ -164,7 +235,7 @@ def extract_card_data(link_el, category_name):
             stock_vendor = int(stock_matches[1])
 
     return {
-        "category": category_name,
+        "category": default_brand,
         "etm_code": etm_code,
         "brand": brand,
         "vendor_code": vendor_code,
@@ -199,10 +270,10 @@ def main():
 
         for cat in CATEGORIES:
             print(f"\n==========================================")
-            print(f"Категория: {cat['name']}")
+            print(f"Срез: {cat['name']}")
             print(f"==========================================")
 
-            max_p = cat.get("max_pages", 15)
+            max_p = cat.get("max_pages", 5)
 
             for p_num in range(1, max_p + 1):
                 page_url = f"{cat['url']}?page={p_num}" if p_num > 1 else cat["url"]
@@ -223,15 +294,15 @@ def main():
                     page.wait_for_timeout(1000)
 
                     all_links = page.query_selector_all("a[href*='/cat/nn/']")
-                    print(f"Найдено ссылок на странице {p_num}: {len(all_links)}")
+                    print(f"Найдено ссылок: {len(all_links)}")
 
                     page_added = 0
                     for link in all_links:
-                        item = extract_card_data(link, cat["name"])
+                        item = extract_card_data(link, cat["brand_hint"])
                         if not item:
                             continue
 
-                        if not is_target_product(item["name"], item["brand"]):
+                        if not is_target_product(item["name"]):
                             continue
 
                         code = item["etm_code"]
@@ -246,18 +317,18 @@ def main():
                     print(f"Добавлено со страницы {p_num}: {page_added} | Всего в базе: {len(collected_dict)}")
 
                     if len(all_links) == 0:
-                        print(f"Страница {p_num} пуста. Категория завершена.\n")
+                        print("Товары закончились. Переход к следующему срезу.\n")
                         break
 
                 except Exception as e:
-                    print(f"Ошибка при обработке страницы {p_num}: {e}")
+                    print(f"Ошибка при обработке: {e}")
                     continue
 
         browser.close()
 
     items = list(collected_dict.values())
     print(f"\n==========================================")
-    print(f"Сбор завершен! Всего позиций: {len(items)}")
+    print(f"Сбор завершен! Всего валидных позиций: {len(items)}")
     print(f"==========================================")
 
     payload = {
