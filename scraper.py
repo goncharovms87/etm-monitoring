@@ -13,10 +13,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 # НАСТРОЙКИ
 # ============================================================
 
-ROWS_PER_PAGE = 48
-MAX_PAGES_SAFETY = 15
+MAX_PAGES_SAFETY = 25
 NAVIGATION_TIMEOUT = 45000
-PRODUCT_WAIT_TIMEOUT = 20000
+PRODUCT_WAIT_TIMEOUT = 18000
 NAVIGATION_RETRIES = 3
 
 CATEGORIES = [
@@ -173,8 +172,8 @@ def normalize_text(value):
 def build_page_url(base_url, page_number):
     parts = urlsplit(base_url)
     query = dict(parse_qsl(parts.query, keep_blank_values=True))
-    query["rows"] = str(ROWS_PER_PAGE)
     query["delivery"] = "all"
+    query["rows"] = "48"
     if page_number > 1:
         query["page"] = str(page_number)
     else:
@@ -240,13 +239,52 @@ def parse_price(text):
 
 
 def parse_stock(text):
-    matches = [
-        int(x.replace(" ", ""))
-        for x in re.findall(r"(\d[\d\s]*)\s*шт\b", text, re.IGNORECASE)
+    """
+    Разделение складов ЭТМ и поставщика по контексту строки.
+    """
+    norm = normalize_text(text)
+    stock_etm = 0
+    stock_vendor = 0
+
+    # Шаблоны для склада поставщика / производителя
+    vendor_patterns = [
+        r"(?:поставщик|производител|изготовител|позже|заказ|удален)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
+        r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:поставщик|производител|изготовител|позже|заказ)",
     ]
-    stock_etm = matches[0] if matches else 0
-    stock_vendor = matches[1] if len(matches) > 1 else 0
-    return stock_etm, stock_vendor, matches
+    for vp in vendor_patterns:
+        vm = re.search(vp, norm, re.IGNORECASE)
+        if vm:
+            stock_vendor = int(vm.group(1).replace(" ", ""))
+            break
+
+    # Шаблоны для локального склада ЭТМ
+    etm_patterns = [
+        r"(?:склад этм|в наличии|на складе|сегодня|завтра|город)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
+        r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:склад этм|в наличии|на складе|сегодня)",
+    ]
+    for ep in etm_patterns:
+        em = re.search(ep, norm, re.IGNORECASE)
+        if em:
+            stock_etm = int(em.group(1).replace(" ", ""))
+            break
+
+    all_matches = [
+        int(x.replace(" ", ""))
+        for x in re.findall(r"(\d[\d\s]*)\s*шт\b", norm, re.IGNORECASE)
+    ]
+
+    # Если контекстный парсинг не распределил числа, разбираем по позиции
+    if stock_etm == 0 and stock_vendor == 0 and all_matches:
+        if any(w in norm.lower() for w in ["поставщик", "производит", "позже", "заказ"]):
+            stock_vendor = all_matches[0]
+            if len(all_matches) > 1:
+                stock_etm = all_matches[1]
+        else:
+            stock_etm = all_matches[0]
+            if len(all_matches) > 1:
+                stock_vendor = all_matches[1]
+
+    return stock_etm, stock_vendor, all_matches
 
 
 def parse_vendor_code(lines):
@@ -422,11 +460,7 @@ def merge_item(existing, new_item):
     return existing
 
 
-def scroll_until_stable(page):
-    """
-    Пошаговый скролл вниз и вверх, дающий React-виртуализатору
-    время на отрисовку карточек на странице.
-    """
+def scroll_page(page):
     try:
         page.wait_for_selector("a[href*='/cat/nn/']", timeout=15000)
     except Exception:
@@ -434,13 +468,12 @@ def scroll_until_stable(page):
 
     for y in [1000, 2200, 3600, 5200]:
         page.evaluate(f"window.scrollTo(0, {y})")
-        page.wait_for_timeout(600)
+        page.wait_for_timeout(500)
 
     page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-    page.wait_for_timeout(700)
-
-    page.evaluate("window.scrollTo(0, 400)")
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(600)
+    page.evaluate("window.scrollTo(0, 300)")
+    page.wait_for_timeout(300)
 
 
 def navigate_with_retry(page, url):
@@ -480,7 +513,7 @@ def collect_category(page, category, collected, stats, errors):
             })
             break
 
-        scroll_until_stable(page)
+        scroll_page(page)
         cards = extract_cards_bulk(page, category["brand_hint"])
 
         if not cards:
@@ -489,7 +522,7 @@ def collect_category(page, category, collected, stats, errors):
 
         page_signature = tuple(sorted(card["etm_code"] for card in cards))
         if page_number > 1 and page_signature == previous_page_signature:
-            print("  Страница дублирует предыдущую — остановка пагинации.")
+            print("  Страница повторяет предыдущую — остановка пагинации.")
             break
         previous_page_signature = page_signature
 
@@ -519,9 +552,9 @@ def collect_category(page, category, collected, stats, errors):
             f"  Найдено на странице: {len(cards)} | Новых: {added} | Всего в базе: {len(collected)}"
         )
 
-        # Если на странице меньше 40 карточек при запросе 48 — это явный конец каталога
-        if len(cards) < 40:
-            print("  Финальная страница среза достигнута.")
+        # Выходим, если новых товаров на странице не обнаружено
+        if added == 0 and page_number > 1:
+            print("  Новые позиции отсутствуют — завершение среза.")
             break
 
         page_number += 1
@@ -617,7 +650,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "3.2-stable",
+        "parser_version": "3.3-pagination-fixed",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
