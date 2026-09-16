@@ -1,38 +1,48 @@
+from datetime import datetime, timezone
 import json
 import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright
 
-# Принудительно задаем UTF-8 для вывода в консоль Windows
+# Принудительно UTF-8 для вывода в Windows
 sys.stdout.reconfigure(encoding="utf-8")
 
-# Целевые категории каталога ЭТМ
+# Целевые категории оборудования ЭТМ
 CATEGORIES = [
     {
         "id": "751010",
         "name": "Контроллеры и модули свободнопрограммируемые",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye",
-        "max_pages": 15,
+        "max_pages": 30,  # увеличиваем глубину обхода, чтобы захватить всех вендоров
+    },
+    {
+        "id": "751010_keaz",
+        "name": "КЭАЗ OptiLogic (Контроллеры и модули)",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz",
+        "max_pages": 5,
     },
     {
         "id": "751025",
         "name": "Модули расширения и программируемые реле",
         "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija",
-        "max_pages": 15,
+        "max_pages": 25,
     },
     {
         "id": "75102510",
         "name": "Программируемые реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele",
-        "max_pages": 15,
+        "max_pages": 20,
     },
 ]
 
-# Целевые производители автоматизации
+# Целевой пул брендов и их линеек
 TARGET_BRANDS = [
+    {
+        "name": "КЭАЗ",
+        "aliases": ["кэаз", "keaz", "optilogic", "оптилоджик", "гжик"],
+    },
     {
         "name": "ОВЕН",
         "aliases": [
@@ -48,7 +58,7 @@ TARGET_BRANDS = [
             "плк200",
         ],
     },
-    {"name": "ONI", "aliases": ["oni", "plrs", "plrk"]},
+    {"name": "ONI", "aliases": ["oni", "plrs", "plrk", "plc-410"]},
     {"name": "EKF", "aliases": ["ekf", "про-реле", "pro-relay", "pro-logic"]},
     {
         "name": "Rievtech",
@@ -56,9 +66,15 @@ TARGET_BRANDS = [
     },
     {
         "name": "Systeme Electric",
-        "aliases": ["systeme electric", "систэм электрик", "systeme", "se "],
+        "aliases": [
+            "systeme electric",
+            "систэм электрик",
+            "systeme",
+            "se ",
+            "sm3",
+        ],
     },
-    {"name": "DKC", "aliases": ["dkc", "дкс"]},
+    {"name": "DKC", "aliases": ["dkc", "дкс", "c1000"]},
     {
         "name": "Segnetics",
         "aliases": ["segnetics", "сегнетикс", "pixel", "smh", "matrix"],
@@ -71,18 +87,20 @@ TARGET_BRANDS = [
         "name": "Тракт-Автоматика",
         "aliases": ["тракт-автоматика", "тракт автоматика", "тракт"],
     },
-    {"name": "КЭАЗ", "aliases": ["кэаз", "keaz", "optilogic"]},
     {
         "name": "Schneider Electric",
         "aliases": ["schneider electric", "schneider", "zelio", "modicon"],
     },
-    {"name": "Siemens", "aliases": ["siemens", "logo!", "s7-1200", "simatic"]},
+    {
+        "name": "Siemens",
+        "aliases": ["siemens", "logo!", "s7-1200", "s7-1500", "simatic"],
+    },
     {"name": "Finder", "aliases": ["finder", "optan"]},
     {"name": "INNOCONT", "aliases": ["innocont"]},
     {"name": "Autonics", "aliases": ["autonics"]},
 ]
 
-# Стоп-слова для фильтрации нецелевой радиоэлектроники
+# Стоп-слова (исключительно силовые радиодетали и пассивные компоненты)
 STOP_WORDS = [
     "диод",
     "тиристор",
@@ -99,7 +117,7 @@ STOP_WORDS = [
 
 
 def identify_brand(text, vendor_code):
-    """Точное сопоставление производителя по справочнику."""
+    """Точное сопоставление производителя."""
     combined = f"{text} {vendor_code}".lower()
     for b in TARGET_BRANDS:
         for alias in b["aliases"]:
@@ -117,12 +135,22 @@ def identify_brand(text, vendor_code):
 
 
 def is_target_product(name, brand):
-    """Отсечение радиодеталей и пассивных компонентов."""
+    """
+    Улучшенная фильтрация:
+    Если бренд из целевого пула (КЭАЗ, ОВЕН, ONI...) — берем БЕЗ ограничений по отдельным словам.
+    Отсекаем только силовые полупроводники и конденсаторы.
+    """
     name_lower = name.lower()
+
+    # 1. Отсекаем радиодетали
     if any(sw in name_lower for sw in STOP_WORDS):
         return False
+
+    # 2. Если производитель подтвержден из целевого списка — ВКЛЮЧАЕМ ВСЕГДА
     if brand != "Другой":
         return True
+
+    # 3. Если бренд неизвестен, включаем только при явном указании ПЛК/реле в названии
     keywords = [
         "контроллер",
         "плк",
@@ -132,15 +160,12 @@ def is_target_product(name, brand):
         "модуль ввода",
         "модуль вывода",
         "логический модуль",
+        "программируемое реле",
     ]
     return any(k in name_lower for k in keywords)
 
 
 def extract_card_data(link_el, category_name):
-    """
-    Извлечение данных из плитки товара:
-    Поднимаемся ровно до блока с кнопкой корзины/наличием, чтобы гарантированно захватить цену.
-    """
     href = link_el.get_attribute("href") or ""
     m = re.search(r"/cat/nn/(\d+)", href)
     if not m:
@@ -149,7 +174,7 @@ def extract_card_data(link_el, category_name):
     etm_code = m.group(1)
     card_url = f"https://www.etm.ru/cat/nn/{etm_code}"
 
-    # Ищем родительский контейнер всей плитки (с обязательным ценником и кнопкой корзины)
+    # Поднимаемся до блока с кнопкой корзины или ценой
     card_container = link_el.evaluate_handle(
         """el => {
             let cur = el;
@@ -171,7 +196,7 @@ def extract_card_data(link_el, category_name):
 
     lines = [l.strip() for l in text.split("\n") if l.strip()]
 
-    # 1. Наименование
+    # Наименование
     name = link_el.inner_text().strip().replace("\u00a0", " ")
     if len(name) < 15:
         for l in lines:
@@ -189,7 +214,7 @@ def extract_card_data(link_el, category_name):
                 name = l
                 break
 
-    # 2. Артикул
+    # Артикул
     vendor_code = "—"
     for i, line in enumerate(lines):
         if "Артикул:" in line:
@@ -200,10 +225,10 @@ def extract_card_data(link_el, category_name):
                 vendor_code = lines[i + 1].strip()
             break
 
-    # 3. Производитель
+    # Производитель
     brand = identify_brand(text, vendor_code)
 
-    # 4. Цена (число перед знаком ₽ или словом руб)
+    # Цена
     price = 0.0
     price_regex = r"([0-9][0-9\s]{0,10}(?:[.,][0-9]{2})?)\s*(?:₽|руб)"
     price_match = re.search(price_regex, text, re.IGNORECASE)
@@ -214,7 +239,7 @@ def extract_card_data(link_el, category_name):
         except ValueError:
             price = 0.0
 
-    # 5. Остатки (числа перед словом "шт")
+    # Остатки
     stock_etm = 0
     stock_vendor = 0
     stock_matches = re.findall(r"(\d+)\s*шт", text)
@@ -241,7 +266,7 @@ def main():
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
-            channel="chrome",  # если нет Chrome, укажите "msedge"
+            channel="chrome",
             headless=True,
             args=[
                 "--no-sandbox",
@@ -262,7 +287,7 @@ def main():
             print(f"Категория: {cat['name']}")
             print(f"==========================================")
 
-            max_p = cat.get("max_pages", 15)
+            max_p = cat.get("max_pages", 20)
 
             for p_num in range(1, max_p + 1):
                 page_url = (
@@ -275,20 +300,17 @@ def main():
                         page_url, wait_until="domcontentloaded", timeout=45000
                     )
 
-                    # Ждем появления карточек товаров
                     try:
                         page.wait_for_selector(
                             "a[href*='/cat/nn/']", timeout=25000
                         )
                     except Exception:
-                        print("Предупреждение: таймаут ожидания карточек")
+                        pass
 
-                    # Пошаговая прокрутка для срабатывания lazy-loading и рендера цен
                     for scroll_pos in [700, 1500, 2400, 3200]:
                         page.evaluate(f"window.scrollTo(0, {scroll_pos})")
                         page.wait_for_timeout(350)
 
-                    # Даем 1 секунду на дозагрузку цен
                     page.wait_for_timeout(1000)
 
                     all_links = page.query_selector_all("a[href*='/cat/nn/']")
@@ -302,7 +324,7 @@ def main():
                         if not item:
                             continue
 
-                        # Отсекаем диоды и конденсаторы
+                        # Проверяем целевой статус товара
                         if not is_target_product(item["name"], item["brand"]):
                             continue
 
@@ -312,7 +334,6 @@ def main():
                                 collected_dict[code] = item
                                 page_added += 1
                         else:
-                            # Обновляем цену, если она появилась
                             if (
                                 collected_dict[code]["price"] == 0
                                 and item["price"] > 0
@@ -323,10 +344,9 @@ def main():
                         f"Добавлено со страницы {p_num}: {page_added} | Всего в базе: {len(collected_dict)}"
                     )
 
-                    # Если ссылок на странице нет совсем — категория закончилась
                     if len(all_links) == 0:
                         print(
-                            f"Страница {p_num} пуста. Переход к следующей категории."
+                            f"Страница {p_num} пуста. Категория завершена.\n"
                         )
                         break
 
