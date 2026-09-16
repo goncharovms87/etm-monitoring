@@ -87,6 +87,12 @@ CATEGORIES = [
         "name": "Segnetics: Контроллеры",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=Segnetics",
     },
+    # --- Тракт-Автоматика ---
+    {
+        "brand_hint": "Тракт-Автоматика",
+        "name": "Тракт-Автоматика: Контроллеры и модули",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=Тракт",
+    },
     # --- ЕвроАвтоматика ---
     {
         "brand_hint": "ЕвроАвтоматика",
@@ -121,6 +127,7 @@ TARGET_BRANDS = [
     {"name": "Systeme Electric", "patterns": [r"systeme electric", r"систэм электрик", r"\bsysteme\b", r"\bsm3[a-z0-9]", r"\bzr1"]},
     {"name": "DKC", "patterns": [r"\bdkc\b", r"\bдкс\b", r"\bc1000\b"]},
     {"name": "Segnetics", "patterns": [r"segnetics", r"сегнетикс", r"pixel", r"smh", r"matrix"]},
+    {"name": "Тракт-Автоматика", "patterns": [r"тракт[- ]автоматика", r"\bтракт\b"]},
     {"name": "ЕвроАвтоматика", "patterns": [r"евроавтоматика", r"\bf&f\b", r"\bfif\b"]},
     {"name": "Schneider Electric", "patterns": [r"schneider electric", r"\bschneider\b", r"zelio", r"modicon"]},
     {"name": "Siemens", "patterns": [r"siemens", r"logo!", r"s7-1200", r"s7-1500", r"simatic"]},
@@ -189,12 +196,9 @@ def build_page_url(base_url, page_number):
 
 
 def clean_article_brand(value):
-    """Удаляет прилипшие названия брендов и лишние пробелы из артикула."""
     if not value or value == "—":
         return "—"
-    
-    # Удаляем имена брендов в конце артикула
-    brands_regex = r"(?:\s+|\n)+(?:КЭАЗ|Rievtech|ОВЕН|ONI|EKF|Systeme(?:\s+Electric)?|DKC|ДКС|Segnetics|ЕвроАвтоматика|Schneider(?:\s+Electric)?|Siemens|Autonics|Finder|KEAZ|OWEN)\b.*$"
+    brands_regex = r"(?:\s+|\n)+(?:КЭАЗ|Rievtech|ОВЕН|ONI|EKF|Systeme(?:\s+Electric)?|DKC|ДКС|Segnetics|Тракт[- ]Автоматика|Тракт|ЕвроАвтоматика|Schneider(?:\s+Electric)?|Siemens|Autonics|Finder|KEAZ|OWEN)\b.*$"
     cleaned = re.sub(brands_regex, "", value, flags=re.IGNORECASE).strip()
     return cleaned if cleaned else value.strip()
 
@@ -658,7 +662,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "3.4-clean-articles",
+        "parser_version": "3.5-trakt-added",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
