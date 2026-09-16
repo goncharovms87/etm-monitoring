@@ -693,7 +693,64 @@ def main():
     print(f"Обработано страниц: {overall_stats['pages']}")
     print(f"Время выполнения: {elapsed / 60:.1f} мин.")
     print("Файлы data.json и errors.json обновлены.")
+def save_with_history(payload):
+    """
+    Сохраняет ежедневный срез в history/YYYY-MM-DD.json
+    и обогащает data.json динамикой изменений за сутки.
+    """
+    os.makedirs("history", exist_ok=True)
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today_history_file = os.path.join("history", f"{today_str}.json")
 
+    # 1. Формируем компактный снимок за сегодня
+    daily_snapshot = {
+        item["etm_code"]: {
+            "price": item["price"],
+            "stock_etm": item["stock_etm"],
+            "stock_vendor": item["stock_vendor"],
+        }
+        for item in payload["items"]
+    }
+    with open(today_history_file, "w", encoding="utf-8") as f:
+        json.dump(daily_snapshot, f, ensure_ascii=False)
+
+    # 2. Ищем вчерашний файл для сравнения динамики
+    history_files = sorted(
+        [f for f in os.listdir("history") if f.endswith(".json") and f != f"{today_str}.json"]
+    )
+    yesterday_data = {}
+    if history_files:
+        prev_file = os.path.join("history", history_files[-1])
+        try:
+            with open(prev_file, "r", encoding="utf-8") as f:
+                yesterday_data = json.load(f)
+        except Exception:
+            yesterday_data = {}
+
+    # 3. Рассчитываем дельты (изменение цен и остатков)
+    for item in payload["items"]:
+        code = item["etm_code"]
+        prev = yesterday_data.get(code)
+
+        if prev:
+            old_price = prev.get("price", 0.0)
+            cur_price = item["price"]
+            if old_price > 0 and cur_price > 0:
+                item["price_diff"] = round(cur_price - old_price, 2)
+            else:
+                item["price_diff"] = 0.0
+
+            item["stock_etm_diff"] = item["stock_etm"] - prev.get("stock_etm", 0)
+            item["stock_vendor_diff"] = item["stock_vendor"] - prev.get("stock_vendor", 0)
+            item["is_new"] = False
+        else:
+            item["price_diff"] = 0.0
+            item["stock_etm_diff"] = 0
+            item["stock_vendor_diff"] = 0
+            item["is_new"] = bool(yesterday_data)  # True, если база уже велась вчера
+
+    # 4. Тут сохранение истории
+    save_with_history(payload)
 
 if __name__ == "__main__":
     main()
