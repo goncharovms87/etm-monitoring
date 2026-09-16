@@ -3,87 +3,235 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мониторинг цен и остатков: ПЛК и Программируемые реле | ЭТМ</title>
+  <title>Мониторинг цен и остатков ПЛК | ЭТМ</title>
+  
+  <!-- Стили: Bootstrap 5, Bootstrap Icons, Grid.js -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
+
   <style>
-    body { background-color: #f4f6f9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    .badge-stock { min-width: 50px; font-size: 0.85rem; padding: 0.35em 0.55em; text-align: center; }
-    .product-link { color: #0d6efd; text-decoration: none; font-weight: 500; line-height: 1.35; display: inline-block; }
-    .product-link:hover { text-decoration: underline; color: #0a58ca; }
-    .etm-code-badge { font-family: monospace; font-size: 0.85rem; }
-    
+    :root {
+      --bg-surface: #f8fafc;
+      --card-border: #e2e8f0;
+    }
+    body {
+      background-color: var(--bg-surface);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #1e293b;
+    }
+    .kpi-card {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+    .badge-stock {
+      min-width: 55px;
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 0.35em 0.6em;
+    }
+    .product-link {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1.35;
+      display: inline-block;
+    }
+    .product-link:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .code-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+    }
     th.gridjs-th {
       white-space: nowrap !important;
       padding: 10px 12px !important;
-      font-size: 0.88rem;
-      background-color: #f8f9fa !important;
+      font-size: 0.85rem;
+      background-color: #f1f5f9 !important;
+      color: #475569 !important;
+      font-weight: 600;
     }
     td.gridjs-td {
       padding: 10px 12px !important;
       vertical-align: middle;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+    }
+    .gridjs-search-input {
+      padding: 6px 12px !important;
+      font-size: 0.9rem !important;
+      border-radius: 6px !important;
     }
   </style>
 </head>
 <body class="py-4">
   <div class="container-fluid px-4">
-    <!-- Header Card -->
-    <div class="card border-0 shadow-sm mb-3">
-      <div class="card-body d-flex flex-wrap justify-content-between align-items-center gap-3">
-        <div>
-          <h4 class="fw-bold mb-1">Остатки и цены: ПЛК и Программируемые реле</h4>
-          <div class="text-muted small">
-            Группы каталога ЭТМ: <code>751010</code> (ПЛК), <code>751025</code> (Модули) и <code>75102510</code> (Реле)
+    
+    <!-- Шапка страницы -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+      <div>
+        <h3 class="fw-bold mb-1 d-flex align-items-center gap-2">
+          <i class="bi bi-cpu text-primary"></i> Мониторинг рынка ПЛК и Реле
+        </h3>
+        <div class="text-muted small">
+          Автоматический парсинг каталога ЭТМ &bull; Сегменты: Свободнопрограммируемые контроллеры, реле и модули ввода-вывода
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <button id="btn-export" class="btn btn-outline-success btn-sm fw-semibold d-flex align-items-center gap-1">
+          <i class="bi bi-file-earmark-spreadsheet"></i> Экспорт в CSV
+        </button>
+        <div class="text-end border-start ps-3">
+          <span class="badge bg-primary" id="update-date"><i class="bi bi-clock"></i> Загрузка...</span>
+          <div class="small text-muted mt-1" id="total-count">Позиций: —</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Аналитические карточки (KPI) -->
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card kpi-card border-0 shadow-sm bg-white h-100">
+          <div class="card-body">
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Всего позиций в мониторинге</div>
+            <div class="h3 fw-bold text-dark mb-0" id="kpi-total">0</div>
+            <small class="text-muted" id="kpi-relevant-sub">Целевых для исследования: 0</small>
           </div>
         </div>
-        <div class="d-flex align-items-center gap-3">
-          <button id="btn-export" class="btn btn-outline-success btn-sm fw-semibold">Экспорт в CSV</button>
-          <div class="text-end border-start ps-3">
-            <span class="badge bg-primary" id="update-date">Обновление: загрузка...</span>
-            <div class="small text-muted mt-1" id="total-count">Всего позиций: —</div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card kpi-card border-0 shadow-sm bg-white h-100">
+          <div class="card-body">
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Склад ЭТМ (В наличии)</div>
+            <div class="h3 fw-bold text-success mb-0" id="kpi-stock-etm">0 шт.</div>
+            <small class="text-muted" id="kpi-stock-etm-skus">Доступно SKU: 0</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card kpi-card border-0 shadow-sm bg-white h-100">
+          <div class="card-body">
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Склад поставщиков</div>
+            <div class="h3 fw-bold text-info mb-0" id="kpi-stock-vendor">0 шт.</div>
+            <small class="text-muted" id="kpi-stock-vendor-skus">Доступно SKU: 0</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card kpi-card border-0 shadow-sm bg-white h-100">
+          <div class="card-body">
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Позиций с открытой ценой</div>
+            <div class="h3 fw-bold text-primary mb-0" id="kpi-priced">0</div>
+            <small class="text-muted" id="kpi-price-ratio">0% от всей номенклатуры</small>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Quick Brand Filter -->
-    <div class="card border-0 shadow-sm mb-3">
-      <div class="card-body py-2 d-flex flex-wrap align-items-center gap-2">
-        <span class="small fw-bold text-secondary me-2">Быстрый фильтр бренда:</span>
-        <select id="brand-select" class="form-select form-select-sm" style="max-width: 260px;">
-          <option value="">Все производители</option>
-          <option value="ОВЕН">ОВЕН</option>
-          <option value="ONI">ONI</option>
-          <option value="EKF">EKF</option>
-          <option value="Rievtech">Rievtech</option>
-          <option value="Systeme Electric">Systeme Electric</option>
-          <option value="DKC">DKC</option>
-          <option value="Segnetics">Segnetics</option>
-          <option value="ЕвроАвтоматика">ЕвроАвтоматика</option>
-          <option value="Тракт-Автоматика">Тракт-Автоматика</option>
-          <option value="КЭАЗ">КЭАЗ</option>
-          <option value="Siemens">Siemens</option>
-          <option value="Schneider Electric">Schneider Electric</option>
-        </select>
-        <span class="text-muted small ms-2" id="filtered-badge"></span>
+    <!-- Графики: Доли брендов и Типы устройств -->
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-lg-7">
+        <div class="card border-0 shadow-sm bg-white h-100">
+          <div class="card-header bg-transparent border-0 pt-3 pb-0">
+            <span class="fw-bold small text-muted text-uppercase">Распределение позиций по вендорам</span>
+          </div>
+          <div class="card-body pt-2" style="position: relative; height: 260px;">
+            <canvas id="chartBrands"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-5">
+        <div class="card border-0 shadow-sm bg-white h-100">
+          <div class="card-header bg-transparent border-0 pt-3 pb-0">
+            <span class="fw-bold small text-muted text-uppercase">Категории оборудования</span>
+          </div>
+          <div class="card-body pt-2" style="position: relative; height: 260px;">
+            <canvas id="chartTypes"></canvas>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Table Card -->
-    <div class="card border-0 shadow-sm">
+    <!-- Панель интерактивных фильтров -->
+    <div class="card border-0 shadow-sm bg-white mb-3">
+      <div class="card-body py-2 px-3">
+        <div class="row g-2 align-items-center">
+          <div class="col-12 col-md-3">
+            <label class="form-label text-muted small mb-1 fw-bold">Производитель:</label>
+            <select id="filter-brand" class="form-select form-select-sm">
+              <option value="">Все бренды</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label text-muted small mb-1 fw-bold">Тип оборудования:</label>
+            <select id="filter-type" class="form-select form-select-sm">
+              <option value="">Все типы</option>
+              <option value="PLC">ПЛК (Контроллеры)</option>
+              <option value="Programmable relay">Программируемые реле</option>
+              <option value="I/O module">Модули входов/выходов</option>
+              <option value="Communication module">Связь и коммуникации</option>
+              <option value="HMI">Панели оператора (HMI)</option>
+              <option value="Power supply">Блоки питания</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label text-muted small mb-1 fw-bold">Наличие на складах:</label>
+            <select id="filter-stock" class="form-select form-select-sm">
+              <option value="all">Все товары</option>
+              <option value="in_stock">Есть на складе (ЭТМ или вендор)</option>
+              <option value="in_etm">Только на складе ЭТМ</option>
+              <option value="has_price">Только с известной ценой</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3 d-flex align-items-end">
+            <div class="form-check form-switch mb-1">
+              <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
+              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Только целевые SKU</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Таблица Grid.js -->
+    <div class="card border-0 shadow-sm bg-white">
       <div class="card-body p-3">
-        <div id="grid-container"></div>
+        <div id="grid-table"></div>
       </div>
     </div>
+
   </div>
 
+  <!-- Скрипты: Chart.js и Grid.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-  <script>
-    let globalItems = [];
-    let gridInstance = null;
 
-    function renderGrid(data) {
+  <script>
+    let rawItems = [];
+    let displayedItems = [];
+    let gridInstance = null;
+    let chartBrandsInstance = null;
+    let chartTypesInstance = null;
+
+    // Словарь перевода типов оборудования на русский
+    const TYPE_NAMES = {
+      "PLC": "ПЛК",
+      "Programmable relay": "Прогр. реле",
+      "I/O module": "Модуль В/В",
+      "Communication module": "Связь/Шина",
+      "HMI": "HMI Панель",
+      "Power supply": "Блок питания",
+      "Other": "Прочее"
+    };
+
+    // 1. Инициализация таблицы Grid.js
+    function initGrid(data) {
       if (gridInstance) {
         gridInstance.updateConfig({ data: data }).forceRender();
         return;
@@ -91,133 +239,298 @@
 
       gridInstance = new gridjs.Grid({
         columns: [
-          { 
-            name: "Код ЭТМ", 
-            id: "etm_code", 
+          {
+            name: "Код ЭТМ",
+            id: "etm_code",
             width: "105px",
-            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-dark border etm-code-badge text-decoration-none">${cell}</a>`)
+            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
           },
-          { 
-            name: "Производитель", 
-            id: "brand", 
-            sort: true, 
-            width: "140px",
+          {
+            name: "Вендор",
+            id: "brand",
+            width: "135px",
+            sort: true,
             formatter: (cell) => {
-              if (cell === "Другой" || cell === "—") return gridjs.html('<span class="text-muted">—</span>');
-              return gridjs.html(`<strong class="text-primary">${cell}</strong>`);
+              if (!cell || cell === "Другой") return gridjs.html('<span class="text-muted">—</span>');
+              return gridjs.html(`<span class="fw-bold text-primary">${cell}</span>`);
             }
           },
-          { 
-            name: "Артикул", 
-            id: "vendor_code", 
-            sort: true, 
-            width: "150px" 
+          {
+            name: "Тип",
+            id: "product_type",
+            width: "130px",
+            sort: true,
+            formatter: (cell) => {
+              const label = TYPE_NAMES[cell] || cell || "Прочее";
+              const colorClass = cell === "PLC" ? "bg-primary-subtle text-primary border border-primary-subtle" :
+                                 cell === "Programmable relay" ? "bg-success-subtle text-success border border-success-subtle" :
+                                 cell === "I/O module" ? "bg-info-subtle text-info-emphasis border border-info-subtle" :
+                                 "bg-secondary-subtle text-secondary";
+              return gridjs.html(`<span class="badge ${colorClass} fw-medium">${label}</span>`);
+            }
           },
-          { 
-            name: "Наименование продукции", 
+          {
+            name: "Артикул",
+            id: "vendor_code",
+            width: "150px",
+            sort: true,
+            formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
+          },
+          {
+            name: "Наименование продукции",
             id: "name",
             sort: true,
             formatter: (cell, row) => {
-              const url = row.cells[7].data;
+              const url = row.cells[8].data;
               return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
             }
           },
-          { 
-            name: "Цена, ₽", 
-            id: "price", 
-            sort: true, 
+          {
+            name: "Цена, ₽",
+            id: "price",
             width: "125px",
+            sort: true,
             formatter: (cell) => {
               const p = Number(cell) || 0;
-              return p > 0 
+              return p > 0
                 ? gridjs.html(`<span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>`)
-                : gridjs.html(`<span class="text-muted fst-italic">По запросу</span>`);
+                : gridjs.html(`<span class="text-muted fst-italic small">По запросу</span>`);
             }
           },
-          { 
-            name: "Склад ЭТМ", 
-            id: "stock_etm", 
-            sort: true, 
+          {
+            name: "Склад ЭТМ",
+            id: "stock_etm",
             width: "115px",
+            sort: true,
             formatter: (cell) => {
-              const val = Number(cell) || 0;
-              return gridjs.html(val > 0 
-                ? `<span class="badge bg-success badge-stock">${val} шт.</span>` 
+              const val = Number(cell);
+              if (cell === null || isNaN(val)) return gridjs.html('<span class="text-muted small">—</span>');
+              return gridjs.html(val > 0
+                ? `<span class="badge bg-success badge-stock">${val} шт.</span>`
                 : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
             }
           },
-          { 
-            name: "Склад вендора", 
-            id: "stock_vendor", 
-            sort: true, 
+          {
+            name: "Склад вендора",
+            id: "stock_vendor",
             width: "125px",
+            sort: true,
             formatter: (cell) => {
-              const val = Number(cell) || 0;
-              return gridjs.html(val > 0 
-                ? `<span class="badge bg-info text-dark badge-stock">${val} шт.</span>` 
+              const val = Number(cell);
+              if (cell === null || isNaN(val)) return gridjs.html('<span class="text-muted small">—</span>');
+              return gridjs.html(val > 0
+                ? `<span class="badge bg-info text-dark badge-stock">${val} шт.</span>`
                 : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
             }
           },
-          { name: "URL", id: "url", hidden: true }
+          { name: "url", id: "url", hidden: true }
         ],
         data: data,
         search: true,
         pagination: { limit: 25 },
         sort: true,
         language: {
-          search: { placeholder: 'Поиск (производитель, артикул, код, название)...' },
+          search: { placeholder: 'Быстрый поиск по названию, артикулу, бренду...' },
           pagination: {
             previous: 'Назад',
             next: 'Вперед',
-            showing: 'Показано с',
+            showing: 'Записи с',
             to: 'по',
             of: 'из',
             results: 'позиций'
           },
           loading: 'Загрузка...',
-          noRecordsFound: 'Товары не найдены'
+          noRecordsFound: 'Товары, соответствующие критериям, не найдены'
         }
-      }).render(document.getElementById("grid-container"));
+      }).render(document.getElementById("grid-table"));
     }
 
-    fetch('data.json?t=' + new Date().getTime())
-      .then(res => res.json())
-      .then(payload => {
-        globalItems = payload.items || [];
-        document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
-        document.getElementById('total-count').textContent = 'Всего в базе: ' + globalItems.length;
-        renderGrid(globalItems);
-      })
-      .catch(err => {
-        document.getElementById('grid-container').innerHTML = 
-          `<div class="alert alert-danger mb-0">Ошибка загрузки data.json: ${err.message}</div>`;
+    // 2. Расчет и отображение KPI карточек
+    function updateKPIs(items) {
+      document.getElementById('kpi-total').textContent = items.length;
+
+      const relevantCount = items.filter(i => i.relevant_for_automation_research).length;
+      document.getElementById('kpi-relevant-sub').textContent = `Целевых для исследования: ${relevantCount}`;
+
+      let stockEtmTotal = 0;
+      let stockEtmSkus = 0;
+      let stockVendorTotal = 0;
+      let stockVendorSkus = 0;
+      let pricedSkus = 0;
+
+      items.forEach(i => {
+        if (i.stock_etm && i.stock_etm > 0) {
+          stockEtmTotal += i.stock_etm;
+          stockEtmSkus++;
+        }
+        if (i.stock_vendor && i.stock_vendor > 0) {
+          stockVendorTotal += i.stock_vendor;
+          stockVendorSkus++;
+        }
+        if (i.price && i.price > 0) {
+          pricedSkus++;
+        }
       });
 
-    // Фильтрация по производителю
-    document.getElementById('brand-select').addEventListener('change', (e) => {
-      const selected = e.target.value;
-      if (!selected) {
-        renderGrid(globalItems);
-        document.getElementById('filtered-badge').textContent = '';
-      } else {
-        const filtered = globalItems.filter(item => item.brand === selected);
-        renderGrid(filtered);
-        document.getElementById('filtered-badge').textContent = `(выбрано: ${filtered.length})`;
-      }
-    });
+      document.getElementById('kpi-stock-etm').textContent = `${stockEtmTotal.toLocaleString('ru-RU')} шт.`;
+      document.getElementById('kpi-stock-etm-skus').textContent = `Доступно в ЭТМ: ${stockEtmSkus} SKU`;
 
-    // Экспорт в CSV
+      document.getElementById('kpi-stock-vendor').textContent = `${stockVendorTotal.toLocaleString('ru-RU')} шт.`;
+      document.getElementById('kpi-stock-vendor-skus').textContent = `На складе вендоров: ${stockVendorSkus} SKU`;
+
+      document.getElementById('kpi-priced').textContent = pricedSkus;
+      const ratio = items.length ? Math.round((pricedSkus / items.length) * 100) : 0;
+      document.getElementById('kpi-price-ratio').textContent = `${ratio}% от отображаемых SKU`;
+    }
+
+    // 3. Отрисовка графиков Chart.js
+    function renderCharts(items) {
+      // Подсчет по брендам
+      const brandCounts = {};
+      items.forEach(i => {
+        const b = i.brand || "Другой";
+        brandCounts[b] = (brandCounts[b] || 0) + 1;
+      });
+      const sortedBrands = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+
+      // Подсчет по типам оборудования
+      const typeCounts = {};
+      items.forEach(i => {
+        const t = TYPE_NAMES[i.product_type] || i.product_type || "Прочее";
+        typeCounts[t] = (typeCounts[t] || 0) + 1;
+      });
+      const sortedTypes = Object.entries(typeCounts).sort((a, b) => b[1] - a[1]);
+
+      // График брендов (Столбчатый)
+      const ctxB = document.getElementById('chartBrands').getContext('2d');
+      if (chartBrandsInstance) chartBrandsInstance.destroy();
+      chartBrandsInstance = new Chart(ctxB, {
+        type: 'bar',
+        data: {
+          labels: sortedBrands.map(x => x[0]),
+          datasets: [{
+            label: 'Количество SKU',
+            data: sortedBrands.map(x => x[1]),
+            backgroundColor: '#3b82f6',
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+            x: { grid: { display: false } }
+          }
+        }
+      });
+
+      // График типов (Doughnut)
+      const ctxT = document.getElementById('chartTypes').getContext('2d');
+      if (chartTypesInstance) chartTypesInstance.destroy();
+      chartTypesInstance = new Chart(ctxT, {
+        type: 'doughnut',
+        data: {
+          labels: sortedTypes.map(x => x[0]),
+          datasets: [{
+            data: sortedTypes.map(x => x[1]),
+            backgroundColor: ['#2563eb', '#10b981', '#06b6d4', '#f59e0b', '#8b5cf6', '#ec4899', '#94a3b8']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // 4. Применение фильтров
+    function applyFilters() {
+      const selectedBrand = document.getElementById('filter-brand').value;
+      const selectedType = document.getElementById('filter-type').value;
+      const selectedStock = document.getElementById('filter-stock').value;
+      const relevantOnly = document.getElementById('filter-relevant-only').checked;
+
+      displayedItems = rawItems.filter(item => {
+        if (relevantOnly && !item.relevant_for_automation_research) return false;
+        if (selectedBrand && item.brand !== selectedBrand) return false;
+        if (selectedType && item.product_type !== selectedType) return false;
+
+        if (selectedStock === 'in_stock') {
+          const etm = item.stock_etm || 0;
+          const v = item.stock_vendor || 0;
+          if (etm <= 0 && v <= 0) return false;
+        } else if (selectedStock === 'in_etm') {
+          if (!item.stock_etm || item.stock_etm <= 0) return false;
+        } else if (selectedStock === 'has_price') {
+          if (!item.price || item.price <= 0) return false;
+        }
+        return true;
+      });
+
+      initGrid(displayedItems);
+      updateKPIs(displayedItems);
+    }
+
+    // 5. Загрузка данных data_v2.json (с cache-buster)
+    fetch('data_v2.json?t=' + new Date().getTime())
+      .then(res => {
+        if (!res.ok) throw new Error("Файл data_v2.json не найден. Код ответа: " + res.status);
+        return res.json();
+      })
+      .then(payload => {
+        rawItems = payload.items || [];
+        document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
+        document.getElementById('total-count').textContent = 'Всего позиций: ' + rawItems.length;
+
+        // Заполнение селекта брендов из statistics.by_brand
+        const brandSelect = document.getElementById('filter-brand');
+        const brands = payload.statistics && payload.statistics.by_brand 
+          ? Object.keys(payload.statistics.by_brand) 
+          : Array.from(new Set(rawItems.map(i => i.brand))).filter(Boolean).sort();
+
+        brands.forEach(b => {
+          const opt = document.createElement('option');
+          opt.value = b;
+          opt.textContent = b;
+          brandSelect.appendChild(opt);
+        });
+
+        // Слушатели событий на элементы управления
+        ['filter-brand', 'filter-type', 'filter-stock', 'filter-relevant-only'].forEach(id => {
+          document.getElementById(id).addEventListener('change', applyFilters);
+        });
+
+        // Первоначальный рендер
+        renderCharts(rawItems);
+        applyFilters();
+      })
+      .catch(err => {
+        document.getElementById('grid-table').innerHTML = 
+          `<div class="alert alert-warning mb-0">
+            <h6 class="fw-bold">Ожидание данных парсинга:</h6>
+            ${err.message}<br>
+            <small class="text-muted">Если вы только что перешли на parser v2, дождитесь завершения первого запуска GitHub Action для генерации data_v2.json.</small>
+          </div>`;
+      });
+
+    // 6. Экспорт в CSV с разделителем ";"
     document.getElementById('btn-export').addEventListener('click', () => {
-      if (!globalItems.length) return;
-      const headers = ["Код ЭТМ", "Производитель", "Артикул", "Наименование", "Цена, руб", "Склад ЭТМ", "Склад вендора", "Ссылка"];
-      const rows = globalItems.map(i => [
+      if (!displayedItems.length) return;
+      const headers = ["Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)", "Склад ЭТМ", "Склад вендора", "Ссылка"];
+      const rows = displayedItems.map(i => [
         i.etm_code,
         `"${(i.brand || '').replace(/"/g, '""')}"`,
+        `"${(TYPE_NAMES[i.product_type] || i.product_type || '').replace(/"/g, '""')}"`,
         `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
         `"${(i.name || '').replace(/"/g, '""')}"`,
-        i.price,
-        i.stock_etm,
-        i.stock_vendor,
+        i.price || 0,
+        i.stock_etm !== null ? i.stock_etm : '',
+        i.stock_vendor !== null ? i.stock_vendor : '',
         i.url
       ]);
       const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
