@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мониторинг цен и остатков ПЛК | ЭТМ</title>
+  <title>Мониторинг рынка ПЛК и Реле | ЭТМ</title>
   
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -29,10 +29,10 @@
       box-shadow: 0 6px 14px rgba(0,0,0,0.06);
     }
     .badge-stock {
-      min-width: 55px;
+      min-width: 50px;
       font-weight: 600;
       font-size: 0.82rem;
-      padding: 0.35em 0.6em;
+      padding: 0.35em 0.55em;
     }
     .product-link {
       color: #0f172a;
@@ -49,6 +49,30 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-size: 0.8rem;
     }
+    .delta-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: 4px;
+    }
+    .delta-up-price { background-color: #fee2e2; color: #dc2626; }
+    .delta-down-price { background-color: #dcfce7; color: #16a34a; }
+    .delta-up-stock { background-color: #dcfce7; color: #16a34a; }
+    .delta-down-stock { background-color: #fee2e2; color: #dc2626; }
+    .badge-new {
+      background-color: #fef3c7;
+      color: #d97706;
+      border: 1px solid #fde68a;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
     th.gridjs-th {
       white-space: nowrap !important;
       padding: 10px 12px !important;
@@ -62,24 +86,19 @@
       vertical-align: middle;
       font-size: 0.88rem;
     }
-    .gridjs-search-input {
-      padding: 6px 12px !important;
-      font-size: 0.9rem !important;
-      border-radius: 6px !important;
-    }
   </style>
 </head>
 <body class="py-4">
   <div class="container-fluid px-4">
     
-    <!-- Шапка страницы -->
+    <!-- Шапка -->
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
       <div>
         <h3 class="fw-bold mb-1 d-flex align-items-center gap-2">
           <i class="bi bi-cpu text-primary"></i> Мониторинг рынка ПЛК и Реле
         </h3>
         <div class="text-muted small">
-          Автоматический мониторинг каталога ЭТМ &bull; Сегменты: ПЛК, программируемые реле и модули ввода-вывода
+          Ежедневный анализ каталога ЭТМ &bull; Автоматическая фиксация изменений цен и остатков день за днем
         </div>
       </div>
       <div class="d-flex align-items-center gap-2">
@@ -88,17 +107,17 @@
         </button>
         <div class="text-end border-start ps-3">
           <span class="badge bg-primary" id="update-date"><i class="bi bi-clock"></i> Загрузка...</span>
-          <div class="small text-muted mt-1" id="total-count">Позиций: —</div>
+          <div class="small text-muted mt-1" id="total-count">Всего: —</div>
         </div>
       </div>
     </div>
 
-    <!-- KPI блоки -->
+    <!-- KPI карточки -->
     <div class="row g-3 mb-4">
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="card kpi-card border-0 shadow-sm bg-white h-100">
           <div class="card-body">
-            <div class="text-muted small text-uppercase fw-semibold mb-1">Всего позиций в базе</div>
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Всего позиций в мониторинге</div>
             <div class="h3 fw-bold text-dark mb-0" id="kpi-total">0</div>
             <small class="text-muted" id="kpi-runtime">Время сбора: —</small>
           </div>
@@ -125,20 +144,20 @@
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="card kpi-card border-0 shadow-sm bg-white h-100">
           <div class="card-body">
-            <div class="text-muted small text-uppercase fw-semibold mb-1">Позиций с ценой</div>
-            <div class="h3 fw-bold text-primary mb-0" id="kpi-priced">0</div>
-            <small class="text-muted" id="kpi-price-ratio">0% от выборки</small>
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Динамика цен за сутки</div>
+            <div class="h3 fw-bold text-primary mb-0" id="kpi-price-changes">0</div>
+            <small class="text-muted" id="kpi-price-sub">Подорожало: 0 | Подешевело: 0</small>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Графики -->
+    <!-- Аналитические диаграммы -->
     <div class="row g-3 mb-4">
       <div class="col-12 col-lg-7">
         <div class="card border-0 shadow-sm bg-white h-100">
           <div class="card-header bg-transparent border-0 pt-3 pb-0">
-            <span class="fw-bold small text-muted text-uppercase">Топ-10 брендов по количеству SKU</span>
+            <span class="fw-bold small text-muted text-uppercase">Топ производителей по числу SKU</span>
           </div>
           <div class="card-body pt-2" style="position: relative; height: 260px;">
             <canvas id="chartBrands"></canvas>
@@ -174,7 +193,7 @@
               <option value="PLC">ПЛК (Контроллеры)</option>
               <option value="Programmable relay">Программируемые реле</option>
               <option value="I/O module">Модули В/В</option>
-              <option value="Communication module">Связь и коммуникации</option>
+              <option value="Communication module">Связь и интерфейсы</option>
               <option value="HMI">Панели оператора (HMI)</option>
               <option value="Power supply">Блоки питания</option>
               <option value="Other module">Прочие модули</option>
@@ -182,25 +201,26 @@
             </select>
           </div>
           <div class="col-12 col-md-3">
-            <label class="form-label text-muted small mb-1 fw-bold">Наличие на складах:</label>
+            <label class="form-label text-muted small mb-1 fw-bold">Динамика и наличие:</label>
             <select id="filter-stock" class="form-select form-select-sm">
-              <option value="all">Все товары</option>
+              <option value="all">Все позиции</option>
+              <option value="price_changed">С изменением цены за сутки</option>
               <option value="in_stock">Есть на складе (ЭТМ или вендор)</option>
-              <option value="in_etm">Только на складе ЭТМ</option>
-              <option value="has_price">Только с известной ценой</option>
+              <option value="in_etm">Только склад ЭТМ</option>
+              <option value="has_price">Только с открытой ценой</option>
             </select>
           </div>
           <div class="col-12 col-md-3 d-flex align-items-end">
             <div class="form-check form-switch mb-1">
               <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
-              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Исключить категорию "Other"</label>
+              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Исключить "Other"</label>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Таблица данных -->
+    <!-- Таблица -->
     <div class="card border-0 shadow-sm bg-white">
       <div class="card-body p-3">
         <div id="grid-table"></div>
@@ -218,6 +238,7 @@
     let gridInstance = null;
     let chartBrandsInstance = null;
     let chartTypesInstance = null;
+    let globalPayload = {};
 
     const TYPE_NAMES = {
       "PLC": "ПЛК",
@@ -242,8 +263,12 @@
           {
             name: "Код ЭТМ",
             id: "etm_code",
-            width: "105px",
-            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
+            width: "115px",
+            formatter: (cell, row) => {
+              const item = row.cells[10].data;
+              const newBadge = item && item.is_new ? `<span class="badge-new">NEW</span>` : '';
+              return gridjs.html(`${newBadge}<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`);
+            }
           },
           {
             name: "Вендор",
@@ -272,7 +297,7 @@
           {
             name: "Артикул",
             id: "vendor_code",
-            width: "150px",
+            width: "160px",
             sort: true,
             formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
           },
@@ -281,54 +306,89 @@
             id: "name",
             sort: true,
             formatter: (cell, row) => {
-              const url = row.cells[8].data;
+              const url = row.cells[9].data;
               return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
             }
           },
           {
             name: "Цена, ₽",
             id: "price",
-            width: "125px",
+            width: "155px",
             sort: true,
-            formatter: (cell) => {
+            formatter: (cell, row) => {
               const p = Number(cell) || 0;
+              const item = row.cells[10].data || {};
+              const diff = item.price_diff || 0;
+              
+              let deltaHtml = '';
+              if (diff > 0) {
+                deltaHtml = `<span class="delta-badge delta-up-price" title="Подорожало на ${diff} ₽">▲ +${diff.toLocaleString('ru-RU')} ₽</span>`;
+              } else if (diff < 0) {
+                deltaHtml = `<span class="delta-badge delta-down-price" title="Подешевело на ${Math.abs(diff)} ₽">▼ ${diff.toLocaleString('ru-RU')} ₽</span>`;
+              }
+
               return p > 0
-                ? gridjs.html(`<span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>`)
+                ? gridjs.html(`<div><span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>${deltaHtml}</div>`)
                 : gridjs.html(`<span class="text-muted fst-italic small">По запросу</span>`);
             }
           },
           {
             name: "Склад ЭТМ",
             id: "stock_etm",
-            width: "115px",
+            width: "135px",
             sort: true,
-            formatter: (cell) => {
+            formatter: (cell, row) => {
               const val = Number(cell) || 0;
+              const item = row.cells[10].data || {};
+              const diff = item.stock_etm_diff || 0;
+
+              let deltaHtml = '';
+              if (diff > 0) {
+                deltaHtml = `<span class="delta-badge delta-up-stock" title="Поступило +${diff} шт.">+${diff}</span>`;
+              } else if (diff < 0) {
+                deltaHtml = `<span class="delta-badge delta-down-stock" title="Убыло ${diff} шт.">${diff}</span>`;
+              }
+
               return gridjs.html(val > 0
-                ? `<span class="badge bg-success badge-stock">${val} шт.</span>`
-                : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
+                ? `<div><span class="badge bg-success badge-stock">${val} шт.</span>${deltaHtml}</div>`
+                : `<div><span class="badge bg-light text-secondary border badge-stock">0</span>${deltaHtml}</div>`);
             }
           },
           {
             name: "Склад вендора",
             id: "stock_vendor",
-            width: "125px",
+            width: "145px",
             sort: true,
-            formatter: (cell) => {
+            formatter: (cell, row) => {
               const val = Number(cell) || 0;
+              const item = row.cells[10].data || {};
+              const diff = item.stock_vendor_diff || 0;
+
+              let deltaHtml = '';
+              if (diff > 0) {
+                deltaHtml = `<span class="delta-badge delta-up-stock" title="Поступило поставщику +${diff} шт.">+${diff}</span>`;
+              } else if (diff < 0) {
+                deltaHtml = `<span class="delta-badge delta-down-stock" title="Убыло у поставщика ${diff} шт.">${diff}</span>`;
+              }
+
               return gridjs.html(val > 0
-                ? `<span class="badge bg-info text-dark badge-stock">${val} шт.</span>`
-                : `<span class="badge bg-light text-secondary border badge-stock">0</span>`);
+                ? `<div><span class="badge bg-info text-dark badge-stock">${val} шт.</span>${deltaHtml}</div>`
+                : `<div><span class="badge bg-light text-secondary border badge-stock">0</span>${deltaHtml}</div>`);
             }
           },
-          { name: "url", id: "url", hidden: true }
+          { name: "price_diff", id: "price_diff", hidden: true },
+          { name: "url", id: "url", hidden: true },
+          { name: "raw_item", id: "raw_item", hidden: true }
         ],
-        data: data,
+        data: data.map(item => ({
+          ...item,
+          raw_item: item
+        })),
         search: true,
         pagination: { limit: 25 },
         sort: true,
         language: {
-          search: { placeholder: 'Быстрый поиск по названию, артикулу, бренду...' },
+          search: { placeholder: 'Поиск по названию, артикулу, бренду...' },
           pagination: {
             previous: 'Назад',
             next: 'Вперед',
@@ -338,12 +398,12 @@
             results: 'позиций'
           },
           loading: 'Загрузка...',
-          noRecordsFound: 'Товары не найдены'
+          noRecordsFound: 'Позиции не найдены'
         }
       }).render(document.getElementById("grid-table"));
     }
 
-    function updateKPIs(items, totalInFile, elapsedSeconds) {
+    function updateKPIs(items, elapsedSeconds) {
       document.getElementById('kpi-total').textContent = items.length;
       if (elapsedSeconds) {
         document.getElementById('kpi-runtime').textContent = `Время сбора: ${Math.round(elapsedSeconds / 60)} мин.`;
@@ -353,7 +413,8 @@
       let stockEtmSkus = 0;
       let stockVendorTotal = 0;
       let stockVendorSkus = 0;
-      let pricedSkus = 0;
+      let priceUp = 0;
+      let priceDown = 0;
 
       items.forEach(i => {
         if (i.stock_etm && i.stock_etm > 0) {
@@ -364,9 +425,8 @@
           stockVendorTotal += i.stock_vendor;
           stockVendorSkus++;
         }
-        if (i.price && i.price > 0) {
-          pricedSkus++;
-        }
+        if (i.price_diff > 0) priceUp++;
+        if (i.price_diff < 0) priceDown++;
       });
 
       document.getElementById('kpi-stock-etm').textContent = `${stockEtmTotal.toLocaleString('ru-RU')} шт.`;
@@ -375,9 +435,8 @@
       document.getElementById('kpi-stock-vendor').textContent = `${stockVendorTotal.toLocaleString('ru-RU')} шт.`;
       document.getElementById('kpi-stock-vendor-skus').textContent = `На складе вендоров: ${stockVendorSkus} SKU`;
 
-      document.getElementById('kpi-priced').textContent = pricedSkus;
-      const ratio = items.length ? Math.round((pricedSkus / items.length) * 100) : 0;
-      document.getElementById('kpi-price-ratio').textContent = `${ratio}% от отображаемых SKU`;
+      document.getElementById('kpi-price-changes').textContent = priceUp + priceDown;
+      document.getElementById('kpi-price-sub').textContent = `Подорожало: ${priceUp} | Подешевело: ${priceDown}`;
     }
 
     function renderCharts(items) {
@@ -440,8 +499,6 @@
       });
     }
 
-    let globalPayload = {};
-
     function applyFilters() {
       const selectedBrand = document.getElementById('filter-brand').value;
       const selectedType = document.getElementById('filter-type').value;
@@ -453,7 +510,9 @@
         if (selectedBrand && item.brand !== selectedBrand) return false;
         if (selectedType && item.product_type !== selectedType) return false;
 
-        if (selectedStock === 'in_stock') {
+        if (selectedStock === 'price_changed') {
+          if (!item.price_diff || item.price_diff === 0) return false;
+        } else if (selectedStock === 'in_stock') {
           const etm = item.stock_etm || 0;
           const v = item.stock_vendor || 0;
           if (etm <= 0 && v <= 0) return false;
@@ -466,10 +525,9 @@
       });
 
       initGrid(displayedItems);
-      updateKPIs(displayedItems, rawItems.length, globalPayload.elapsed_seconds);
+      updateKPIs(displayedItems, globalPayload.elapsed_seconds);
     }
 
-    // Загрузка штатного data.json
     fetch('data.json?t=' + new Date().getTime())
       .then(res => {
         if (!res.ok) throw new Error("Файл data.json не найден. Статус: " + res.status);
@@ -504,14 +562,13 @@
         document.getElementById('grid-table').innerHTML = 
           `<div class="alert alert-warning mb-0">
             <h6 class="fw-bold">Ожидание данных:</h6>
-            ${err.message}<br>
-            <small class="text-muted">Запустите сценарий сбора в GitHub Actions для создания актуального файла data.json.</small>
+            ${err.message}
           </div>`;
       });
 
     document.getElementById('btn-export').addEventListener('click', () => {
       if (!displayedItems.length) return;
-      const headers = ["Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)", "Склад ЭТМ", "Склад вендора", "Ссылка"];
+      const headers = ["Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)", "Изм. цены", "Склад ЭТМ", "Изм. ЭТМ", "Склад вендора", "Изм. вендор", "Ссылка"];
       const rows = displayedItems.map(i => [
         i.etm_code,
         `"${(i.brand || '').replace(/"/g, '""')}"`,
@@ -519,8 +576,11 @@
         `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
         `"${(i.name || '').replace(/"/g, '""')}"`,
         i.price || 0,
+        i.price_diff || 0,
         i.stock_etm || 0,
+        i.stock_etm_diff || 0,
         i.stock_vendor || 0,
+        i.stock_vendor_diff || 0,
         i.url
       ]);
       const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
