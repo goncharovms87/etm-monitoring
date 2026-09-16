@@ -10,19 +10,13 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 sys.stdout.reconfigure(encoding="utf-8")
 
 # ============================================================
-# НАСТРОЙКИ (ОПТИМИЗИРОВАНО НА ПОЛНОТУ: 5-7 МИНУТ)
+# НАСТРОЙКИ
 # ============================================================
 
 ROWS_PER_PAGE = 48
 MAX_PAGES_SAFETY = 15
 NAVIGATION_TIMEOUT = 45000
-PRODUCT_WAIT_TIMEOUT = 15000
-
-MAX_SCROLL_ROUNDS = 20
-SCROLL_STEP = 1000
-SCROLL_WAIT_MS = 400
-STABLE_ROUNDS_REQUIRED = 3
-
+PRODUCT_WAIT_TIMEOUT = 20000
 NAVIGATION_RETRIES = 3
 
 CATEGORIES = [
@@ -429,29 +423,24 @@ def merge_item(existing, new_item):
 
 
 def scroll_until_stable(page):
-    previous_count = 0
-    stable_rounds = 0
-    max_seen = 0
+    """
+    Пошаговый скролл вниз и вверх, дающий React-виртуализатору
+    время на отрисовку карточек на странице.
+    """
+    try:
+        page.wait_for_selector("a[href*='/cat/nn/']", timeout=15000)
+    except Exception:
+        pass
 
-    for _ in range(MAX_SCROLL_ROUNDS):
-        count = page.locator("a[href*='/cat/nn/']").count()
-        max_seen = max(max_seen, count)
-
-        if count <= previous_count and count > 0:
-            stable_rounds += 1
-        else:
-            stable_rounds = 0
-
-        if stable_rounds >= STABLE_ROUNDS_REQUIRED:
-            break
-
-        previous_count = count
-        page.evaluate(f"window.scrollBy(0, {SCROLL_STEP})")
-        page.wait_for_timeout(SCROLL_WAIT_MS)
+    for y in [1000, 2200, 3600, 5200]:
+        page.evaluate(f"window.scrollTo(0, {y})")
+        page.wait_for_timeout(600)
 
     page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-    page.wait_for_timeout(SCROLL_WAIT_MS)
-    return max_seen
+    page.wait_for_timeout(700)
+
+    page.evaluate("window.scrollTo(0, 400)")
+    page.wait_for_timeout(400)
 
 
 def navigate_with_retry(page, url):
@@ -530,8 +519,9 @@ def collect_category(page, category, collected, stats, errors):
             f"  Найдено на странице: {len(cards)} | Новых: {added} | Всего в базе: {len(collected)}"
         )
 
-        if len(cards) < ROWS_PER_PAGE:
-            print("  Достигнута финальная страница среза.")
+        # Если на странице меньше 40 карточек при запросе 48 — это явный конец каталога
+        if len(cards) < 40:
+            print("  Финальная страница среза достигнута.")
             break
 
         page_number += 1
@@ -627,7 +617,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "3.1-balanced",
+        "parser_version": "3.2-stable",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
