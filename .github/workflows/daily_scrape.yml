@@ -1,6 +1,21 @@
-- name: Запуск сбора данных v2
+name: Daily ETM Scraper v2
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: self-hosted
+
+    steps:
+      - name: Проверка репозитория
+        uses: actions/checkout@v4
+
+      - name: Запуск сбора данных v2
         run: |
-          scraper.py
+          python scraper.py
 
       - name: Фиксация изменений и отправка в репозиторий
         shell: cmd
