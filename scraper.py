@@ -8,105 +8,112 @@ from playwright.sync_api import sync_playwright
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# Выверенные срезы каталога (с принудительным показом всех позиций)
+# Выверенный список рабочих срезов каталога ЭТМ
 CATEGORIES = [
-    # --- КЭАЗ (все 24 позиции OptiLogic) ---
+    # --- КЭАЗ ---
     {
         "brand_hint": "КЭАЗ",
-        "name": "КЭАЗ (OptiLogic)",
+        "name": "КЭАЗ: OptiLogic",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz",
-        "max_pages": 2,
+        "max_pages": 3,
     },
     # --- Rievtech ---
     {
         "brand_hint": "Rievtech",
-        "name": "Rievtech (Контроллеры и модули)",
+        "name": "Rievtech: ПЛК и модули",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-4094_rievtech",
-        "max_pages": 2,
+        "max_pages": 3,
     },
     {
         "brand_hint": "Rievtech",
-        "name": "Rievtech (Программируемые реле)",
+        "name": "Rievtech: Реле",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-4094_rievtech",
-        "max_pages": 2,
+        "max_pages": 3,
     },
-    # --- Systeme Electric ---
+    # --- Systeme Electric (SR1, SM3, контроллеры) ---
     {
         "brand_hint": "Systeme Electric",
-        "name": "Systeme Electric (Контроллеры и модули)",
+        "name": "Systeme Electric: ПЛК и реле",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-164_se_systeme",
-        "max_pages": 4,
-    },
-    {
-        "brand_hint": "Systeme Electric",
-        "name": "Systeme Electric (Реле интеллектуальные)",
-        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-164_se_systeme",
-        "max_pages": 4,
+        "max_pages": 8,
     },
     # --- ОВЕН ---
     {
         "brand_hint": "ОВЕН",
-        "name": "ОВЕН (Контроллеры и модули)",
+        "name": "ОВЕН: ПЛК и модули МВ/МУ",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-2216_oven",
-        "max_pages": 5,
+        "max_pages": 8,
     },
     {
         "brand_hint": "ОВЕН",
-        "name": "ОВЕН (Программируемые реле)",
-        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-2216_oven",
-        "max_pages": 5,
+        "name": "ОВЕН: Программируемые реле ПР",
+        "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija-20_owen",
+        "max_pages": 6,
     },
     # --- ONI ---
     {
         "brand_hint": "ONI",
-        "name": "ONI (Контроллеры и модули)",
+        "name": "ONI: ПЛК-410 и модули",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=ONI",
-        "max_pages": 4,
+        "max_pages": 6,
     },
     {
         "brand_hint": "ONI",
-        "name": "ONI (Программируемые реле)",
+        "name": "ONI: Реле PLR",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-1775_oni",
-        "max_pages": 4,
+        "max_pages": 3,
     },
     # --- EKF ---
     {
         "brand_hint": "EKF",
-        "name": "EKF (Программируемые реле)",
+        "name": "EKF: Реле PRO-Relay",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-760_ekf",
         "max_pages": 4,
     },
     {
         "brand_hint": "EKF",
-        "name": "EKF (Контроллеры PRO-Logic)",
+        "name": "EKF: ПЛК PRO-Logic",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=EKF",
-        "max_pages": 4,
+        "max_pages": 5,
     },
     # --- DKC ---
     {
         "brand_hint": "DKC",
-        "name": "DKC (Модули и контроллеры)",
+        "name": "DKC: C1000",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-138_dkc",
         "max_pages": 4,
     },
     # --- Segnetics ---
     {
         "brand_hint": "Segnetics",
-        "name": "Segnetics (Контроллеры)",
+        "name": "Segnetics: Контроллеры",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=Segnetics",
         "max_pages": 4,
+    },
+    # --- ЕвроАвтоматика ---
+    {
+        "brand_hint": "ЕвроАвтоматика",
+        "name": "ЕвроАвтоматика F&F",
+        "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele?searchValue=Евроавтоматика",
+        "max_pages": 3,
     },
     # --- Schneider Electric ---
     {
         "brand_hint": "Schneider Electric",
-        "name": "Schneider Electric (Реле Zelio / ПЛК)",
+        "name": "Schneider Electric: ПЛК",
+        "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-8_schneider_electric",
+        "max_pages": 5,
+    },
+    {
+        "brand_hint": "Schneider Electric",
+        "name": "Schneider Electric: Zelio Logic",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-2282_se_schneider",
         "max_pages": 4,
     },
     # --- Siemens ---
     {
         "brand_hint": "Siemens",
-        "name": "Siemens (LOGO! / Simatic)",
+        "name": "Siemens: LOGO!",
         "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-60000121_siemens",
         "max_pages": 4,
     },
@@ -115,7 +122,7 @@ CATEGORIES = [
 TARGET_BRANDS = [
     {"name": "КЭАЗ", "patterns": [r"\bкэаз\b", r"\bkeaz\b", r"optilogic", r"гжик"]},
     {"name": "Rievtech", "patterns": [r"rievtech", r"\bpr-[12][0-9]\b", r"\bsr-[12][0-9]\b", r"\bba-[0-9]"]},
-    {"name": "ОВЕН", "patterns": [r"\bовен\b", r"\bowen\b", r"\bпр10[023]\b", r"\bпр20[05]\b", r"\bплк[12]10\b", r"\bплк200\b", r"\bм[вук]110\b", r"\bм[вук]210\b"]},
+    {"name": "ОВЕН", "patterns": [r"\bовен\b", r"\bowen\b", r"\bпр10[023]\b", r"\bпр20[05]\b", r"\bплк[12]10\b", r"\bплк200\b", r"\bм[вук][12]10\b"]},
     {"name": "ONI", "patterns": [r"\boni\b", r"plc-410", r"plrs-", r"plrk-"]},
     {"name": "EKF", "patterns": [r"\bekf\b", r"про-реле", r"pro-relay", r"pro-logic"]},
     {"name": "Systeme Electric", "patterns": [r"systeme electric", r"систэм электрик", r"\bsysteme\b", r"\bsm3[a-z0-9]", r"\bzr1"]},
@@ -129,7 +136,7 @@ TARGET_BRANDS = [
 ]
 
 STOP_WORDS = [
-    "диод", "тиристор", "симистор", "igbt", "конденсатор", 
+    "диод", "тиристор", "симистор", "igbt", "конденсатор",
     "варистор", "резистор", "транзистор", "электролитический", "косинусный", "предохранитель"
 ]
 
@@ -147,28 +154,22 @@ def is_target_product(name):
     name_lower = name.lower()
     if any(sw in name_lower for sw in STOP_WORDS):
         return False
-    # Оставляем любые модули и контроллеры
     if "модуль" in name_lower or "контроллер" in name_lower:
         return True
-    automation_terms = ["плк", "plc", "программируем", "логический", "интеллектуальное реле", "реле интеллектуальное", "блок питания", "панель оператора"]
+    automation_terms = [
+        "плк", "plc", "программируем", "логический", 
+        "интеллектуальное реле", "реле интеллектуальное", "блок питания", "панель оператора"
+    ]
     return any(term in name_lower for term in automation_terms)
 
 
 def scroll_page_completely(page):
-    """Плавный скролл страницы сверху донизу для прогрузки всех виртуальных карточек."""
-    prev_count = 0
-    for _ in range(8):
-        page.evaluate("window.scrollBy(0, 1200)")
-        page.wait_for_timeout(400)
-        curr_count = len(page.query_selector_all("a[href*='/cat/nn/']"))
-        if curr_count > prev_count:
-            prev_count = curr_count
-        else:
-            # Делаем еще один шаг вниз
-            page.evaluate("window.scrollBy(0, 1600)")
-            page.wait_for_timeout(400)
-    # Возвращаемся немного вверх, чтобы обновились верхние элементы
-    page.evaluate("window.scrollTo(0, 500)")
+    """Пошаговый скролл вниз для триггера виртуализации всех 48 карточек."""
+    for _ in range(6):
+        page.evaluate("window.scrollBy(0, 1000)")
+        page.wait_for_timeout(350)
+    page.wait_for_timeout(600)
+    page.evaluate("window.scrollTo(0, 300)")
     page.wait_for_timeout(300)
 
 
@@ -202,7 +203,7 @@ def extract_card_data(link_el, default_brand):
 
     lines = [l.strip() for l in text.split('\n') if l.strip()]
 
-    # 1. Наименование
+    # Наименование
     name = link_el.inner_text().strip().replace('\u00a0', ' ')
     if len(name) < 15:
         for l in lines:
@@ -210,7 +211,7 @@ def extract_card_data(link_el, default_brand):
                 name = l
                 break
 
-    # 2. Артикул
+    # Артикул
     vendor_code = "—"
     for i, line in enumerate(lines):
         if "Артикул:" in line:
@@ -226,10 +227,10 @@ def extract_card_data(link_el, default_brand):
                     vendor_code = candidate
                     break
 
-    # 3. Бренд
+    # Производитель
     brand = identify_brand(text, vendor_code, default_brand)
 
-    # 4. Цена
+    # Цена
     price = 0.0
     price_regex = r'([0-9][0-9\s]{0,10}(?:[.,][0-9]{2})?)\s*(?:₽|руб)'
     price_match = re.search(price_regex, text, re.IGNORECASE)
@@ -240,7 +241,7 @@ def extract_card_data(link_el, default_brand):
         except ValueError:
             price = 0.0
 
-    # 5. Остатки
+    # Остатки
     stock_etm = 0
     stock_vendor = 0
     stock_matches = re.findall(r'(\d+)\s*шт', text)
@@ -292,26 +293,28 @@ def main():
 
             for p_num in range(1, max_p + 1):
                 delim = "&" if "?" in cat["url"] else "?"
-                # КРИТИЧЕСКИ ВАЖНО: rows=48 и delivery=all отключают скрытие заказных товаров
                 page_url = f"{cat['url']}{delim}rows=48&delivery=all"
                 if p_num > 1:
                     page_url += f"&page={p_num}"
 
-                print(f"Загрузка страницы {p_num} из {max_p}: {page_url}")
+                print(f"Загрузка стр. {p_num} из {max_p}: {page_url}")
 
                 try:
                     page.goto(page_url, wait_until="domcontentloaded", timeout=45000)
 
                     try:
-                        page.wait_for_selector("a[href*='/cat/nn/']", timeout=20000)
+                        page.wait_for_selector("a[href*='/cat/nn/']", timeout=18000)
                     except Exception:
                         pass
 
-                    # Прокручиваем всю страницу до конца
                     scroll_page_completely(page)
 
                     all_links = page.query_selector_all("a[href*='/cat/nn/']")
                     print(f"Найдено ссылок: {len(all_links)}")
+
+                    if len(all_links) == 0:
+                        print("Товары на странице отсутствуют. Срез завершен.\n")
+                        break
 
                     page_added = 0
                     for link in all_links:
@@ -331,11 +334,7 @@ def main():
                             if collected_dict[code]["price"] == 0 and item["price"] > 0:
                                 collected_dict[code]["price"] = item["price"]
 
-                    print(f"Добавлено со страницы {p_num}: {page_added} | Всего в базе: {len(collected_dict)}")
-
-                    # Если ссылок меньше 10 на первой странице, дальше переходить нет смысла
-                    if len(all_links) < 30 and p_num > 1:
-                        break
+                    print(f"Добавлено со стр. {p_num}: {page_added} | Всего в базе: {len(collected_dict)}")
 
                 except Exception as e:
                     print(f"Ошибка при обработке: {e}")
@@ -345,7 +344,7 @@ def main():
 
     items = list(collected_dict.values())
     print(f"\n==========================================")
-    print(f"Сбор завершен! Всего валидных позиций: {len(items)}")
+    print(f"Сбор завершен! Всего уникальных позиций: {len(items)}")
     print(f"==========================================")
 
     payload = {
@@ -357,7 +356,7 @@ def main():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print("Файл data.json успешно записан.")
+    print("Файл data.json успешно сохранен.")
 
 
 if __name__ == "__main__":
