@@ -1,6 +1,6 @@
 - name: Запуск сбора данных v2
         run: |
-          python etm_parser_v2.py
+          scraper.py
 
       - name: Фиксация изменений и отправка в репозиторий
         shell: cmd
