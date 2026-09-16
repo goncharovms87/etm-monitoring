@@ -1,4 +1,4 @@
-name: Daily ETM Scraper v2
+name: Daily ETM Scraper
 
 on:
   schedule:
@@ -13,7 +13,7 @@ jobs:
       - name: Проверка репозитория
         uses: actions/checkout@v4
 
-      - name: Запуск сбора данных v2
+      - name: Запуск быстрого сбора данных
         run: |
           python scraper.py
 
@@ -22,8 +22,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data_v2.json errors_v2.json index.html
-          git commit -m "Auto-update ETM data v2 [skip ci]" || echo No changes to commit
+          git add data.json errors.json index.html
+          git commit -m "Auto-update ETM data [skip ci]" || echo No changes to commit
           
           for /l %%i in (1, 1, 3) do (
             git push origin main && goto :push_success
@@ -32,4 +32,4 @@ jobs:
           )
           exit 1
           :push_success
-          echo Данные v2 успешно отправлены на GitHub!
+          echo Данные успешно отправлены на GitHub!
