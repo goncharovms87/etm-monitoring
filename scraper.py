@@ -254,44 +254,46 @@ def parse_price(text):
 
 
 def parse_stock(text):
+    """
+    Точное разделение остатков склада ЭТМ и склада вендора:
+    - ЭТМ: сопровождается маркерами 'сегодня', 'завтра', 'в наличии', либо идет первым блоком.
+    - Вендор: сопровождается маркерами 'позже', 'поставщик', 'производит', либо идет вторым блоком.
+    """
     norm = normalize_text(text)
     stock_etm = 0
     stock_vendor = 0
 
-    vendor_patterns = [
-        r"(?:поставщик|производител|изготовител|позже|заказ|удален)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
-        r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:поставщик|производител|изготовител|позже|заказ)",
-    ]
-    for vp in vendor_patterns:
-        vm = re.search(vp, norm, re.IGNORECASE)
-        if vm:
-            stock_vendor = int(vm.group(1).replace(" ", ""))
-            break
+    # 1. Проверяем связку "число шт. + сегодня/завтра" (Склад ЭТМ)
+    etm_m = re.search(r"(\d[\d\s]*)\s*шт\.?\s*(?:сегодня|завтра|в наличии|на складе ЭТМ)", norm, re.IGNORECASE)
+    if not etm_m:
+        etm_m = re.search(r"(?:сегодня|завтра|в наличии)[^0-9]{0,25}(\d[\d\s]*)\s*шт", norm, re.IGNORECASE)
+    if etm_m:
+        stock_etm = int(etm_m.group(1).replace(" ", ""))
 
-    etm_patterns = [
-        r"(?:склад этм|в наличии|на складе|сегодня|завтра|город)[^0-9]{0,35}(\d[\d\s]*)\s*шт",
-        r"(\d[\d\s]*)\s*шт[^.\n]{0,35}(?:склад этм|в наличии|на складе|сегодня)",
-    ]
-    for ep in etm_patterns:
-        em = re.search(ep, norm, re.IGNORECASE)
-        if em:
-            stock_etm = int(em.group(1).replace(" ", ""))
-            break
+    # 2. Проверяем связку "число шт. + позже/поставщик/дней" (Склад вендора)
+    vendor_m = re.search(r"(\d[\d\s]*)\s*шт\.?\s*(?:позже|дн|поставщик|производит|заказ)", norm, re.IGNORECASE)
+    if not vendor_m:
+        vendor_m = re.search(r"(?:позже|склад поставщика|производител)[^0-9]{0,25}(\d[\d\s]*)\s*шт", norm, re.IGNORECASE)
+    if vendor_m:
+        stock_vendor = int(vendor_m.group(1).replace(" ", ""))
 
+    # 3. Резервный разбор: если контекст не сработал, берем числа по порядку следования в карточке
     all_matches = [
         int(x.replace(" ", ""))
         for x in re.findall(r"(\d[\d\s]*)\s*шт\b", norm, re.IGNORECASE)
     ]
 
     if stock_etm == 0 and stock_vendor == 0 and all_matches:
-        if any(w in norm.lower() for w in ["поставщик", "производит", "позже", "заказ"]):
-            stock_vendor = all_matches[0]
-            if len(all_matches) > 1:
-                stock_etm = all_matches[1]
-        else:
+        # На ЭТМ при наличии двух чисел: первое ВСЕГДА ЭТМ, второе ВСЕГДА вендор
+        if len(all_matches) >= 2:
             stock_etm = all_matches[0]
-            if len(all_matches) > 1:
-                stock_vendor = all_matches[1]
+            stock_vendor = all_matches[1]
+        else:
+            # Если число только одно, смотрим маркер
+            if any(w in norm.lower() for w in ["позже", "поставщик", "производит", "заказ"]):
+                stock_vendor = all_matches[0]
+            else:
+                stock_etm = all_matches[0]
 
     return stock_etm, stock_vendor, all_matches
 
