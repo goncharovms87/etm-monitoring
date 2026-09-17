@@ -1,7 +1,7 @@
 {
-  "last_updated": "17.09.2026 06:33 UTC",
+  "last_updated": "17.09.2026 07:09 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1312.4,
+  "elapsed_seconds": 1298.9,
   "total_items": 616,
   "statistics": {
     "categories": 17,
@@ -1473,8 +1473,8 @@
       "name": "Реле интеллектуальное SR1, 24 VDC, без дисплея, без возможности расширения, 24 IO: 16 дискретных входов, 8 дискретных выходов (реле, 3 A), 1xRS485, 1xUSB (Type C)",
       "product_type": "I/O module",
       "price": 12251.96,
-      "stock_etm": 76,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 76,
       "stock_all": [
         4,
         76
@@ -1484,8 +1484,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -72,
+      "stock_vendor_diff": 76,
       "is_new": false
     },
     {
@@ -1497,8 +1497,8 @@
       "name": "Реле интеллектуальное SR1, 220 VAC, без дисплея, без возможности расширения, 24 IO: 16 дискретных входов, 8 дискретных выходов (реле, 3 A), 1xRS485, 1xUSB (Type C)",
       "product_type": "I/O module",
       "price": 12251.96,
-      "stock_etm": 68,
-      "stock_vendor": 0,
+      "stock_etm": 3,
+      "stock_vendor": 68,
       "stock_all": [
         3,
         68
@@ -1508,8 +1508,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -65,
+      "stock_vendor_diff": 68,
       "is_new": false
     },
     {
@@ -1521,8 +1521,8 @@
       "name": "Реле интеллектуальное SR1, 24 VDC, без дисплея, без возможности расширения, 12 IO: 6 дискретных входов, 4 дискретных выходов (реле, 3 A), 2 аналоговых входа (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 1xRS485, 1xUSB (Type C)",
       "product_type": "I/O module",
       "price": 11022.8,
-      "stock_etm": 58,
-      "stock_vendor": 0,
+      "stock_etm": 3,
+      "stock_vendor": 58,
       "stock_all": [
         3,
         58
@@ -1532,8 +1532,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -55,
+      "stock_vendor_diff": 58,
       "is_new": false
     },
     {
@@ -1568,8 +1568,8 @@
       "name": "Контроллер логический программируемый S172, 24 VDC, дисплей, до 7 модулей расширения, 28 IO: 8 дискретных входов, 8 дискретных выходов (реле, 3 A), 8 аналоговых входов (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 4 аналоговых выхода (0-10 V, 4-20 m",
       "product_type": "I/O module",
       "price": 28587.91,
-      "stock_etm": 73,
-      "stock_vendor": 0,
+      "stock_etm": 2,
+      "stock_vendor": 73,
       "stock_all": [
         2,
         73
@@ -1579,8 +1579,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -71,
+      "stock_vendor_diff": 73,
       "is_new": false
     },
     {
@@ -1592,8 +1592,8 @@
       "name": "Блок питания 220VAC в 24VDC 2A",
       "product_type": "Power supply",
       "price": 13908.09,
-      "stock_etm": 30,
-      "stock_vendor": 0,
+      "stock_etm": 36,
+      "stock_vendor": 30,
       "stock_all": [
         36,
         30
@@ -1603,8 +1603,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": 6,
+      "stock_vendor_diff": 30,
       "is_new": false
     },
     {
@@ -1616,8 +1616,8 @@
       "name": "Модуль расширения аналоговый - 4 выхода напряжение/ток",
       "product_type": "I/O module",
       "price": 59301.38,
-      "stock_etm": 570,
-      "stock_vendor": 0,
+      "stock_etm": 315,
+      "stock_vendor": 570,
       "stock_all": [
         315,
         570
@@ -1627,8 +1627,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -255,
+      "stock_vendor_diff": 570,
       "is_new": false
     },
     {
@@ -1640,17 +1640,17 @@
       "name": "Модуль расширения дискретный 16 входов",
       "product_type": "I/O module",
       "price": 22952.62,
-      "stock_etm": 100,
+      "stock_etm": 102,
       "stock_vendor": 0,
       "stock_all": [
-        100
+        102
       ],
       "url": "https://www.etm.ru/cat/nn/1392483",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -2,
+      "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false
     },
@@ -1663,8 +1663,8 @@
       "name": "Модуль расширения дискретный 8 выходов",
       "product_type": "I/O module",
       "price": 19539.59,
-      "stock_etm": 229,
-      "stock_vendor": 0,
+      "stock_etm": 92,
+      "stock_vendor": 229,
       "stock_all": [
         92,
         229
@@ -1674,8 +1674,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -137,
+      "stock_vendor_diff": 229,
       "is_new": false
     },
     {
@@ -1687,8 +1687,8 @@
       "name": "Модуль расширения дискретный 16 выходов",
       "product_type": "I/O module",
       "price": 26152.34,
-      "stock_etm": 40,
-      "stock_vendor": 0,
+      "stock_etm": 90,
+      "stock_vendor": 40,
       "stock_all": [
         90,
         40
@@ -1698,8 +1698,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": 50,
+      "stock_vendor_diff": 40,
       "is_new": false
     },
     {
@@ -1757,8 +1757,8 @@
       "name": "Модуль аналог. вывода (4/0-10V)",
       "product_type": "I/O module",
       "price": 37713.97,
-      "stock_etm": 92,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 92,
       "stock_all": [
         4,
         92
@@ -1768,8 +1768,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -88,
+      "stock_vendor_diff": 92,
       "is_new": false
     },
     {
@@ -1781,8 +1781,8 @@
       "name": "Модуль аналог. ввода (8/0-20mA)",
       "product_type": "I/O module",
       "price": 58576.12,
-      "stock_etm": 135,
-      "stock_vendor": 0,
+      "stock_etm": 1,
+      "stock_vendor": 135,
       "stock_all": [
         1,
         135
@@ -1792,8 +1792,8 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -134,
+      "stock_vendor_diff": 135,
       "is_new": false
     },
     {
@@ -3445,8 +3445,8 @@
       "name": "Модуль дискретного ввода (Ethernet) МВ210-212",
       "product_type": "Communication module",
       "price": 21533.0,
-      "stock_etm": 15,
-      "stock_vendor": 0,
+      "stock_etm": 1,
+      "stock_vendor": 15,
       "stock_all": [
         1,
         15
@@ -3456,8 +3456,8 @@
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 15,
-      "stock_vendor_diff": -15,
+      "stock_etm_diff": 1,
+      "stock_vendor_diff": 0,
       "is_new": false
     },
     {
@@ -3929,8 +3929,8 @@
       "name": "Модуль аналогового ввода МВ210-101",
       "product_type": "I/O module",
       "price": 22977.0,
-      "stock_etm": 1,
-      "stock_vendor": 0,
+      "stock_etm": 10,
+      "stock_vendor": 1,
       "stock_all": [
         10,
         1
@@ -3940,8 +3940,8 @@
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 1,
-      "stock_vendor_diff": -1,
+      "stock_etm_diff": 10,
+      "stock_vendor_diff": 0,
       "is_new": false
     },
     {
@@ -5781,8 +5781,8 @@
       "name": "ПЛК 410 Модуль входов выходов 4 UI (0-10 В/DI) 4 RO 24В DC",
       "product_type": "I/O module",
       "price": 6006.77,
-      "stock_etm": 16,
-      "stock_vendor": 0,
+      "stock_etm": 6,
+      "stock_vendor": 16,
       "stock_all": [
         6,
         16
@@ -5792,8 +5792,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -10,
+      "stock_vendor_diff": 16,
       "is_new": false
     },
     {
@@ -5805,8 +5805,8 @@
       "name": "ПЛК 410 Модуль входов выходов 4 DI 4 RO 220В AC",
       "product_type": "I/O module",
       "price": 5599.52,
-      "stock_etm": 195,
-      "stock_vendor": 0,
+      "stock_etm": 5,
+      "stock_vendor": 195,
       "stock_all": [
         5,
         195
@@ -5816,8 +5816,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -190,
+      "stock_vendor_diff": 195,
       "is_new": false
     },
     {
@@ -5829,8 +5829,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 4 DI 4 UI (0-10 В/DI) 4 RO 12В-24В DC или 24В AC с Ethernet портом с экраном",
       "product_type": "Communication module",
       "price": 8317.26,
-      "stock_etm": 263,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 263,
       "stock_all": [
         4,
         263
@@ -5840,8 +5840,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -259,
+      "stock_vendor_diff": 263,
       "is_new": false
     },
     {
@@ -5853,8 +5853,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 14 DI 8 RO 220В AC с Ethernet портом с экраном",
       "product_type": "Communication module",
       "price": 13596.84,
-      "stock_etm": 31,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 31,
       "stock_all": [
         4,
         31
@@ -5864,8 +5864,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -27,
+      "stock_vendor_diff": 31,
       "is_new": false
     },
     {
@@ -5877,8 +5877,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 8 DI 4 RO 220В AC с Ethernet портом с экраном",
       "product_type": "Communication module",
       "price": 8317.26,
-      "stock_etm": 361,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 361,
       "stock_all": [
         4,
         361
@@ -5888,8 +5888,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -357,
+      "stock_vendor_diff": 361,
       "is_new": false
     },
     {
@@ -5901,8 +5901,8 @@
       "name": "ПЛК 410 Модуль входов выходов 1 UO (0-20 мА/0-10 В) 24В DC",
       "product_type": "I/O module",
       "price": 7244.99,
-      "stock_etm": 216,
-      "stock_vendor": 0,
+      "stock_etm": 3,
+      "stock_vendor": 216,
       "stock_all": [
         3,
         216
@@ -5912,8 +5912,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -213,
+      "stock_vendor_diff": 216,
       "is_new": false
     },
     {
@@ -5925,8 +5925,8 @@
       "name": "ПЛК 410 Модуль входов выходов 2 UI (0-20 мА/0-10 В) 24В DC",
       "product_type": "I/O module",
       "price": 6869.69,
-      "stock_etm": 215,
-      "stock_vendor": 0,
+      "stock_etm": 3,
+      "stock_vendor": 215,
       "stock_all": [
         3,
         215
@@ -5936,8 +5936,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -212,
+      "stock_vendor_diff": 215,
       "is_new": false
     },
     {
@@ -5949,8 +5949,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 8 DI 6 UI (0-10 В/DI) 8 RO 12В-24В DC или 24В AC с Ethernet портом с экраном",
       "product_type": "Communication module",
       "price": 13596.84,
-      "stock_etm": 31,
-      "stock_vendor": 0,
+      "stock_etm": 3,
+      "stock_vendor": 31,
       "stock_all": [
         3,
         31
@@ -5960,8 +5960,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -28,
+      "stock_vendor_diff": 31,
       "is_new": false
     },
     {
@@ -5973,8 +5973,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 8 DI 4 RO 220В AC с Ethernet портом без экрана",
       "product_type": "Communication module",
       "price": 7734.67,
-      "stock_etm": 127,
-      "stock_vendor": 0,
+      "stock_etm": 2,
+      "stock_vendor": 127,
       "stock_all": [
         2,
         127
@@ -5984,8 +5984,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -125,
+      "stock_vendor_diff": 127,
       "is_new": false
     },
     {
@@ -5997,8 +5997,8 @@
       "name": "ПЛК 410 Модуль ЦПУ 8 DI 6 UI (0-10 В/DI) 8 RO 12В-24В DC или 24В AC с Ethernet портом без экрана",
       "product_type": "Communication module",
       "price": 13144.15,
-      "stock_etm": 56,
-      "stock_vendor": 0,
+      "stock_etm": 2,
+      "stock_vendor": 56,
       "stock_all": [
         2,
         56
@@ -6008,8 +6008,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -54,
+      "stock_vendor_diff": 56,
       "is_new": false
     },
     {
@@ -6113,8 +6113,8 @@
       "name": "Логическое реле PLR-S . Модуль расширения 4 каналами аналогового входа (0-10В/0..20мА). Напряжение питания 12-24 В DC",
       "product_type": "I/O module",
       "price": 19868.08,
-      "stock_etm": 89,
-      "stock_vendor": 2,
+      "stock_etm": 2,
+      "stock_vendor": 0,
       "stock_all": [
         89,
         2
@@ -6124,8 +6124,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -87,
+      "stock_vendor_diff": -2,
       "is_new": false
     },
     {
@@ -7195,8 +7195,8 @@
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 12 UI (0-10 В/DI) 8 RO 2 AO (1 шт 0-10 В и 1 шт 0-20 мА) 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
       "price": 68453.21,
-      "stock_etm": 1,
-      "stock_vendor": 1,
+      "stock_etm": 0,
+      "stock_vendor": 28,
       "stock_all": [
         1,
         1,
@@ -7207,8 +7207,8 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -1,
+      "stock_vendor_diff": 27,
       "is_new": false
     },
     {
@@ -9294,8 +9294,8 @@
       "name": "Контроллер АВР на 2 ввода с секционированием AVR-3 PROxima",
       "product_type": "Other controller",
       "price": 7832.06,
-      "stock_etm": 276,
-      "stock_vendor": 0,
+      "stock_etm": 5,
+      "stock_vendor": 276,
       "stock_all": [
         5,
         276
@@ -9305,8 +9305,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -271,
+      "stock_vendor_diff": 276,
       "is_new": false
     },
     {
@@ -9318,8 +9318,8 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6884.9,
-      "stock_etm": 117,
-      "stock_vendor": 0,
+      "stock_etm": 4,
+      "stock_vendor": 117,
       "stock_all": [
         4,
         117
@@ -9329,8 +9329,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -4,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -117,
+      "stock_vendor_diff": 117,
       "is_new": false
     },
     {
@@ -9365,8 +9365,8 @@
       "name": "Модуль дискретного в/в EMF 8/8 PRO-Logic PROxima",
       "product_type": "I/O module",
       "price": 10360.45,
-      "stock_etm": 28,
-      "stock_vendor": 0,
+      "stock_etm": 16,
+      "stock_vendor": 28,
       "stock_all": [
         16,
         28
@@ -9376,8 +9376,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -12,
+      "stock_vendor_diff": 28,
       "is_new": false
     },
     {
@@ -9389,8 +9389,8 @@
       "name": "Модуль аналогового ввода EMF 4 PRO-Logic PROxima",
       "product_type": "I/O module",
       "price": 11619.88,
-      "stock_etm": 75,
-      "stock_vendor": 0,
+      "stock_etm": 2,
+      "stock_vendor": 75,
       "stock_all": [
         2,
         75
@@ -9400,8 +9400,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -73,
+      "stock_vendor_diff": 75,
       "is_new": false
     },
     {
@@ -9436,8 +9436,8 @@
       "name": "Прибор цифровой измерительный комбинированный DMC на панель 96x96 (квадратный вырез) PROxima",
       "product_type": "Other",
       "price": 14454.6,
-      "stock_etm": 31,
-      "stock_vendor": 0,
+      "stock_etm": 5,
+      "stock_vendor": 31,
       "stock_all": [
         5,
         31
@@ -9447,8 +9447,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -26,
+      "stock_vendor_diff": 31,
       "is_new": false
     },
     {
@@ -10242,8 +10242,8 @@
       "name": "Модуль базовый ePRO удаленного управления 6вх\\4вых 230В WiFi PROxima",
       "product_type": "Other module",
       "price": 11590.67,
-      "stock_etm": 2,
-      "stock_vendor": 50,
+      "stock_etm": 0,
+      "stock_vendor": 2,
       "stock_all": [
         50,
         2
@@ -10253,8 +10253,8 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": -2,
+      "stock_vendor_diff": -48,
       "is_new": false
     },
     {
