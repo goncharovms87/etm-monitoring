@@ -29,7 +29,7 @@
       box-shadow: 0 6px 14px rgba(0,0,0,0.06);
     }
     .badge-stock {
-      min-width: 50px;
+      min-width: 48px;
       font-weight: 600;
       font-size: 0.82rem;
       padding: 0.35em 0.55em;
@@ -73,6 +73,15 @@
       border-radius: 3px;
       margin-right: 4px;
     }
+    .badge-sold {
+      background-color: #e0f2fe;
+      color: #0284c7;
+      border: 1px solid #bae6fd;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.3em 0.6em;
+      border-radius: 6px;
+    }
     th.gridjs-th {
       white-space: nowrap !important;
       padding: 10px 12px !important;
@@ -86,24 +95,38 @@
       vertical-align: middle;
       font-size: 0.88rem;
     }
+    .nav-pills .nav-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      border-radius: 8px;
+      padding: 8px 16px;
+    }
+    .nav-pills .nav-link.active {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
   </style>
 </head>
 <body class="py-4">
   <div class="container-fluid px-4">
     
     <!-- Шапка -->
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-3">
       <div>
         <h3 class="fw-bold mb-1 d-flex align-items-center gap-2">
           <i class="bi bi-cpu text-primary"></i> Мониторинг рынка ПЛК и Реле
         </h3>
         <div class="text-muted small">
-          Ежедневный анализ каталога ЭТМ &bull; Автоматическая фиксация изменений цен и остатков день за днем
+          Ежедневный анализ каталога ЭТМ &bull; Автоматическая фиксация цен, остатков и динамики продаж
         </div>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <button id="btn-export" class="btn btn-outline-success btn-sm fw-semibold d-flex align-items-center gap-1">
-          <i class="bi bi-file-earmark-spreadsheet"></i> Экспорт в CSV
+        <button id="btn-export-catalog" class="btn btn-outline-secondary btn-sm fw-semibold d-flex align-items-center gap-1">
+          <i class="bi bi-file-earmark-spreadsheet"></i> Экспорт каталога
+        </button>
+        <button id="btn-export-sales" class="btn btn-success btn-sm fw-semibold d-flex align-items-center gap-1">
+          <i class="bi bi-download"></i> Экспорт уходимости (CSV)
         </button>
         <div class="text-end border-start ps-3">
           <span class="badge bg-primary" id="update-date"><i class="bi bi-clock"></i> Загрузка...</span>
@@ -112,12 +135,26 @@
       </div>
     </div>
 
+    <!-- Вкладки режимов -->
+    <ul class="nav nav-pills mb-3 bg-white p-2 rounded shadow-sm border" id="viewTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-catalog-btn" data-bs-toggle="pill" data-bs-target="#tab-catalog" type="button" role="tab">
+          <i class="bi bi-table"></i> Текущий каталог и остатки
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-sales-btn" data-bs-toggle="pill" data-bs-target="#tab-sales" type="button" role="tab">
+          <i class="bi bi-graph-down-arrow text-danger"></i> Анализ уходимости (Продажи)
+        </button>
+      </li>
+    </ul>
+
     <!-- KPI карточки -->
     <div class="row g-3 mb-4">
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="card kpi-card border-0 shadow-sm bg-white h-100">
           <div class="card-body">
-            <div class="text-muted small text-uppercase fw-semibold mb-1">Всего позиций в мониторинге</div>
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Всего SKU в каталоге</div>
             <div class="h3 fw-bold text-dark mb-0" id="kpi-total">0</div>
             <small class="text-muted" id="kpi-runtime">Время сбора: —</small>
           </div>
@@ -144,19 +181,19 @@
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="card kpi-card border-0 shadow-sm bg-white h-100">
           <div class="card-body">
-            <div class="text-muted small text-uppercase fw-semibold mb-1">Динамика за сутки</div>
-            <div class="h3 fw-bold text-primary mb-0" id="kpi-changes">0</div>
-            <small class="text-muted" id="kpi-changes-sub">Цены: 0 | Остатки: 0</small>
+            <div class="text-muted small text-uppercase fw-semibold mb-1">Продажи (Уходимость 7 дн.)</div>
+            <div class="h3 fw-bold text-primary mb-0" id="kpi-sales-total">0 шт.</div>
+            <small class="text-muted" id="kpi-sales-sub">ЭТМ: 0 | Поставщик: 0</small>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ВЕНДОРНАЯ СВОДКА (Складской баланс по брендам) -->
+    <!-- ВЕНДОРНАЯ СВОДКА -->
     <div class="card border-0 shadow-sm bg-white mb-4">
       <div class="card-header bg-transparent border-0 pt-3 pb-2 d-flex justify-content-between align-items-center">
         <span class="fw-bold small text-muted text-uppercase">
-          <i class="bi bi-buildings"></i> Сводный баланс остатков и активности по вендорам
+          <i class="bi bi-buildings"></i> Сводный баланс остатков и продаж по производителям
         </span>
         <span class="text-muted small">Клик по бренду для быстрой фильтрации</span>
       </div>
@@ -169,38 +206,16 @@
                 <th>Всего SKU</th>
                 <th>Склад ЭТМ (шт.)</th>
                 <th>Склад вендора (шт.)</th>
+                <th>Уход ЭТМ (7 дн)</th>
+                <th>Уход Вендор (7 дн)</th>
+                <th>Всего уход (7 дн)</th>
                 <th>Изм. цен (сутки)</th>
-                <th>Движение складов (сутки)</th>
               </tr>
             </thead>
             <tbody id="vendor-summary-body">
-              <tr><td colspan="6" class="text-muted py-3">Формирование аналитики...</td></tr>
+              <tr><td colspan="8" class="text-muted py-3">Формирование аналитики...</td></tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Диаграммы -->
-    <div class="row g-3 mb-4">
-      <div class="col-12 col-lg-7">
-        <div class="card border-0 shadow-sm bg-white h-100">
-          <div class="card-header bg-transparent border-0 pt-3 pb-0">
-            <span class="fw-bold small text-muted text-uppercase">Топ производителей по числу SKU</span>
-          </div>
-          <div class="card-body pt-2" style="position: relative; height: 260px;">
-            <canvas id="chartBrands"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-5">
-        <div class="card border-0 shadow-sm bg-white h-100">
-          <div class="card-header bg-transparent border-0 pt-3 pb-0">
-            <span class="fw-bold small text-muted text-uppercase">Категории оборудования</span>
-          </div>
-          <div class="card-body pt-2" style="position: relative; height: 260px;">
-            <canvas id="chartTypes"></canvas>
-          </div>
         </div>
       </div>
     </div>
@@ -230,29 +245,28 @@
             </select>
           </div>
           <div class="col-12 col-md-3">
-            <label class="form-label text-muted small mb-1 fw-bold">Динамика и наличие:</label>
-            <select id="filter-stock" class="form-select form-select-sm">
-              <option value="all">Все позиции</option>
-              <option value="price_changed">С изменением цены за сутки</option>
-              <option value="stock_changed">С движением остатков за сутки</option>
-              <option value="stock_up">Поступили на склад (+)</option>
-              <option value="stock_down">Убыли со склада (-)</option>
-              <option value="in_stock">Есть в наличии (ЭТМ или вендор)</option>
-              <option value="in_etm">Только склад ЭТМ</option>
-              <option value="has_price">Только с открытой ценой</option>
+            <label class="form-label text-muted small mb-1 fw-bold">Период анализа уходимости:</label>
+            <select id="filter-period" class="form-select form-select-sm">
+              <option value="7d" selected>Последние 7 дней (Неделя)</option>
+              <option value="1d">За последние сутки (1 день)</option>
+              <option value="30d">Последние 30 дней (Месяц)</option>
             </select>
           </div>
-          <div class="col-12 col-md-3 d-flex align-items-end">
-            <div class="form-check form-switch mb-1">
-              <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
-              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Исключить "Other"</label>
-            </div>
+          <div class="col-12 col-md-3">
+            <label class="form-label text-muted small mb-1 fw-bold">Наличие и фильтр продаж:</label>
+            <select id="filter-stock" class="form-select form-select-sm">
+              <option value="all">Все позиции</option>
+              <option value="with_sales">Только с продажами (уход > 0)</option>
+              <option value="price_changed">С изменением цены за сутки</option>
+              <option value="in_stock">Есть в наличии (ЭТМ или вендор)</option>
+              <option value="in_etm">Только склад ЭТМ</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Таблица -->
+    <!-- Таблица каталога / продаж -->
     <div class="card border-0 shadow-sm bg-white">
       <div class="card-body p-3">
         <div id="grid-table"></div>
@@ -261,15 +275,15 @@
 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 
   <script>
     let rawItems = [];
     let displayedItems = [];
     let gridInstance = null;
-    let chartBrandsInstance = null;
-    let chartTypesInstance = null;
+    let currentMode = 'catalog'; // 'catalog' | 'sales'
+    let currentPeriod = '7d';
     let globalPayload = {};
 
     const TYPE_NAMES = {
@@ -289,37 +303,40 @@
       items.forEach(i => {
         const b = i.brand || "Другой";
         if (!summary[b]) {
-          summary[b] = { count: 0, etm: 0, vendor: 0, priceChanges: 0, stockChanges: 0 };
+          summary[b] = { count: 0, etm: 0, vendor: 0, soldEtm: 0, soldVendor: 0, priceChanges: 0 };
         }
         summary[b].count++;
         summary[b].etm += (i.stock_etm || 0);
         summary[b].vendor += (i.stock_vendor || 0);
+
+        const sales = i.sales || {};
+        summary[b].soldEtm += (sales[`etm_${currentPeriod}`] || 0);
+        summary[b].soldVendor += (sales[`vendor_${currentPeriod}`] || 0);
+
         if (i.price_diff && i.price_diff !== 0) summary[b].priceChanges++;
-        if ((i.stock_etm_diff && i.stock_etm_diff !== 0) || (i.stock_vendor_diff && i.stock_vendor_diff !== 0)) {
-          summary[b].stockChanges++;
-        }
       });
 
-      const sorted = Object.entries(summary).sort((a, b) => b[1].count - a[1].count);
+      const sorted = Object.entries(summary).sort((a, b) => (b[1].soldEtm + b[1].soldVendor) - (a[1].soldEtm + a[1].soldVendor));
       const tbody = document.getElementById("vendor-summary-body");
       tbody.innerHTML = "";
 
       sorted.forEach(([brand, data]) => {
         const tr = document.createElement("tr");
         tr.style.cursor = "pointer";
-        tr.title = `Нажмите для фильтрации по бренду ${brand}`;
+        tr.title = `Фильтровать по бренду ${brand}`;
         tr.onclick = () => {
           document.getElementById("filter-brand").value = brand;
           applyFilters();
           window.scrollTo({ top: document.getElementById("grid-table").offsetTop - 120, behavior: 'smooth' });
         };
 
+        const totalSold = data.soldEtm + data.soldVendor;
+        const totalSoldBadge = totalSold > 0
+          ? `<span class="badge bg-primary fw-bold">${totalSold} шт.</span>`
+          : `<span class="text-muted">0</span>`;
+
         const priceBadge = data.priceChanges > 0
           ? `<span class="badge bg-danger-subtle text-danger border border-danger-subtle">${data.priceChanges} SKU</span>`
-          : `<span class="text-muted">—</span>`;
-
-        const stockBadge = data.stockChanges > 0
-          ? `<span class="badge bg-primary-subtle text-primary border border-primary-subtle">${data.stockChanges} SKU</span>`
           : `<span class="text-muted">—</span>`;
 
         tr.innerHTML = `
@@ -327,143 +344,198 @@
           <td><span class="badge bg-light text-dark border">${data.count}</span></td>
           <td class="fw-semibold text-success">${data.etm.toLocaleString('ru-RU')} шт.</td>
           <td class="fw-semibold text-info-emphasis">${data.vendor.toLocaleString('ru-RU')} шт.</td>
+          <td class="fw-bold text-success">${data.soldEtm > 0 ? '+' + data.soldEtm : '0'}</td>
+          <td class="fw-bold text-info-emphasis">${data.soldVendor > 0 ? '+' + data.soldVendor : '0'}</td>
+          <td>${totalSoldBadge}</td>
           <td>${priceBadge}</td>
-          <td>${stockBadge}</td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function initGrid(data) {
-      if (gridInstance) {
-        gridInstance.updateConfig({ data: data }).forceRender();
-        return;
-      }
-
-      gridInstance = new gridjs.Grid({
-        columns: [
+    function getGridColumns() {
+      if (currentMode === 'sales') {
+        return [
           {
             name: "Код ЭТМ",
             id: "etm_code",
-            width: "115px",
-            formatter: (cell, row) => {
-              const item = row.cells[10].data;
-              const newBadge = item && item.is_new ? `<span class="badge-new">NEW</span>` : '';
-              return gridjs.html(`${newBadge}<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`);
-            }
+            width: "105px",
+            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
           },
           {
             name: "Вендор",
             id: "brand",
-            width: "135px",
+            width: "130px",
             sort: true,
-            formatter: (cell) => {
-              if (!cell || cell === "Другой") return gridjs.html('<span class="text-muted">—</span>');
-              return gridjs.html(`<span class="fw-bold text-primary">${cell}</span>`);
-            }
-          },
-          {
-            name: "Тип",
-            id: "product_type",
-            width: "135px",
-            sort: true,
-            formatter: (cell) => {
-              const label = TYPE_NAMES[cell] || cell || "Прочее";
-              const colorClass = cell === "PLC" ? "bg-primary-subtle text-primary border border-primary-subtle" :
-                                 cell === "Programmable relay" ? "bg-success-subtle text-success border border-success-subtle" :
-                                 cell === "I/O module" ? "bg-info-subtle text-info-emphasis border border-info-subtle" :
-                                 "bg-secondary-subtle text-secondary";
-              return gridjs.html(`<span class="badge ${colorClass} fw-medium">${label}</span>`);
-            }
+            formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell || '—'}</span>`)
           },
           {
             name: "Артикул",
             id: "vendor_code",
-            width: "160px",
+            width: "150px",
             sort: true,
             formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
           },
           {
-            name: "Наименование продукции",
+            name: "Наименование",
             id: "name",
             sort: true,
-            formatter: (cell, row) => {
-              const url = row.cells[9].data;
-              return gridjs.html(`<a href="${url}" target="_blank" class="product-link">${cell}</a>`);
-            }
+            formatter: (cell, row) => gridjs.html(`<a href="${row.cells[7].data}" target="_blank" class="product-link">${cell}</a>`)
           },
           {
-            name: "Цена, ₽",
-            id: "price",
-            width: "155px",
-            sort: true,
-            formatter: (cell, row) => {
-              const p = Number(cell) || 0;
-              const item = row.cells[10].data || {};
-              const diff = item.price_diff || 0;
-              
-              let deltaHtml = '';
-              if (diff > 0) {
-                deltaHtml = `<span class="delta-badge delta-up-price" title="Подорожало на ${diff} ₽">▲ +${diff.toLocaleString('ru-RU')} ₽</span>`;
-              } else if (diff < 0) {
-                deltaHtml = `<span class="delta-badge delta-down-price" title="Подешевело на ${Math.abs(diff)} ₽">▼ ${diff.toLocaleString('ru-RU')} ₽</span>`;
-              }
-
-              return p > 0
-                ? gridjs.html(`<div><span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>${deltaHtml}</div>`)
-                : gridjs.html(`<span class="text-muted fst-italic small">По запросу</span>`);
-            }
-          },
-          {
-            name: "Склад ЭТМ",
-            id: "stock_etm",
+            name: `Уход ЭТМ (${currentPeriod})`,
+            id: "sold_etm",
             width: "135px",
             sort: true,
             formatter: (cell, row) => {
-              const val = Number(cell) || 0;
-              const item = row.cells[10].data || {};
-              const diff = item.stock_etm_diff || 0;
-
-              let deltaHtml = '';
-              if (diff > 0) {
-                deltaHtml = `<span class="delta-badge delta-up-stock" title="Поступило +${diff} шт.">+${diff}</span>`;
-              } else if (diff < 0) {
-                deltaHtml = `<span class="delta-badge delta-down-stock" title="Убыло ${diff} шт.">${diff}</span>`;
-              }
-
-              return gridjs.html(val > 0
-                ? `<div><span class="badge bg-success badge-stock">${val} шт.</span>${deltaHtml}</div>`
-                : `<div><span class="badge bg-light text-secondary border badge-stock">0</span>${deltaHtml}</div>`);
+              const item = row.cells[8].data || {};
+              const s = (item.sales && item.sales[`etm_${currentPeriod}`]) || 0;
+              return s > 0
+                ? gridjs.html(`<span class="badge bg-success-subtle text-success border border-success-subtle fw-bold">${s} шт.</span>`)
+                : gridjs.html('<span class="text-muted">0</span>');
             }
           },
           {
-            name: "Склад вендора",
-            id: "stock_vendor",
+            name: `Уход Вендор (${currentPeriod})`,
+            id: "sold_vendor",
             width: "145px",
             sort: true,
             formatter: (cell, row) => {
-              const val = Number(cell) || 0;
-              const item = row.cells[10].data || {};
-              const diff = item.stock_vendor_diff || 0;
-
-              let deltaHtml = '';
-              if (diff > 0) {
-                deltaHtml = `<span class="delta-badge delta-up-stock" title="Поступило поставщику +${diff} шт.">+${diff}</span>`;
-              } else if (diff < 0) {
-                deltaHtml = `<span class="delta-badge delta-down-stock" title="Убыло у поставщика ${diff} шт.">${diff}</span>`;
-              }
-
-              return gridjs.html(val > 0
-                ? `<div><span class="badge bg-info text-dark badge-stock">${val} шт.</span>${deltaHtml}</div>`
-                : `<div><span class="badge bg-light text-secondary border badge-stock">0</span>${deltaHtml}</div>`);
+              const item = row.cells[8].data || {};
+              const s = (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0;
+              return s > 0
+                ? gridjs.html(`<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle fw-bold">${s} шт.</span>`)
+                : gridjs.html('<span class="text-muted">0</span>');
             }
           },
-          { name: "price_diff", id: "price_diff", hidden: true },
+          {
+            name: `Всего уход (${currentPeriod})`,
+            id: "sold_total",
+            width: "140px",
+            sort: true,
+            formatter: (cell, row) => {
+              const item = row.cells[8].data || {};
+              const sE = (item.sales && item.sales[`etm_${currentPeriod}`]) || 0;
+              const sV = (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0;
+              const total = sE + sV;
+              return total > 0
+                ? gridjs.html(`<span class="badge-sold">${total} шт.</span>`)
+                : gridjs.html('<span class="text-muted">0</span>');
+            }
+          },
           { name: "url", id: "url", hidden: true },
           { name: "raw_item", id: "raw_item", hidden: true }
-        ],
+        ];
+      }
+
+      // Обычный режим каталога
+      return [
+        {
+          name: "Код ЭТМ",
+          id: "etm_code",
+          width: "115px",
+          formatter: (cell, row) => {
+            const item = row.cells[9].data;
+            const newBadge = item && item.is_new ? `<span class="badge-new">NEW</span>` : '';
+            return gridjs.html(`${newBadge}<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`);
+          }
+        },
+        {
+          name: "Вендор",
+          id: "brand",
+          width: "130px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell || '—'}</span>`)
+        },
+        {
+          name: "Тип",
+          id: "product_type",
+          width: "130px",
+          sort: true,
+          formatter: (cell) => {
+            const label = TYPE_NAMES[cell] || cell || "Прочее";
+            return gridjs.html(`<span class="badge bg-light text-secondary border fw-medium">${label}</span>`);
+          }
+        },
+        {
+          name: "Артикул",
+          id: "vendor_code",
+          width: "150px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
+        },
+        {
+          name: "Наименование продукции",
+          id: "name",
+          sort: true,
+          formatter: (cell, row) => gridjs.html(`<a href="${row.cells[8].data}" target="_blank" class="product-link">${cell}</a>`)
+        },
+        {
+          name: "Цена, ₽",
+          id: "price",
+          width: "150px",
+          sort: true,
+          formatter: (cell, row) => {
+            const p = Number(cell) || 0;
+            const item = row.cells[9].data || {};
+            const diff = item.price_diff || 0;
+            let deltaHtml = '';
+            if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-price">▲ +${diff.toLocaleString('ru-RU')}</span>`;
+            else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-price">▼ ${diff.toLocaleString('ru-RU')}</span>`;
+
+            return p > 0
+              ? gridjs.html(`<div><span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>${deltaHtml}</div>`)
+              : gridjs.html(`<span class="text-muted fst-italic small">По запросу</span>`);
+          }
+        },
+        {
+          name: "Склад ЭТМ",
+          id: "stock_etm",
+          width: "125px",
+          sort: true,
+          formatter: (cell, row) => {
+            const val = Number(cell) || 0;
+            const item = row.cells[9].data || {};
+            const diff = item.stock_etm_diff || 0;
+            let deltaHtml = '';
+            if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
+            else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
+
+            return gridjs.html(`<div><span class="badge bg-success badge-stock">${val} шт.</span>${deltaHtml}</div>`);
+          }
+        },
+        {
+          name: "Склад вендора",
+          id: "stock_vendor",
+          width: "135px",
+          sort: true,
+          formatter: (cell, row) => {
+            const val = Number(cell) || 0;
+            const item = row.cells[9].data || {};
+            const diff = item.stock_vendor_diff || 0;
+            let deltaHtml = '';
+            if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
+            else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
+
+            return gridjs.html(`<div><span class="badge bg-info text-dark badge-stock">${val} шт.</span>${deltaHtml}</div>`);
+          }
+        },
+        { name: "url", id: "url", hidden: true },
+        { name: "raw_item", id: "raw_item", hidden: true }
+      ];
+    }
+
+    function initOrUpdateGrid(data) {
+      const container = document.getElementById("grid-table");
+      container.innerHTML = "";
+
+      gridInstance = new gridjs.Grid({
+        columns: getGridColumns(),
         data: data.map(item => ({
           ...item,
+          sold_etm: (item.sales && item.sales[`etm_${currentPeriod}`]) || 0,
+          sold_vendor: (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0,
+          sold_total: ((item.sales && item.sales[`etm_${currentPeriod}`]) || 0) + ((item.sales && item.sales[`vendor_${currentPeriod}`]) || 0),
           raw_item: item
         })),
         search: true,
@@ -472,17 +544,13 @@
         language: {
           search: { placeholder: 'Поиск по названию, артикулу, бренду...' },
           pagination: {
-            previous: 'Назад',
-            next: 'Вперед',
-            showing: 'Записи с',
-            to: 'по',
-            of: 'из',
-            results: 'позиций'
+            previous: 'Назад', next: 'Вперед',
+            showing: 'Записи с', to: 'по', of: 'из', results: 'позиций'
           },
           loading: 'Загрузка...',
           noRecordsFound: 'Позиции не найдены'
         }
-      }).render(document.getElementById("grid-table"));
+      }).render(container);
     }
 
     function updateKPIs(items, elapsedSeconds) {
@@ -495,8 +563,8 @@
       let stockEtmSkus = 0;
       let stockVendorTotal = 0;
       let stockVendorSkus = 0;
-      let priceChanges = 0;
-      let stockChanges = 0;
+      let soldEtmTotal = 0;
+      let soldVendorTotal = 0;
 
       items.forEach(i => {
         if (i.stock_etm && i.stock_etm > 0) {
@@ -507,9 +575,9 @@
           stockVendorTotal += i.stock_vendor;
           stockVendorSkus++;
         }
-        if (i.price_diff && i.price_diff !== 0) priceChanges++;
-        if ((i.stock_etm_diff && i.stock_etm_diff !== 0) || (i.stock_vendor_diff && i.stock_vendor_diff !== 0)) {
-          stockChanges++;
+        if (i.sales) {
+          soldEtmTotal += (i.sales[`etm_${currentPeriod}`] || 0);
+          soldVendorTotal += (i.sales[`vendor_${currentPeriod}`] || 0);
         }
       });
 
@@ -519,107 +587,50 @@
       document.getElementById('kpi-stock-vendor').textContent = `${stockVendorTotal.toLocaleString('ru-RU')} шт.`;
       document.getElementById('kpi-stock-vendor-skus').textContent = `На складе вендоров: ${stockVendorSkus} SKU`;
 
-      document.getElementById('kpi-changes').textContent = priceChanges + stockChanges;
-      document.getElementById('kpi-changes-sub').textContent = `Цены: ${priceChanges} | Остатки: ${stockChanges}`;
-    }
-
-    function renderCharts(items) {
-      const brandCounts = {};
-      items.forEach(i => {
-        const b = i.brand || "Другой";
-        brandCounts[b] = (brandCounts[b] || 0) + 1;
-      });
-      const sortedBrands = Object.entries(brandCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
-
-      const typeCounts = {};
-      items.forEach(i => {
-        const t = TYPE_NAMES[i.product_type] || i.product_type || "Прочее";
-        typeCounts[t] = (typeCounts[t] || 0) + 1;
-      });
-      const sortedTypes = Object.entries(typeCounts).sort((a, b) => b[1] - a[1]);
-
-      const ctxB = document.getElementById('chartBrands').getContext('2d');
-      if (chartBrandsInstance) chartBrandsInstance.destroy();
-      chartBrandsInstance = new Chart(ctxB, {
-        type: 'bar',
-        data: {
-          labels: sortedBrands.map(x => x[0]),
-          datasets: [{
-            label: 'Количество SKU',
-            data: sortedBrands.map(x => x[1]),
-            backgroundColor: '#3b82f6',
-            borderRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-            x: { grid: { display: false } }
-          }
-        }
-      });
-
-      const ctxT = document.getElementById('chartTypes').getContext('2d');
-      if (chartTypesInstance) chartTypesInstance.destroy();
-      chartTypesInstance = new Chart(ctxT, {
-        type: 'doughnut',
-        data: {
-          labels: sortedTypes.map(x => x[0]),
-          datasets: [{
-            data: sortedTypes.map(x => x[1]),
-            backgroundColor: ['#2563eb', '#10b981', '#06b6d4', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b', '#94a3b8']
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } }
-          }
-        }
-      });
+      document.getElementById('kpi-sales-total').textContent = `${(soldEtmTotal + soldVendorTotal).toLocaleString('ru-RU')} шт.`;
+      document.getElementById('kpi-sales-sub').textContent = `ЭТМ: ${soldEtmTotal} | Вендор: ${soldVendorTotal}`;
     }
 
     function applyFilters() {
       const selectedBrand = document.getElementById('filter-brand').value;
       const selectedType = document.getElementById('filter-type').value;
       const selectedStock = document.getElementById('filter-stock').value;
-      const excludeOther = document.getElementById('filter-relevant-only').checked;
+      currentPeriod = document.getElementById('filter-period').value;
 
       displayedItems = rawItems.filter(item => {
-        if (excludeOther && item.product_type === 'Other') return false;
+        if (item.product_type === 'Other') return false;
         if (selectedBrand && item.brand !== selectedBrand) return false;
         if (selectedType && item.product_type !== selectedType) return false;
 
-        const etmDiff = item.stock_etm_diff || 0;
-        const vDiff = item.stock_vendor_diff || 0;
+        const sE = (item.sales && item.sales[`etm_${currentPeriod}`]) || 0;
+        const sV = (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0;
 
-        if (selectedStock === 'price_changed') {
+        if (selectedStock === 'with_sales') {
+          if (sE <= 0 && sV <= 0) return false;
+        } else if (selectedStock === 'price_changed') {
           if (!item.price_diff || item.price_diff === 0) return false;
-        } else if (selectedStock === 'stock_changed') {
-          if (etmDiff === 0 && vDiff === 0) return false;
-        } else if (selectedStock === 'stock_up') {
-          if (etmDiff <= 0 && vDiff <= 0) return false;
-        } else if (selectedStock === 'stock_down') {
-          if (etmDiff >= 0 && vDiff >= 0) return false;
         } else if (selectedStock === 'in_stock') {
-          const etm = item.stock_etm || 0;
-          const v = item.stock_vendor || 0;
-          if (etm <= 0 && v <= 0) return false;
+          if ((item.stock_etm || 0) <= 0 && (item.stock_vendor || 0) <= 0) return false;
         } else if (selectedStock === 'in_etm') {
           if (!item.stock_etm || item.stock_etm <= 0) return false;
-        } else if (selectedStock === 'has_price') {
-          if (!item.price || item.price <= 0) return false;
         }
         return true;
       });
 
-      initGrid(displayedItems);
+      initOrUpdateGrid(displayedItems);
       updateKPIs(displayedItems, globalPayload.elapsed_seconds);
+      renderVendorSummary(displayedItems);
     }
+
+    // Переключение режимов
+    document.getElementById('tab-catalog-btn').addEventListener('click', () => {
+      currentMode = 'catalog';
+      applyFilters();
+    });
+    document.getElementById('tab-sales-btn').addEventListener('click', () => {
+      currentMode = 'sales';
+      applyFilters();
+    });
 
     fetch('data.json?t=' + new Date().getTime())
       .then(res => {
@@ -633,10 +644,7 @@
         document.getElementById('total-count').textContent = 'Всего в базе: ' + rawItems.length;
 
         const brandSelect = document.getElementById('filter-brand');
-        const brands = payload.statistics && payload.statistics.by_brand 
-          ? Object.keys(payload.statistics.by_brand) 
-          : Array.from(new Set(rawItems.map(i => i.brand))).filter(Boolean).sort();
-
+        const brands = Array.from(new Set(rawItems.map(i => i.brand))).filter(Boolean).sort();
         brands.forEach(b => {
           const opt = document.createElement('option');
           opt.value = b;
@@ -644,25 +652,65 @@
           brandSelect.appendChild(opt);
         });
 
-        ['filter-brand', 'filter-type', 'filter-stock', 'filter-relevant-only'].forEach(id => {
+        ['filter-brand', 'filter-type', 'filter-stock', 'filter-period'].forEach(id => {
           document.getElementById(id).addEventListener('change', applyFilters);
         });
 
-        renderVendorSummary(rawItems);
-        renderCharts(rawItems);
         applyFilters();
       })
       .catch(err => {
         document.getElementById('grid-table').innerHTML = 
           `<div class="alert alert-warning mb-0">
-            <h6 class="fw-bold">Ожидание данных:</h6>
-            ${err.message}
+            <h6 class="fw-bold">Ожидание данных:</h6>${err.message}
           </div>`;
       });
 
-    document.getElementById('btn-export').addEventListener('click', () => {
+    // Экспорт уходимости (CSV)
+    document.getElementById('btn-export-sales').addEventListener('click', () => {
       if (!displayedItems.length) return;
-      const headers = ["Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)", "Изм. цены", "Склад ЭТМ", "Изм. ЭТМ", "Склад вендора", "Изм. вендор", "Ссылка"];
+      const headers = [
+        "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
+        "Склад ЭТМ (текущий)", "Склад вендора (текущий)",
+        "Уход ЭТМ (1д)", "Уход Вендор (1д)", "Всего уход (1д)",
+        "Уход ЭТМ (7д)", "Уход Вендор (7д)", "Всего уход (7д)",
+        "Уход ЭТМ (30д)", "Уход Вендор (30д)", "Всего уход (30д)",
+        "Ссылка"
+      ];
+
+      const rows = displayedItems.map(i => {
+        const s = i.sales || {};
+        const e1 = s.etm_1d || 0, v1 = s.vendor_1d || 0;
+        const e7 = s.etm_7d || 0, v7 = s.vendor_7d || 0;
+        const e30 = s.etm_30d || 0, v30 = s.vendor_30d || 0;
+
+        return [
+          i.etm_code,
+          `"${(i.brand || '').replace(/"/g, '""')}"`,
+          `"${(TYPE_NAMES[i.product_type] || i.product_type || '').replace(/"/g, '""')}"`,
+          `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
+          `"${(i.name || '').replace(/"/g, '""')}"`,
+          i.price || 0,
+          i.stock_etm || 0,
+          i.stock_vendor || 0,
+          e1, v1, (e1 + v1),
+          e7, v7, (e7 + v7),
+          e30, v30, (e30 + v30),
+          i.url
+        ];
+      });
+
+      const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `etm_sales_outflow_${new Date().toISOString().slice(0, 10)}.csv`;
+      link.click();
+    });
+
+    // Экспорт каталога (CSV)
+    document.getElementById('btn-export-catalog').addEventListener('click', () => {
+      if (!displayedItems.length) return;
+      const headers = ["Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)", "Склад ЭТМ", "Склад вендора", "Ссылка"];
       const rows = displayedItems.map(i => [
         i.etm_code,
         `"${(i.brand || '').replace(/"/g, '""')}"`,
@@ -670,18 +718,15 @@
         `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
         `"${(i.name || '').replace(/"/g, '""')}"`,
         i.price || 0,
-        i.price_diff || 0,
         i.stock_etm || 0,
-        i.stock_etm_diff || 0,
         i.stock_vendor || 0,
-        i.stock_vendor_diff || 0,
         i.url
       ]);
       const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = `etm_automation_${new Date().toISOString().slice(0, 10)}.csv`;
+      link.download = `etm_catalog_${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
     });
   </script>
