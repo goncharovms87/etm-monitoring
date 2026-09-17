@@ -577,14 +577,15 @@ def collect_category(page, category, collected, stats, errors):
 
 def save_with_history(payload):
     """
-    Сохраняет ежедневный срез в history/YYYY-MM-DD.json
-    и обогащает data.json динамикой изменений за сутки.
+    Сохраняет ежедневный срез в history/YYYY-MM-DD.json,
+    рассчитывает дельты за сутки и вычисляет чистую уходимость
+    (продажи) со складов ЭТМ и поставщиков за 1, 7 и 30 дней.
     """
     os.makedirs("history", exist_ok=True)
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     today_history_file = os.path.join("history", f"{today_str}.json")
 
-    # 1. Формируем компактный снимок за сегодня
+    # 1. Формируем снимок за сегодня
     daily_snapshot = {
         item["etm_code"]: {
             "price": item["price"],
@@ -596,20 +597,72 @@ def save_with_history(payload):
     with open(today_history_file, "w", encoding="utf-8") as f:
         json.dump(daily_snapshot, f, ensure_ascii=False)
 
-    # 2. Ищем вчерашний файл для сравнения динамики
+    # 2. Загружаем все исторические файлы, отсортированные по дате
     history_files = sorted(
-        [f for f in os.listdir("history") if f.endswith(".json") and f != f"{today_str}.json"]
+        [f for f in os.listdir("history") if f.endswith(".json")]
     )
-    yesterday_data = {}
-    if history_files:
-        prev_file = os.path.join("history", history_files[-1])
-        try:
-            with open(prev_file, "r", encoding="utf-8") as f:
-                yesterday_data = json.load(f)
-        except Exception:
-            yesterday_data = {}
 
-    # 3. Рассчитываем дельты (изменение цен и остатков)
+    history_snapshots = []
+    for hf in history_files:
+        path = os.path.join("history", hf)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                history_snapshots.append((hf.replace(".json", ""), json.load(f)))
+        except Exception:
+            pass
+
+    # 3. Подготовка структур для подсчета уходимости (чистого расхода)
+    # sales[etm_code] = {"1d": {"etm": 0, "vendor": 0}, "7d": ..., "30d": ...}
+    sales_map = {
+        item["etm_code"]: {
+            "etm_1d": 0, "vendor_1d": 0,
+            "etm_7d": 0, "vendor_7d": 0,
+            "etm_30d": 0, "vendor_30d": 0,
+        }
+        for item in payload["items"]
+    }
+
+    num_snaps = len(history_snapshots)
+    if num_snaps >= 2:
+        # Проходим по цепочке дней день за днем
+        for i in range(1, num_snaps):
+            prev_snap = history_snapshots[i - 1][1]
+            cur_snap = history_snapshots[i][1]
+            days_from_end = num_snaps - 1 - i  # 0 - это переход во вчера->сегодня
+
+            for code, cur_data in cur_snap.items():
+                if code not in prev_snap or code not in sales_map:
+                    continue
+
+                prev_data = prev_snap[code]
+
+                # Уходимость ЭТМ (только падение остатка)
+                diff_etm = prev_data.get("stock_etm", 0) - cur_data.get("stock_etm", 0)
+                sold_etm = diff_etm if diff_etm > 0 else 0
+
+                # Уходимость вендора (только падение остатка)
+                diff_v = prev_data.get("stock_vendor", 0) - cur_data.get("stock_vendor", 0)
+                sold_v = diff_v if diff_v > 0 else 0
+
+                # Окно 1 день (последний переход)
+                if days_from_end == 0:
+                    sales_map[code]["etm_1d"] += sold_etm
+                    sales_map[code]["vendor_1d"] += sold_v
+
+                # Окно 7 дней
+                if days_from_end < 7:
+                    sales_map[code]["etm_7d"] += sold_etm
+                    sales_map[code]["vendor_7d"] += sold_v
+
+                # Окно 30 дней
+                if days_from_end < 30:
+                    sales_map[code]["etm_30d"] += sold_etm
+                    sales_map[code]["vendor_30d"] += sold_v
+
+    # 4. Получаем данные предыдущего дня для суточных дельт
+    yesterday_data = history_snapshots[-2][1] if num_snaps >= 2 else {}
+
+    # 5. Обогащаем товары метриками
     for item in payload["items"]:
         code = item["etm_code"]
         prev = yesterday_data.get(code)
@@ -617,11 +670,7 @@ def save_with_history(payload):
         if prev:
             old_price = prev.get("price", 0.0)
             cur_price = item["price"]
-            if old_price > 0 and cur_price > 0:
-                item["price_diff"] = round(cur_price - old_price, 2)
-            else:
-                item["price_diff"] = 0.0
-
+            item["price_diff"] = round(cur_price - old_price, 2) if old_price > 0 and cur_price > 0 else 0.0
             item["stock_etm_diff"] = item["stock_etm"] - prev.get("stock_etm", 0)
             item["stock_vendor_diff"] = item["stock_vendor"] - prev.get("stock_vendor", 0)
             item["is_new"] = False
@@ -631,7 +680,10 @@ def save_with_history(payload):
             item["stock_vendor_diff"] = 0
             item["is_new"] = bool(yesterday_data)
 
-    # 4. Сохраняем финальный data.json с дельтами
+        # Добавляем рассчитанные продажи
+        item["sales"] = sales_map[code]
+
+    # 6. Сохраняем итоговый data.json
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
