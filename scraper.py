@@ -255,48 +255,32 @@ def parse_price(text):
 
 
 def parse_stock(text):
-    """
-    Точное разделение остатков склада ЭТМ и склада вендора:
-    - ЭТМ: сопровождается маркерами 'сегодня', 'завтра', 'в наличии', либо идет первым блоком.
-    - Вендор: сопровождается маркерами 'позже', 'поставщик', 'производит', либо идет вторым блоком.
-    """
     norm = normalize_text(text)
     stock_etm = 0
     stock_vendor = 0
 
-    # 1. Проверяем связку "число шт. + сегодня/завтра" (Склад ЭТМ)
-    etm_m = re.search(r"(\d[\d\s]*)\s*шт\.?\s*(?:сегодня|завтра|в наличии|на складе ЭТМ)", norm, re.IGNORECASE)
-    if not etm_m:
-        etm_m = re.search(r"(?:сегодня|завтра|в наличии)[^0-9]{0,25}(\d[\d\s]*)\s*шт", norm, re.IGNORECASE)
-    if etm_m:
-        stock_etm = int(etm_m.group(1).replace(" ", ""))
+    # Ищем все явные вхождения вида "123 шт" или "123 шт."
+    # Исключаем захват цен и огромных чисел (остатки на складах редко превышают 5000 шт)
+    matches = re.findall(r"\b(\d{1,5})\s*шт\.?", norm, re.IGNORECASE)
+    matches = [int(x) for x in matches]
 
-    # 2. Проверяем связку "число шт. + позже/поставщик/дней" (Склад вендора)
-    vendor_m = re.search(r"(\d[\d\s]*)\s*шт\.?\s*(?:позже|дн|поставщик|производит|заказ)", norm, re.IGNORECASE)
-    if not vendor_m:
-        vendor_m = re.search(r"(?:позже|склад поставщика|производител)[^0-9]{0,25}(\d[\d\s]*)\s*шт", norm, re.IGNORECASE)
-    if vendor_m:
-        stock_vendor = int(vendor_m.group(1).replace(" ", ""))
-
-    # 3. Резервный разбор: если контекст не сработал, берем числа по порядку следования в карточке
-    all_matches = [
-        int(x.replace(" ", ""))
-        for x in re.findall(r"(\d[\d\s]*)\s*шт\b", norm, re.IGNORECASE)
-    ]
-
-    if stock_etm == 0 and stock_vendor == 0 and all_matches:
-        # На ЭТМ при наличии двух чисел: первое ВСЕГДА ЭТМ, второе ВСЕГДА вендор
-        if len(all_matches) >= 2:
-            stock_etm = all_matches[0]
-            stock_vendor = all_matches[1]
+    # Если найдено 2 блока остатков (стандартная карточка ЭТМ: [ЭТМ, Вендор])
+    if len(matches) >= 2:
+        stock_etm = matches[0]
+        stock_vendor = matches[1]
+    elif len(matches) == 1:
+        # Если только одно число со словом "шт":
+        # проверяем, к чему оно относится
+        if any(w in norm.lower() for w in ["позже", "склад поставщика", "производит", "под заказ"]):
+            stock_vendor = matches[0]
         else:
-            # Если число только одно, смотрим маркер
-            if any(w in norm.lower() for w in ["позже", "поставщик", "производит", "заказ"]):
-                stock_vendor = all_matches[0]
-            else:
-                stock_etm = all_matches[0]
+            stock_etm = matches[0]
 
-    return stock_etm, stock_vendor, all_matches
+    # Защитный барьер: отсекаем явный мусор выше разумного порога (например, 15 000 шт для пром. автоматики)
+    if stock_vendor > 15000:
+        stock_vendor = 0
+
+    return stock_etm, stock_vendor, matches
 
 
 def parse_vendor_code(lines):
