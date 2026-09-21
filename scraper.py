@@ -255,30 +255,38 @@ def parse_price(text):
 
 
 def parse_stock(text):
-    norm = normalize_text(text)
+    """
+    Точный парсинг остатков с учетом разделителей тысяч (1 943 шт.):
+    - Захватывает группы цифр с пробелами перед 'шт'
+    - Корректно раскладывает по складам [ЭТМ, Вендор]
+    """
+    # Заменяем неразрывные пробелы на обычные
+    norm = normalize_text(text).replace("\u00a0", " ")
     stock_etm = 0
     stock_vendor = 0
 
-    # Ищем все явные вхождения вида "123 шт" или "123 шт."
-    # Исключаем захват цен и огромных чисел (остатки на складах редко превышают 5000 шт)
-    matches = re.findall(r"\b(\d{1,5})\s*шт\.?", norm, re.IGNORECASE)
-    matches = [int(x) for x in matches]
+    # Захватываем число с возможными пробелами внутри тысяч: например "1 943", "12 214"
+    raw_matches = re.findall(r"(\d[\d\s]{0,8})\s*шт\b", norm, re.IGNORECASE)
+    
+    matches = []
+    for m in raw_matches:
+        cleaned = re.sub(r"\s+", "", m)
+        if cleaned.isdigit():
+            val = int(cleaned)
+            # Отсекаем мусор и аномалии более 50 000 шт
+            if val < 50000:
+                matches.append(val)
 
-    # Если найдено 2 блока остатков (стандартная карточка ЭТМ: [ЭТМ, Вендор])
+    # Стандартная плитка ЭТМ: [Склад ЭТМ, Склад вендора]
     if len(matches) >= 2:
         stock_etm = matches[0]
         stock_vendor = matches[1]
     elif len(matches) == 1:
-        # Если только одно число со словом "шт":
-        # проверяем, к чему оно относится
+        # Если блок остатка только один:
         if any(w in norm.lower() for w in ["позже", "склад поставщика", "производит", "под заказ"]):
             stock_vendor = matches[0]
         else:
             stock_etm = matches[0]
-
-    # Защитный барьер: отсекаем явный мусор выше разумного порога (например, 15 000 шт для пром. автоматики)
-    if stock_vendor > 15000:
-        stock_vendor = 0
 
     return stock_etm, stock_vendor, matches
 
