@@ -627,29 +627,40 @@ def save_with_history(payload):
                     continue
 
                 prev_data = prev_snap[code]
+                prev_etm = prev_data.get("stock_etm", 0)
+                cur_etm = cur_data.get("stock_etm", 0)
+                prev_v = prev_data.get("stock_vendor", 0)
+                cur_v = cur_data.get("stock_vendor", 0)
 
-                # Уходимость ЭТМ (только падение остатка)
-                diff_etm = prev_data.get("stock_etm", 0) - cur_data.get("stock_etm", 0)
-                sold_etm = diff_etm if diff_etm > 0 else 0
+                # --- 1. РАСЧЕТ ПРОДАЖ (УХОДИМОСТЬ) ---
+                # Продажа засчитывается ТОЛЬКО если вчера товар уже был на складе (>0)
+                # и его остаток сегодня стал меньше.
+                sold_etm = (prev_etm - cur_etm) if (prev_etm > 0 and cur_etm < prev_etm) else 0
+                sold_v = (prev_v - cur_v) if (prev_v > 0 and cur_v < prev_v) else 0
 
-                # Уходимость вендора (только падение остатка)
-                diff_v = prev_data.get("stock_vendor", 0) - cur_data.get("stock_vendor", 0)
-                sold_v = diff_v if diff_v > 0 else 0
+                # --- 2. РАСЧЕТ ПОСТУПЛЕНИЙ (ПРИХОД) ---
+                # Поступление фиксируется, если остаток вырос
+                income_etm = (cur_etm - prev_etm) if cur_etm > prev_etm else 0
+                income_v = (cur_v - prev_v) if cur_v > prev_v else 0
 
-                # Окно 1 день (последний переход)
+                # Запись в окна времени (1д, 7д, 30д)
                 if days_from_end == 0:
                     sales_map[code]["etm_1d"] += sold_etm
                     sales_map[code]["vendor_1d"] += sold_v
+                    sales_map[code]["income_etm_1d"] += income_etm
+                    sales_map[code]["income_vendor_1d"] += income_v
 
-                # Окно 7 дней
                 if days_from_end < 7:
                     sales_map[code]["etm_7d"] += sold_etm
                     sales_map[code]["vendor_7d"] += sold_v
+                    sales_map[code]["income_etm_7d"] += income_etm
+                    sales_map[code]["income_vendor_7d"] += income_v
 
-                # Окно 30 дней
                 if days_from_end < 30:
                     sales_map[code]["etm_30d"] += sold_etm
                     sales_map[code]["vendor_30d"] += sold_v
+                    sales_map[code]["income_etm_30d"] += income_etm
+                    sales_map[code]["income_vendor_30d"] += income_v
 
     # 4. Получаем данные предыдущего дня для суточных дельт
     yesterday_data = history_snapshots[-2][1] if num_snaps >= 2 else {}
