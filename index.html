@@ -73,13 +73,12 @@
       border-radius: 3px;
       margin-right: 4px;
     }
-    .badge-sold {
-      background-color: #e0f2fe;
-      color: #0284c7;
-      border: 1px solid #bae6fd;
+    .badge-sold-total {
+      background-color: #0f172a;
+      color: #ffffff;
       font-weight: 700;
       font-size: 0.82rem;
-      padding: 0.3em 0.6em;
+      padding: 0.3em 0.65em;
       border-radius: 6px;
     }
     th.gridjs-th {
@@ -105,7 +104,7 @@
 <body class="py-4">
   <div class="container-fluid px-4">
     
-    <!-- Шапка -->
+    <!-- Верхняя панель -->
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-3">
       <div>
         <h3 class="fw-bold mb-1 d-flex align-items-center gap-2">
@@ -126,7 +125,7 @@
       </div>
     </div>
 
-    <!-- Переключатель режима отображения -->
+    <!-- Переключатель режима -->
     <div class="d-flex align-items-center justify-content-between bg-white p-2 rounded shadow-sm border mb-4">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-primary btn-sm btn-mode-toggle" id="btn-view-catalog">
@@ -136,17 +135,9 @@
           <i class="bi bi-graph-down-arrow"></i> Анализ уходимости (Продажи)
         </button>
       </div>
-      <div id="sales-period-container" class="d-none d-flex align-items-center gap-2">
-        <span class="text-muted small fw-bold">Период уходимости:</span>
-        <select id="filter-period" class="form-select form-select-sm" style="width: 210px;">
-          <option value="7d" selected>Последние 7 дней (Неделя)</option>
-          <option value="1d">За последние сутки (1 день)</option>
-          <option value="30d">Последние 30 дней (Месяц)</option>
-        </select>
-      </div>
     </div>
 
-    <!-- KPI карточки -->
+    <!-- Карточки KPI -->
     <div class="row g-3 mb-4">
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="card kpi-card border-0 shadow-sm bg-white h-100">
@@ -171,7 +162,7 @@
           <div class="card-body">
             <div class="text-muted small text-uppercase fw-semibold mb-1">Склад поставщиков</div>
             <div class="h3 fw-bold text-info mb-0" id="kpi-stock-vendor">0 шт.</div>
-            <small class="text-muted" id="kpi-stock-vendor-skus">Доступно SKU: 0</small>
+            <small class="text-muted" id="kpi-stock-vendor-skus">На складе вендоров: 0 SKU</small>
           </div>
         </div>
       </div>
@@ -186,14 +177,14 @@
       </div>
     </div>
 
-    <!-- Блок аналитики режима Продаж (Вендорная сводка) -->
+    <!-- Аналитика продаж по вендорам (Режим продаж) -->
     <div id="sales-analytics-section" class="d-none mb-4">
       <div class="card border-0 shadow-sm bg-white">
         <div class="card-header bg-transparent border-0 pt-3 pb-2 d-flex justify-content-between align-items-center">
           <span class="fw-bold small text-muted text-uppercase">
-            <i class="bi bi-buildings"></i> Сводная уходимость (продажи) по производителям
+            <i class="bi bi-buildings"></i> Сводный объем продаж (расход) по производителям
           </span>
-          <span class="text-muted small">Клик по строке производителя фильтрует таблицу</span>
+          <span class="text-muted small">Клик по производителю для быстрой фильтрации</span>
         </div>
         <div class="card-body p-0">
           <div class="table-responsive">
@@ -204,9 +195,9 @@
                   <th>Всего SKU</th>
                   <th>Текущий склад ЭТМ</th>
                   <th>Текущий склад вендора</th>
-                  <th id="th-sales-etm">Уход ЭТМ</th>
-                  <th id="th-sales-vendor">Уход Вендор</th>
-                  <th id="th-sales-total">Всего уход</th>
+                  <th id="th-sales-etm">Продажи ЭТМ</th>
+                  <th id="th-sales-vendor">Продажи Вендор</th>
+                  <th id="th-sales-total">Всего продано</th>
                 </tr>
               </thead>
               <tbody id="vendor-sales-summary-body">
@@ -218,7 +209,7 @@
       </div>
     </div>
 
-    <!-- Блок диаграмм режима Каталога -->
+    <!-- Диаграммы (Режим каталога) -->
     <div id="catalog-analytics-section" class="row g-3 mb-4">
       <div class="col-12 col-lg-7">
         <div class="card border-0 shadow-sm bg-white h-100">
@@ -242,7 +233,7 @@
       </div>
     </div>
 
-    <!-- Фильтры -->
+    <!-- Блок фильтрации -->
     <div class="card border-0 shadow-sm bg-white mb-3">
       <div class="card-body py-2 px-3">
         <div class="row g-2 align-items-center">
@@ -266,17 +257,25 @@
               <option value="Other controller">Прочие контроллеры</option>
             </select>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-2">
+            <label class="form-label text-muted small mb-1 fw-bold text-primary">Период продаж:</label>
+            <select id="filter-period" class="form-select form-select-sm border-primary">
+              <option value="1d">1 сутки (День)</option>
+              <option value="7d" selected>7 дней (Неделя)</option>
+              <option value="30d">30 дней (Месяц)</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2">
             <label class="form-label text-muted small mb-1 fw-bold">Наличие и фильтр:</label>
             <select id="filter-stock" class="form-select form-select-sm">
               <option value="all">Все позиции</option>
-              <option value="with_sales">Только с продажами (уход > 0)</option>
-              <option value="price_changed">С изменением цены за сутки</option>
-              <option value="in_stock">Есть в наличии (ЭТМ или вендор)</option>
+              <option value="with_sales">Только с продажами (>0)</option>
+              <option value="price_changed">С изменением цены (сутки)</option>
+              <option value="in_stock">Есть на складе (любом)</option>
               <option value="in_etm">Только склад ЭТМ</option>
             </select>
           </div>
-          <div class="col-12 col-md-3 d-flex align-items-end">
+          <div class="col-12 col-md-2 d-flex align-items-end">
             <div class="form-check form-switch mb-1">
               <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
               <label class="form-check-label small fw-semibold" for="filter-relevant-only">Исключить "Other"</label>
@@ -286,12 +285,10 @@
       </div>
     </div>
 
-    <!-- Таблица данных -->
+    <!-- Контейнеры таблиц -->
     <div class="card border-0 shadow-sm bg-white">
       <div class="card-body p-3">
-        <!-- Контейнер таблицы каталога -->
         <div id="grid-container-catalog"></div>
-        <!-- Контейнер таблицы уходимости -->
         <div id="grid-container-sales" class="d-none"></div>
       </div>
     </div>
@@ -324,7 +321,6 @@
       "Other": "Прочее"
     };
 
-    // 1. Инициализация таблицы каталога
     function renderCatalogGrid(data) {
       const formatted = data.map(item => [
         item.etm_code,
@@ -447,7 +443,6 @@
       }).render(document.getElementById("grid-container-catalog"));
     }
 
-    // 2. Инициализация таблицы уходимости (Продаж)
     function renderSalesGrid(data) {
       const periodLabel = currentPeriod === '1d' ? 'сутки' : currentPeriod === '7d' ? '7 дн' : '30 дн';
       
@@ -470,154 +465,87 @@
         ];
       });
 
+      const cols = [
+        {
+          name: "Код ЭТМ",
+          width: "105px",
+          formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
+        },
+        {
+          name: "Вендор",
+          width: "130px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell || '—'}</span>`)
+        },
+        {
+          name: "Артикул",
+          width: "150px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
+        },
+        {
+          name: "Наименование",
+          sort: true,
+          formatter: (cell, row) => gridjs.html(`<a href="${row.cells[10].data}" target="_blank" class="product-link">${cell}</a>`)
+        },
+        {
+          name: "Цена, ₽",
+          width: "125px",
+          sort: true,
+          formatter: (cell) => cell > 0 ? gridjs.html(`${Number(cell).toLocaleString('ru-RU')} ₽`) : gridjs.html('—')
+        },
+        {
+          name: "Остаток ЭТМ",
+          width: "115px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="badge bg-success badge-stock">${cell} шт.</span>`)
+        },
+        {
+          name: "Остаток Вендор",
+          width: "125px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="badge bg-info text-dark badge-stock">${cell} шт.</span>`)
+        },
+        {
+          name: `Продажи ЭТМ (${periodLabel})`,
+          width: "135px",
+          sort: true,
+          formatter: (cell) => cell > 0
+            ? gridjs.html(`<span class="badge bg-danger-subtle text-danger border border-danger-subtle fw-bold">${cell} шт.</span>`)
+            : gridjs.html('<span class="text-muted">0</span>')
+        },
+        {
+          name: `Продажи Вендор (${periodLabel})`,
+          width: "145px",
+          sort: true,
+          formatter: (cell) => cell > 0
+            ? gridjs.html(`<span class="badge bg-primary-subtle text-primary border border-primary-subtle fw-bold">${cell} шт.</span>`)
+            : gridjs.html('<span class="text-muted">0</span>')
+        },
+        {
+          name: `Всего продано (${periodLabel})`,
+          width: "140px",
+          sort: true,
+          formatter: (cell) => cell > 0
+            ? gridjs.html(`<span class="badge-sold-total">${cell} шт.</span>`)
+            : gridjs.html('<span class="text-muted">0</span>')
+        },
+        { name: "url", hidden: true }
+      ];
+
       if (gridSales) {
-        gridSales.updateConfig({
-          columns: [
-            {
-              name: "Код ЭТМ",
-              width: "105px",
-              formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
-            },
-            {
-              name: "Вендор",
-              width: "130px",
-              sort: true,
-              formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell || '—'}</span>`)
-            },
-            {
-              name: "Артикул",
-              width: "150px",
-              sort: true,
-              formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
-            },
-            {
-              name: "Наименование",
-              sort: true,
-              formatter: (cell, row) => gridjs.html(`<a href="${row.cells[10].data}" target="_blank" class="product-link">${cell}</a>`)
-            },
-            {
-              name: "Цена, ₽",
-              width: "125px",
-              sort: true,
-              formatter: (cell) => cell > 0 ? gridjs.html(`${Number(cell).toLocaleString('ru-RU')} ₽`) : gridjs.html('—')
-            },
-            {
-              name: "Остаток ЭТМ",
-              width: "115px",
-              sort: true,
-              formatter: (cell) => gridjs.html(`<span class="badge bg-success badge-stock">${cell} шт.</span>`)
-            },
-            {
-              name: "Остаток Вендор",
-              width: "125px",
-              sort: true,
-              formatter: (cell) => gridjs.html(`<span class="badge bg-info text-dark badge-stock">${cell} шт.</span>`)
-            },
-            {
-              name: `Уход ЭТМ (${periodLabel})`,
-              width: "135px",
-              sort: true,
-              formatter: (cell) => cell > 0
-                ? gridjs.html(`<span class="badge bg-success-subtle text-success border border-success-subtle fw-bold">+${cell} шт.</span>`)
-                : gridjs.html('<span class="text-muted">0</span>')
-            },
-            {
-              name: `Уход Вендор (${periodLabel})`,
-              width: "145px",
-              sort: true,
-              formatter: (cell) => cell > 0
-                ? gridjs.html(`<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle fw-bold">+${cell} шт.</span>`)
-                : gridjs.html('<span class="text-muted">0</span>')
-            },
-            {
-              name: `Всего уход (${periodLabel})`,
-              width: "140px",
-              sort: true,
-              formatter: (cell) => cell > 0
-                ? gridjs.html(`<span class="badge-sold">${cell} шт.</span>`)
-                : gridjs.html('<span class="text-muted">0</span>')
-            },
-            { name: "url", hidden: true }
-          ],
-          data: formatted
-        }).forceRender();
+        gridSales.updateConfig({ columns: cols, data: formatted }).forceRender();
         return;
       }
 
       gridSales = new gridjs.Grid({
-        columns: [
-          {
-            name: "Код ЭТМ",
-            width: "105px",
-            formatter: (cell) => gridjs.html(`<a href="https://www.etm.ru/cat/nn/${cell}" target="_blank" class="badge bg-light text-secondary border code-badge text-decoration-none">${cell}</a>`)
-          },
-          {
-            name: "Вендор",
-            width: "130px",
-            sort: true,
-            formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell || '—'}</span>`)
-          },
-          {
-            name: "Артикул",
-            width: "150px",
-            sort: true,
-            formatter: (cell) => gridjs.html(`<span class="text-secondary font-monospace small">${cell || '—'}</span>`)
-          },
-          {
-            name: "Наименование",
-            sort: true,
-            formatter: (cell, row) => gridjs.html(`<a href="${row.cells[10].data}" target="_blank" class="product-link">${cell}</a>`)
-          },
-          {
-            name: "Цена, ₽",
-            width: "125px",
-            sort: true,
-            formatter: (cell) => cell > 0 ? gridjs.html(`${Number(cell).toLocaleString('ru-RU')} ₽`) : gridjs.html('—')
-          },
-          {
-            name: "Остаток ЭТМ",
-            width: "115px",
-            sort: true,
-            formatter: (cell) => gridjs.html(`<span class="badge bg-success badge-stock">${cell} шт.</span>`)
-          },
-          {
-            name: "Остаток Вендор",
-            width: "125px",
-            sort: true,
-            formatter: (cell) => gridjs.html(`<span class="badge bg-info text-dark badge-stock">${cell} шт.</span>`)
-          },
-          {
-            name: `Уход ЭТМ (${periodLabel})`,
-            width: "135px",
-            sort: true,
-            formatter: (cell) => cell > 0
-              ? gridjs.html(`<span class="badge bg-success-subtle text-success border border-success-subtle fw-bold">+${cell} шт.</span>`)
-              : gridjs.html('<span class="text-muted">0</span>')
-          },
-          {
-            name: `Уход Вендор (${periodLabel})`,
-            width: "145px",
-            sort: true,
-            formatter: (cell) => cell > 0
-              ? gridjs.html(`<span class="badge bg-info-subtle text-info-emphasis border border-info-subtle fw-bold">+${cell} шт.</span>`)
-              : gridjs.html('<span class="text-muted">0</span>')
-          },
-          {
-            name: `Всего уход (${periodLabel})`,
-            width: "140px",
-            sort: true,
-            formatter: (cell) => cell > 0
-              ? gridjs.html(`<span class="badge-sold">${cell} шт.</span>`)
-              : gridjs.html('<span class="text-muted">0</span>')
-          },
-          { name: "url", hidden: true }
-        ],
+        columns: cols,
         data: formatted,
         search: true,
         pagination: { limit: 25 },
         sort: true,
         language: {
-          search: { placeholder: 'Поиск по товарам с уходимостью...' },
+          search: { placeholder: 'Поиск по позициям...' },
           pagination: {
             previous: 'Назад', next: 'Вперед',
             showing: 'Записи с', to: 'по', of: 'из', results: 'позиций'
@@ -628,7 +556,6 @@
       }).render(document.getElementById("grid-container-sales"));
     }
 
-    // 3. Сводка уходимости по вендорам
     function renderVendorSalesSummary(items) {
       const summary = {};
       items.forEach(i => {
@@ -650,9 +577,9 @@
       tbody.innerHTML = "";
 
       const periodLabel = currentPeriod === '1d' ? '1д' : currentPeriod === '7d' ? '7д' : '30д';
-      document.getElementById("th-sales-etm").textContent = `Уход ЭТМ (${periodLabel})`;
-      document.getElementById("th-sales-vendor").textContent = `Уход Вендор (${periodLabel})`;
-      document.getElementById("th-sales-total").textContent = `Всего уход (${periodLabel})`;
+      document.getElementById("th-sales-etm").textContent = `Продажи ЭТМ (${periodLabel})`;
+      document.getElementById("th-sales-vendor").textContent = `Продажи Вендор (${periodLabel})`;
+      document.getElementById("th-sales-total").textContent = `Всего продано (${periodLabel})`;
 
       sorted.forEach(([brand, data]) => {
         const tr = document.createElement("tr");
@@ -665,7 +592,7 @@
 
         const totalSold = data.soldEtm + data.soldVendor;
         const totalSoldBadge = totalSold > 0
-          ? `<span class="badge bg-primary fw-bold">${totalSold} шт.</span>`
+          ? `<span class="badge bg-dark fw-bold px-2 py-1">${totalSold} шт.</span>`
           : `<span class="text-muted">0</span>`;
 
         tr.innerHTML = `
@@ -673,15 +600,14 @@
           <td><span class="badge bg-light text-dark border">${data.count}</span></td>
           <td class="fw-semibold text-success">${data.etm.toLocaleString('ru-RU')} шт.</td>
           <td class="fw-semibold text-info-emphasis">${data.vendor.toLocaleString('ru-RU')} шт.</td>
-          <td class="fw-bold text-success">${data.soldEtm > 0 ? '+' + data.soldEtm : '0'}</td>
-          <td class="fw-bold text-info-emphasis">${data.soldVendor > 0 ? '+' + data.soldVendor : '0'}</td>
+          <td class="fw-bold text-danger">${data.soldEtm > 0 ? data.soldEtm : '0'}</td>
+          <td class="fw-bold text-primary">${data.soldVendor > 0 ? data.soldVendor : '0'}</td>
           <td>${totalSoldBadge}</td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    // 4. Диаграммы каталога
     function renderCatalogCharts(items) {
       const brandCounts = {};
       items.forEach(i => {
@@ -742,7 +668,6 @@
       });
     }
 
-    // 5. Обновление плашек KPI
     function updateKPIs(items) {
       document.getElementById('kpi-total').textContent = items.length;
       if (globalPayload.elapsed_seconds) {
@@ -788,13 +713,12 @@
         document.getElementById('kpi-metric-sub').textContent = `Подорожало: ${priceUp} | Подешевело: ${priceDown}`;
       } else {
         const periodLabel = currentPeriod === '1d' ? '1 дн' : currentPeriod === '7d' ? '7 дн' : '30 дн';
-        document.getElementById('kpi-metric-title').textContent = `Уходимость (${periodLabel})`;
+        document.getElementById('kpi-metric-title').textContent = `Продажи (${periodLabel})`;
         document.getElementById('kpi-metric-value').textContent = `${(soldEtm + soldVendor).toLocaleString('ru-RU')} шт.`;
-        document.getElementById('kpi-metric-sub').textContent = `ЭТМ: ${soldEtm} | Поставщик: ${soldVendor}`;
+        document.getElementById('kpi-metric-sub').textContent = `ЭТМ: ${soldEtm} | Вендор: ${soldVendor}`;
       }
     }
 
-    // 6. Фильтрация данных
     function applyFilters() {
       const selectedBrand = document.getElementById('filter-brand').value;
       const selectedType = document.getElementById('filter-type').value;
@@ -803,16 +727,10 @@
       currentPeriod = document.getElementById('filter-period').value;
 
       displayedItems = rawItems.filter(item => {
-        // Фильтр исключения Other
         if (excludeOther && item.product_type === 'Other') return false;
-
-        // Корректная фильтрация по бренду
         if (selectedBrand !== "" && item.brand !== selectedBrand) return false;
-
-        // Фильтрация по типу
         if (selectedType !== "" && item.product_type !== selectedType) return false;
 
-        // Фильтры наличия и продаж
         const sE = (item.sales && item.sales[`etm_${currentPeriod}`]) || 0;
         const sV = (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0;
 
@@ -839,13 +757,11 @@
       }
     }
 
-    // 7. Переключение вкладок режимов
     document.getElementById('btn-view-catalog').addEventListener('click', () => {
       currentMode = 'catalog';
       document.getElementById('btn-view-catalog').className = "btn btn-primary btn-sm btn-mode-toggle";
       document.getElementById('btn-view-sales').className = "btn btn-outline-primary btn-sm btn-mode-toggle";
 
-      document.getElementById('sales-period-container').classList.add('d-none');
       document.getElementById('sales-analytics-section').classList.add('d-none');
       document.getElementById('grid-container-sales').classList.add('d-none');
 
@@ -863,14 +779,12 @@
       document.getElementById('catalog-analytics-section').classList.add('d-none');
       document.getElementById('grid-container-catalog').classList.add('d-none');
 
-      document.getElementById('sales-period-container').classList.remove('d-none');
       document.getElementById('sales-analytics-section').classList.remove('d-none');
       document.getElementById('grid-container-sales').classList.remove('d-none');
 
       applyFilters();
     });
 
-    // 8. Загрузка данных
     fetch('data.json?t=' + new Date().getTime())
       .then(res => {
         if (!res.ok) throw new Error("Файл data.json не найден. Статус: " + res.status);
@@ -882,7 +796,6 @@
         document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
         document.getElementById('total-count').textContent = 'Всего в базе: ' + rawItems.length;
 
-        // Заполнение списка брендов
         const brandSelect = document.getElementById('filter-brand');
         const brands = Array.from(new Set(rawItems.map(i => i.brand))).filter(Boolean).sort();
         brands.forEach(b => {
@@ -905,7 +818,6 @@
           </div>`;
       });
 
-    // 9. Экспорт в CSV строго с учетом всех фильтров
     document.getElementById('btn-export-csv').addEventListener('click', () => {
       if (!displayedItems.length) {
         alert("Нет данных для экспорта!");
@@ -920,7 +832,7 @@
         headers = [
           "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
           "Текущий склад ЭТМ", "Текущий склад вендора",
-          `Уход ЭТМ (${periodLabel})`, `Уход Вендор (${periodLabel})`, `Всего уход (${periodLabel})`,
+          `Продажи ЭТМ (${periodLabel})`, `Продажи Вендор (${periodLabel})`, `Всего продано (${periodLabel})`,
           "Ссылка"
         ];
 
