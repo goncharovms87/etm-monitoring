@@ -1,29 +1,29 @@
 {
-  "last_updated": "22.09.2026 07:03 UTC",
+  "last_updated": "23.09.2026 12:07 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1335.9,
-  "total_items": 613,
+  "elapsed_seconds": 1337.1,
+  "total_items": 617,
   "statistics": {
     "categories": 17,
     "pages": 83,
-    "cards_seen": 630,
-    "relevant": 613,
-    "added": 613,
+    "cards_seen": 631,
+    "relevant": 617,
+    "added": 617,
     "by_product_type": {
-      "I/O module": 239,
-      "PLC": 96,
-      "Programmable relay": 70,
+      "I/O module": 243,
+      "PLC": 99,
+      "Programmable relay": 69,
       "Other module": 65,
-      "Communication module": 53,
-      "Other": 50,
-      "Other controller": 36,
+      "Communication module": 52,
+      "Other": 48,
+      "Other controller": 37,
       "HMI": 3,
       "Power supply": 1
     },
     "by_brand": {
-      "ONI": 148,
+      "ONI": 151,
       "EKF": 117,
-      "ОВЕН": 109,
+      "ОВЕН": 110,
       "Systeme Electric": 87,
       "DKC": 39,
       "Rievtech": 36,
@@ -74,11 +74,11 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "pages": 14,
-      "cards_seen": 110,
-      "relevant": 109,
-      "added": 109,
-      "unique_after": 252,
-      "unique_added": 109
+      "cards_seen": 111,
+      "relevant": 110,
+      "added": 110,
+      "unique_after": 253,
+      "unique_added": 110
     },
     {
       "category": "ОВЕН: Программируемые реле ПР",
@@ -86,17 +86,17 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 252,
+      "unique_after": 253,
       "unique_added": 0
     },
     {
       "category": "ONI: ПЛК-410 и модули",
       "pages": 17,
       "cards_seen": 136,
-      "relevant": 132,
-      "added": 132,
-      "unique_after": 384,
-      "unique_added": 132
+      "relevant": 135,
+      "added": 135,
+      "unique_after": 388,
+      "unique_added": 135
     },
     {
       "category": "ONI: Реле PLR",
@@ -104,7 +104,7 @@
       "cards_seen": 23,
       "relevant": 16,
       "added": 16,
-      "unique_after": 400,
+      "unique_after": 404,
       "unique_added": 16
     },
     {
@@ -113,7 +113,7 @@
       "cards_seen": 8,
       "relevant": 8,
       "added": 8,
-      "unique_after": 408,
+      "unique_after": 412,
       "unique_added": 8
     },
     {
@@ -122,7 +122,7 @@
       "cards_seen": 110,
       "relevant": 109,
       "added": 109,
-      "unique_after": 517,
+      "unique_after": 521,
       "unique_added": 109
     },
     {
@@ -131,7 +131,7 @@
       "cards_seen": 39,
       "relevant": 39,
       "added": 39,
-      "unique_after": 556,
+      "unique_after": 560,
       "unique_added": 39
     },
     {
@@ -140,7 +140,7 @@
       "cards_seen": 3,
       "relevant": 3,
       "added": 3,
-      "unique_after": 559,
+      "unique_after": 563,
       "unique_added": 3
     },
     {
@@ -149,7 +149,7 @@
       "cards_seen": 9,
       "relevant": 9,
       "added": 9,
-      "unique_after": 568,
+      "unique_after": 572,
       "unique_added": 9
     },
     {
@@ -158,7 +158,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 568,
+      "unique_after": 572,
       "unique_added": 0
     },
     {
@@ -167,7 +167,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 568,
+      "unique_after": 572,
       "unique_added": 0
     },
     {
@@ -176,7 +176,7 @@
       "cards_seen": 16,
       "relevant": 16,
       "added": 16,
-      "unique_after": 584,
+      "unique_after": 588,
       "unique_added": 16
     },
     {
@@ -185,7 +185,7 @@
       "cards_seen": 30,
       "relevant": 29,
       "added": 29,
-      "unique_after": 613,
+      "unique_after": 617,
       "unique_added": 29
     }
   ],
@@ -211,7 +211,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -273,7 +273,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -2057,10 +2057,10 @@
       "product_type": "I/O module",
       "price": 28587.91,
       "stock_etm": 2,
-      "stock_vendor": 73,
+      "stock_vendor": 45,
       "stock_all": [
         2,
-        73
+        45
       ],
       "url": "https://www.etm.ru/cat/nn/5728070",
       "sources": [
@@ -2068,15 +2068,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -28,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 28,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 28,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 28
       }
     },
     {
@@ -2089,10 +2089,10 @@
       "product_type": "Power supply",
       "price": 13908.09,
       "stock_etm": 36,
-      "stock_vendor": 30,
+      "stock_vendor": 69,
       "stock_all": [
         36,
-        30
+        69
       ],
       "url": "https://www.etm.ru/cat/nn/3309724",
       "sources": [
@@ -2100,7 +2100,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 39,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -2121,26 +2121,26 @@
       "product_type": "I/O module",
       "price": 59301.38,
       "stock_etm": 311,
-      "stock_vendor": 570,
+      "stock_vendor": 569,
       "stock_all": [
         311,
-        570
+        569
       ],
       "url": "https://www.etm.ru/cat/nn/87483",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -4,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
-        "etm_1d": 4,
-        "vendor_1d": 0,
+        "etm_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 4,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 4,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -2184,10 +2184,10 @@
       "product_type": "I/O module",
       "price": 19539.59,
       "stock_etm": 92,
-      "stock_vendor": 229,
+      "stock_vendor": 226,
       "stock_all": [
         92,
-        229
+        226
       ],
       "url": "https://www.etm.ru/cat/nn/5721502",
       "sources": [
@@ -2195,15 +2195,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 3
       }
     },
     {
@@ -2216,10 +2216,10 @@
       "product_type": "I/O module",
       "price": 26152.34,
       "stock_etm": 90,
-      "stock_vendor": 40,
+      "stock_vendor": 71,
       "stock_all": [
         90,
-        40
+        71
       ],
       "url": "https://www.etm.ru/cat/nn/9241028",
       "sources": [
@@ -2227,7 +2227,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 31,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -2342,10 +2342,10 @@
       "product_type": "I/O module",
       "price": 58576.12,
       "stock_etm": 1,
-      "stock_vendor": 135,
+      "stock_vendor": 134,
       "stock_all": [
         1,
-        135
+        134
       ],
       "url": "https://www.etm.ru/cat/nn/5804232",
       "sources": [
@@ -2353,15 +2353,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -2374,9 +2374,9 @@
       "product_type": "I/O module",
       "price": 18643.67,
       "stock_etm": 0,
-      "stock_vendor": 332,
+      "stock_vendor": 330,
       "stock_all": [
-        332
+        330
       ],
       "url": "https://www.etm.ru/cat/nn/4895278",
       "sources": [
@@ -2384,15 +2384,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -2436,9 +2436,9 @@
       "product_type": "I/O module",
       "price": 28797.43,
       "stock_etm": 0,
-      "stock_vendor": 227,
+      "stock_vendor": 225,
       "stock_all": [
-        227
+        225
       ],
       "url": "https://www.etm.ru/cat/nn/4846596",
       "sources": [
@@ -2446,15 +2446,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -2467,9 +2467,9 @@
       "product_type": "I/O module",
       "price": 101964.25,
       "stock_etm": 0,
-      "stock_vendor": 222,
+      "stock_vendor": 218,
       "stock_all": [
-        222
+        218
       ],
       "url": "https://www.etm.ru/cat/nn/7782316",
       "sources": [
@@ -2477,15 +2477,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 4,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 4,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 4
       }
     },
     {
@@ -2560,9 +2560,9 @@
       "product_type": "Other module",
       "price": 86178.99,
       "stock_etm": 0,
-      "stock_vendor": 146,
+      "stock_vendor": 145,
       "stock_all": [
-        146
+        145
       ],
       "url": "https://www.etm.ru/cat/nn/8858600",
       "sources": [
@@ -2570,15 +2570,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -2622,9 +2622,9 @@
       "product_type": "Other controller",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 133,
+      "stock_vendor": 131,
       "stock_all": [
-        133
+        131
       ],
       "url": "https://www.etm.ru/cat/nn/1385842",
       "sources": [
@@ -2632,15 +2632,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -2746,9 +2746,9 @@
       "product_type": "I/O module",
       "price": 17168.61,
       "stock_etm": 0,
-      "stock_vendor": 105,
+      "stock_vendor": 104,
       "stock_all": [
-        105
+        104
       ],
       "url": "https://www.etm.ru/cat/nn/7755486",
       "sources": [
@@ -2756,15 +2756,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -2808,9 +2808,9 @@
       "product_type": "I/O module",
       "price": 28242.82,
       "stock_etm": 0,
-      "stock_vendor": 88,
+      "stock_vendor": 86,
       "stock_all": [
-        88
+        86
       ],
       "url": "https://www.etm.ru/cat/nn/9473674",
       "sources": [
@@ -2818,15 +2818,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -2925,37 +2925,6 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "9129359",
-      "brand": "Systeme Electric",
-      "vendor_code": "ZR2PP11BD2A",
-      "name": "Реле интеллектуальное SR2, 24 VDC, дисплей, до 7 модулей расширения, 12 IO: 6 дискретных входов, 4 дискретных выходов (реле, 3 A), 2 аналоговых входа (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 1xRS485, 1xRJ45, 1xUSB (Type C)",
-      "product_type": "I/O module",
-      "price": 15186.09,
-      "stock_etm": 0,
-      "stock_vendor": 64,
-      "stock_all": [
-        64
-      ],
-      "url": "https://www.etm.ru/cat/nn/9129359",
-      "sources": [
-        "Systeme Electric: ПЛК и реле"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "Systeme Electric: ПЛК и реле",
-      "category_brand_hint": "Systeme Electric",
       "etm_code": "2671409",
       "brand": "Systeme Electric",
       "vendor_code": "SM210H04",
@@ -2963,9 +2932,9 @@
       "product_type": "I/O module",
       "price": 25981.69,
       "stock_etm": 0,
-      "stock_vendor": 63,
+      "stock_vendor": 62,
       "stock_all": [
-        63
+        62
       ],
       "url": "https://www.etm.ru/cat/nn/2671409",
       "sources": [
@@ -2973,15 +2942,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -3013,6 +2982,37 @@
         "vendor_7d": 0,
         "etm_30d": 0,
         "vendor_30d": 0
+      }
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "category_brand_hint": "Systeme Electric",
+      "etm_code": "9129359",
+      "brand": "Systeme Electric",
+      "vendor_code": "ZR2PP11BD2A",
+      "name": "Реле интеллектуальное SR2, 24 VDC, дисплей, до 7 модулей расширения, 12 IO: 6 дискретных входов, 4 дискретных выходов (реле, 3 A), 2 аналоговых входа (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 1xRS485, 1xRJ45, 1xUSB (Type C)",
+      "product_type": "I/O module",
+      "price": 15186.09,
+      "stock_etm": 0,
+      "stock_vendor": 58,
+      "stock_all": [
+        58
+      ],
+      "url": "https://www.etm.ru/cat/nn/9129359",
+      "sources": [
+        "Systeme Electric: ПЛК и реле"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -6,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 6,
+        "etm_7d": 0,
+        "vendor_7d": 6,
+        "etm_30d": 0,
+        "vendor_30d": 6
       }
     },
     {
@@ -3056,9 +3056,9 @@
       "product_type": "I/O module",
       "price": 30372.17,
       "stock_etm": 0,
-      "stock_vendor": 53,
+      "stock_vendor": 51,
       "stock_all": [
-        53
+        51
       ],
       "url": "https://www.etm.ru/cat/nn/7136875",
       "sources": [
@@ -3066,15 +3066,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -3087,9 +3087,9 @@
       "product_type": "Other module",
       "price": 1587.06,
       "stock_etm": 0,
-      "stock_vendor": 51,
+      "stock_vendor": 50,
       "stock_all": [
-        51
+        50
       ],
       "url": "https://www.etm.ru/cat/nn/4201687",
       "sources": [
@@ -3097,15 +3097,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -3118,9 +3118,9 @@
       "product_type": "Other module",
       "price": 20990.13,
       "stock_etm": 0,
-      "stock_vendor": 42,
+      "stock_vendor": 39,
       "stock_all": [
-        42
+        39
       ],
       "url": "https://www.etm.ru/cat/nn/6581825",
       "sources": [
@@ -3128,46 +3128,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "Systeme Electric: ПЛК и реле",
-      "category_brand_hint": "Systeme Electric",
-      "etm_code": "3175151",
-      "brand": "Systeme Electric",
-      "vendor_code": "SM172EMIO1000",
-      "name": "Модуль ввода/вывода смешанный, 24 VDC, 10 IO: 4 дискретных входа, 2 дискретных выхода (реле, 3 A), 2 аналоговых входа (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 2 аналоговых выхода (0-10 V, 4-20 mA)",
-      "product_type": "I/O module",
-      "price": 12251.96,
-      "stock_etm": 0,
-      "stock_vendor": 41,
-      "stock_all": [
-        41
-      ],
-      "url": "https://www.etm.ru/cat/nn/3175151",
-      "sources": [
-        "Systeme Electric: ПЛК и реле"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 3
       }
     },
     {
@@ -3192,6 +3161,37 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "category_brand_hint": "Systeme Electric",
+      "etm_code": "5987696",
+      "brand": "Systeme Electric",
+      "vendor_code": "SM172EMIO2800",
+      "name": "Модуль ввода/вывода смешанный, 24 VDC, 28 IO: 8 дискретных входов, 8 дискретных выходов (реле, 3 A), 8 аналоговых входов (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 4 аналоговых выхода (0-10 V, 4-20 mA)",
+      "product_type": "I/O module",
+      "price": 23274.76,
+      "stock_etm": 0,
+      "stock_vendor": 29,
+      "stock_all": [
+        29
+      ],
+      "url": "https://www.etm.ru/cat/nn/5987696",
+      "sources": [
+        "Systeme Electric: ПЛК и реле"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -3266,37 +3266,6 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "9271269",
-      "brand": "Systeme Electric",
-      "vendor_code": "SM3DQ32T",
-      "name": "Модуль расширения дискретный 32выход PNP",
-      "product_type": "I/O module",
-      "price": 39889.78,
-      "stock_etm": 0,
-      "stock_vendor": 24,
-      "stock_all": [
-        24
-      ],
-      "url": "https://www.etm.ru/cat/nn/9271269",
-      "sources": [
-        "Systeme Electric: ПЛК и реле"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "Systeme Electric: ПЛК и реле",
-      "category_brand_hint": "Systeme Electric",
       "etm_code": "3480256",
       "brand": "Systeme Electric",
       "vendor_code": "SM3TI8RTD",
@@ -3347,6 +3316,37 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "category_brand_hint": "Systeme Electric",
+      "etm_code": "4066881",
+      "brand": "Systeme Electric",
+      "vendor_code": "SM465413",
+      "name": "Модуль температур(K type_x4)",
+      "product_type": "Other module",
+      "price": 49147.62,
+      "stock_etm": 0,
+      "stock_vendor": 18,
+      "stock_all": [
+        18
+      ],
+      "url": "https://www.etm.ru/cat/nn/4066881",
+      "sources": [
+        "Systeme Electric: ПЛК и реле"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -3514,37 +3514,6 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "2613056",
-      "brand": "Systeme Electric",
-      "vendor_code": "HM1405",
-      "name": "Модуль расширения HD, 14DI 5DO",
-      "product_type": "Other module",
-      "price": 0.0,
-      "stock_etm": 0,
-      "stock_vendor": 10,
-      "stock_all": [
-        10
-      ],
-      "url": "https://www.etm.ru/cat/nn/2613056",
-      "sources": [
-        "Systeme Electric: ПЛК и реле"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "Systeme Electric: ПЛК и реле",
-      "category_brand_hint": "Systeme Electric",
       "etm_code": "2384722",
       "brand": "Systeme Electric",
       "vendor_code": "SM313S19",
@@ -3552,9 +3521,9 @@
       "product_type": "I/O module",
       "price": 46374.54,
       "stock_etm": 0,
-      "stock_vendor": 10,
+      "stock_vendor": 6,
       "stock_all": [
-        10
+        6
       ],
       "url": "https://www.etm.ru/cat/nn/2384722",
       "sources": [
@@ -3562,39 +3531,39 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 4,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 4,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 4
       }
     },
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "8744998",
+      "etm_code": "6122493",
       "brand": "Systeme Electric",
-      "vendor_code": "HD1407E",
-      "name": "Контроллер HD, 6DI 8UI 3DO 2AO 2VO 2Eth",
-      "product_type": "Other controller",
-      "price": 0.0,
+      "vendor_code": "SM172EDM0800P7",
+      "name": "Модуль ввода/вывода дискретный, 220 VAC, 8 IO: 4 дискретных входа, 4 дискртеных выхода (реле, 3 A)",
+      "product_type": "I/O module",
+      "price": 8009.37,
       "stock_etm": 0,
       "stock_vendor": 9,
       "stock_all": [
         9
       ],
-      "url": "https://www.etm.ru/cat/nn/8744998",
+      "url": "https://www.etm.ru/cat/nn/6122493",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -3607,24 +3576,24 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "4326396",
+      "etm_code": "5301791",
       "brand": "Systeme Electric",
-      "vendor_code": "SM3TI4RTD",
-      "name": "Аналоговый модуль расширения 4 температурных входов RTD",
+      "vendor_code": "SM310802",
+      "name": "Модуль вывода дискретный 8 выходов PNP",
       "product_type": "I/O module",
-      "price": 84984.43,
+      "price": 20819.48,
       "stock_etm": 0,
-      "stock_vendor": 7,
+      "stock_vendor": 2,
       "stock_all": [
-        7
+        2
       ],
-      "url": "https://www.etm.ru/cat/nn/4326396",
+      "url": "https://www.etm.ru/cat/nn/5301791",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -3645,9 +3614,9 @@
       "product_type": "Communication module",
       "price": 54267.17,
       "stock_etm": 0,
-      "stock_vendor": 4,
+      "stock_vendor": 2,
       "stock_all": [
-        4
+        2
       ],
       "url": "https://www.etm.ru/cat/nn/9930694",
       "sources": [
@@ -3655,15 +3624,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -3722,6 +3691,35 @@
         "vendor_7d": 0,
         "etm_30d": 0,
         "vendor_30d": 0
+      }
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "category_brand_hint": "Systeme Electric",
+      "etm_code": "2613056",
+      "brand": "Systeme Electric",
+      "vendor_code": "HM1405",
+      "name": "Модуль расширения HD, 14DI 5DO",
+      "product_type": "Other module",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/2613056",
+      "sources": [
+        "Systeme Electric: ПЛК и реле"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -10,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 10,
+        "etm_7d": 0,
+        "vendor_7d": 10,
+        "etm_30d": 0,
+        "vendor_30d": 10
       }
     },
     {
@@ -3801,7 +3799,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -4191,35 +4189,6 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "5301791",
-      "brand": "Systeme Electric",
-      "vendor_code": "SM310802",
-      "name": "Модуль вывода дискретный 8 выходов PNP",
-      "product_type": "I/O module",
-      "price": 20819.48,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/5301791",
-      "sources": [
-        "Systeme Electric: ПЛК и реле"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "Systeme Electric: ПЛК и реле",
-      "category_brand_hint": "Systeme Electric",
       "etm_code": "5916925",
       "brand": "Systeme Electric",
       "vendor_code": "SM541410",
@@ -4249,23 +4218,23 @@
     {
       "category": "Systeme Electric: ПЛК и реле",
       "category_brand_hint": "Systeme Electric",
-      "etm_code": "7442150",
+      "etm_code": "6100241",
       "brand": "Systeme Electric",
-      "vendor_code": "HM0800",
-      "name": "Модуль расширения HD, 8UI",
-      "product_type": "Other module",
-      "price": 0.0,
+      "vendor_code": "SM172EDM1600",
+      "name": "Модуль ввода/вывода дискретный, 24 VDC, 16 IO: 8 дискретных входов, 8 дискретных выходов (реле, 3 A)",
+      "product_type": "I/O module",
+      "price": 10309.09,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/7442150",
+      "url": "https://www.etm.ru/cat/nn/6100241",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -4389,6 +4358,35 @@
         "vendor_7d": 0,
         "etm_30d": 0,
         "vendor_30d": 0
+      }
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "category_brand_hint": "Systeme Electric",
+      "etm_code": "8744998",
+      "brand": "Systeme Electric",
+      "vendor_code": "HD1407E",
+      "name": "Контроллер HD, 6DI 8UI 3DO 2AO 2VO 2Eth",
+      "product_type": "Other controller",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/8744998",
+      "sources": [
+        "Systeme Electric: ПЛК и реле"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -9,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 9,
+        "etm_7d": 0,
+        "vendor_7d": 9,
+        "etm_30d": 0,
+        "vendor_30d": 9
       }
     },
     {
@@ -4546,9 +4544,9 @@
       "product_type": "Programmable relay",
       "price": 21594.0,
       "stock_etm": 0,
-      "stock_vendor": 18,
+      "stock_vendor": 17,
       "stock_all": [
-        18
+        17
       ],
       "url": "https://www.etm.ru/cat/nn/5923936",
       "sources": [
@@ -4556,15 +4554,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 5,
+        "vendor_7d": 6,
         "etm_30d": 0,
-        "vendor_30d": 5
+        "vendor_30d": 6
       }
     },
     {
@@ -4576,10 +4574,9 @@
       "name": "Модуль дискретного ввода (Ethernet) МВ210-212",
       "product_type": "Communication module",
       "price": 21533.0,
-      "stock_etm": 1,
+      "stock_etm": 0,
       "stock_vendor": 15,
       "stock_all": [
-        1,
         15
       ],
       "url": "https://www.etm.ru/cat/nn/3822265",
@@ -4587,15 +4584,15 @@
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 0,
-        "etm_7d": 1,
+        "etm_7d": 2,
         "vendor_7d": 0,
-        "etm_30d": 1,
+        "etm_30d": 2,
         "vendor_30d": 0
       }
     },
@@ -4681,11 +4678,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 2,
         "etm_30d": 0,
@@ -4744,7 +4741,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -4775,7 +4772,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -4795,9 +4792,9 @@
       "product_type": "I/O module",
       "price": 12688.0,
       "stock_etm": 0,
-      "stock_vendor": 5,
+      "stock_vendor": 4,
       "stock_all": [
-        5
+        4
       ],
       "url": "https://www.etm.ru/cat/nn/3754887",
       "sources": [
@@ -4805,15 +4802,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -4845,37 +4842,6 @@
         "vendor_7d": 0,
         "etm_30d": 0,
         "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "4463449",
-      "brand": "ОВЕН",
-      "vendor_code": "ПРМ-220.1",
-      "name": "Модуль расширения входов/выходов ПРМ-220.1",
-      "product_type": "I/O module",
-      "price": 7564.0,
-      "stock_etm": 0,
-      "stock_vendor": 4,
-      "stock_all": [
-        4
-      ],
-      "url": "https://www.etm.ru/cat/nn/4463449",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 1,
-        "etm_30d": 0,
-        "vendor_30d": 1
       }
     },
     {
@@ -4992,7 +4958,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -5000,6 +4966,37 @@
         "vendor_7d": 1,
         "etm_30d": 0,
         "vendor_30d": 1
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
+      "etm_code": "5708945",
+      "brand": "ОВЕН",
+      "vendor_code": "МУ110-220.32Р",
+      "name": "Модуль дискретного вывода МУ110-220.32Р",
+      "product_type": "I/O module",
+      "price": 27389.0,
+      "stock_etm": 0,
+      "stock_vendor": 2,
+      "stock_all": [
+        2
+      ],
+      "url": "https://www.etm.ru/cat/nn/5708945",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
       }
     },
     {
@@ -5017,37 +5014,6 @@
         2
       ],
       "url": "https://www.etm.ru/cat/nn/3814787",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "8538389",
-      "brand": "ОВЕН",
-      "vendor_code": "ПЛК110-24.32.Р-М",
-      "name": "Контроллер логический программируемый ПЛК110-24.32.Р-М [М02]",
-      "product_type": "PLC",
-      "price": 48251.0,
-      "stock_etm": 0,
-      "stock_vendor": 2,
-      "stock_all": [
-        2
-      ],
-      "url": "https://www.etm.ru/cat/nn/8538389",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
@@ -5085,7 +5051,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -5136,25 +5102,54 @@
       "product_type": "I/O module",
       "price": 7564.0,
       "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/1578888",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -6,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 6,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 6,
+        "vendor_7d": 7,
         "etm_30d": 0,
-        "vendor_30d": 6
+        "vendor_30d": 7
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
+      "etm_code": "6042970",
+      "brand": "ОВЕН",
+      "vendor_code": "МВ110-220.32ДН",
+      "name": "Модуль дискретного ввода МВ110-220.32ДН",
+      "product_type": "I/O module",
+      "price": 17446.0,
+      "stock_etm": 0,
+      "stock_vendor": 1,
+      "stock_all": [
+        1
+      ],
+      "url": "https://www.etm.ru/cat/nn/6042970",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
       }
     },
     {
@@ -5198,25 +5193,23 @@
       "product_type": "Programmable relay",
       "price": 12614.8,
       "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/9423124",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -5265,37 +5258,6 @@
         1
       ],
       "url": "https://www.etm.ru/cat/nn/1562827",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": true,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "6322061",
-      "brand": "ОВЕН",
-      "vendor_code": "ПР200-24.3.0.0",
-      "name": "Программируемое реле ПР200-24.3.0.0",
-      "product_type": "Programmable relay",
-      "price": 14091.0,
-      "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
-      "url": "https://www.etm.ru/cat/nn/6322061",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
@@ -5445,25 +5407,23 @@
       "name": "Модуль аналогового ввода МВ210-101",
       "product_type": "I/O module",
       "price": 22977.0,
-      "stock_etm": 6,
+      "stock_etm": 0,
       "stock_vendor": 0,
-      "stock_all": [
-        6
-      ],
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/2166439",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 1,
+      "stock_etm_diff": -6,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 6,
         "vendor_1d": 0,
-        "etm_7d": 1,
+        "etm_7d": 7,
         "vendor_7d": 0,
-        "etm_30d": 1,
+        "etm_30d": 7,
         "vendor_30d": 0
       }
     },
@@ -5499,6 +5459,35 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "category_brand_hint": "ОВЕН",
+      "etm_code": "4463449",
+      "brand": "ОВЕН",
+      "vendor_code": "ПРМ-220.1",
+      "name": "Модуль расширения входов/выходов ПРМ-220.1",
+      "product_type": "I/O module",
+      "price": 7564.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/4463449",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -4,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 4,
+        "etm_7d": 0,
+        "vendor_7d": 5,
+        "etm_30d": 0,
+        "vendor_30d": 5
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
       "etm_code": "4965808",
       "brand": "ОВЕН",
       "vendor_code": "МВ210-102",
@@ -5515,7 +5504,36 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
+      "etm_code": "6498137",
+      "brand": "ОВЕН",
+      "vendor_code": "МВ110-220.8АС",
+      "name": "Модуль аналогового ввода МВ110-220.8АС",
+      "product_type": "I/O module",
+      "price": 19044.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/6498137",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -5567,35 +5585,6 @@
       "stock_vendor": 0,
       "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/6746130",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "8779428",
-      "brand": "ОВЕН",
-      "vendor_code": "ПР225-24.1210.02.1.0",
-      "name": "Устройство управляющее ПР225-24.1210.02.1.0 многофункциональное",
-      "product_type": "Other",
-      "price": 24936.8,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/8779428",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
@@ -5979,7 +5968,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -6211,7 +6200,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -6443,7 +6432,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -6675,7 +6664,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -6761,11 +6750,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 1,
         "etm_30d": 0,
@@ -7123,52 +7112,23 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "category_brand_hint": "ОВЕН",
-      "etm_code": "6498137",
+      "etm_code": "6597860",
       "brand": "ОВЕН",
-      "vendor_code": "МВ110-220.8АС",
-      "name": "Модуль аналогового ввода МВ110-220.8АС",
-      "product_type": "I/O module",
-      "price": 19044.0,
+      "vendor_code": "МВ210-221",
+      "name": "Модуль дискретного ввода (Ethernet) МВ210-221",
+      "product_type": "Communication module",
+      "price": 15311.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/6498137",
+      "url": "https://www.etm.ru/cat/nn/6597860",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "6740197",
-      "brand": "ОВЕН",
-      "vendor_code": "ПР225-24.1210.02.2.0",
-      "name": "Устройство управляющее ПР225-24.1210.02.2.0 многофункциональное",
-      "product_type": "Other",
-      "price": 26644.8,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/6740197",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -7297,6 +7257,35 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "category_brand_hint": "ОВЕН",
+      "etm_code": "7641330",
+      "brand": "ОВЕН",
+      "vendor_code": "ПЛК110-220.30-ТЛ",
+      "name": "Контроллер логический программируемый ПЛК110-220.30-ТЛ [М02]",
+      "product_type": "PLC",
+      "price": 48299.8,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/7641330",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
       "etm_code": "7753516",
       "brand": "ОВЕН",
       "vendor_code": "СУНА-121.24.08.00",
@@ -7321,35 +7310,6 @@
         "vendor_7d": 0,
         "etm_30d": 0,
         "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ОВЕН: ПЛК и модули МВ/МУ",
-      "category_brand_hint": "ОВЕН",
-      "etm_code": "7829589",
-      "brand": "ОВЕН",
-      "vendor_code": "МУ210-502",
-      "name": "Модуль аналогового вывода МУ210-502",
-      "product_type": "I/O module",
-      "price": 28365.0,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/7829589",
-      "sources": [
-        "ОВЕН: ПЛК и модули МВ/МУ"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 4,
-        "etm_30d": 0,
-        "vendor_30d": 4
       }
     },
     {
@@ -7384,23 +7344,23 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "category_brand_hint": "ОВЕН",
-      "etm_code": "8301811",
+      "etm_code": "8124164",
       "brand": "ОВЕН",
-      "vendor_code": "ПР225-230.1210.02.2.0",
-      "name": "Устройство управляющее ПР225-230.1210.02.2.0 многофункциональное",
-      "product_type": "Other",
-      "price": 26644.8,
+      "vendor_code": "СУНА-121.220.05.00",
+      "name": "Контроллер для групп насосов СУНА-121.220.05.00 с поддержкой датчиков 4…20 мА и RS-485",
+      "product_type": "Other controller",
+      "price": 16463.9,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/8301811",
+      "url": "https://www.etm.ru/cat/nn/8124164",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -7618,6 +7578,35 @@
     {
       "category": "ОВЕН: ПЛК и модули МВ/МУ",
       "category_brand_hint": "ОВЕН",
+      "etm_code": "8779428",
+      "brand": "ОВЕН",
+      "vendor_code": "ПР225-24.1210.02.1.0",
+      "name": "Устройство управляющее ПР225-24.1210.02.1.0 многофункциональное",
+      "product_type": "Other",
+      "price": 24936.8,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/8779428",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
       "etm_code": "9030487",
       "brand": "ОВЕН",
       "vendor_code": "КосМастер-24.01",
@@ -7761,6 +7750,35 @@
       }
     },
     {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "category_brand_hint": "ОВЕН",
+      "etm_code": "2085708",
+      "brand": "ОВЕН",
+      "vendor_code": "РЗУ-420",
+      "name": "Калибратор токовой петли РЗУ-420",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/2085708",
+      "sources": [
+        "ОВЕН: ПЛК и модули МВ/МУ"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
       "etm_code": "3460843",
@@ -7781,11 +7799,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -19,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 19,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 19,
         "etm_30d": 0,
@@ -7813,11 +7831,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -6,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 6,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 6,
         "etm_30d": 0,
@@ -8649,9 +8667,9 @@
       "product_type": "Programmable relay",
       "price": 30379.87,
       "stock_etm": 0,
-      "stock_vendor": 617,
+      "stock_vendor": 614,
       "stock_all": [
-        617
+        614
       ],
       "url": "https://www.etm.ru/cat/nn/3439858",
       "sources": [
@@ -8659,15 +8677,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 8,
+        "vendor_7d": 11,
         "etm_30d": 0,
-        "vendor_30d": 8
+        "vendor_30d": 11
       }
     },
     {
@@ -8692,37 +8710,6 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "5154350",
-      "brand": "ONI",
-      "vendor_code": "PLC-W-ACS-0800-IMP",
-      "name": "ПЛК W. Расширение входов/выходов по Modbus RTU 8 DI",
-      "product_type": "PLC",
-      "price": 0.0,
-      "stock_etm": 0,
-      "stock_vendor": 233,
-      "stock_all": [
-        233
-      ],
-      "url": "https://www.etm.ru/cat/nn/5154350",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -8766,6 +8753,37 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
+      "etm_code": "1639553",
+      "brand": "ONI",
+      "vendor_code": "IOD-430-TB-00004I",
+      "name": "IOD 430 Модуль аналогового вывода 4 токовых сигнала",
+      "product_type": "I/O module",
+      "price": 30784.57,
+      "stock_etm": 0,
+      "stock_vendor": 373,
+      "stock_all": [
+        373
+      ],
+      "url": "https://www.etm.ru/cat/nn/1639553",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 2,
+        "etm_30d": 0,
+        "vendor_30d": 2
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
       "etm_code": "576535",
       "brand": "ONI",
       "vendor_code": "IOD-430-TB-00016N",
@@ -8784,7 +8802,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -8983,24 +9001,150 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "7755628",
+      "etm_code": "4888654",
       "brand": "ONI",
-      "vendor_code": "IOD-430-ST-MI0000",
-      "name": "IOD 430 Набор модулей Modbus TCP",
-      "product_type": "Communication module",
-      "price": 36994.19,
+      "vendor_code": "PLR-430-ACS-USB-AM-000-00",
+      "name": "ПЛК 430 Кабель USB разъём тип А папа",
+      "product_type": "Programmable relay",
+      "price": 10206.35,
       "stock_etm": 0,
-      "stock_vendor": 245,
+      "stock_vendor": 256,
       "stock_all": [
-        245
+        256
       ],
-      "url": "https://www.etm.ru/cat/nn/7755628",
+      "url": "https://www.etm.ru/cat/nn/4888654",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 108,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "5154350",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-ACS-0800-IMP",
+      "name": "ПЛК W. Расширение входов/выходов по Modbus RTU 8 DI",
+      "product_type": "PLC",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 233,
+      "stock_all": [
+        233
+      ],
+      "url": "https://www.etm.ru/cat/nn/5154350",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "5783915",
+      "brand": "ONI",
+      "vendor_code": "PLC-430-CPU-16U10U-1DC-00",
+      "name": "ПЛК 430 Модуль ЦПУ 4 DI 12 UI (0-10 В/DI) 8 RO 2 AO (1 шт 0-10 В и 1 шт 0-20 мА) 24В DC с Ethernet портом с экраном",
+      "product_type": "Communication module",
+      "price": 68453.21,
+      "stock_etm": 1,
+      "stock_vendor": 1,
+      "stock_all": [
+        1,
+        1,
+        218
+      ],
+      "url": "https://www.etm.ru/cat/nn/5783915",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 141,
+        "etm_30d": 0,
+        "vendor_30d": 141
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "5680851",
+      "brand": "ONI",
+      "vendor_code": "PLR-430-EMD-08U08R-0DC-00",
+      "name": "ПЛК 430 Модуль расширения входов выходов 4 DI 4 UI (0-10 В/DI) 8 RO 24В DC",
+      "product_type": "I/O module",
+      "price": 22513.5,
+      "stock_etm": 0,
+      "stock_vendor": 217,
+      "stock_all": [
+        217
+      ],
+      "url": "https://www.etm.ru/cat/nn/5680851",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 14,
+        "etm_30d": 0,
+        "vendor_30d": 14
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "7801086",
+      "brand": "ONI",
+      "vendor_code": "PLR-430-CPU-12D06R-1AC-00",
+      "name": "ПЛК 430 Модуль ЦПУ 12 DI 6 RO 220В AC с экраном",
+      "product_type": "Programmable relay",
+      "price": 29882.01,
+      "stock_etm": 0,
+      "stock_vendor": 188,
+      "stock_all": [
+        188
+      ],
+      "url": "https://www.etm.ru/cat/nn/7801086",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 64,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -9026,37 +9170,6 @@
         188
       ],
       "url": "https://www.etm.ru/cat/nn/734990",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "617544",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMD-08D08R-0AC-00",
-      "name": "ПЛК 430 Модуль расширения входов выходов 8 DI 8 RO 220В AC",
-      "product_type": "I/O module",
-      "price": 22851.62,
-      "stock_etm": 0,
-      "stock_vendor": 174,
-      "stock_all": [
-        174
-      ],
-      "url": "https://www.etm.ru/cat/nn/617544",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
@@ -9107,65 +9220,32 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "4888654",
+      "etm_code": "617544",
       "brand": "ONI",
-      "vendor_code": "PLR-430-ACS-USB-AM-000-00",
-      "name": "ПЛК 430 Кабель USB разъём тип А папа",
-      "product_type": "Programmable relay",
-      "price": 10206.35,
+      "vendor_code": "PLR-430-EMD-08D08R-0AC-00",
+      "name": "ПЛК 430 Модуль расширения входов выходов 8 DI 8 RO 220В AC",
+      "product_type": "I/O module",
+      "price": 22851.62,
       "stock_etm": 0,
       "stock_vendor": 148,
       "stock_all": [
         148
       ],
-      "url": "https://www.etm.ru/cat/nn/4888654",
+      "url": "https://www.etm.ru/cat/nn/617544",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -26,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 26,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 26,
         "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "5783915",
-      "brand": "ONI",
-      "vendor_code": "PLC-430-CPU-16U10U-1DC-00",
-      "name": "ПЛК 430 Модуль ЦПУ 4 DI 12 UI (0-10 В/DI) 8 RO 2 AO (1 шт 0-10 В и 1 шт 0-20 мА) 24В DC с Ethernet портом с экраном",
-      "product_type": "Communication module",
-      "price": 68453.21,
-      "stock_etm": 1,
-      "stock_vendor": 1,
-      "stock_all": [
-        1,
-        1,
-        142
-      ],
-      "url": "https://www.etm.ru/cat/nn/5783915",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 141,
-        "etm_30d": 0,
-        "vendor_30d": 141
+        "vendor_30d": 26
       }
     },
     {
@@ -9202,24 +9282,24 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "7801086",
+      "etm_code": "7211429",
       "brand": "ONI",
-      "vendor_code": "PLR-430-CPU-12D06R-1AC-00",
-      "name": "ПЛК 430 Модуль ЦПУ 12 DI 6 RO 220В AC с экраном",
-      "product_type": "Programmable relay",
-      "price": 29882.01,
+      "vendor_code": "PLR-430-EMA-04U000-0DC-00",
+      "name": "ПЛК 430 Модуль расширения входов выходов 4 UI (0-20 мА/0-10 В) 24В DC",
+      "product_type": "I/O module",
+      "price": 30420.93,
       "stock_etm": 0,
-      "stock_vendor": 124,
+      "stock_vendor": 119,
       "stock_all": [
-        124
+        119
       ],
-      "url": "https://www.etm.ru/cat/nn/7801086",
+      "url": "https://www.etm.ru/cat/nn/7211429",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 89,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -9233,25 +9313,87 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "7534724",
+      "etm_code": "7507611",
       "brand": "ONI",
-      "vendor_code": "PLC-W-ACS-MBRTU-ETHIP",
-      "name": "ПЛК W. Преобразователь интерфейсов Modbus RTU в Ethernet",
+      "vendor_code": "PLC-W-EMD-0800",
+      "name": "ПЛК W. Расширение 8 DI 230В AC",
       "product_type": "PLC",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 122,
+      "stock_vendor": 118,
       "stock_all": [
-        122
+        118
       ],
-      "url": "https://www.etm.ru/cat/nn/7534724",
+      "url": "https://www.etm.ru/cat/nn/7507611",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "9585741",
+      "brand": "ONI",
+      "vendor_code": "PLR-430-EMA-00002U-0DC-00",
+      "name": "ПЛК 430 Модуль расширения входов выходов 2 UO (0-20 мА/0-10 В) 24В DC",
+      "product_type": "I/O module",
+      "price": 25296.81,
+      "stock_etm": 0,
+      "stock_vendor": 115,
+      "stock_all": [
+        115
+      ],
+      "url": "https://www.etm.ru/cat/nn/9585741",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 89,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "1316833",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-EMD-0706",
+      "name": "ПЛК W. Расширение коммутирующее 7 DI 6 DO максимальный пусковой ток 80А",
+      "product_type": "PLC",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 114,
+      "stock_all": [
+        114
+      ],
+      "url": "https://www.etm.ru/cat/nn/1316833",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -9333,9 +9475,9 @@
       "product_type": "Programmable relay",
       "price": 37591.12,
       "stock_etm": 0,
-      "stock_vendor": 92,
+      "stock_vendor": 90,
       "stock_all": [
-        92
+        90
       ],
       "url": "https://www.etm.ru/cat/nn/6334894",
       "sources": [
@@ -9343,15 +9485,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -9369,68 +9511,6 @@
         87
       ],
       "url": "https://www.etm.ru/cat/nn/2221982",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "3004574",
-      "brand": "ONI",
-      "vendor_code": "IOD-430-ST-EC0000",
-      "name": "IOD 430 Набор модулей EtherCAT",
-      "product_type": "Other",
-      "price": 42356.79,
-      "stock_etm": 0,
-      "stock_vendor": 83,
-      "stock_all": [
-        83
-      ],
-      "url": "https://www.etm.ru/cat/nn/3004574",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "6548877",
-      "brand": "ONI",
-      "vendor_code": "IOD-430-ST-EI0000",
-      "name": "IOD 430 Набор модулей EtherNet/IP",
-      "product_type": "Communication module",
-      "price": 42356.79,
-      "stock_etm": 0,
-      "stock_vendor": 80,
-      "stock_all": [
-        80
-      ],
-      "url": "https://www.etm.ru/cat/nn/6548877",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
@@ -9500,6 +9580,99 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "9986606",
+      "brand": "ONI",
+      "vendor_code": "PLR-430-EMD-00016R-0DC-00",
+      "name": "ПЛК 430 Модуль расширения входов выходов 16 RO 24В DC",
+      "product_type": "I/O module",
+      "price": 32476.22,
+      "stock_etm": 0,
+      "stock_vendor": 76,
+      "stock_all": [
+        76
+      ],
+      "url": "https://www.etm.ru/cat/nn/9986606",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 76,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "8901693",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-ACS-MBRTU-USB",
+      "name": "ПЛК W. Преобразователь интерфейсов USB-RS485",
+      "product_type": "PLC",
+      "price": 2578.4,
+      "stock_etm": 0,
+      "stock_vendor": 73,
+      "stock_all": [
+        73
+      ],
+      "url": "https://www.etm.ru/cat/nn/8901693",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "7626242",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-EMP-SUPERCAP",
+      "name": "ПЛК W. Модуль резервного питания на ионисторах",
+      "product_type": "PLC",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 58,
+      "stock_all": [
+        58
+      ],
+      "url": "https://www.etm.ru/cat/nn/7626242",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -9605,143 +9778,49 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "359836",
+      "etm_code": "9917175",
       "brand": "ONI",
-      "vendor_code": "PLC-W-ACS-MBRTU-EXT",
-      "name": "ПЛК W. Преобразователь интерфейсов Modbus RTU для удаленного подключения",
+      "vendor_code": "PLC-W-EMD-1400",
+      "name": "ПЛК W. Расширение 14 DI",
       "product_type": "PLC",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 34,
-      "stock_all": [
-        34
-      ],
-      "url": "https://www.etm.ru/cat/nn/359836",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "203559",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMA-04P000-0DC-00",
-      "name": "ПЛК 430 Модуль расширения входов выходов 4 входа Pt100/Pt1000 24В DC",
-      "product_type": "I/O module",
-      "price": 21269.38,
-      "stock_etm": 0,
-      "stock_vendor": 33,
-      "stock_all": [
-        33
-      ],
-      "url": "https://www.etm.ru/cat/nn/203559",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "7211429",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMA-04U000-0DC-00",
-      "name": "ПЛК 430 Модуль расширения входов выходов 4 UI (0-20 мА/0-10 В) 24В DC",
-      "product_type": "I/O module",
-      "price": 30420.93,
-      "stock_etm": 0,
-      "stock_vendor": 30,
-      "stock_all": [
-        30
-      ],
-      "url": "https://www.etm.ru/cat/nn/7211429",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "9585741",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMA-00002U-0DC-00",
-      "name": "ПЛК 430 Модуль расширения входов выходов 2 UO (0-20 мА/0-10 В) 24В DC",
-      "product_type": "I/O module",
-      "price": 25296.81,
-      "stock_etm": 0,
-      "stock_vendor": 26,
-      "stock_all": [
-        26
-      ],
-      "url": "https://www.etm.ru/cat/nn/9585741",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "2286252",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-CPU-08D04R-0AC-00",
-      "name": "ПЛК 430 Модуль ЦПУ 8 DI 4 RO 220В AC без экрана",
-      "product_type": "Programmable relay",
-      "price": 17042.3,
-      "stock_etm": 1,
       "stock_vendor": 23,
       "stock_all": [
-        1,
         23
       ],
-      "url": "https://www.etm.ru/cat/nn/2286252",
+      "url": "https://www.etm.ru/cat/nn/9917175",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "6558457",
+      "brand": "ONI",
+      "vendor_code": "IOD-430-TC-000000",
+      "name": "IOD 430 Модуль клеммной крышки",
+      "product_type": "Other module",
+      "price": 1610.9,
+      "stock_etm": 0,
+      "stock_vendor": 21,
+      "stock_all": [
+        21
+      ],
+      "url": "https://www.etm.ru/cat/nn/6558457",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
@@ -9823,37 +9902,6 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "3519318",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMC-RS485I-0DC-00",
-      "name": "ПЛК 430 Модуль расширения коммуникационных портов RS485 с гальванической развязкой 24В DC",
-      "product_type": "Communication module",
-      "price": 11184.58,
-      "stock_etm": 0,
-      "stock_vendor": 11,
-      "stock_all": [
-        11
-      ],
-      "url": "https://www.etm.ru/cat/nn/3519318",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 1,
-        "etm_30d": 0,
-        "vendor_30d": 1
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
       "etm_code": "6995615",
       "brand": "ONI",
       "vendor_code": "PLC-W-CPU-06-DC-2G64GCOM",
@@ -9902,11 +9950,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -20,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 20,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 20,
         "etm_30d": 0,
@@ -9964,6 +10012,37 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
+      "etm_code": "6920639",
+      "brand": "ONI",
+      "vendor_code": "PLR-M-CPU-26R02ADC",
+      "name": "Микро ПЛК . Расширяемая версия. Со встроенным экраном. 16 дискретных входов (4 как 0-20мА, 8 как 0-10В, 4 до 60кГц), 4 релейных выхода, 2 аналоговых выхода 0-20мА/0-10В. RTC. SD карта. 2хRS485. Ethernet. Напряжение питания 24В DC",
+      "product_type": "Programmable relay",
+      "price": 56234.02,
+      "stock_etm": 76,
+      "stock_vendor": 0,
+      "stock_all": [
+        76
+      ],
+      "url": "https://www.etm.ru/cat/nn/6920639",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -10179,6 +10258,35 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
+      "etm_code": "891957",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-EMD-0006-165A",
+      "name": "ПЛК W. Расширение коммутирующее 6 DO максимальный пусковой ток 165А",
+      "product_type": "PLC",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/891957",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
       "etm_code": "1590037",
       "brand": "ONI",
       "vendor_code": "PLC-W-ACS-MBRTU-IR",
@@ -10382,23 +10490,23 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "2749973",
+      "etm_code": "2852909",
       "brand": "ONI",
-      "vendor_code": "IOD-430-RS-MR0000",
-      "name": "IOD 430 Модуль интерфейсов RS-232 RS-422 и RS-485",
-      "product_type": "Other module",
-      "price": 27201.61,
+      "vendor_code": "PLC-W-ACS-TERMINAL3",
+      "name": "ПЛК W. Клеммы 3.5 6 контактов",
+      "product_type": "PLC",
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/2749973",
+      "url": "https://www.etm.ru/cat/nn/2852909",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -10614,23 +10722,23 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "5343713",
+      "etm_code": "6453854",
       "brand": "ONI",
-      "vendor_code": "PLC-W-EMD-0202-ACT",
-      "name": "ПЛК W. Расширение коммутирующее 2 DI 2 DO с измерением мощности",
-      "product_type": "PLC",
-      "price": 0.0,
+      "vendor_code": "PLC-TB-CABLE-16",
+      "name": "Соединительный кабель для коммутации ПЛК S <-> терминальный блок. 16 каналов ввода + 16 каналов вывода",
+      "product_type": "I/O module",
+      "price": 6124.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/5343713",
+      "url": "https://www.etm.ru/cat/nn/6453854",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -10846,23 +10954,23 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
-      "etm_code": "7505630",
+      "etm_code": "7692052",
       "brand": "ONI",
-      "vendor_code": "PLC-W-EMD-0403-165A",
-      "name": "ПЛК W. Расширение коммутирующее 4 DI 3 DO максимальный пусковой ток 165А",
-      "product_type": "PLC",
+      "vendor_code": "PLC-W-CPU-06-DC-1G8GIND",
+      "name": "ПЛК W. CPU 6 IO 1GB RAM 8GB ROM 24 В DC промышленного исполнения",
+      "product_type": "I/O module",
       "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/7505630",
+      "url": "https://www.etm.ru/cat/nn/7692052",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -11080,6 +11188,35 @@
     {
       "category": "ONI: ПЛК-410 и модули",
       "category_brand_hint": "ONI",
+      "etm_code": "8987507",
+      "brand": "ONI",
+      "vendor_code": "PLC-W-EMD-0300",
+      "name": "ПЛК W. Расширение 3 DI",
+      "product_type": "PLC",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/8987507",
+      "sources": [
+        "ONI: ПЛК-410 и модули"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "category_brand_hint": "ONI",
       "etm_code": "9394617",
       "brand": "ONI",
       "vendor_code": "PLC-W-ACS-TERMINAL4",
@@ -11148,35 +11285,6 @@
       "stock_vendor": 0,
       "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/9514211",
-      "sources": [
-        "ONI: ПЛК-410 и модули"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "ONI: ПЛК-410 и модули",
-      "category_brand_hint": "ONI",
-      "etm_code": "9986606",
-      "brand": "ONI",
-      "vendor_code": "PLR-430-EMD-00016R-0DC-00",
-      "name": "ПЛК 430 Модуль расширения входов выходов 16 RO 24В DC",
-      "product_type": "I/O module",
-      "price": 32476.22,
-      "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/9986606",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
@@ -11764,9 +11872,9 @@
       "product_type": "Programmable relay",
       "price": 10037.01,
       "stock_etm": 0,
-      "stock_vendor": 104,
+      "stock_vendor": 100,
       "stock_all": [
-        104
+        100
       ],
       "url": "https://www.etm.ru/cat/nn/5869308",
       "sources": [
@@ -11774,15 +11882,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 4,
         "etm_7d": 0,
-        "vendor_7d": 6,
+        "vendor_7d": 10,
         "etm_30d": 0,
-        "vendor_30d": 6
+        "vendor_30d": 10
       }
     },
     {
@@ -11806,7 +11914,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 20,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -11958,7 +12066,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -12140,7 +12248,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -12244,37 +12352,6 @@
     {
       "category": "EKF: Реле PRO-Relay",
       "category_brand_hint": "EKF",
-      "etm_code": "3255359",
-      "brand": "EKF",
-      "vendor_code": "PRL100-12-R-DC",
-      "name": "Программируемое реле PRO-Relay PRL100-12-R-DC",
-      "product_type": "Programmable relay",
-      "price": 12634.27,
-      "stock_etm": 2,
-      "stock_vendor": 0,
-      "stock_all": [
-        2
-      ],
-      "url": "https://www.etm.ru/cat/nn/3255359",
-      "sources": [
-        "EKF: Реле PRO-Relay"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "EKF: Реле PRO-Relay",
-      "category_brand_hint": "EKF",
       "etm_code": "2146759",
       "brand": "EKF",
       "vendor_code": "PRL100-12-R-AC",
@@ -12292,15 +12369,44 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 5,
         "etm_30d": 0,
         "vendor_30d": 5
+      }
+    },
+    {
+      "category": "EKF: Реле PRO-Relay",
+      "category_brand_hint": "EKF",
+      "etm_code": "3255359",
+      "brand": "EKF",
+      "vendor_code": "PRL100-12-R-DC",
+      "name": "Программируемое реле PRO-Relay PRL100-12-R-DC",
+      "product_type": "Programmable relay",
+      "price": 12634.27,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/3255359",
+      "sources": [
+        "EKF: Реле PRO-Relay"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": -2,
+      "stock_vendor_diff": 0,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 2,
+        "vendor_1d": 0,
+        "etm_7d": 2,
+        "vendor_7d": 0,
+        "etm_30d": 2,
+        "vendor_30d": 0
       }
     },
     {
@@ -12486,27 +12592,27 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6884.9,
-      "stock_etm": 10,
-      "stock_vendor": 92,
+      "stock_etm": 7,
+      "stock_vendor": 74,
       "stock_all": [
-        10,
-        92
+        7,
+        74
       ],
       "url": "https://www.etm.ru/cat/nn/225594",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": -3,
+      "stock_etm_diff": -3,
+      "stock_vendor_diff": -18,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 3,
-        "etm_7d": 6,
-        "vendor_7d": 110,
-        "etm_30d": 6,
-        "vendor_30d": 110
+        "etm_1d": 3,
+        "vendor_1d": 18,
+        "etm_7d": 9,
+        "vendor_7d": 128,
+        "etm_30d": 9,
+        "vendor_30d": 128
       }
     },
     {
@@ -12519,21 +12625,21 @@
       "product_type": "Other controller",
       "price": 7832.06,
       "stock_etm": 5,
-      "stock_vendor": 274,
+      "stock_vendor": 275,
       "stock_all": [
         5,
-        274
+        275
       ],
       "url": "https://www.etm.ru/cat/nn/6621724",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -1,
-      "stock_vendor_diff": 8,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 1,
       "is_new": false,
       "sales": {
-        "etm_1d": 1,
+        "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 5,
         "vendor_7d": 270,
@@ -12582,58 +12688,26 @@
       "product_type": "I/O module",
       "price": 10360.45,
       "stock_etm": 12,
-      "stock_vendor": 27,
+      "stock_vendor": 26,
       "stock_all": [
         12,
-        27
+        26
       ],
       "url": "https://www.etm.ru/cat/nn/6886245",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -2,
-      "stock_vendor_diff": 0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
-        "etm_1d": 2,
-        "vendor_1d": 0,
+        "etm_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 4,
-        "vendor_7d": 1,
+        "vendor_7d": 2,
         "etm_30d": 4,
-        "vendor_30d": 1
-      }
-    },
-    {
-      "category": "EKF: ПЛК PRO-Logic",
-      "category_brand_hint": "EKF",
-      "etm_code": "7081895",
-      "brand": "EKF",
-      "vendor_code": "EMF-A-4AI",
-      "name": "Модуль аналогового ввода EMF 4 PRO-Logic PROxima",
-      "product_type": "I/O module",
-      "price": 11619.88,
-      "stock_etm": 1,
-      "stock_vendor": 75,
-      "stock_all": [
-        1,
-        75
-      ],
-      "url": "https://www.etm.ru/cat/nn/7081895",
-      "sources": [
-        "EKF: ПЛК PRO-Logic"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": -1,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 1,
-        "vendor_1d": 0,
-        "etm_7d": 1,
-        "vendor_7d": 0,
-        "etm_30d": 1,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -12646,10 +12720,10 @@
       "product_type": "I/O module",
       "price": 8288.97,
       "stock_etm": 3,
-      "stock_vendor": 79,
+      "stock_vendor": 77,
       "stock_all": [
         3,
-        79
+        77
       ],
       "url": "https://www.etm.ru/cat/nn/5378313",
       "sources": [
@@ -12657,15 +12731,47 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 1,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 1,
-        "vendor_30d": 0
+        "vendor_30d": 2
+      }
+    },
+    {
+      "category": "EKF: ПЛК PRO-Logic",
+      "category_brand_hint": "EKF",
+      "etm_code": "7081895",
+      "brand": "EKF",
+      "vendor_code": "EMF-A-4AI",
+      "name": "Модуль аналогового ввода EMF 4 PRO-Logic PROxima",
+      "product_type": "I/O module",
+      "price": 11619.88,
+      "stock_etm": 1,
+      "stock_vendor": 74,
+      "stock_all": [
+        1,
+        74
+      ],
+      "url": "https://www.etm.ru/cat/nn/7081895",
+      "sources": [
+        "EKF: ПЛК PRO-Logic"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": -1,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 1,
+        "etm_7d": 1,
+        "vendor_7d": 1,
+        "etm_30d": 1,
+        "vendor_30d": 1
       }
     },
     {
@@ -12678,10 +12784,10 @@
       "product_type": "Other",
       "price": 14454.6,
       "stock_etm": 5,
-      "stock_vendor": 28,
+      "stock_vendor": 19,
       "stock_all": [
         5,
-        28
+        19
       ],
       "url": "https://www.etm.ru/cat/nn/7458771",
       "sources": [
@@ -12689,15 +12795,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2,
+      "stock_vendor_diff": -9,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2,
+        "vendor_1d": 9,
         "etm_7d": 0,
-        "vendor_7d": 28,
+        "vendor_7d": 37,
         "etm_30d": 0,
-        "vendor_30d": 28
+        "vendor_30d": 37
       }
     },
     {
@@ -12803,9 +12909,9 @@
       "product_type": "Other module",
       "price": 8679.73,
       "stock_etm": 0,
-      "stock_vendor": 347,
+      "stock_vendor": 345,
       "stock_all": [
-        347
+        345
       ],
       "url": "https://www.etm.ru/cat/nn/7654208",
       "sources": [
@@ -12813,15 +12919,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 9,
+        "vendor_7d": 11,
         "etm_30d": 0,
-        "vendor_30d": 9
+        "vendor_30d": 11
       }
     },
     {
@@ -12834,9 +12940,9 @@
       "product_type": "I/O module",
       "price": 5465.64,
       "stock_etm": 0,
-      "stock_vendor": 149,
+      "stock_vendor": 146,
       "stock_all": [
-        149
+        146
       ],
       "url": "https://www.etm.ru/cat/nn/8219574",
       "sources": [
@@ -12844,15 +12950,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 3
       }
     },
     {
@@ -12865,9 +12971,9 @@
       "product_type": "I/O module",
       "price": 11279.75,
       "stock_etm": 0,
-      "stock_vendor": 111,
+      "stock_vendor": 108,
       "stock_all": [
-        111
+        108
       ],
       "url": "https://www.etm.ru/cat/nn/1657849",
       "sources": [
@@ -12875,15 +12981,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 4,
+        "vendor_7d": 7,
         "etm_30d": 0,
-        "vendor_30d": 4
+        "vendor_30d": 7
       }
     },
     {
@@ -12927,9 +13033,9 @@
       "product_type": "I/O module",
       "price": 8324.82,
       "stock_etm": 0,
-      "stock_vendor": 76,
+      "stock_vendor": 71,
       "stock_all": [
-        76
+        71
       ],
       "url": "https://www.etm.ru/cat/nn/5930124",
       "sources": [
@@ -12937,15 +13043,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -5,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 5,
         "etm_7d": 0,
-        "vendor_7d": 6,
+        "vendor_7d": 11,
         "etm_30d": 0,
-        "vendor_30d": 6
+        "vendor_30d": 11
       }
     },
     {
@@ -13154,11 +13260,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 4,
         "etm_30d": 0,
@@ -13175,9 +13281,9 @@
       "product_type": "PLC",
       "price": 18067.69,
       "stock_etm": 0,
-      "stock_vendor": 24,
+      "stock_vendor": 22,
       "stock_all": [
-        24
+        22
       ],
       "url": "https://www.etm.ru/cat/nn/1222229",
       "sources": [
@@ -13185,46 +13291,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
-      }
-    },
-    {
-      "category": "EKF: ПЛК PRO-Logic",
-      "category_brand_hint": "EKF",
-      "etm_code": "3649921",
-      "brand": "EKF",
-      "vendor_code": "F100-12A-N",
-      "name": "Программируемый контроллер F100 12 в/в N PRO-Logic PROxima",
-      "product_type": "PLC",
-      "price": 18633.41,
-      "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
-      "url": "https://www.etm.ru/cat/nn/3649921",
-      "sources": [
-        "EKF: ПЛК PRO-Logic"
-      ],
-      "price_diff": 0.0,
-      "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
-      "is_new": false,
-      "sales": {
-        "etm_1d": 0,
-        "vendor_1d": 0,
-        "etm_7d": 0,
-        "vendor_7d": 0,
-        "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -13247,11 +13322,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 1,
         "etm_30d": 0,
@@ -13330,9 +13405,9 @@
       "product_type": "PLC",
       "price": 19615.4,
       "stock_etm": 0,
-      "stock_vendor": 214,
+      "stock_vendor": 212,
       "stock_all": [
-        214
+        212
       ],
       "url": "https://www.etm.ru/cat/nn/5600475",
       "sources": [
@@ -13340,15 +13415,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 2
       }
     },
     {
@@ -13371,11 +13446,11 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -3,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 3,
+        "vendor_1d": 0,
         "etm_7d": 0,
         "vendor_7d": 3,
         "etm_30d": 0,
@@ -13392,9 +13467,9 @@
       "product_type": "PLC",
       "price": 12697.33,
       "stock_etm": 0,
-      "stock_vendor": 152,
+      "stock_vendor": 147,
       "stock_all": [
-        152
+        147
       ],
       "url": "https://www.etm.ru/cat/nn/8269302",
       "sources": [
@@ -13402,15 +13477,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -5,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 5,
         "etm_7d": 0,
-        "vendor_7d": 4,
+        "vendor_7d": 9,
         "etm_30d": 0,
-        "vendor_30d": 4
+        "vendor_30d": 9
       }
     },
     {
@@ -13447,25 +13522,25 @@
     {
       "category": "EKF: ПЛК PRO-Logic",
       "category_brand_hint": "EKF",
-      "etm_code": "9416797",
+      "etm_code": "7199903",
       "brand": "EKF",
-      "vendor_code": "GL200-DQ16D-DCD",
-      "name": "Модуль расширения дискретных сигналов GL200-DO16 токоприемный D-CARD",
+      "vendor_code": "PRL-E-4DIAI4DO-R-DC",
+      "name": "Модуль расширения дискретных и аналоговых сигналов PRO-Relay 4DI/AI 4DO(R) DC",
       "product_type": "Other module",
-      "price": 17496.42,
+      "price": 9462.23,
       "stock_etm": 0,
-      "stock_vendor": 49,
+      "stock_vendor": 108,
       "stock_all": [
-        49
+        108
       ],
-      "url": "https://www.etm.ru/cat/nn/9416797",
+      "url": "https://www.etm.ru/cat/nn/7199903",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -13695,25 +13770,25 @@
     {
       "category": "EKF: ПЛК PRO-Logic",
       "category_brand_hint": "EKF",
-      "etm_code": "4746954",
+      "etm_code": "6518300",
       "brand": "EKF",
-      "vendor_code": "PLC-EC201S-D-DCD",
-      "name": "Программируемый логический контроллер (ПЛК) EC201S токоприемный D-CARD",
-      "product_type": "PLC",
-      "price": 31602.58,
+      "vendor_code": "GR200-MBS-DCD",
+      "name": "Модуль сетевой удалённого расширения ввода и вывода Modbus TCP GR200-MBS D-CARD",
+      "product_type": "Communication module",
+      "price": 40668.24,
       "stock_etm": 0,
-      "stock_vendor": 19,
+      "stock_vendor": 26,
       "stock_all": [
-        19
+        26
       ],
-      "url": "https://www.etm.ru/cat/nn/4746954",
+      "url": "https://www.etm.ru/cat/nn/6518300",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -13733,9 +13808,9 @@
       "product_type": "PLC",
       "price": 60702.72,
       "stock_etm": 0,
-      "stock_vendor": 13,
+      "stock_vendor": 12,
       "stock_all": [
-        13
+        12
       ],
       "url": "https://www.etm.ru/cat/nn/8512517",
       "sources": [
@@ -13743,15 +13818,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -13925,7 +14000,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -13938,23 +14013,23 @@
     {
       "category": "EKF: ПЛК PRO-Logic",
       "category_brand_hint": "EKF",
-      "etm_code": "942776",
+      "etm_code": "9623760",
       "brand": "EKF",
-      "vendor_code": "EREMF-D-12X12Y-N",
-      "name": "Модуль дискретного в/в EREMF 12/12 N PRO-Logic",
+      "vendor_code": "REMF-D-8X8Y-R",
+      "name": "Модуль дискретного в/в REMF 8/8 PRO-Logic",
       "product_type": "I/O module",
-      "price": 11360.85,
+      "price": 7166.3,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/942776",
+      "url": "https://www.etm.ru/cat/nn/9623760",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": false,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14178,16 +14253,18 @@
     {
       "category": "EKF: ПЛК PRO-Logic",
       "category_brand_hint": "EKF",
-      "etm_code": "3889229",
+      "etm_code": "7284113",
       "brand": "EKF",
-      "vendor_code": "REMF-D-16X",
-      "name": "Модуль дискретного ввода REMF 16 PRO-Logic",
+      "vendor_code": "REMF-D-20X20Y-R",
+      "name": "Модуль дискретного в/в REMF 20/20 PRO-Logic",
       "product_type": "I/O module",
-      "price": 5789.49,
-      "stock_etm": 0,
+      "price": 17151.13,
+      "stock_etm": 18,
       "stock_vendor": 0,
-      "stock_all": [],
-      "url": "https://www.etm.ru/cat/nn/3889229",
+      "stock_all": [
+        18
+      ],
+      "url": "https://www.etm.ru/cat/nn/7284113",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
@@ -14223,6 +14300,35 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
+      "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "EKF: ПЛК PRO-Logic",
+      "category_brand_hint": "EKF",
+      "etm_code": "973873",
+      "brand": "EKF",
+      "vendor_code": "F100-16-R",
+      "name": "Программируемый контроллер F100 16 в/в PRO-Logic PROxima",
+      "product_type": "PLC",
+      "price": 14016.76,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/973873",
+      "sources": [
+        "EKF: ПЛК PRO-Logic"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
       "is_new": true,
       "sales": {
         "etm_1d": 0,
@@ -14252,7 +14358,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14281,7 +14387,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14310,7 +14416,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14339,7 +14445,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14368,7 +14474,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -14397,7 +14503,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -15817,9 +15923,9 @@
       "product_type": "Other",
       "price": 4993.37,
       "stock_etm": 0,
-      "stock_vendor": 318,
+      "stock_vendor": 159,
       "stock_all": [
-        318
+        159
       ],
       "url": "https://www.etm.ru/cat/nn/6738801",
       "sources": [
@@ -15827,15 +15933,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 159,
+      "stock_vendor_diff": -159,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 159,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 159,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 159
       }
     },
     {
@@ -15848,9 +15954,9 @@
       "product_type": "I/O module",
       "price": 28634.35,
       "stock_etm": 0,
-      "stock_vendor": 200,
+      "stock_vendor": 100,
       "stock_all": [
-        200
+        100
       ],
       "url": "https://www.etm.ru/cat/nn/7700642",
       "sources": [
@@ -15858,15 +15964,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 100,
+      "stock_vendor_diff": -100,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 100,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 100,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 100
       }
     },
     {
@@ -15879,9 +15985,9 @@
       "product_type": "Communication module",
       "price": 2844.46,
       "stock_etm": 0,
-      "stock_vendor": 192,
+      "stock_vendor": 96,
       "stock_all": [
-        192
+        96
       ],
       "url": "https://www.etm.ru/cat/nn/6002330",
       "sources": [
@@ -15889,15 +15995,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 96,
+      "stock_vendor_diff": -96,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 96,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 96,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 96
       }
     },
     {
@@ -15910,9 +16016,9 @@
       "product_type": "I/O module",
       "price": 8723.05,
       "stock_etm": 0,
-      "stock_vendor": 190,
+      "stock_vendor": 95,
       "stock_all": [
-        190
+        95
       ],
       "url": "https://www.etm.ru/cat/nn/1723566",
       "sources": [
@@ -15920,15 +16026,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 95,
+      "stock_vendor_diff": -95,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 95,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 95,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 95
       }
     },
     {
@@ -15941,9 +16047,9 @@
       "product_type": "I/O module",
       "price": 11188.25,
       "stock_etm": 0,
-      "stock_vendor": 188,
+      "stock_vendor": 94,
       "stock_all": [
-        188
+        94
       ],
       "url": "https://www.etm.ru/cat/nn/803032",
       "sources": [
@@ -15951,15 +16057,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 94,
+      "stock_vendor_diff": -94,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 94,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 94,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 94
       }
     },
     {
@@ -16003,9 +16109,9 @@
       "product_type": "I/O module",
       "price": 26785.44,
       "stock_etm": 0,
-      "stock_vendor": 170,
+      "stock_vendor": 85,
       "stock_all": [
-        170
+        85
       ],
       "url": "https://www.etm.ru/cat/nn/4080995",
       "sources": [
@@ -16013,15 +16119,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 85,
+      "stock_vendor_diff": -85,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 85,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 85,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 85
       }
     },
     {
@@ -16034,9 +16140,9 @@
       "product_type": "I/O module",
       "price": 17446.1,
       "stock_etm": 0,
-      "stock_vendor": 168,
+      "stock_vendor": 84,
       "stock_all": [
-        168
+        84
       ],
       "url": "https://www.etm.ru/cat/nn/1954179",
       "sources": [
@@ -16044,15 +16150,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 84,
+      "stock_vendor_diff": -84,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 84,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 84,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 84
       }
     },
     {
@@ -16065,9 +16171,9 @@
       "product_type": "I/O module",
       "price": 22423.93,
       "stock_etm": 0,
-      "stock_vendor": 166,
+      "stock_vendor": 83,
       "stock_all": [
-        166
+        83
       ],
       "url": "https://www.etm.ru/cat/nn/2038916",
       "sources": [
@@ -16075,15 +16181,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 83,
+      "stock_vendor_diff": -83,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 83,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 83,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 83
       }
     },
     {
@@ -16096,9 +16202,9 @@
       "product_type": "I/O module",
       "price": 14933.48,
       "stock_etm": 0,
-      "stock_vendor": 166,
+      "stock_vendor": 83,
       "stock_all": [
-        166
+        83
       ],
       "url": "https://www.etm.ru/cat/nn/5781921",
       "sources": [
@@ -16106,15 +16212,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 83,
+      "stock_vendor_diff": -83,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 83,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 83,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 83
       }
     },
     {
@@ -16127,9 +16233,9 @@
       "product_type": "I/O module",
       "price": 12468.27,
       "stock_etm": 0,
-      "stock_vendor": 156,
+      "stock_vendor": 78,
       "stock_all": [
-        156
+        78
       ],
       "url": "https://www.etm.ru/cat/nn/9030828",
       "sources": [
@@ -16137,15 +16243,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 78,
+      "stock_vendor_diff": -78,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 78,
         "etm_7d": 0,
-        "vendor_7d": 8,
+        "vendor_7d": 86,
         "etm_30d": 0,
-        "vendor_30d": 8
+        "vendor_30d": 86
       }
     },
     {
@@ -16189,9 +16295,9 @@
       "product_type": "I/O module",
       "price": 26785.44,
       "stock_etm": 0,
-      "stock_vendor": 134,
+      "stock_vendor": 67,
       "stock_all": [
-        134
+        67
       ],
       "url": "https://www.etm.ru/cat/nn/8885041",
       "sources": [
@@ -16199,15 +16305,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 67,
+      "stock_vendor_diff": -67,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 67,
         "etm_7d": 0,
-        "vendor_7d": 5,
+        "vendor_7d": 72,
         "etm_30d": 0,
-        "vendor_30d": 5
+        "vendor_30d": 72
       }
     },
     {
@@ -16375,9 +16481,9 @@
       "product_type": "Communication module",
       "price": 33043.29,
       "stock_etm": 0,
-      "stock_vendor": 90,
+      "stock_vendor": 45,
       "stock_all": [
-        90
+        45
       ],
       "url": "https://www.etm.ru/cat/nn/2542777",
       "sources": [
@@ -16385,15 +16491,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 45,
+      "stock_vendor_diff": -45,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 45,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 45,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 45
       }
     },
     {
@@ -16437,9 +16543,9 @@
       "product_type": "I/O module",
       "price": 14933.48,
       "stock_etm": 0,
-      "stock_vendor": 58,
+      "stock_vendor": 29,
       "stock_all": [
-        58
+        29
       ],
       "url": "https://www.etm.ru/cat/nn/4391063",
       "sources": [
@@ -16447,15 +16553,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 29,
+      "stock_vendor_diff": -29,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 29,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 29,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 29
       }
     },
     {
@@ -16508,7 +16614,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -16940,7 +17046,7 @@
       "sources": [
         "Segnetics: Контроллеры"
       ],
-      "price_diff": -134.86,
+      "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -16969,7 +17075,7 @@
       "sources": [
         "Segnetics: Контроллеры"
       ],
-      "price_diff": -122.26,
+      "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -16998,7 +17104,7 @@
       "sources": [
         "Segnetics: Контроллеры"
       ],
-      "price_diff": -8.76,
+      "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -17052,9 +17158,9 @@
       "product_type": "I/O module",
       "price": 20082.91,
       "stock_etm": 0,
-      "stock_vendor": 70,
+      "stock_vendor": 69,
       "stock_all": [
-        70
+        69
       ],
       "url": "https://www.etm.ru/cat/nn/8100978",
       "sources": [
@@ -17062,15 +17168,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -17083,9 +17189,9 @@
       "product_type": "I/O module",
       "price": 20082.91,
       "stock_etm": 0,
-      "stock_vendor": 53,
+      "stock_vendor": 52,
       "stock_all": [
-        53
+        52
       ],
       "url": "https://www.etm.ru/cat/nn/5290014",
       "sources": [
@@ -17093,15 +17199,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -17145,9 +17251,9 @@
       "product_type": "Other module",
       "price": 26745.04,
       "stock_etm": 0,
-      "stock_vendor": 36,
+      "stock_vendor": 35,
       "stock_all": [
-        36
+        35
       ],
       "url": "https://www.etm.ru/cat/nn/382885",
       "sources": [
@@ -17155,15 +17261,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -17176,9 +17282,9 @@
       "product_type": "I/O module",
       "price": 11103.53,
       "stock_etm": 0,
-      "stock_vendor": 34,
+      "stock_vendor": 33,
       "stock_all": [
-        34
+        33
       ],
       "url": "https://www.etm.ru/cat/nn/4066713",
       "sources": [
@@ -17186,15 +17292,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 1,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 1
+        "vendor_30d": 2
       }
     },
     {
@@ -17207,9 +17313,9 @@
       "product_type": "I/O module",
       "price": 9751.81,
       "stock_etm": 0,
-      "stock_vendor": 31,
+      "stock_vendor": 30,
       "stock_all": [
-        31
+        30
       ],
       "url": "https://www.etm.ru/cat/nn/3844450",
       "sources": [
@@ -17217,15 +17323,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -17269,25 +17375,23 @@
       "product_type": "I/O module",
       "price": 8206.95,
       "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/5331554",
       "sources": [
         "Тракт-Автоматика: Контроллеры и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
