@@ -577,17 +577,23 @@ def save_with_history(payload):
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     today_history_file = os.path.join("history", f"{today_str}.json")
 
-    # 1. Формируем снимок за сегодня
-    daily_snapshot = {
-        item["etm_code"]: {
-            "price": item["price"],
-            "stock_etm": item["stock_etm"],
-            "stock_vendor": item["stock_vendor"],
+    # 1. Формируем снимок за сегодня (все ключи строго str)
+    daily_snapshot = {}
+    for item in payload.get("items", []):
+        code = str(item.get("etm_code", ""))
+        if not code:
+            continue
+        daily_snapshot[code] = {
+            "price": item.get("price", 0.0),
+            "stock_etm": item.get("stock_etm", 0),
+            "stock_vendor": item.get("stock_vendor", 0),
         }
-        for item in payload["items"]
-    }
-    with open(today_history_file, "w", encoding="utf-8") as f:
-        json.dump(daily_snapshot, f, ensure_ascii=False)
+
+    try:
+        with open(today_history_file, "w", encoding="utf-8") as f:
+            json.dump(daily_snapshot, f, ensure_ascii=False)
+    except Exception as e:
+        print(f"  Внимание: не удалось записать снимок {today_history_file}: {e}")
 
     # 2. Загружаем все исторические файлы, отсортированные по дате
     history_files = sorted(
@@ -599,83 +605,83 @@ def save_with_history(payload):
         path = os.path.join("history", hf)
         try:
             with open(path, "r", encoding="utf-8") as f:
-                history_snapshots.append((hf.replace(".json", ""), json.load(f)))
-        except Exception:
-            pass
+                data = json.load(f)
+                if isinstance(data, dict):
+                    history_snapshots.append((hf.replace(".json", ""), data))
+        except Exception as e:
+            print(f"  Пропуск поврежденного файла {hf}: {e}")
 
     # 3. Подготовка структур для подсчета уходимости (чистого расхода)
-    # sales[etm_code] = {"1d": {"etm": 0, "vendor": 0}, "7d": ..., "30d": ...}
-    sales_map = {
-        item["etm_code"]: {
+    sales_map = {}
+    for item in payload.get("items", []):
+        code = str(item.get("etm_code", ""))
+        sales_map[code] = {
             "etm_1d": 0, "vendor_1d": 0,
             "etm_7d": 0, "vendor_7d": 0,
             "etm_30d": 0, "vendor_30d": 0,
         }
-        for item in payload["items"]
-    }
 
     num_snaps = len(history_snapshots)
     if num_snaps >= 2:
-        # Проходим по цепочке дней день за днем
         for i in range(1, num_snaps):
             prev_snap = history_snapshots[i - 1][1]
             cur_snap = history_snapshots[i][1]
-            days_from_end = num_snaps - 1 - i  # 0 - это переход во вчера->сегодня
+            days_from_end = num_snaps - 1 - i  # 0 - вчера -> сегодня
 
             for code, cur_data in cur_snap.items():
-                if code not in prev_snap or code not in sales_map:
+                code_str = str(code)
+                if code_str not in prev_snap:
                     continue
 
-                prev_data = prev_snap[code]
+                if code_str not in sales_map:
+                    sales_map[code_str] = {
+                        "etm_1d": 0, "vendor_1d": 0,
+                        "etm_7d": 0, "vendor_7d": 0,
+                        "etm_30d": 0, "vendor_30d": 0,
+                    }
+
+                prev_data = prev_snap[code_str]
                 prev_etm = prev_data.get("stock_etm", 0)
                 cur_etm = cur_data.get("stock_etm", 0)
                 prev_v = prev_data.get("stock_vendor", 0)
                 cur_v = cur_data.get("stock_vendor", 0)
 
-                # --- 1. РАСЧЕТ ПРОДАЖ (УХОДИМОСТЬ) ---
-                # Продажа засчитывается ТОЛЬКО если вчера товар уже был на складе (>0)
-                # и его остаток сегодня стал меньше.
+                # Продажа = только если остаток уменьшился и вчера было > 0
                 sold_etm = (prev_etm - cur_etm) if (prev_etm > 0 and cur_etm < prev_etm) else 0
                 sold_v = (prev_v - cur_v) if (prev_v > 0 and cur_v < prev_v) else 0
 
-                # --- 2. РАСЧЕТ ПОСТУПЛЕНИЙ (ПРИХОД) ---
-                # Поступление фиксируется, если остаток вырос
-                income_etm = (cur_etm - prev_etm) if cur_etm > prev_etm else 0
-                income_v = (cur_v - prev_v) if cur_v > prev_v else 0
-
-                # Запись в окна времени (1д, 7д, 30д)
                 if days_from_end == 0:
-                    sales_map[code]["etm_1d"] += sold_etm
-                    sales_map[code]["vendor_1d"] += sold_v
-                    sales_map[code]["income_etm_1d"] += income_etm
-                    sales_map[code]["income_vendor_1d"] += income_v
+                    sales_map[code_str]["etm_1d"] += sold_etm
+                    sales_map[code_str]["vendor_1d"] += sold_v
 
                 if days_from_end < 7:
-                    sales_map[code]["etm_7d"] += sold_etm
-                    sales_map[code]["vendor_7d"] += sold_v
-                    sales_map[code]["income_etm_7d"] += income_etm
-                    sales_map[code]["income_vendor_7d"] += income_v
+                    sales_map[code_str]["etm_7d"] += sold_etm
+                    sales_map[code_str]["vendor_7d"] += sold_v
 
                 if days_from_end < 30:
-                    sales_map[code]["etm_30d"] += sold_etm
-                    sales_map[code]["vendor_30d"] += sold_v
-                    sales_map[code]["income_etm_30d"] += income_etm
-                    sales_map[code]["income_vendor_30d"] += income_v
+                    sales_map[code_str]["etm_30d"] += sold_etm
+                    sales_map[code_str]["vendor_30d"] += sold_v
 
-    # 4. Получаем данные предыдущего дня для суточных дельт
+    # 4. Получаем данные вчерашнего дня (предпоследний срез)
     yesterday_data = history_snapshots[-2][1] if num_snaps >= 2 else {}
 
     # 5. Обогащаем товары метриками
-    for item in payload["items"]:
-        code = item["etm_code"]
+    default_sales = {
+        "etm_1d": 0, "vendor_1d": 0,
+        "etm_7d": 0, "vendor_7d": 0,
+        "etm_30d": 0, "vendor_30d": 0,
+    }
+
+    for item in payload.get("items", []):
+        code = str(item.get("etm_code", ""))
         prev = yesterday_data.get(code)
 
         if prev:
             old_price = prev.get("price", 0.0)
-            cur_price = item["price"]
+            cur_price = item.get("price", 0.0)
             item["price_diff"] = round(cur_price - old_price, 2) if old_price > 0 and cur_price > 0 else 0.0
-            item["stock_etm_diff"] = item["stock_etm"] - prev.get("stock_etm", 0)
-            item["stock_vendor_diff"] = item["stock_vendor"] - prev.get("stock_vendor", 0)
+            item["stock_etm_diff"] = item.get("stock_etm", 0) - prev.get("stock_etm", 0)
+            item["stock_vendor_diff"] = item.get("stock_vendor", 0) - prev.get("stock_vendor", 0)
             item["is_new"] = False
         else:
             item["price_diff"] = 0.0
@@ -683,10 +689,10 @@ def save_with_history(payload):
             item["stock_vendor_diff"] = 0
             item["is_new"] = bool(yesterday_data)
 
-        # Добавляем рассчитанные продажи
-        item["sales"] = sales_map[code]
+        # Безопасное присвоение структуры продаж
+        item["sales"] = sales_map.get(code, default_sales)
 
-    # 6. Сохраняем итоговый data.json
+    # 6. Сохраняем data.json
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
