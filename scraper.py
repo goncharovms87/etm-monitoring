@@ -692,6 +692,12 @@ def save_with_history(payload):
         # Безопасное присвоение структуры продаж
         item["sales"] = sales_map.get(code, default_sales)
 
+    # Формируем список доступных дат из папки history (от новых к старым)
+    payload["available_dates"] = sorted(
+        [hf.replace(".json", "") for hf in os.listdir("history") if hf.endswith(".json")],
+        reverse=True
+    )
+
     # 6. Сохраняем data.json
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
