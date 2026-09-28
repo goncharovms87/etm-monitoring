@@ -1,7 +1,7 @@
 name: Clean History & Recalculate
 
 on:
-  workflow_dispatch: # Позволяет запускать вручную по кнопке
+  workflow_dispatch:
 
 jobs:
   clean:
@@ -9,11 +9,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
 
       - name: Run Clean History
         run: python clean_history.py
