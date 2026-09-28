@@ -99,12 +99,20 @@
       font-weight: 600;
       padding: 6px 14px;
     }
+    .history-alert {
+      background-color: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #c2410c;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+    }
   </style>
 </head>
 <body class="py-4">
   <div class="container-fluid px-4">
     
-    <!-- Верхняя панель -->
+    <!-- Шапка -->
     <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-3">
       <div>
         <h3 class="fw-bold mb-1 d-flex align-items-center gap-2">
@@ -123,6 +131,15 @@
           <div class="small text-muted mt-1" id="total-count">Всего: —</div>
         </div>
       </div>
+    </div>
+
+    <!-- Индикатор исторического режима -->
+    <div id="history-banner" class="history-alert d-none mb-3 d-flex align-items-center justify-content-between">
+      <div>
+        <i class="bi bi-clock-history me-1"></i>
+        <strong>Внимание:</strong> Вы просматриваете архивный срез остатков за <span id="history-banner-date" class="fw-bold"></span>.
+      </div>
+      <button class="btn btn-sm btn-outline-dark py-0" id="btn-reset-date">Вернуться к текущему дню</button>
     </div>
 
     <!-- Переключатель режима -->
@@ -193,8 +210,8 @@
                 <tr>
                   <th class="text-start ps-3 py-2">Производитель</th>
                   <th>Всего SKU</th>
-                  <th>Текущий склад ЭТМ</th>
-                  <th>Текущий склад вендора</th>
+                  <th>Склад ЭТМ (срез)</th>
+                  <th>Склад вендора (срез)</th>
                   <th id="th-sales-etm">Продажи ЭТМ</th>
                   <th id="th-sales-vendor">Продажи Вендор</th>
                   <th id="th-sales-total">Всего продано</th>
@@ -237,13 +254,24 @@
     <div class="card border-0 shadow-sm bg-white mb-3">
       <div class="card-body py-2 px-3">
         <div class="row g-2 align-items-center">
-          <div class="col-12 col-md-3">
+          
+          <!-- ВЫБОР ДАТЫ СРЕЗА ИЗ ИСТОРИИ -->
+          <div class="col-12 col-md-2">
+            <label class="form-label text-muted small mb-1 fw-bold text-warning-emphasis">
+              <i class="bi bi-calendar-event"></i> Дата среза:
+            </label>
+            <select id="filter-date" class="form-select form-select-sm border-warning">
+              <option value="latest">Сегодня (актуально)</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-2">
             <label class="form-label text-muted small mb-1 fw-bold">Производитель:</label>
             <select id="filter-brand" class="form-select form-select-sm">
               <option value="">Все бренды</option>
             </select>
           </div>
-          <div class="col-12 col-md-3">
+          <div class="col-12 col-md-2">
             <label class="form-label text-muted small mb-1 fw-bold">Тип оборудования:</label>
             <select id="filter-type" class="form-select form-select-sm">
               <option value="">Все типы</option>
@@ -270,8 +298,8 @@
             <select id="filter-stock" class="form-select form-select-sm">
               <option value="all">Все позиции</option>
               <option value="with_sales">Только с продажами (>0)</option>
-              <option value="price_changed">С изменением цены (сутки)</option>
-              <option value="in_stock">Есть на складе (любом)</option>
+              <option value="price_changed">С изменением цены</option>
+              <option value="in_stock">Есть на складе</option>
               <option value="in_etm">Только склад ЭТМ</option>
             </select>
           </div>
@@ -299,15 +327,18 @@
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 
   <script>
-    let rawItems = [];
-    let displayedItems = [];
+    let baseItems = [];          // Исходные позиции из data.json
+    let currentViewItems = [];   // Позиции с подставленными остатками выбранной даты
+    let displayedItems = [];     // Отфильтрованные позиции
     let gridCatalog = null;
     let gridSales = null;
     let chartBrandsInstance = null;
     let chartTypesInstance = null;
     let currentMode = 'catalog'; // 'catalog' | 'sales'
     let currentPeriod = '7d';
+    let selectedDate = 'latest';
     let globalPayload = {};
+    const historicalCache = {};  // Кэш загруженных json-файлов истории
 
     const TYPE_NAMES = {
       "PLC": "ПЛК",
@@ -386,9 +417,10 @@
               const item = row.cells[9].data || {};
               const diff = item.price_diff || 0;
               let deltaHtml = '';
-              if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-price">▲ +${diff.toLocaleString('ru-RU')}</span>`;
-              else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-price">▼ ${diff.toLocaleString('ru-RU')}</span>`;
-
+              if (selectedDate === 'latest') {
+                if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-price">▲ +${diff.toLocaleString('ru-RU')}</span>`;
+                else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-price">▼ ${diff.toLocaleString('ru-RU')}</span>`;
+              }
               return p > 0
                 ? gridjs.html(`<div><span class="fw-bold text-dark">${p.toLocaleString('ru-RU')} ₽</span>${deltaHtml}</div>`)
                 : gridjs.html(`<span class="text-muted fst-italic small">По запросу</span>`);
@@ -403,9 +435,10 @@
               const item = row.cells[9].data || {};
               const diff = item.stock_etm_diff || 0;
               let deltaHtml = '';
-              if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
-              else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
-
+              if (selectedDate === 'latest') {
+                if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
+                else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
+              }
               return gridjs.html(`<div><span class="badge bg-success badge-stock">${val} шт.</span>${deltaHtml}</div>`);
             }
           },
@@ -418,9 +451,10 @@
               const item = row.cells[9].data || {};
               const diff = item.stock_vendor_diff || 0;
               let deltaHtml = '';
-              if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
-              else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
-
+              if (selectedDate === 'latest') {
+                if (diff > 0) deltaHtml = `<span class="delta-badge delta-up-stock">+${diff}</span>`;
+                else if (diff < 0) deltaHtml = `<span class="delta-badge delta-down-stock">${diff}</span>`;
+              }
               return gridjs.html(`<div><span class="badge bg-info text-dark badge-stock">${val} шт.</span>${deltaHtml}</div>`);
             }
           },
@@ -726,7 +760,7 @@
       const excludeOther = document.getElementById('filter-relevant-only').checked;
       currentPeriod = document.getElementById('filter-period').value;
 
-      displayedItems = rawItems.filter(item => {
+      displayedItems = currentViewItems.filter(item => {
         if (excludeOther && item.product_type === 'Other') return false;
         if (selectedBrand !== "" && item.brand !== selectedBrand) return false;
         if (selectedType !== "" && item.product_type !== selectedType) return false;
@@ -756,6 +790,65 @@
         renderVendorSalesSummary(displayedItems);
       }
     }
+
+    // Обработка переключения даты
+    async function handleDateChange(dateValue) {
+      selectedDate = dateValue;
+      const banner = document.getElementById('history-banner');
+      const bannerDate = document.getElementById('history-banner-date');
+
+      if (dateValue === 'latest') {
+        banner.classList.add('d-none');
+        currentViewItems = JSON.parse(JSON.stringify(baseItems));
+        applyFilters();
+        return;
+      }
+
+      banner.classList.remove('d-none');
+      bannerDate.textContent = dateValue;
+
+      // Если снимка еще нет в кэше — скачиваем из папки history/
+      if (!historicalCache[dateValue]) {
+        try {
+          const res = await fetch(`history/${dateValue}.json?t=${new Date().getTime()}`);
+          if (!res.ok) throw new Error("Срез не найден");
+          historicalCache[dateValue] = await res.json();
+        } catch (e) {
+          alert(`Не удалось загрузить срез за ${dateValue}: ${e.message}`);
+          document.getElementById('filter-date').value = 'latest';
+          handleDateChange('latest');
+          return;
+        }
+      }
+
+      const snap = historicalCache[dateValue];
+      // Подменяем остатки и цены для выбранной даты
+      currentViewItems = baseItems.map(item => {
+        const copy = { ...item };
+        const hist = snap[item.etm_code];
+        if (hist) {
+          copy.stock_etm = hist.stock_etm !== undefined ? hist.stock_etm : 0;
+          copy.stock_vendor = hist.stock_vendor !== undefined ? hist.stock_vendor : 0;
+          if (hist.price) copy.price = hist.price;
+        } else {
+          // Если товара в тот день не было
+          copy.stock_etm = 0;
+          copy.stock_vendor = 0;
+        }
+        return copy;
+      });
+
+      applyFilters();
+    }
+
+    document.getElementById('btn-reset-date').addEventListener('click', () => {
+      document.getElementById('filter-date').value = 'latest';
+      handleDateChange('latest');
+    });
+
+    document.getElementById('filter-date').addEventListener('change', (e) => {
+      handleDateChange(e.target.value);
+    });
 
     document.getElementById('btn-view-catalog').addEventListener('click', () => {
       currentMode = 'catalog';
@@ -792,12 +885,25 @@
       })
       .then(payload => {
         globalPayload = payload;
-        rawItems = payload.items || [];
+        baseItems = payload.items || [];
+        currentViewItems = JSON.parse(JSON.stringify(baseItems));
+        
         document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
-        document.getElementById('total-count').textContent = 'Всего в базе: ' + rawItems.length;
+        document.getElementById('total-count').textContent = 'Всего в базе: ' + baseItems.length;
 
+        // Заполняем список дат
+        const dateSelect = document.getElementById('filter-date');
+        const availableDates = payload.available_dates || [];
+        availableDates.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = d;
+          dateSelect.appendChild(opt);
+        });
+
+        // Заполняем список брендов
         const brandSelect = document.getElementById('filter-brand');
-        const brands = Array.from(new Set(rawItems.map(i => i.brand))).filter(Boolean).sort();
+        const brands = Array.from(new Set(baseItems.map(i => i.brand))).filter(Boolean).sort();
         brands.forEach(b => {
           const opt = document.createElement('option');
           opt.value = b;
@@ -826,12 +932,13 @@
 
       let headers = [];
       let rows = [];
+      const dateTag = selectedDate === 'latest' ? 'current' : selectedDate;
 
       if (currentMode === 'sales') {
         const periodLabel = currentPeriod === '1d' ? '1д' : currentPeriod === '7d' ? '7д' : '30д';
         headers = [
           "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
-          "Текущий склад ЭТМ", "Текущий склад вендора",
+          `Склад ЭТМ (${dateTag})`, `Склад вендора (${dateTag})`,
           `Продажи ЭТМ (${periodLabel})`, `Продажи Вендор (${periodLabel})`, `Всего продано (${periodLabel})`,
           "Ссылка"
         ];
@@ -858,7 +965,7 @@
       } else {
         headers = [
           "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
-          "Изм. цены (сутки)", "Склад ЭТМ", "Изм. ЭТМ (сутки)", "Склад вендора", "Изм. вендор (сутки)",
+          `Склад ЭТМ (${dateTag})`, `Склад вендора (${dateTag})`,
           "Ссылка"
         ];
 
@@ -869,11 +976,8 @@
           `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
           `"${(i.name || '').replace(/"/g, '""')}"`,
           i.price || 0,
-          i.price_diff || 0,
           i.stock_etm || 0,
-          i.stock_etm_diff || 0,
           i.stock_vendor || 0,
-          i.stock_vendor_diff || 0,
           i.url
         ]);
       }
@@ -882,8 +986,7 @@
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      const prefix = currentMode === 'sales' ? 'etm_sales_' : 'etm_catalog_';
-      link.download = `${prefix}${new Date().toISOString().slice(0, 10)}.csv`;
+      link.download = `etm_snapshot_${dateTag}_${new Date().toISOString().slice(0, 10)}.csv`;
       link.click();
     });
   </script>
