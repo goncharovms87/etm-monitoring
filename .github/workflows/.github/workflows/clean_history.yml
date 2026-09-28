@@ -1,0 +1,26 @@
+name: Clean History & Recalculate
+
+on:
+  workflow_dispatch: # Позволяет запускать вручную по кнопке
+
+jobs:
+  clean:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Clean History
+        run: python clean_history.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add history/ data.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-clean history anomalies and update data.json" && git push)
