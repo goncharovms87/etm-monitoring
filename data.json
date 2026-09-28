@@ -1941,15 +1941,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 21,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 21
       }
     },
     {
@@ -1973,15 +1973,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2005,15 +2005,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2037,15 +2037,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2098,16 +2098,16 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -2,
-      "stock_vendor_diff": -2600,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 2,
-        "vendor_1d": 2600,
+        "etm_1d": 0,
+        "vendor_1d": 0,
         "etm_7d": 2,
-        "vendor_7d": 2628,
+        "vendor_7d": 36,
         "etm_30d": 2,
-        "vendor_30d": 2628
+        "vendor_30d": 36
       }
     },
     {
@@ -2130,16 +2130,16 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 35,
-      "stock_vendor_diff": 32,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
-        "etm_7d": 35,
-        "vendor_7d": 33,
-        "etm_30d": 70,
-        "vendor_30d": 39
+        "etm_7d": 0,
+        "vendor_7d": 1,
+        "etm_30d": 35,
+        "vendor_30d": 7
       }
     },
     {
@@ -2225,15 +2225,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26005,
+        "vendor_7d": 5,
         "etm_30d": 0,
-        "vendor_30d": 26005
+        "vendor_30d": 5
       }
     },
     {
@@ -2257,15 +2257,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2289,15 +2289,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2352,15 +2352,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2384,15 +2384,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26001,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 26001
+        "vendor_30d": 1
       }
     },
     {
@@ -7844,15 +7844,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26019,
+        "vendor_7d": 19,
         "etm_30d": 0,
-        "vendor_30d": 26019
+        "vendor_30d": 19
       }
     },
     {
@@ -7876,15 +7876,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26006,
+        "vendor_7d": 6,
         "etm_30d": 0,
-        "vendor_30d": 26006
+        "vendor_30d": 6
       }
     },
     {
@@ -7908,15 +7908,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26010,
+        "vendor_7d": 10,
         "etm_30d": 0,
-        "vendor_30d": 26010
+        "vendor_30d": 10
       }
     },
     {
@@ -7940,15 +7940,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -7972,15 +7972,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 26000
+        "vendor_30d": 0
       }
     },
     {
@@ -8004,15 +8004,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 26000
+        "vendor_30d": 0
       }
     },
     {
@@ -8036,15 +8036,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 26000
+        "vendor_30d": 0
       }
     },
     {
@@ -8068,15 +8068,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2607,
+        "vendor_7d": 7,
         "etm_30d": 0,
-        "vendor_30d": 2607
+        "vendor_30d": 7
       }
     },
     {
@@ -8100,15 +8100,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2619,
+        "vendor_7d": 19,
         "etm_30d": 0,
-        "vendor_30d": 2619
+        "vendor_30d": 19
       }
     },
     {
@@ -8162,16 +8162,16 @@
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -1,
-      "stock_vendor_diff": -2600,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 1,
-        "vendor_1d": 2600,
+        "etm_1d": 0,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 1,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -12650,15 +12650,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -6,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 6,
+        "vendor_1d": 0,
         "etm_7d": 3,
-        "vendor_7d": 100,
+        "vendor_7d": 94,
         "etm_30d": 9,
-        "vendor_30d": 207
+        "vendor_30d": 201
       }
     },
     {
@@ -12682,15 +12682,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 26015,
+        "vendor_7d": 15,
         "etm_30d": 5,
-        "vendor_30d": 26285
+        "vendor_30d": 285
       }
     },
     {
@@ -12713,15 +12713,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -49,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 49,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 49,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 98
+        "vendor_30d": 49
       }
     },
     {
@@ -12745,15 +12745,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 2,
-        "vendor_7d": 2606,
+        "vendor_7d": 6,
         "etm_30d": 4,
-        "vendor_30d": 2607
+        "vendor_30d": 7
       }
     },
     {
@@ -12777,15 +12777,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 2603,
+        "vendor_7d": 3,
         "etm_30d": 1,
-        "vendor_30d": 2603
+        "vendor_30d": 3
       }
     },
     {
@@ -12841,7 +12841,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -12872,15 +12872,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -260,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 260,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 260,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 260
+        "vendor_30d": 0
       }
     },
     {
@@ -13090,7 +13090,7 @@
       "price_diff": 0.0,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
-      "is_new": true,
+      "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -15984,15 +15984,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 1,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2
+        "vendor_30d": 1
       }
     },
     {
