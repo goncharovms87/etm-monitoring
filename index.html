@@ -114,6 +114,16 @@
       border-radius: 3px;
       margin-right: 6px;
     }
+    .diff-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+    }
+    .diff-cheaper { background-color: #dcfce7; color: #15803d; }
+    .diff-expensive { background-color: #fee2e2; color: #b91c1c; }
+    .diff-equal { background-color: #f1f5f9; color: #475569; }
   </style>
 </head>
 <body class="py-4">
@@ -144,12 +154,12 @@
     <div id="history-banner" class="history-alert d-none mb-3 d-flex align-items-center justify-content-between">
       <div>
         <i class="bi bi-clock-history me-1"></i>
-        <strong>Внимание:</strong> Вы просматриваете срез за <span id="history-banner-date" class="fw-bold"></span>.
+        <strong>Внимание:</strong> Вы просматриваете архивный срез за <span id="history-banner-date" class="fw-bold"></span>.
       </div>
       <button class="btn btn-sm btn-outline-dark py-0" id="btn-reset-date">Вернуться к текущему дню</button>
     </div>
 
-    <!-- Переключатель режима (3 режима) -->
+    <!-- Переключатель режима -->
     <div class="d-flex align-items-center justify-content-between bg-white p-2 rounded shadow-sm border mb-4">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-primary btn-sm btn-mode-toggle" id="btn-view-catalog">
@@ -204,20 +214,32 @@
       </div>
     </div>
 
-    <!-- Блок фильтрации (Дата среза, бренд, тип) -->
+    <!-- Блок фильтрации -->
     <div class="card border-0 shadow-sm bg-white mb-3">
       <div class="card-body py-2 px-3">
         <div class="row g-2 align-items-center">
           
+          <!-- Выбор даты среза для всех вкладок -->
           <div class="col-12 col-md-3">
             <label class="form-label text-muted small mb-1 fw-bold text-warning-emphasis">
-              <i class="bi bi-calendar-event"></i> Дата среза (для всех вкладок):
+              <i class="bi bi-calendar-event"></i> Дата среза (Архив):
             </label>
             <select id="filter-date" class="form-select form-select-sm border-warning">
               <option value="latest">Сегодня (актуально)</option>
             </select>
           </div>
 
+          <!-- Фильтр конкретного артикула (для вкладки Кросс-референс) -->
+          <div class="col-12 col-md-4 filter-cross-only d-none">
+            <label class="form-label text-muted small mb-1 fw-bold text-primary">
+              <i class="bi bi-zoom-in"></i> Фокус на позиции КЭАЗ:
+            </label>
+            <select id="filter-cross-sku" class="form-select form-select-sm border-primary">
+              <option value="all">Все артикулы (Обзорная панорама)</option>
+            </select>
+          </div>
+
+          <!-- Фильтры каталога -->
           <div class="col-12 col-md-2 filter-catalog-only">
             <label class="form-label text-muted small mb-1 fw-bold">Производитель:</label>
             <select id="filter-brand" class="form-select form-select-sm">
@@ -259,7 +281,7 @@
           <div class="col-12 col-md-1 d-flex align-items-end filter-catalog-only">
             <div class="form-check form-switch mb-1">
               <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
-              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Без "Other"</label>
+              <label class="form-check-label small fw-semibold" for="filter-relevant-only">Без Other</label>
             </div>
           </div>
         </div>
@@ -290,7 +312,7 @@
       </div>
     </div>
 
-    <!-- Вкладка 2: Аналитика продаж по вендорам -->
+    <!-- Вкладка 2: Продажи по вендорам -->
     <div id="sales-analytics-section" class="d-none mb-4">
       <div class="card border-0 shadow-sm bg-white">
         <div class="card-header bg-transparent border-0 pt-3 pb-2 d-flex justify-content-between align-items-center">
@@ -306,8 +328,8 @@
                 <tr>
                   <th class="text-start ps-3 py-2">Производитель</th>
                   <th>Всего SKU</th>
-                  <th>Склад ЭТМ (срез)</th>
-                  <th>Склад вендора (срез)</th>
+                  <th>Склад ЭТМ</th>
+                  <th>Склад вендора</th>
                   <th id="th-sales-etm">Продажи ЭТМ</th>
                   <th id="th-sales-vendor">Продажи Вендор</th>
                   <th id="th-sales-total">Всего продано</th>
@@ -324,58 +346,66 @@
 
     <!-- Вкладка 3: ДАШБОРД СРАВНЕНИЯ ЦЕН (КРОСС-РЕФЕРЕНС) -->
     <div id="cross-analytics-section" class="d-none mb-4">
-      <!-- Легенда вендоров -->
+      
+      <!-- Легенда со скидочной сеткой -->
       <div class="card border-0 shadow-sm bg-white mb-3">
-        <div class="card-body py-2 px-3 d-flex flex-wrap align-items-center gap-3">
-          <span class="small fw-bold text-muted text-uppercase">Цветовая разметка вендоров:</span>
-          <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #38bdf8;"></span>КЭАЗ (-32% дистр.)</div>
-          <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #86efac;"></span>ОВЕН (-15% дистр.)</div>
-          <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #ef4444;"></span>EKF (-30% дистр.)</div>
-          <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #1e3a8a;"></span>ONI (-5% дистр.)</div>
-          <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #f472b6;"></span>DKC (-40% дистр.)</div>
+        <div class="card-body py-2 px-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div class="d-flex flex-wrap align-items-center gap-3">
+            <span class="small fw-bold text-muted text-uppercase">Цвета и скидки дистрибьютора:</span>
+            <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #38bdf8;"></span>КЭАЗ (-32%)</div>
+            <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #86efac;"></span>ОВЕН (-15%)</div>
+            <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #ef4444;"></span>EKF (-30%)</div>
+            <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #1e3a8a;"></span>ONI (-5%)</div>
+            <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #f472b6;"></span>DKC (-40%)</div>
+          </div>
+          <div class="small text-muted fst-italic">
+            База расчета разницы: <strong>КЭАЗ = 100%</strong>
+          </div>
         </div>
       </div>
 
-      <!-- График 1: Розничная цена ЭТМ (РРЦ) -->
+      <!-- График 1: Розничная цена ЭТМ -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
-            <i class="bi bi-tag me-1"></i> График 1. Сравнение цен в каталоге ЭТМ (РРЦ) по всей линейке КЭАЗ
+            <i class="bi bi-tag me-1"></i> График 1. Розничная цена в ЭТМ (РРЦ) с разницей к КЭАЗ (%)
           </span>
-          <span class="badge bg-light text-muted border">Прямое сравнение розничных цен</span>
+          <span class="badge bg-light text-muted border">Цены каталога</span>
         </div>
-        <div class="card-body pt-2" style="position: relative; height: 420px;">
+        <div class="card-body pt-2" style="position: relative; min-height: 440px;" id="container-chart-retail">
           <canvas id="chartCrossRetail"></canvas>
         </div>
       </div>
 
-      <!-- График 2: Моделируемая цена дистрибьютора -->
+      <!-- График 2: Дистрибьюторская цена -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
-            <i class="bi bi-percent me-1"></i> График 2. Расчетная цена дистрибьютора (со скидками от ЭТМ)
+            <i class="bi bi-percent me-1"></i> График 2. Цена дистрибьютора со скидками и разницей к КЭАЗ (%)
           </span>
           <span class="badge bg-light text-muted border">КЭАЗ: -32% | EKF: -30% | ОВЕН: -15% | ONI: -5% | DKC: -40%</span>
         </div>
-        <div class="card-body pt-2" style="position: relative; height: 420px;">
+        <div class="card-body pt-2" style="position: relative; min-height: 440px;" id="container-chart-distr">
           <canvas id="chartCrossDistr"></canvas>
         </div>
       </div>
 
-      <!-- Таблица кросс-матрицы -->
+      <!-- Детальная матрица -->
       <div class="card border-0 shadow-sm bg-white">
         <div class="card-header bg-transparent border-0 pt-3 pb-0">
-          <span class="fw-bold text-dark text-uppercase small"><i class="bi bi-table me-1"></i> Детализированная кросс-матрица цен и наличия</span>
+          <span class="fw-bold text-dark text-uppercase small">
+            <i class="bi bi-table me-1"></i> Сравнительная матрица аналогов (Отклонение в % от КЭАЗ)
+          </span>
         </div>
         <div class="card-body p-3">
           <div class="table-responsive">
-            <table class="table table-bordered table-sm align-middle mb-0 text-center" style="font-size: 0.85rem;" id="table-cross-matrix">
+            <table class="table table-bordered table-sm align-middle mb-0 text-center" style="font-size: 0.85rem;">
               <thead class="table-light text-muted">
                 <tr>
-                  <th class="text-start ps-3" style="width: 22%;">Артикул КЭАЗ</th>
-                  <th style="width: 26%;">Аналог 1 (ОВЕН)</th>
-                  <th style="width: 26%;">Аналог 2 (EKF)</th>
-                  <th style="width: 26%;">Аналог 3 (DKC / ONI)</th>
+                  <th class="text-start ps-3" style="width: 25%;">Позиция КЭАЗ (Эталон 100%)</th>
+                  <th style="width: 25%;">Аналог 1 (ОВЕН)</th>
+                  <th style="width: 25%;">Аналог 2 (EKF)</th>
+                  <th style="width: 25%;">Аналог 3 (DKC / ONI)</th>
                 </tr>
               </thead>
               <tbody id="cross-matrix-body">
@@ -385,9 +415,10 @@
           </div>
         </div>
       </div>
+
     </div>
 
-    <!-- Таблицы Grid.js -->
+    <!-- Таблицы каталога и уходимости Grid.js -->
     <div class="card border-0 shadow-sm bg-white" id="grid-wrapper-card">
       <div class="card-body p-3">
         <div id="grid-container-catalog"></div>
@@ -401,26 +432,18 @@
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 
   <script>
-    // Таблица соответствия артикулов КЭАЗ и аналогов конкурентов
+    // Актуальная таблица кросс-референса
     const CROSS_DATA = [
-      { keaz: "293070", competitors: ["ПЛК160-24.А-М", "", ""] },
-      { keaz: "419012", competitors: ["ПЛК160-24.А-М", "", ""] },
-      { keaz: "293073", competitors: ["ПЛК110-24.30.Р-М", "F100-16-R", "C1000-24DT"] },
-      { keaz: "288020", competitors: ["МВ110-224.16Д", "EMF-D-8X", "C1000-08DX"] },
-      { keaz: "288026", competitors: ["МВ110-224.16Д", "EMF-D-16X", "C1000-16DT"] },
-      { keaz: "288019", competitors: ["МУ110-224.8К", "EMF-D-8Y-N", "C1000-08DT"] },
-      { keaz: "288025", competitors: ["МУ110-224.16К", "EMF-D-16Y-N", "C1000-16DT"] },
-      { keaz: "288024", competitors: ["МУ110-224.6У", "", "C1000-22IV"] },
-      { keaz: "288028", competitors: ["МУ110-224.6У", "EMF-A-4AO", "C1000-22IV"] },
-      { keaz: "288023", competitors: ["МВ110-224.2А", "EMF-A-4AI", "C1000-04IV"] },
-      { keaz: "288027", competitors: ["МВ110-24.8АС", "EMF-A-8AI", "C1000-04IV"] },
-      { keaz: "344585", competitors: ["ПР200-24.1.0.0", "PRL100-12-R-DC", "PLC-410-CPU-08U04R-1AD-00"] },
-      { keaz: "344586", competitors: ["ПР200-220.1.0.0", "PRL100-12-R-AC", "PLC-410-CPU-08D04R-1AC-00"] },
-      { keaz: "344587", competitors: ["ПРМ-24.1", "PRL-E-4DI4DO-R-AC", "PLC-410-EMD-04U04R-0DC-00"] },
-      { keaz: "344589", competitors: ["ПРМ-220.1", "PRL-E-4DI4DO-R-DC", "PLC-410-EMD-04D04R-0AC-00"] }
+      { keaz: "293073", name: "ПЛК OptiLogic L", competitors: ["ПЛК110-24.30.Р-М", "F100-16-R", "C1000-24DT"] },
+      { keaz: "288020", name: "Модуль OptiLogic 16DI", competitors: ["МВ110-224.16Д", "EMF-D-8X", "C1000-08DX"] },
+      { keaz: "288024", name: "Модуль OptiLogic 6AO", competitors: ["МУ110-224.6У", "", "C1000-22IV"] },
+      { keaz: "288028", name: "Модуль OptiLogic 6AO (универс)", competitors: ["МУ110-224.6У", "EMF-A-4AO", "C1000-22IV"] },
+      { keaz: "344585", name: "Реле OptiSmart 24V", competitors: ["ПР200-24.1.0.0", "PRL100-12-R-DC", "PLC-410-CPU-08U04R-1AD-00"] },
+      { keaz: "344586", name: "Реле OptiSmart 220V", competitors: ["ПР200-220.1.0.0", "PRL100-12-R-AC", "PLC-410-CPU-08D04R-1AC-00"] },
+      { keaz: "344587", name: "Модуль расш. OptiSmart 24V", competitors: ["ПРМ-24.1", "PRL-E-4DI4DO-R-AC", "PLC-410-EMD-04U04R-0DC-00"] },
+      { keaz: "344589", name: "Модуль расш. OptiSmart 220V", competitors: ["ПРМ-220.1", "PRL-E-4DI4DO-R-DC", "PLC-410-EMD-04D04R-0AC-00"] }
     ];
 
-    // Коэффициенты для расчета дистрибьюторской цены от РРЦ ЭТМ
     const DISTR_FACTORS = {
       "КЭАЗ": 0.68,   // -32%
       "EKF": 0.70,    // -30%
@@ -430,7 +453,6 @@
       "Другой": 1.00
     };
 
-    // Цвета брендов
     const BRAND_COLORS = {
       "КЭАЗ": { bg: "#38bdf8", border: "#0284c7" },
       "ОВЕН": { bg: "#86efac", border: "#22c55e" },
@@ -449,9 +471,10 @@
     let chartTypesInstance = null;
     let chartCrossRetailInstance = null;
     let chartCrossDistrInstance = null;
-    let currentMode = 'catalog'; // 'catalog' | 'sales' | 'cross'
+    let currentMode = 'catalog';
     let currentPeriod = '7d';
     let selectedDate = 'latest';
+    let selectedCrossSku = 'all';
     let globalPayload = {};
     const historicalCache = {};
 
@@ -839,26 +862,31 @@
     }
 
     // ==========================================
-    // ЛОГИКА ДАШБОРДА КРОСС-РЕФЕРЕНСА
+    // ЛОГИКА ДАШБОРДА КРОСС-РЕФЕРЕНСА (С НАИМЕНОВАНИЯМИ И %)
     // ==========================================
     function renderCrossDashboard() {
+      const activeRows = selectedCrossSku === 'all' 
+        ? CROSS_DATA 
+        : CROSS_DATA.filter(r => r.keaz === selectedCrossSku);
+
       const labels = [];
-      const seriesRetail = {
-        "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": []
-      };
-      const seriesDistr = {
-        "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": []
-      };
+      const seriesRetail = { "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": [] };
+      const seriesDistr = { "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": [] };
+      const diffRetailToKeaz = { "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": [] };
+      const diffDistrToKeaz = { "КЭАЗ": [], "ОВЕН": [], "EKF": [], "ONI": [], "DKC": [] };
 
       const tableRows = [];
 
-      CROSS_DATA.forEach(row => {
+      activeRows.forEach(row => {
         const keazItem = findItemByCodeOrArticle(row.keaz);
         const keazPrice = keazItem && keazItem.price > 0 ? keazItem.price : 0;
-        const keazLabel = keazItem && keazItem.vendor_code ? `${row.keaz} (${keazItem.vendor_code})` : row.keaz;
-        labels.push(keazLabel);
+        
+        // Формируем читаемое имя столбца: Артикул + Наименование КЭАЗ
+        const displayName = keazItem && keazItem.name && keazItem.name !== "—"
+          ? `${row.keaz} - ${keazItem.name.slice(0, 38)}...`
+          : `${row.keaz} (${row.name})`;
+        labels.push(displayName);
 
-        // Инициализируем нулями
         const rowRetail = { "КЭАЗ": keazPrice, "ОВЕН": 0, "EKF": 0, "ONI": 0, "DKC": 0 };
         const rowDistr = { 
           "КЭАЗ": Math.round(keazPrice * DISTR_FACTORS["КЭАЗ"]), 
@@ -879,32 +907,76 @@
           return { art, item: found, brand, price, distrPrice };
         });
 
+        // Расчет процентов отклонения относительно КЭАЗ (КЭАЗ = 100%)
         Object.keys(seriesRetail).forEach(b => {
-          seriesRetail[b].push(rowRetail[b]);
-          seriesDistr[b].push(rowDistr[b]);
+          const rP = rowRetail[b];
+          const dP = rowDistr[b];
+          seriesRetail[b].push(rP);
+          seriesDistr[b].push(dP);
+
+          if (b === "КЭАЗ" || keazPrice === 0 || rP === 0) {
+            diffRetailToKeaz[b].push(0);
+          } else {
+            const pct = Math.round(((rP - keazPrice) / keazPrice) * 100);
+            diffRetailToKeaz[b].push(pct);
+          }
+
+          const keazDistrP = rowDistr["КЭАЗ"];
+          if (b === "КЭАЗ" || keazDistrP === 0 || dP === 0) {
+            diffDistrToKeaz[b].push(0);
+          } else {
+            const pct = Math.round(((dP - keazDistrP) / keazDistrP) * 100);
+            diffDistrToKeaz[b].push(pct);
+          }
         });
 
-        // Строка матрицы
+        // Оформление строки матрицы
         function formatCell(comp) {
           if (!comp) return '<span class="text-muted">—</span>';
-          const p = comp.price > 0 ? `${comp.price.toLocaleString('ru-RU')} ₽` : '<span class="text-muted">Нет цены</span>';
-          const dp = comp.price > 0 ? `<span class="badge bg-light text-dark border">Дистр: ${comp.distrPrice.toLocaleString('ru-RU')} ₽</span>` : '';
+          if (comp.price <= 0) {
+            return `
+              <div class="p-1 rounded text-start" style="border-left: 3px solid #cbd5e1;">
+                <div class="fw-bold text-muted small">${comp.brand}: ${comp.art}</div>
+                <div class="text-muted fst-italic small">Цена по запросу</div>
+              </div>
+            `;
+          }
+
           const colorInfo = BRAND_COLORS[comp.brand] || BRAND_COLORS["Другой"];
           
+          let diffRetailBadge = '';
+          let diffDistrBadge = '';
+
+          if (keazPrice > 0) {
+            const rDiff = Math.round(((comp.price - keazPrice) / keazPrice) * 100);
+            const rClass = rDiff < 0 ? 'diff-cheaper' : (rDiff > 0 ? 'diff-expensive' : 'diff-equal');
+            const rSign = rDiff > 0 ? `+${rDiff}%` : `${rDiff}%`;
+            diffRetailBadge = `<span class="diff-badge ${rClass}">${rSign} к КЭАЗ</span>`;
+
+            const dDiff = Math.round(((comp.distrPrice - rowDistr["КЭАЗ"]) / rowDistr["КЭАЗ"]) * 100);
+            const dClass = dDiff < 0 ? 'diff-cheaper' : (dDiff > 0 ? 'diff-expensive' : 'diff-equal');
+            const dSign = dDiff > 0 ? `+${dDiff}%` : `${dDiff}%`;
+            diffDistrBadge = `<span class="diff-badge ${dClass}">${dSign}</span>`;
+          }
+
           return `
             <div class="p-1 rounded text-start" style="border-left: 3px solid ${colorInfo.border};">
               <div class="fw-bold" style="color: ${colorInfo.border}; font-size: 0.82rem;">${comp.brand}: ${comp.art}</div>
-              <div class="small fw-semibold text-dark">${p} ${dp}</div>
+              <div class="small fw-semibold text-dark">
+                РРЦ: ${comp.price.toLocaleString('ru-RU')} ₽ ${diffRetailBadge}
+              </div>
+              <div class="small text-muted">
+                Дистр: ${comp.distrPrice.toLocaleString('ru-RU')} ₽ ${diffDistrBadge}
+              </div>
             </div>
           `;
         }
 
         const keazCell = `
           <div class="p-1 rounded text-start" style="border-left: 3px solid #0284c7;">
-            <div class="fw-bold text-primary">${row.keaz} ${keazItem ? '(' + (keazItem.vendor_code || '') + ')' : ''}</div>
-            <div class="small fw-semibold text-dark">${keazPrice > 0 ? keazPrice.toLocaleString('ru-RU') + ' ₽' : '—'} 
-              <span class="badge bg-light text-dark border">Дистр: ${rowDistr["КЭАЗ"].toLocaleString('ru-RU')} ₽</span>
-            </div>
+            <div class="fw-bold text-primary">${row.keaz} (${row.name})</div>
+            <div class="small fw-bold text-dark">РРЦ: ${keazPrice > 0 ? keazPrice.toLocaleString('ru-RU') + ' ₽' : '—'} <span class="diff-badge diff-equal">100%</span></div>
+            <div class="small text-muted">Дистр: ${rowDistr["КЭАЗ"].toLocaleString('ru-RU')} ₽ (-32%)</div>
           </div>
         `;
 
@@ -934,30 +1006,48 @@
         });
       }
 
-      const commonOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        plugins: {
-          legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12, weight: 'bold' } } },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => `${ctx.dataset.label}: ${ctx.raw > 0 ? ctx.raw.toLocaleString('ru-RU') + ' ₽' : 'Нет данных'}`
+      function makeOptions(isDistr) {
+        return {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12, weight: 'bold' } } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const val = ctx.raw || 0;
+                  const b = ctx.dataset.label;
+                  const idx = ctx.dataIndex;
+                  if (val === 0) return `${b}: Нет данных`;
+
+                  const diffArr = isDistr ? diffDistrToKeaz[b] : diffRetailToKeaz[b];
+                  const diff = diffArr ? diffArr[idx] : 0;
+                  let diffStr = '';
+                  if (b === 'КЭАЗ') {
+                    diffStr = ' (Эталон 100%)';
+                  } else if (diff !== 0) {
+                    diffStr = diff > 0 ? ` (+${diff}% от КЭАЗ)` : ` (${diff}% от КЭАЗ)`;
+                  }
+
+                  return `${b}: ${val.toLocaleString('ru-RU')} ₽${diffStr}`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: (val) => val.toLocaleString('ru-RU') + ' ₽' },
+              grid: { color: '#f1f5f9' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { maxRotation: 40, minRotation: 20, font: { size: 11, weight: '500' } }
             }
           }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: { callback: (val) => val.toLocaleString('ru-RU') + ' ₽' },
-            grid: { color: '#f1f5f9' }
-          },
-          x: {
-            grid: { display: false },
-            ticks: { maxRotation: 45, minRotation: 30, font: { size: 10 } }
-          }
-        }
-      };
+        };
+      }
 
       // 1. График РРЦ
       const ctxRetail = document.getElementById('chartCrossRetail').getContext('2d');
@@ -965,7 +1055,7 @@
       chartCrossRetailInstance = new Chart(ctxRetail, {
         type: 'bar',
         data: { labels: labels, datasets: buildDatasets(seriesRetail) },
-        options: commonOptions
+        options: makeOptions(false)
       });
 
       // 2. График Дистрибьютора
@@ -974,7 +1064,7 @@
       chartCrossDistrInstance = new Chart(ctxDistr, {
         type: 'bar',
         data: { labels: labels, datasets: buildDatasets(seriesDistr) },
-        options: commonOptions
+        options: makeOptions(true)
       });
     }
 
@@ -1124,13 +1214,17 @@
       handleDateChange(e.target.value);
     });
 
+    document.getElementById('filter-cross-sku').addEventListener('change', (e) => {
+      selectedCrossSku = e.target.value;
+      renderCrossDashboard();
+    });
+
     function setViewMode(mode) {
       currentMode = mode;
       document.getElementById('btn-view-catalog').className = mode === 'catalog' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
       document.getElementById('btn-view-sales').className = mode === 'sales' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
       document.getElementById('btn-view-cross').className = mode === 'cross' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
 
-      // Скрываем все секции
       document.getElementById('catalog-analytics-section').classList.add('d-none');
       document.getElementById('sales-analytics-section').classList.add('d-none');
       document.getElementById('cross-analytics-section').classList.add('d-none');
@@ -1139,6 +1233,7 @@
       document.getElementById('grid-container-sales').classList.add('d-none');
 
       document.querySelectorAll('.filter-catalog-only').forEach(el => el.classList.toggle('d-none', mode === 'cross'));
+      document.querySelectorAll('.filter-cross-only').forEach(el => el.classList.toggle('d-none', mode !== 'cross'));
       document.querySelector('.filter-sales-only').classList.toggle('d-none', mode !== 'sales');
 
       if (mode === 'catalog') {
@@ -1173,6 +1268,7 @@
         document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
         document.getElementById('total-count').textContent = 'Всего в базе: ' + baseItems.length;
 
+        // Заполнение списка дат
         const dateSelect = document.getElementById('filter-date');
         const availableDates = payload.available_dates || [];
         availableDates.forEach(d => {
@@ -1182,6 +1278,16 @@
           dateSelect.appendChild(opt);
         });
 
+        // Заполнение выпадающего списка артикулов КЭАЗ для фокуса
+        const crossSelect = document.getElementById('filter-cross-sku');
+        CROSS_DATA.forEach(row => {
+          const opt = document.createElement('option');
+          opt.value = row.keaz;
+          opt.textContent = `${row.keaz} - ${row.name}`;
+          crossSelect.appendChild(opt);
+        });
+
+        // Бренды для фильтра
         const brandSelect = document.getElementById('filter-brand');
         const brands = Array.from(new Set(baseItems.map(i => i.brand))).filter(Boolean).sort();
         brands.forEach(b => {
