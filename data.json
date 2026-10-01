@@ -1,34 +1,34 @@
 {
-  "last_updated": "01.10.2026 06:23 UTC",
+  "last_updated": "01.10.2026 14:06 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1448.6,
-  "total_items": 619,
+  "elapsed_seconds": 1392.9,
+  "total_items": 641,
   "statistics": {
-    "categories": 17,
-    "pages": 83,
-    "cards_seen": 632,
-    "relevant": 619,
-    "added": 619,
+    "categories": 24,
+    "pages": 97,
+    "cards_seen": 726,
+    "relevant": 713,
+    "added": 641,
     "by_product_type": {
-      "I/O module": 243,
+      "I/O module": 249,
       "PLC": 104,
       "Programmable relay": 70,
-      "Other module": 63,
+      "Other module": 65,
+      "Other": 58,
       "Communication module": 51,
-      "Other": 45,
       "Other controller": 39,
       "HMI": 3,
-      "Power supply": 1
+      "Power supply": 2
     },
     "by_brand": {
       "ONI": 151,
       "EKF": 119,
       "ОВЕН": 109,
       "Systeme Electric": 88,
+      "КЭАЗ": 42,
       "DKC": 39,
       "Rievtech": 36,
       "Siemens": 29,
-      "КЭАЗ": 20,
       "Schneider Electric": 16,
       "Тракт-Автоматика": 9,
       "Segnetics": 3
@@ -45,12 +45,75 @@
       "unique_added": 20
     },
     {
+      "category": "КЭАЗ: Артикул 293070",
+      "pages": 2,
+      "cards_seen": 14,
+      "relevant": 14,
+      "added": 14,
+      "unique_after": 34,
+      "unique_added": 14
+    },
+    {
+      "category": "КЭАЗ: Артикул 419012",
+      "pages": 2,
+      "cards_seen": 14,
+      "relevant": 14,
+      "added": 2,
+      "unique_after": 36,
+      "unique_added": 2
+    },
+    {
+      "category": "КЭАЗ: Артикул 288026",
+      "pages": 2,
+      "cards_seen": 13,
+      "relevant": 13,
+      "added": 1,
+      "unique_after": 37,
+      "unique_added": 1
+    },
+    {
+      "category": "КЭАЗ: Артикул 288019",
+      "pages": 2,
+      "cards_seen": 13,
+      "relevant": 13,
+      "added": 1,
+      "unique_after": 38,
+      "unique_added": 1
+    },
+    {
+      "category": "КЭАЗ: Артикул 288025",
+      "pages": 2,
+      "cards_seen": 13,
+      "relevant": 13,
+      "added": 1,
+      "unique_after": 39,
+      "unique_added": 1
+    },
+    {
+      "category": "КЭАЗ: Артикул 288023",
+      "pages": 2,
+      "cards_seen": 13,
+      "relevant": 13,
+      "added": 1,
+      "unique_after": 40,
+      "unique_added": 1
+    },
+    {
+      "category": "КЭАЗ: Артикул 288027",
+      "pages": 2,
+      "cards_seen": 14,
+      "relevant": 14,
+      "added": 2,
+      "unique_after": 42,
+      "unique_added": 2
+    },
+    {
       "category": "Rievtech: ПЛК и модули",
       "pages": 4,
       "cards_seen": 28,
       "relevant": 28,
       "added": 28,
-      "unique_after": 48,
+      "unique_after": 70,
       "unique_added": 28
     },
     {
@@ -59,7 +122,7 @@
       "cards_seen": 8,
       "relevant": 8,
       "added": 8,
-      "unique_after": 56,
+      "unique_after": 78,
       "unique_added": 8
     },
     {
@@ -68,7 +131,7 @@
       "cards_seen": 90,
       "relevant": 88,
       "added": 88,
-      "unique_after": 144,
+      "unique_after": 166,
       "unique_added": 88
     },
     {
@@ -77,7 +140,7 @@
       "cards_seen": 110,
       "relevant": 109,
       "added": 109,
-      "unique_after": 253,
+      "unique_after": 275,
       "unique_added": 109
     },
     {
@@ -86,7 +149,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 253,
+      "unique_after": 275,
       "unique_added": 0
     },
     {
@@ -95,7 +158,7 @@
       "cards_seen": 136,
       "relevant": 135,
       "added": 135,
-      "unique_after": 388,
+      "unique_after": 410,
       "unique_added": 135
     },
     {
@@ -104,7 +167,7 @@
       "cards_seen": 23,
       "relevant": 16,
       "added": 16,
-      "unique_after": 404,
+      "unique_after": 426,
       "unique_added": 16
     },
     {
@@ -113,7 +176,7 @@
       "cards_seen": 8,
       "relevant": 8,
       "added": 8,
-      "unique_after": 412,
+      "unique_after": 434,
       "unique_added": 8
     },
     {
@@ -122,7 +185,7 @@
       "cards_seen": 112,
       "relevant": 111,
       "added": 111,
-      "unique_after": 523,
+      "unique_after": 545,
       "unique_added": 111
     },
     {
@@ -131,7 +194,7 @@
       "cards_seen": 39,
       "relevant": 39,
       "added": 39,
-      "unique_after": 562,
+      "unique_after": 584,
       "unique_added": 39
     },
     {
@@ -140,7 +203,7 @@
       "cards_seen": 3,
       "relevant": 3,
       "added": 3,
-      "unique_after": 565,
+      "unique_after": 587,
       "unique_added": 3
     },
     {
@@ -149,7 +212,7 @@
       "cards_seen": 9,
       "relevant": 9,
       "added": 9,
-      "unique_after": 574,
+      "unique_after": 596,
       "unique_added": 9
     },
     {
@@ -158,7 +221,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 574,
+      "unique_after": 596,
       "unique_added": 0
     },
     {
@@ -167,7 +230,7 @@
       "cards_seen": 0,
       "relevant": 0,
       "added": 0,
-      "unique_after": 574,
+      "unique_after": 596,
       "unique_added": 0
     },
     {
@@ -176,7 +239,7 @@
       "cards_seen": 16,
       "relevant": 16,
       "added": 16,
-      "unique_after": 590,
+      "unique_after": 612,
       "unique_added": 16
     },
     {
@@ -185,7 +248,7 @@
       "cards_seen": 30,
       "relevant": 29,
       "added": 29,
-      "unique_after": 619,
+      "unique_after": 641,
       "unique_added": 29
     }
   ],
@@ -784,6 +847,725 @@
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "8171545",
+      "brand": "КЭАЗ",
+      "vendor_code": "293070",
+      "name": "Модуль процессорный Opti logic L-CPU-1-M",
+      "product_type": "Other module",
+      "price": 72271.06,
+      "stock_etm": 1,
+      "stock_vendor": 2,
+      "stock_all": [
+        1,
+        2
+      ],
+      "url": "https://www.etm.ru/cat/nn/8171545",
+      "sources": [
+        "КЭАЗ: Артикул 293070"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "681404",
+      "brand": "КЭАЗ",
+      "vendor_code": "EX292145RUS-S ExeGate",
+      "name": "Блок питания 650W, ATX, SC, fan 8 см, 24pin, (4+4)pin, PCI-E, 3xSATA, 2xIDE, черный",
+      "product_type": "Power supply",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/681404",
+      "sources": [
+        "КЭАЗ: Артикул 293070"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9532795",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9532795",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "87860020",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/87860020",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9532886",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9532886",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "2996917",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/2996917",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "5896399",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/5896399",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "3561862",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/3561862",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "5414817",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/5414817",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9716538",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9716538",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "1412185",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/1412185",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9784745",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9784745",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9533870",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9533870",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "14592",
+      "brand": "КЭАЗ",
+      "vendor_code": "—",
+      "name": "—",
+      "product_type": "Other",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/14592",
+      "sources": [
+        "КЭАЗ: Артикул 288019",
+        "КЭАЗ: Артикул 288023",
+        "КЭАЗ: Артикул 288025",
+        "КЭАЗ: Артикул 288026",
+        "КЭАЗ: Артикул 288027",
+        "КЭАЗ: Артикул 293070",
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 419012",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "4058431",
+      "brand": "КЭАЗ",
+      "vendor_code": "419012 АКЭЛ",
+      "name": "Выключатель автоматический ВА47-M125H-4P-C80-AC 4P/80A/C/10кА",
+      "product_type": "Other",
+      "price": 7996.49,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/4058431",
+      "sources": [
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 419012",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9364983",
+      "brand": "КЭАЗ",
+      "vendor_code": "419012",
+      "name": "Модуль процессорный OptiLogic L-CPU-1-C",
+      "product_type": "Other module",
+      "price": 0.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9364983",
+      "sources": [
+        "КЭАЗ: Артикул 419012"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288026",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "8308019",
+      "brand": "КЭАЗ",
+      "vendor_code": "288026",
+      "name": "Модуль дискретного ввода Opti logic L-DI-16",
+      "product_type": "I/O module",
+      "price": 11892.71,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/8308019",
+      "sources": [
+        "КЭАЗ: Артикул 288026"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288019",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "1136546",
+      "brand": "КЭАЗ",
+      "vendor_code": "288019",
+      "name": "Модуль дискретного вывода Opti logic L-DO-8",
+      "product_type": "I/O module",
+      "price": 10977.89,
+      "stock_etm": 0,
+      "stock_vendor": 1,
+      "stock_all": [
+        1
+      ],
+      "url": "https://www.etm.ru/cat/nn/1136546",
+      "sources": [
+        "КЭАЗ: Артикул 288019"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288025",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "6352818",
+      "brand": "КЭАЗ",
+      "vendor_code": "288025",
+      "name": "Модуль дискретного вывода OptiLogic L-DO-16",
+      "product_type": "I/O module",
+      "price": 14637.18,
+      "stock_etm": 0,
+      "stock_vendor": 8,
+      "stock_all": [
+        8
+      ],
+      "url": "https://www.etm.ru/cat/nn/6352818",
+      "sources": [
+        "КЭАЗ: Артикул 288025"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288023",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "6272127",
+      "brand": "КЭАЗ",
+      "vendor_code": "288023",
+      "name": "Модуль аналогового ввода Opti logic L-AI-4",
+      "product_type": "I/O module",
+      "price": 10977.89,
+      "stock_etm": 0,
+      "stock_vendor": 10,
+      "stock_all": [
+        10
+      ],
+      "url": "https://www.etm.ru/cat/nn/6272127",
+      "sources": [
+        "КЭАЗ: Артикул 288023"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288027",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "9495390",
+      "brand": "КЭАЗ",
+      "vendor_code": "288027",
+      "name": "Модуль аналогового ввода Opti logic L-AI-8",
+      "product_type": "I/O module",
+      "price": 15552.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/9495390",
+      "sources": [
+        "КЭАЗ: Артикул 288027"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
+      "sales": {
+        "etm_1d": 0,
+        "vendor_1d": 0,
+        "etm_7d": 0,
+        "vendor_7d": 0,
+        "etm_30d": 0,
+        "vendor_30d": 0
+      }
+    },
+    {
+      "category": "КЭАЗ: Артикул 288027",
+      "category_brand_hint": "КЭАЗ",
+      "etm_code": "288027",
+      "brand": "КЭАЗ",
+      "vendor_code": "288027",
+      "name": "Сделано в России/ЕАЭС Модуль аналогового ввода Opti logic L-AI-8 0(0) Код товара: ETM9495390 Артикул: 288027 КЭАЗ Упаковка: шт 15 552.00 ₽/шт 16 370.03 ₽/шт 13 885.71 ₽/шт -15% Для юрлиц шт ​ В корзину На заказ Сделано в России/ЕАЭС Щит 15ШР 0(0) Код товара: ETM288027 Энергокомплекс (Рязань) Упаковка: шт Показать аналоги Не поставляется",
+      "product_type": "I/O module",
+      "price": 15552.0,
+      "stock_etm": 0,
+      "stock_vendor": 0,
+      "stock_all": [],
+      "url": "https://www.etm.ru/cat/nn/288027",
+      "sources": [
+        "КЭАЗ: Артикул 288027"
+      ],
+      "price_diff": 0.0,
+      "stock_etm_diff": 0,
+      "stock_vendor_diff": 0,
+      "is_new": true,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
@@ -3024,9 +3806,9 @@
       "product_type": "I/O module",
       "price": 15186.09,
       "stock_etm": 0,
-      "stock_vendor": 56,
+      "stock_vendor": 55,
       "stock_all": [
-        56
+        55
       ],
       "url": "https://www.etm.ru/cat/nn/9129359",
       "sources": [
@@ -3034,15 +3816,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 8
+        "vendor_30d": 9
       }
     },
     {
@@ -8645,9 +9427,9 @@
       "product_type": "I/O module",
       "price": 12126.46,
       "stock_etm": 0,
-      "stock_vendor": 666,
+      "stock_vendor": 660,
       "stock_all": [
-        666
+        660
       ],
       "url": "https://www.etm.ru/cat/nn/3347727",
       "sources": [
@@ -8655,15 +9437,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -6,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 6,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 6,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 6
       }
     },
     {
@@ -8986,9 +9768,9 @@
       "product_type": "I/O module",
       "price": 15692.63,
       "stock_etm": 0,
-      "stock_vendor": 268,
+      "stock_vendor": 263,
       "stock_all": [
-        268
+        263
       ],
       "url": "https://www.etm.ru/cat/nn/2141730",
       "sources": [
@@ -8996,15 +9778,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -5,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 5,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 5,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 5
       }
     },
     {
@@ -9017,9 +9799,9 @@
       "product_type": "Communication module",
       "price": 36994.19,
       "stock_etm": 0,
-      "stock_vendor": 245,
+      "stock_vendor": 244,
       "stock_all": [
-        245
+        244
       ],
       "url": "https://www.etm.ru/cat/nn/7755628",
       "sources": [
@@ -9027,15 +9809,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -12371,9 +13153,9 @@
       "product_type": "Programmable relay",
       "price": 12864.72,
       "stock_etm": 0,
-      "stock_vendor": 279,
+      "stock_vendor": 277,
       "stock_all": [
-        279
+        277
       ],
       "url": "https://www.etm.ru/cat/nn/2146759",
       "sources": [
@@ -12381,15 +13163,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 6,
+        "vendor_7d": 8,
         "etm_30d": 0,
-        "vendor_30d": 12
+        "vendor_30d": 14
       }
     },
     {
@@ -12604,25 +13386,25 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6884.9,
-      "stock_etm": 19,
+      "stock_etm": 18,
       "stock_vendor": 0,
       "stock_all": [
-        19
+        18
       ],
       "url": "https://www.etm.ru/cat/nn/225594",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 0,
-        "etm_7d": 0,
+        "etm_7d": 1,
         "vendor_7d": 62,
-        "etm_30d": 9,
+        "etm_30d": 10,
         "vendor_30d": 202
       }
     },
@@ -12636,10 +13418,10 @@
       "product_type": "Other controller",
       "price": 7832.06,
       "stock_etm": 5,
-      "stock_vendor": 248,
+      "stock_vendor": 247,
       "stock_all": [
         5,
-        248
+        247
       ],
       "url": "https://www.etm.ru/cat/nn/6621724",
       "sources": [
@@ -12647,15 +13429,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -5,
+      "stock_vendor_diff": -6,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 5,
+        "vendor_1d": 6,
         "etm_7d": 0,
-        "vendor_7d": 26,
+        "vendor_7d": 27,
         "etm_30d": 5,
-        "vendor_30d": 297
+        "vendor_30d": 298
       }
     },
     {
@@ -12731,10 +13513,10 @@
       "name": "Модуль аналогового ввода EMF 4 PRO-Logic PROxima",
       "product_type": "I/O module",
       "price": 11619.88,
-      "stock_etm": 2,
+      "stock_etm": 1,
       "stock_vendor": 72,
       "stock_all": [
-        2,
+        1,
         72
       ],
       "url": "https://www.etm.ru/cat/nn/7081895",
@@ -12742,15 +13524,15 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": 1,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 0,
-        "etm_7d": 0,
+        "etm_7d": 1,
         "vendor_7d": 3,
-        "etm_30d": 1,
+        "etm_30d": 2,
         "vendor_30d": 4
       }
     },
@@ -12982,9 +13764,9 @@
       "product_type": "I/O module",
       "price": 11279.75,
       "stock_etm": 0,
-      "stock_vendor": 108,
+      "stock_vendor": 103,
       "stock_all": [
-        108
+        103
       ],
       "url": "https://www.etm.ru/cat/nn/1657849",
       "sources": [
@@ -12992,15 +13774,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 2,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 5,
         "etm_30d": 0,
-        "vendor_30d": 9
+        "vendor_30d": 12
       }
     },
     {
@@ -13013,9 +13795,9 @@
       "product_type": "I/O module",
       "price": 19581.18,
       "stock_etm": 0,
-      "stock_vendor": 80,
+      "stock_vendor": 78,
       "stock_all": [
-        80
+        78
       ],
       "url": "https://www.etm.ru/cat/nn/8406176",
       "sources": [
@@ -13044,9 +13826,9 @@
       "product_type": "PLC",
       "price": 13119.51,
       "stock_etm": 0,
-      "stock_vendor": 65,
+      "stock_vendor": 60,
       "stock_all": [
-        65
+        60
       ],
       "url": "https://www.etm.ru/cat/nn/456459",
       "sources": [
@@ -13106,10 +13888,10 @@
       "product_type": "I/O module",
       "price": 8288.97,
       "stock_etm": 2,
-      "stock_vendor": 41,
+      "stock_vendor": 36,
       "stock_all": [
         2,
-        41
+        36
       ],
       "url": "https://www.etm.ru/cat/nn/5378313",
       "sources": [
@@ -13117,15 +13899,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 4,
         "etm_7d": 1,
-        "vendor_7d": 37,
+        "vendor_7d": 41,
         "etm_30d": 2,
-        "vendor_30d": 39
+        "vendor_30d": 43
       }
     },
     {
@@ -13200,9 +13982,9 @@
       "product_type": "I/O module",
       "price": 9976.57,
       "stock_etm": 0,
-      "stock_vendor": 38,
+      "stock_vendor": 35,
       "stock_all": [
-        38
+        35
       ],
       "url": "https://www.etm.ru/cat/nn/7991508",
       "sources": [
@@ -13210,15 +13992,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 3,
         "etm_7d": 0,
-        "vendor_7d": 11,
+        "vendor_7d": 14,
         "etm_30d": 0,
-        "vendor_30d": 11
+        "vendor_30d": 14
       }
     },
     {
@@ -13231,9 +14013,9 @@
       "product_type": "I/O module",
       "price": 9334.56,
       "stock_etm": 0,
-      "stock_vendor": 36,
+      "stock_vendor": 34,
       "stock_all": [
-        36
+        34
       ],
       "url": "https://www.etm.ru/cat/nn/281846",
       "sources": [
@@ -13241,15 +14023,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 4,
         "etm_30d": 0,
-        "vendor_30d": 2
+        "vendor_30d": 4
       }
     },
     {
@@ -17240,9 +18022,9 @@
       "product_type": "I/O module",
       "price": 20082.91,
       "stock_etm": 0,
-      "stock_vendor": 69,
+      "stock_vendor": 67,
       "stock_all": [
-        69
+        67
       ],
       "url": "https://www.etm.ru/cat/nn/8100978",
       "sources": [
@@ -17250,15 +18032,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 1
+        "vendor_30d": 3
       }
     },
     {
@@ -17333,9 +18115,9 @@
       "product_type": "Other module",
       "price": 26745.04,
       "stock_etm": 0,
-      "stock_vendor": 35,
+      "stock_vendor": 33,
       "stock_all": [
-        35
+        33
       ],
       "url": "https://www.etm.ru/cat/nn/382885",
       "sources": [
@@ -17343,15 +18125,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 1
+        "vendor_30d": 3
       }
     },
     {
@@ -17395,9 +18177,9 @@
       "product_type": "I/O module",
       "price": 9751.81,
       "stock_etm": 0,
-      "stock_vendor": 30,
+      "stock_vendor": 14,
       "stock_all": [
-        30
+        14
       ],
       "url": "https://www.etm.ru/cat/nn/3844450",
       "sources": [
@@ -17405,15 +18187,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -16,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 16,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 16,
         "etm_30d": 0,
-        "vendor_30d": 1
+        "vendor_30d": 17
       }
     },
     {
@@ -17457,15 +18239,17 @@
       "product_type": "I/O module",
       "price": 8206.95,
       "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
+      "stock_vendor": 2,
+      "stock_all": [
+        2
+      ],
       "url": "https://www.etm.ru/cat/nn/5331554",
       "sources": [
         "Тракт-Автоматика: Контроллеры и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
