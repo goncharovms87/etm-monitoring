@@ -19,11 +19,47 @@ PRODUCT_WAIT_TIMEOUT = 18000
 NAVIGATION_RETRIES = 3
 
 CATEGORIES = [
-    # --- КЭАЗ ---
+    # --- КЭАЗ: Базовый каталог OptiLogic ---
     {
         "brand_hint": "КЭАЗ",
         "name": "КЭАЗ: OptiLogic",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz",
+    },
+    # --- КЭАЗ: Точечный сбор недостающих артикулов ---
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 293070",
+        "url": "https://www.etm.ru/catalog?searchValue=293070",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 419012",
+        "url": "https://www.etm.ru/catalog?searchValue=419012",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 288026",
+        "url": "https://www.etm.ru/catalog?searchValue=288026",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 288019",
+        "url": "https://www.etm.ru/catalog?searchValue=288019",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 288025",
+        "url": "https://www.etm.ru/catalog?searchValue=288025",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 288023",
+        "url": "https://www.etm.ru/catalog?searchValue=288023",
+    },
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Артикул 288027",
+        "url": "https://www.etm.ru/catalog?searchValue=288027",
     },
     # --- Rievtech ---
     {
