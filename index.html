@@ -214,7 +214,7 @@
       </div>
     </div>
 
-    <!-- Графики каталога (РАСПОЛОЖЕНЫ НАД ФИЛЬТРАМИ) -->
+    <!-- Графика каталога (СТРОГО НАД ФИЛЬТРАМИ) -->
     <div id="catalog-analytics-section" class="row g-3 mb-4">
       <div class="col-12 col-lg-7">
         <div class="card border-0 shadow-sm bg-white h-100">
@@ -275,7 +275,6 @@
       <div class="card-body py-2 px-3">
         <div class="row g-2 align-items-center">
           
-          <!-- Выбор даты среза -->
           <div class="col-12 col-md-3">
             <label class="form-label text-muted small mb-1 fw-bold text-warning-emphasis">
               <i class="bi bi-calendar-event"></i> Дата среза (Архив):
@@ -285,7 +284,7 @@
             </select>
           </div>
 
-          <!-- Фильтр конкретного артикула КЭАЗ для фокуса (для Кросс-референса) -->
+          <!-- Фильтр позиции КЭАЗ для крупного фокуса -->
           <div class="col-12 col-md-4 filter-cross-only d-none">
             <label class="form-label text-muted small mb-1 fw-bold text-primary">
               <i class="bi bi-zoom-in"></i> Фокус на артикуле КЭАЗ:
@@ -295,7 +294,7 @@
             </select>
           </div>
 
-          <!-- Фильтры текущего каталога и остатков -->
+          <!-- Фильтры каталога -->
           <div class="col-12 col-md-2 filter-catalog-only">
             <label class="form-label text-muted small mb-1 fw-bold">Производитель:</label>
             <select id="filter-brand" class="form-select form-select-sm">
@@ -347,7 +346,7 @@
     <!-- Вкладка 3: ДАШБОРД СРАВНЕНИЯ ЦЕН (КРОСС-РЕФЕРЕНС) -->
     <div id="cross-analytics-section" class="d-none mb-4">
       
-      <!-- Легенда вендоров -->
+      <!-- Легенда -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-body py-2 px-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
           <div class="d-flex flex-wrap align-items-center gap-3">
@@ -359,7 +358,7 @@
             <div class="small fw-semibold"><span class="legend-indicator" style="background-color: #f472b6;"></span>DKC (-40%)</div>
           </div>
           <div class="small text-muted fst-italic">
-            База расчета: <strong>КЭАЗ = 100%</strong> (проценты выведены над столбцами)
+            <strong>Пунктирная черта</strong> = базовый уровень 100% КЭАЗ для каждой позиции
           </div>
         </div>
       </div>
@@ -368,11 +367,11 @@
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
-            <i class="bi bi-tag me-1"></i> График 1. Розничная цена в ЭТМ (РРЦ) с разницей к КЭАЗ (%)
+            <i class="bi bi-tag me-1"></i> График 1. Розничная цена в ЭТМ (РРЦ) с процентом к КЭАЗ и пунктиром 100%
           </span>
           <span class="badge bg-light text-muted border">Цены каталога</span>
         </div>
-        <div class="card-body pt-2" style="position: relative; min-height: 480px;">
+        <div class="card-body pt-2" style="position: relative; min-height: 500px;">
           <canvas id="chartCrossRetail"></canvas>
         </div>
       </div>
@@ -381,11 +380,11 @@
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
-            <i class="bi bi-percent me-1"></i> График 2. Цена дистрибьютора со скидками и разницей к КЭАЗ (%)
+            <i class="bi bi-percent me-1"></i> График 2. Цена дистрибьютора со скидками и пунктиром уровня КЭАЗ
           </span>
           <span class="badge bg-light text-muted border">КЭАЗ: -32% | EKF: -30% | ОВЕН: -15% | ONI: -5% | DKC: -40%</span>
         </div>
-        <div class="card-body pt-2" style="position: relative; min-height: 480px;">
+        <div class="card-body pt-2" style="position: relative; min-height: 500px;">
           <canvas id="chartCrossDistr"></canvas>
         </div>
       </div>
@@ -402,10 +401,10 @@
             <table class="table table-bordered table-sm align-middle mb-0 text-center" style="font-size: 0.85rem;">
               <thead class="table-light text-muted">
                 <tr>
-                  <th class="text-start ps-3" style="width: 25%;">Позиция КЭАЗ (Эталон 100%)</th>
-                  <th style="width: 25%;">Аналог 1 (ОВЕН)</th>
-                  <th style="width: 25%;">Аналог 2 (EKF)</th>
-                  <th style="width: 25%;">Аналог 3 (DKC / ONI)</th>
+                  <th class="text-start ps-3" style="width: 28%;">Позиция КЭАЗ (Эталон 100%)</th>
+                  <th style="width: 24%;">Аналог 1 (ОВЕН)</th>
+                  <th style="width: 24%;">Аналог 2 (EKF)</th>
+                  <th style="width: 24%;">Аналог 3 (DKC / ONI)</th>
                 </tr>
               </thead>
               <tbody id="cross-matrix-body">
@@ -433,28 +432,27 @@
   <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 
   <script>
-    // Регистрируем плагин datalabels
     Chart.register(ChartDataLabels);
 
     // ==========================================
-    // ПОЛНАЯ ТАБЛИЦА КРОСС-РЕФЕРЕНСА (15 АРТИКУЛОВ КЭАЗ)
+    // ТОЧНАЯ ТАБЛИЦА С ВАШИМИ НАИМЕНОВАНИЯМИ КЭАЗ
     // ==========================================
     const CROSS_DATA = [
-      { keaz: "293070", name: "ПЛК OptiLogic L-CPU-160-24.А-М", competitors: ["ПЛК160-24.А-М", "", ""] },
-      { keaz: "419012", name: "ПЛК OptiLogic L-CPU-160-220.А-М", competitors: ["ПЛК160-24.А-М", "", ""] },
-      { keaz: "293073", name: "ПЛК OptiLogic L-CPU-110-24.30.Р-М", competitors: ["ПЛК160-24.А-М", "F200-16-R-P20", "C1000-24DT"] },
-      { keaz: "288020", name: "Модуль OptiLogic L-16DI-224", competitors: ["МВ110-224.16Д", "EMF-D-8X", "C1000-08DX"] },
-      { keaz: "288026", name: "Модуль OptiLogic L-16DI-24", competitors: ["МВ110-224.16Д", "EMF-D-16X", "C1000-16DT"] },
-      { keaz: "288019", name: "Модуль OptiLogic L-8DO-224-T", competitors: ["МУ110-224.8К", "EMF-D-8Y-N", "C1000-08DT"] },
-      { keaz: "288025", name: "Модуль OptiLogic L-16DO-224-T", competitors: ["МУ110-224.16К", "EMF-D-16Y-N", "C1000-16DT"] },
-      { keaz: "288024", name: "Модуль OptiLogic L-6AO-224-U/I", competitors: ["МУ110-224.6У", "", "C1000-22IV"] },
-      { keaz: "288028", name: "Модуль OptiLogic L-6AO-24-U/I", competitors: ["МУ110-224.6У", "EMF-A-4AO", "C1000-22IV"] },
-      { keaz: "288023", name: "Модуль OptiLogic L-2AI-224-U/I", competitors: ["МВ110-224.2А", "EMF-A-4AI", "C1000-04IV"] },
-      { keaz: "288027", name: "Модуль OptiLogic L-8AI-24-U/I", competitors: ["МВ110-24.8АС", "EMF-A-8AI", "C1000-04IV"] },
-      { keaz: "344585", name: "Реле OptiSmart-PR200-24.1", competitors: ["ПР200-24.1.0.0", "PRL100-12-R-DC", "PLC-410-CPU-08U04R-1AD-00"] },
-      { keaz: "344586", name: "Реле OptiSmart-PR200-220.1", competitors: ["ПР200-220.1.0.0", "PRL100-12-R-AC", "PLC-410-CPU-08D04R-1AC-00"] },
-      { keaz: "344587", name: "Модуль расш. OptiSmart-PRM-24.1", competitors: ["ПРМ-24.1", "PRL-E-4DI4DO-R-AC", "PLC-410-EMD-04U04R-0DC-00"] },
-      { keaz: "344589", name: "Модуль расш. OptiSmart-PRM-220.1", competitors: ["ПРМ-220.1", "PRL-E-4DI4DO-R-DC", "PLC-410-EMD-04D04R-0AC-00"] }
+      { keaz: "293070", name: "OptiLogic L-CPU-1-M", competitors: ["ПЛК160-24.А-М", "", ""] },
+      { keaz: "419012", name: "OptiLogic L-CPU-1-C", competitors: ["ПЛК160-24.А-М", "", ""] },
+      { keaz: "293073", name: "OptiLogic L-CPU-3 -M", competitors: ["ПЛК160-24.А-М", "F200-16-R-P20", "C1000-24DT"] },
+      { keaz: "288020", name: "OptiLogic L-DI-8", competitors: ["МВ110-224.16Д", "EMF-D-8X", "C1000-08DX"] },
+      { keaz: "288026", name: "OptiLogic L-DI-16", competitors: ["МВ110-224.16Д", "EMF-D-16X", "C1000-16DT"] },
+      { keaz: "288019", name: "OptiLogic L-DO-8", competitors: ["МУ110-224.8К", "EMF-D-8Y-N", "C1000-08DT"] },
+      { keaz: "288025", name: "OptiLogic L-DO-16", competitors: ["МУ110-224.16К", "EMF-D-16Y-N", "C1000-16DT"] },
+      { keaz: "288024", name: "OptiLogic L-AO-2", competitors: ["МУ110-224.6У", "", "C1000-22IV"] },
+      { keaz: "288028", name: "OptiLogic L-AO-4", competitors: ["МУ110-224.6У", "EMF-A-4AO", "C1000-22IV"] },
+      { keaz: "288023", name: "OptiLogic L-AI-4", competitors: ["МВ110-224.2А", "EMF-A-4AI", "C1000-04IV"] },
+      { keaz: "288027", name: "OptiLogic L-AI-8", competitors: ["МВ110-24.8АС", "EMF-A-8AI", "C1000-04IV"] },
+      { keaz: "344585", name: "Optilogic S50-CPU-24-1-2-0", competitors: ["ПР200-24.1.0.0", "PRL100-12-R-DC", "PLC-410-CPU-08U04R-1AD-00"] },
+      { keaz: "344586", name: "Optilogic S50-CPU-220-1-2-0", competitors: ["ПР200-220.1.0.0", "PRL100-12-R-AC", "PLC-410-CPU-08D04R-1AC-00"] },
+      { keaz: "344587", name: "Optilogic S50-EXP-24-2", competitors: ["ПРМ-24.1", "PRL-E-4DI4DO-R-AC", "PLC-410-EMD-04U04R-0DC-00"] },
+      { keaz: "344589", name: "Optilogic S50-EXP-230-1", competitors: ["ПРМ-220.1", "PRL-E-4DI4DO-R-DC", "PLC-410-EMD-04D04R-0AC-00"] }
     ];
 
     const DISTR_FACTORS = {
@@ -473,6 +471,57 @@
       "ONI":  { bg: "#1e3a8a", border: "#172554" },
       "DKC":  { bg: "#f472b6", border: "#db2777" },
       "Другой": { bg: "#94a3b8", border: "#475569" }
+    };
+
+    // Плагин рисования пунктирных линий уровня 100% КЭАЗ внутри каждой группы
+    const keazBaselinePlugin = {
+      id: 'keazBaselinePlugin',
+      afterDatasetsDraw(chart) {
+        const { ctx, scales: { x, y } } = chart;
+        const metaList = chart.data.datasets.map((d, i) => chart.getDatasetMeta(i));
+        const keazDatasetIndex = chart.data.datasets.findIndex(d => d.label === 'КЭАЗ');
+        if (keazDatasetIndex === -1) return;
+
+        const keazMeta = metaList[keazDatasetIndex];
+
+        chart.data.labels.forEach((label, index) => {
+          const keazBar = keazMeta.data[index];
+          if (!keazBar || chart.data.datasets[keazDatasetIndex].data[index] === null) return;
+
+          const targetY = keazBar.y;
+
+          // Определяем левую и правую границу столбцов в пределах одного артикула
+          let minX = Infinity;
+          let maxX = -Infinity;
+
+          metaList.forEach(m => {
+            const bar = m.data[index];
+            if (bar && !bar.hidden && bar.x !== undefined) {
+              const halfW = (bar.width || 20) / 2;
+              minX = Math.min(minX, bar.x - halfW);
+              maxX = Math.max(maxX, bar.x + halfW);
+            }
+          });
+
+          if (minX !== Infinity && maxX !== -Infinity) {
+            ctx.save();
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 3]);
+            ctx.beginPath();
+            ctx.moveTo(minX - 4, targetY);
+            ctx.lineTo(maxX + 4, targetY);
+            ctx.stroke();
+
+            // Бейдж 100% у линии
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#0284c7';
+            ctx.font = 'bold 9px sans-serif';
+            ctx.fillText('100%', maxX + 6, targetY + 3);
+            ctx.restore();
+          }
+        });
+      }
     };
 
     let baseItems = [];
@@ -847,7 +896,7 @@
           maintainAspectRatio: false,
           plugins: { 
             legend: { display: false },
-            datalabels: { display: false } // Отключаем подписи на общих графиках
+            datalabels: { display: false }
           },
           scales: {
             y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
@@ -879,7 +928,7 @@
     }
 
     // ==========================================
-    // ЛОГИКА ДАШБОРДА КРОСС-РЕФЕРЕНСА (С % НАД СТОЛБЦАМИ)
+    // ЛОГИКА ДАШБОРДА КРОСС-РЕФЕРЕНСА
     // ==========================================
     function renderCrossDashboard() {
       const activeRows = selectedCrossSku === 'all' 
@@ -898,10 +947,10 @@
         const keazItem = findItemByCodeOrArticle(row.keaz);
         const keazPrice = keazItem && keazItem.price > 0 ? keazItem.price : 0;
         
-        // Четкое наименование КЭАЗ
+        // Четкое заводское наименование КЭАЗ из списка
         labels.push(`${row.keaz}\n${row.name}`);
 
-        const rowRetail = { "КЭАЗ": keazPrice, "ОВЕН": null, "EKF": null, "ONI": null, "DKC": null };
+        const rowRetail = { "КЭАЗ": keazPrice > 0 ? keazPrice : null, "ОВЕН": null, "EKF": null, "ONI": null, "DKC": null };
         const rowDistr = { 
           "КЭАЗ": keazPrice > 0 ? Math.round(keazPrice * DISTR_FACTORS["КЭАЗ"]) : null, 
           "ОВЕН": null, "EKF": null, "ONI": null, "DKC": null 
@@ -947,7 +996,7 @@
           }
         });
 
-        // Формирование ячейки матрицы
+        // Строка матрицы
         function formatCell(comp) {
           if (!comp) return '<span class="text-muted fw-bold">—</span>';
           if (!comp.price) {
@@ -991,8 +1040,9 @@
 
         const keazCell = `
           <div class="p-1 rounded text-start" style="border-left: 3px solid #0284c7;">
-            <div class="fw-bold text-primary">${row.keaz} (${row.name})</div>
-            <div class="small fw-bold text-dark">РРЦ: ${keazPrice > 0 ? keazPrice.toLocaleString('ru-RU') + ' ₽' : '—'} <span class="diff-badge diff-equal">100%</span></div>
+            <div class="fw-bold text-primary">${row.keaz}</div>
+            <div class="small fw-semibold text-dark">${row.name}</div>
+            <div class="small fw-bold text-dark mt-1">РРЦ: ${keazPrice > 0 ? keazPrice.toLocaleString('ru-RU') + ' ₽' : '—'} <span class="diff-badge diff-equal">100%</span></div>
             <div class="small text-muted">Дистр: ${rowDistr["КЭАЗ"] ? rowDistr["КЭАЗ"].toLocaleString('ru-RU') + ' ₽' : '—'} (-32%)</div>
           </div>
         `;
@@ -1027,7 +1077,7 @@
         return {
           responsive: true,
           maintainAspectRatio: false,
-          layout: { padding: { top: 25 } },
+          layout: { padding: { top: 28 } },
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: { position: 'top', labels: { boxWidth: 14, font: { size: 12, weight: 'bold' } } },
@@ -1085,22 +1135,24 @@
         };
       }
 
-      // 1. График РРЦ
+      // 1. График РРЦ с плагином базовой линии КЭАЗ
       const ctxRetail = document.getElementById('chartCrossRetail').getContext('2d');
       if (chartCrossRetailInstance) chartCrossRetailInstance.destroy();
       chartCrossRetailInstance = new Chart(ctxRetail, {
         type: 'bar',
         data: { labels: labels, datasets: buildDatasets(seriesRetail) },
-        options: makeOptions(false)
+        options: makeOptions(false),
+        plugins: [keazBaselinePlugin]
       });
 
-      // 2. График Дистрибьютора
+      // 2. График Дистрибьютора с плагином базовой линии КЭАЗ
       const ctxDistr = document.getElementById('chartCrossDistr').getContext('2d');
       if (chartCrossDistrInstance) chartCrossDistrInstance.destroy();
       chartCrossDistrInstance = new Chart(ctxDistr, {
         type: 'bar',
         data: { labels: labels, datasets: buildDatasets(seriesDistr) },
-        options: makeOptions(true)
+        options: makeOptions(true),
+        plugins: [keazBaselinePlugin]
       });
     }
 
@@ -1305,7 +1357,6 @@
         document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
         document.getElementById('total-count').textContent = 'Всего в базе: ' + baseItems.length;
 
-        // Заполнение списка дат
         const dateSelect = document.getElementById('filter-date');
         const availableDates = payload.available_dates || [];
         availableDates.forEach(d => {
