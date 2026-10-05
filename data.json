@@ -2690,15 +2690,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2601,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2601,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 2603,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 2624
+        "vendor_30d": 24
       }
     },
     {
@@ -2753,15 +2753,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2576,
+      "stock_vendor_diff": 24,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2576,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2576,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2576
+        "vendor_30d": 0
       }
     },
     {
@@ -2785,15 +2785,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2608,
+        "vendor_7d": 8,
         "etm_30d": 0,
-        "vendor_30d": 2608
+        "vendor_30d": 8
       }
     },
     {
@@ -2817,15 +2817,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -2880,15 +2880,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2601,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2601,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 2602,
+        "vendor_7d": 2,
         "etm_30d": 2,
-        "vendor_30d": 2638
+        "vendor_30d": 38
       }
     },
     {
@@ -2912,15 +2912,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2601,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2601,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 2602,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 2602
+        "vendor_30d": 2
       }
     },
     {
@@ -2944,15 +2944,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 26000
+        "vendor_30d": 2
       }
     },
     {
@@ -3039,15 +3039,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 26005
+        "vendor_30d": 6
       }
     },
     {
@@ -3071,15 +3071,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2521,
+      "stock_vendor_diff": 79,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2521,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2521,
+        "vendor_7d": 4,
         "etm_30d": 0,
-        "vendor_30d": 2521
+        "vendor_30d": 4
       }
     },
     {
@@ -3103,15 +3103,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2561,
+      "stock_vendor_diff": 39,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2561,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2566,
+        "vendor_7d": 5,
         "etm_30d": 0,
-        "vendor_30d": 2566
+        "vendor_30d": 5
       }
     },
     {
@@ -3166,15 +3166,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -8564,15 +8564,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26019,
+        "vendor_7d": 19,
         "etm_30d": 0,
-        "vendor_30d": 26038
+        "vendor_30d": 38
       }
     },
     {
@@ -8596,15 +8596,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 26006
+        "vendor_30d": 7
       }
     },
     {
@@ -8628,15 +8628,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26002,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 26012
+        "vendor_30d": 12
       }
     },
     {
@@ -8660,15 +8660,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2600
+        "vendor_30d": 0
       }
     },
     {
@@ -8692,15 +8692,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26001,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 26001
+        "vendor_30d": 1
       }
     },
     {
@@ -8724,15 +8724,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26000,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 26000
+        "vendor_30d": 0
       }
     },
     {
@@ -8787,15 +8787,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 2600,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 2619
+        "vendor_30d": 19
       }
     },
     {
@@ -8819,15 +8819,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 2601,
+        "vendor_7d": 1,
         "etm_30d": 1,
-        "vendor_30d": 2608
+        "vendor_30d": 8
       }
     },
     {
@@ -8913,15 +8913,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 2606,
+        "vendor_7d": 6,
         "etm_30d": 2,
-        "vendor_30d": 2606
+        "vendor_30d": 6
       }
     },
     {
@@ -13402,15 +13402,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -26000,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 26000,
+        "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 26017,
+        "vendor_7d": 18,
         "etm_30d": 5,
-        "vendor_30d": 26302
+        "vendor_30d": 303
       }
     },
     {
@@ -13529,15 +13529,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -2600,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 2600,
+        "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 2601,
+        "vendor_7d": 2,
         "etm_30d": 2,
-        "vendor_30d": 2604
+        "vendor_30d": 5
       }
     },
     {
