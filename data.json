@@ -12923,11 +12923,11 @@
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 4,
         "etm_7d": 3,
-        "vendor_7d": 18,
+        "vendor_7d": 22,
         "etm_30d": 8,
-        "vendor_30d": 320
+        "vendor_30d": 324
       }
     },
     {
@@ -12989,11 +12989,11 @@
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 5,
         "etm_7d": 1,
-        "vendor_7d": 269,
+        "vendor_7d": 274,
         "etm_30d": 5,
-        "vendor_30d": 285
+        "vendor_30d": 290
       }
     },
     {
@@ -13052,11 +13052,11 @@
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 4,
         "etm_30d": 2,
-        "vendor_30d": 6
+        "vendor_30d": 8
       }
     },
     {
