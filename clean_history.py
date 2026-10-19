@@ -2,10 +2,9 @@ import json
 import os
 
 HISTORY_DIR = "history"
-
-# 1. Проверяем и очищаем файлы в папке history/
 history_files = sorted([f for f in os.listdir(HISTORY_DIR) if f.endswith(".json")])
 
+# 1. Очистка аномалий
 for filename in history_files:
     filepath = os.path.join(HISTORY_DIR, filename)
     try:
@@ -17,7 +16,6 @@ for filename in history_files:
     modified = False
     for code, item in data.items():
         v_stock = item.get("stock_vendor", 0)
-        # Убираем аномальные прилипшие 26000 и 2600
         if v_stock >= 26000:
             item["stock_vendor"] = v_stock - 26000
             modified = True
@@ -26,11 +24,10 @@ for filename in history_files:
             modified = True
 
     if modified:
-        print(f"Очищен файл от аномалий: {filename}")
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False)
 
-# 2. Пересчитываем продажи и дельты в data.json
+# 2. Корректный пересчет дельт
 if os.path.exists("data.json"):
     with open("data.json", "r", encoding="utf-8") as f:
         payload = json.load(f)
@@ -71,6 +68,7 @@ if os.path.exists("data.json"):
                 prev_v = prev_data.get("stock_vendor", 0)
                 cur_v = cur_data.get("stock_vendor", 0)
 
+                # Защита: если товар только появился (prev == 0) — это поступление, продажа = 0!
                 sold_etm = (prev_etm - cur_etm) if (prev_etm > 0 and cur_etm < prev_etm) else 0
                 sold_v = (prev_v - cur_v) if (prev_v > 0 and cur_v < prev_v) else 0
 
@@ -111,4 +109,4 @@ if os.path.exists("data.json"):
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print("data.json успешно обновлен и готов к отображению!")
+    print("data.json успешно очищен и пересчитан!")
