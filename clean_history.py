@@ -1,5 +1,10 @@
 import json
 import os
+import sys
+
+# Принудительная поддержка UTF-8 в консоли Windows
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 HISTORY_DIR = "history"
 
@@ -20,7 +25,6 @@ for filename in history_files:
                 elif v >= 2600:
                     item["stock_vendor"] = v - 2600
                 elif v == 260:
-                    # Артефакт остатка от 26 дней
                     item["stock_vendor"] = 0
             snapshots.append((filename.replace(".json", ""), data))
     except Exception as e:
@@ -66,7 +70,6 @@ if os.path.exists("data.json"):
     with open("data.json", "r", encoding="utf-8") as f:
         payload = json.load(f)
 
-    # Карта актуальных цен и остатков из базы
     current_items_map = {
         str(item.get("etm_code")): {
             "price": item.get("price", 0.0),
@@ -114,9 +117,9 @@ if os.path.exists("data.json"):
                 if prev_v > 0 and cur_v < prev_v:
                     diff_v = prev_v - cur_v
 
-                    # ПРАВИЛО 1: Дорогостоящее оборудование (> 40 000 ₽) со спадом > 200 шт. — аномалия!
+                    # ПРАВИЛО 1: Дорогостоящее оборудование (> 40 000 руб.) со спадом > 200 шт. — аномалия
                     if item_price > 40000 and diff_v > 200:
-                        print(f"Отсечена аномалия продаж: {code_str} (Цена {item_price} ₽, скачок {diff_v} шт.)")
+                        print(f"Отсечена аномалия продаж: {code_str} (Цена {item_price} руб, скачок {diff_v} шт.)")
                         sold_v = 0
                     # ПРАВИЛО 2: Защита от выпадения карточки в 0 при повторном появлении в каталоге
                     elif cur_v == 0 and diff_v >= 50 and item_info.get("stock_vendor", 0) >= 50:
