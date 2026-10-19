@@ -8859,7 +8859,7 @@
         "etm_7d": 0,
         "vendor_7d": 19,
         "etm_30d": 0,
-        "vendor_30d": 1023
+        "vendor_30d": 23
       }
     },
     {
@@ -13461,7 +13461,7 @@
         "etm_7d": 1,
         "vendor_7d": 0,
         "etm_30d": 27,
-        "vendor_30d": 220
+        "vendor_30d": 135
       }
     },
     {
@@ -13493,7 +13493,7 @@
         "etm_7d": 0,
         "vendor_7d": 15,
         "etm_30d": 8,
-        "vendor_30d": 317
+        "vendor_30d": 57
       }
     },
     {
@@ -13556,7 +13556,7 @@
         "etm_7d": 0,
         "vendor_7d": 20,
         "etm_30d": 5,
-        "vendor_30d": 299
+        "vendor_30d": 42
       }
     },
     {
@@ -13652,7 +13652,7 @@
         "etm_7d": 1,
         "vendor_7d": 4,
         "etm_30d": 3,
-        "vendor_30d": 150
+        "vendor_30d": 54
       }
     },
     {
@@ -16917,7 +16917,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 192
+        "vendor_30d": 0
       }
     },
     {
@@ -16948,7 +16948,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 190
+        "vendor_30d": 0
       }
     },
     {
@@ -16979,7 +16979,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 188
+        "vendor_30d": 0
       }
     },
     {
@@ -17103,7 +17103,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 168
+        "vendor_30d": 0
       }
     },
     {
@@ -17134,7 +17134,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 166
+        "vendor_30d": 0
       }
     },
     {
@@ -17165,7 +17165,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 166
+        "vendor_30d": 0
       }
     },
     {
@@ -17227,7 +17227,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 85
+        "vendor_30d": 0
       }
     },
     {
@@ -17258,7 +17258,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 165
+        "vendor_30d": 9
       }
     },
     {
@@ -17320,7 +17320,7 @@
         "etm_7d": 0,
         "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 140
+        "vendor_30d": 6
       }
     },
     {
