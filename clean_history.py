@@ -32,8 +32,10 @@ for filename in history_files:
 
 print(f"Загружено снимков: {len(snapshots)}")
 
-# 2. Исправление ложных провалов в 0 внутри истории
+# 2. Исправление аномалий и провалов внутри истории
 num_snaps = len(snapshots)
+
+# А) Одиночные провалы в 0 внутри истории (было X -> стало 0 -> стало X)
 if num_snaps >= 3:
     for i in range(1, num_snaps - 1):
         prev_data = snapshots[i - 1][1]
@@ -60,7 +62,27 @@ if num_snaps >= 3:
                 print(f"Исправлен провал ЭТМ {code} в {snapshots[i][0]}: 0 -> {p_e}")
                 c_item["stock_etm"] = p_e
 
-# Сохраняем почищенные снимки истории
+# Б) Фильтр аномалий скачка ровно на 100 шт. (например, 100 -> 200 -> 100)
+# Если изменение составляет ровно 100 шт., оставляем остаток как в предыдущий день
+if num_snaps >= 2:
+    for i in range(1, num_snaps):
+        prev_data = snapshots[i - 1][1]
+        cur_data = snapshots[i][1]
+
+        for code, c_item in cur_data.items():
+            prev_item = prev_data.get(code)
+            if not prev_item:
+                continue
+
+            p_v = prev_item.get("stock_vendor", 0)
+            c_v = c_item.get("stock_vendor", 0)
+
+            # Если разница составляет ровно 100 (или кратна 100 при артефакте ЭТМ)
+            if p_v > 0 and abs(c_v - p_v) == 100:
+                print(f"Сглажена аномалия кратно 100 шт. у {code} в {snapshots[i][0]}: {c_v} -> {p_v}")
+                c_item["stock_vendor"] = p_v
+
+# Сохраняем исправленные снимки истории
 for name, data in snapshots:
     with open(os.path.join(HISTORY_DIR, f"{name}.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
@@ -117,11 +139,14 @@ if os.path.exists("data.json"):
                 if prev_v > 0 and cur_v < prev_v:
                     diff_v = prev_v - cur_v
 
-                    # ПРАВИЛО 1: Дорогостоящее оборудование (> 40 000 руб.) со спадом > 200 шт. — аномалия
-                    if item_price > 40000 and diff_v > 200:
+                    # 1. Спад ровно 100 шт. игнорируется
+                    if diff_v == 100:
+                        sold_v = 0
+                    # 2. Дорогостоящее оборудование (> 40 000 руб.) со спадом > 200 шт.
+                    elif item_price > 40000 and diff_v > 200:
                         print(f"Отсечена аномалия продаж: {code_str} (Цена {item_price} руб, скачок {diff_v} шт.)")
                         sold_v = 0
-                    # ПРАВИЛО 2: Защита от выпадения карточки в 0 при повторном появлении в каталоге
+                    # 3. Выпадение карточки в 0 при повторном появлении партии
                     elif cur_v == 0 and diff_v >= 50 and item_info.get("stock_vendor", 0) >= 50:
                         sold_v = 0
                     else:
