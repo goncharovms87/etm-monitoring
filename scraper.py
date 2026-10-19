@@ -682,9 +682,16 @@ def save_with_history(payload):
                 prev_v = prev_data.get("stock_vendor", 0)
                 cur_v = cur_data.get("stock_vendor", 0)
 
-                # Продажа = только если остаток уменьшился и вчера было > 0
-                sold_etm = (prev_etm - cur_etm) if (prev_etm > 0 and cur_etm < prev_etm) else 0
-                sold_v = (prev_v - cur_v) if (prev_v > 0 and cur_v < prev_v) else 0
+                # Если в предыдущий день остаток был 0, либо текущий остаток вырос — это поступление, продажи = 0!
+if prev_v > 0 and cur_v < prev_v:
+    sold_v = prev_v - cur_v
+else:
+    sold_v = 0
+
+if prev_etm > 0 and cur_etm < prev_etm:
+    sold_etm = prev_etm - cur_etm
+else:
+    sold_etm = 0
 
                 if days_from_end == 0:
                     sales_map[code_str]["etm_1d"] += sold_etm
