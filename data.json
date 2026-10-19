@@ -2672,9 +2672,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 1,
-        "vendor_7d": 69,
+        "vendor_7d": 0,
         "etm_30d": 1,
-        "vendor_30d": 101
+        "vendor_30d": 32
       }
     },
     {
@@ -2704,9 +2704,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 100,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 100
+        "vendor_30d": 0
       }
     },
     {
@@ -2800,9 +2800,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 60,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 68
+        "vendor_30d": 8
       }
     },
     {
@@ -2832,9 +2832,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 58,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 58
+        "vendor_30d": 0
       }
     },
     {
@@ -2958,9 +2958,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 162,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 164
+        "vendor_30d": 2
       }
     },
     {
@@ -3022,9 +3022,9 @@
         "etm_1d": 0,
         "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 122,
+        "vendor_7d": 1,
         "etm_30d": 3,
-        "vendor_30d": 138
+        "vendor_30d": 17
       }
     },
     {
@@ -3054,9 +3054,9 @@
         "etm_1d": 0,
         "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 224,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 230
+        "vendor_30d": 7
       }
     },
     {
@@ -3086,9 +3086,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 143,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 150
+        "vendor_30d": 7
       }
     },
     {
@@ -3118,9 +3118,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 91,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 96
+        "vendor_30d": 5
       }
     },
     {
@@ -3211,9 +3211,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 279,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 279
+        "vendor_30d": 0
       }
     },
     {
@@ -3242,9 +3242,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 274,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 274
+        "vendor_30d": 0
       }
     },
     {
@@ -3273,9 +3273,9 @@
         "etm_1d": 0,
         "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 232,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 259
+        "vendor_30d": 29
       }
     },
     {
@@ -3304,9 +3304,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 215,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 217
+        "vendor_30d": 2
       }
     },
     {
@@ -3335,9 +3335,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 211,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 222
+        "vendor_30d": 11
       }
     },
     {
@@ -3366,9 +3366,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 150,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 227
+        "vendor_30d": 77
       }
     },
     {
@@ -3552,9 +3552,9 @@
         "etm_1d": 0,
         "vendor_1d": 2,
         "etm_7d": 0,
-        "vendor_7d": 116,
+        "vendor_7d": 2,
         "etm_30d": 0,
-        "vendor_30d": 125
+        "vendor_30d": 11
       }
     },
     {
@@ -3583,9 +3583,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 110,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 110
+        "vendor_30d": 0
       }
     },
     {
@@ -3614,9 +3614,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 110,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 110
+        "vendor_30d": 0
       }
     },
     {
@@ -3645,9 +3645,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 108,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 108
+        "vendor_30d": 0
       }
     },
     {
@@ -3676,9 +3676,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 95,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 95
+        "vendor_30d": 0
       }
     },
     {
@@ -3800,9 +3800,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 79,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 79
+        "vendor_30d": 0
       }
     },
     {
@@ -3831,9 +3831,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 79,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 88
+        "vendor_30d": 9
       }
     },
     {
@@ -3862,9 +3862,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 73,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 105
+        "vendor_30d": 32
       }
     },
     {
@@ -3893,9 +3893,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 69,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 69
+        "vendor_30d": 0
       }
     },
     {
@@ -3924,9 +3924,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 67,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 67
+        "vendor_30d": 0
       }
     },
     {
@@ -3955,9 +3955,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 66,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 66
+        "vendor_30d": 0
       }
     },
     {
@@ -4048,9 +4048,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 57,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 57
+        "vendor_30d": 0
       }
     },
     {
@@ -4110,9 +4110,9 @@
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 54,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 62
+        "vendor_30d": 8
       }
     },
     {
@@ -13556,7 +13556,7 @@
         "etm_7d": 0,
         "vendor_7d": 20,
         "etm_30d": 5,
-        "vendor_30d": 305
+        "vendor_30d": 299
       }
     },
     {
