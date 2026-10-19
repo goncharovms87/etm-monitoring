@@ -32,10 +32,16 @@ for filename in history_files:
 
 print(f"Загружено снимков: {len(snapshots)}")
 
-# 2. Исправление аномалий и провалов внутри истории
+# 2. Исправление аномалий и кратковременных всплесков/провалов внутри истории
 num_snaps = len(snapshots)
 
-# А) Одиночные провалы в 0 внутри истории (было X -> стало 0 -> стало X)
+def is_spike_or_dip(prev_val, cur_val, next_val, threshold=50, tolerance=5):
+    """Проверяет всплеск или провал более чем на threshold, возвращающийся к prev_val."""
+    if abs(cur_val - prev_val) >= threshold and abs(next_val - prev_val) <= tolerance:
+        return True
+    return False
+
+# А) Однодневные аномалии: X -> (X ± >50) -> X или X -> 0 -> X
 if num_snaps >= 3:
     for i in range(1, num_snaps - 1):
         prev_data = snapshots[i - 1][1]
@@ -48,39 +54,62 @@ if num_snaps >= 3:
             if not prev_item or not next_item:
                 continue
 
+            # Склад вендора
             p_v = prev_item.get("stock_vendor", 0)
             c_v = c_item.get("stock_vendor", 0)
             n_v = next_item.get("stock_vendor", 0)
-            if c_v == 0 and p_v > 0 and n_v > 0:
-                print(f"Исправлен провал вендора {code} в {snapshots[i][0]}: 0 -> {p_v}")
+
+            # Провал в 0 или всплеск/провал более чем на 50 шт.
+            if (c_v == 0 and p_v > 0 and n_v > 0) or is_spike_or_dip(p_v, c_v, n_v, threshold=50):
+                print(f"Исправлена 1-дневная аномалия вендора {code} в {snapshots[i][0]}: {c_v} -> {p_v}")
                 c_item["stock_vendor"] = p_v
 
+            # Склад ЭТМ
             p_e = prev_item.get("stock_etm", 0)
             c_e = c_item.get("stock_etm", 0)
             n_e = next_item.get("stock_etm", 0)
-            if c_e == 0 and p_e > 0 and n_e > 0:
-                print(f"Исправлен провал ЭТМ {code} в {snapshots[i][0]}: 0 -> {p_e}")
+
+            if (c_e == 0 and p_e > 0 and n_e > 0) or is_spike_or_dip(p_e, c_e, n_e, threshold=50):
+                print(f"Исправлена 1-дневная аномалия ЭТМ {code} в {snapshots[i][0]}: {c_e} -> {p_e}")
                 c_item["stock_etm"] = p_e
 
-# Б) Фильтр аномалий скачка ровно на 70 шт. (например, 70 -> 140 -> 70)
-# Если изменение составляет ровно 70 шт., оставляем остаток как в предыдущий день
-if num_snaps >= 2:
-    for i in range(1, num_snaps):
+# Б) Двухдневные аномалии: X -> (X ± >50) -> (X ± >50) -> X
+# Применяется для случаев, когда аномалия длилась 2 дня подряд (как 200 вместо 100)
+if num_snaps >= 4:
+    for i in range(1, num_snaps - 2):
         prev_data = snapshots[i - 1][1]
-        cur_data = snapshots[i][1]
+        cur_data1 = snapshots[i][1]
+        cur_data2 = snapshots[i + 1][1]
+        next_data = snapshots[i + 2][1]
 
-        for code, c_item in cur_data.items():
+        for code, c1_item in cur_data1.items():
             prev_item = prev_data.get(code)
-            if not prev_item:
+            c2_item = cur_data2.get(code)
+            next_item = next_data.get(code)
+            if not prev_item or not c2_item or not next_item:
                 continue
 
+            # Склад вендора
             p_v = prev_item.get("stock_vendor", 0)
-            c_v = c_item.get("stock_vendor", 0)
+            c1_v = c1_item.get("stock_vendor", 0)
+            c2_v = c2_item.get("stock_vendor", 0)
+            n_v = next_item.get("stock_vendor", 0)
 
-            # Если разница составляет ровно 70 (или кратна 70 при артефакте ЭТМ)
-            if p_v > 0 and abs(c_v - p_v) == 70:
-                print(f"Сглажена аномалия кратно 70 шт. у {code} в {snapshots[i][0]}: {c_v} -> {p_v}")
-                c_item["stock_vendor"] = p_v
+            if abs(c1_v - p_v) >= 50 and abs(c2_v - p_v) >= 50 and abs(n_v - p_v) <= 5:
+                print(f"Исправлена 2-дневная аномалия вендора {code} в {snapshots[i][0]} и {snapshots[i+1][0]}: {c1_v},{c2_v} -> {p_v}")
+                c1_item["stock_vendor"] = p_v
+                c2_item["stock_vendor"] = p_v
+
+            # Склад ЭТМ
+            p_e = prev_item.get("stock_etm", 0)
+            c1_e = c1_item.get("stock_etm", 0)
+            c2_e = c2_item.get("stock_etm", 0)
+            n_e = next_item.get("stock_etm", 0)
+
+            if abs(c1_e - p_e) >= 50 and abs(c2_e - p_e) >= 50 and abs(n_e - p_e) <= 5:
+                print(f"Исправлена 2-дневная аномалия ЭТМ {code} в {snapshots[i][0]} и {snapshots[i+1][0]}: {c1_e},{c2_e} -> {p_e}")
+                c1_item["stock_etm"] = p_e
+                c2_item["stock_etm"] = p_e
 
 # Сохраняем исправленные снимки истории
 for name, data in snapshots:
@@ -139,14 +168,11 @@ if os.path.exists("data.json"):
                 if prev_v > 0 and cur_v < prev_v:
                     diff_v = prev_v - cur_v
 
-                    # 1. Спад ровно 100 шт. игнорируется
-                    if diff_v == 100:
-                        sold_v = 0
-                    # 2. Дорогостоящее оборудование (> 40 000 руб.) со спадом > 200 шт.
-                    elif item_price > 40000 and diff_v > 200:
+                    # 1. Дорогостоящее оборудование (> 40 000 руб.) со спадом > 200 шт.
+                    if item_price > 40000 and diff_v > 200:
                         print(f"Отсечена аномалия продаж: {code_str} (Цена {item_price} руб, скачок {diff_v} шт.)")
                         sold_v = 0
-                    # 3. Выпадение карточки в 0 при повторном появлении партии
+                    # 2. Выпадение карточки в 0 при повторном появлении партии
                     elif cur_v == 0 and diff_v >= 50 and item_info.get("stock_vendor", 0) >= 50:
                         sold_v = 0
                     else:
