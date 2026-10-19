@@ -1,6 +1,5 @@
 import json
 import os
-import glob
 
 HISTORY_DIR = "history"
 
@@ -13,7 +12,6 @@ for filename in history_files:
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             data = json.load(f)
-            # Защита от старых аномалий 26000
             for code, item in data.items():
                 v = item.get("stock_vendor", 0)
                 if v >= 26000:
@@ -26,9 +24,10 @@ for filename in history_files:
 
 print(f"Загружено снимков: {len(snapshots)}")
 
-# 2. Фильтруем ложные выпадения в 0 в самой истории
-# Если остаток был X, на 1 день стал 0, а потом снова X — исправляем ложный 0 обратно в X
+# 2. Исправляем ложные выпадения остатков в истории
 num_snaps = len(snapshots)
+
+# А) Одиночные провалы в 0 внутри истории (было X -> стало 0 -> стало X)
 if num_snaps >= 3:
     for i in range(1, num_snaps - 1):
         prev_data = snapshots[i - 1][1]
@@ -41,23 +40,21 @@ if num_snaps >= 3:
             if not prev_item or not next_item:
                 continue
 
-            # Проверка склада вендора
             p_v = prev_item.get("stock_vendor", 0)
             c_v = c_item.get("stock_vendor", 0)
             n_v = next_item.get("stock_vendor", 0)
-            if c_v == 0 and p_v > 0 and n_v > 0 and abs(p_v - n_v) <= 5:
-                print(f"Исправлено ложное обнуление вендора {code} в {snapshots[i][0]}: 0 -> {p_v}")
+            if c_v == 0 and p_v > 0 and n_v > 0:
+                print(f"Исправлен провал вендора {code} в {snapshots[i][0]}: 0 -> {p_v}")
                 c_item["stock_vendor"] = p_v
 
-            # Проверка склада ЭТМ
             p_e = prev_item.get("stock_etm", 0)
             c_e = c_item.get("stock_etm", 0)
             n_e = next_item.get("stock_etm", 0)
-            if c_e == 0 and p_e > 0 and n_e > 0 and abs(p_e - n_e) <= 5:
-                print(f"Исправлено ложное обнуление ЭТМ {code} в {snapshots[i][0]}: 0 -> {p_e}")
+            if c_e == 0 and p_e > 0 and n_e > 0:
+                print(f"Исправлен провал ЭТМ {code} в {snapshots[i][0]}: 0 -> {p_e}")
                 c_item["stock_etm"] = p_e
 
-# Сохраняем исправленные файлы истории
+# Сохраняем почищенные файлы истории
 for name, data in snapshots:
     with open(os.path.join(HISTORY_DIR, f"{name}.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False)
@@ -66,6 +63,15 @@ for name, data in snapshots:
 if os.path.exists("data.json"):
     with open("data.json", "r", encoding="utf-8") as f:
         payload = json.load(f)
+
+    # Карта актуальных остатков из data.json
+    current_stocks = {
+        str(item.get("etm_code")): {
+            "etm": item.get("stock_etm", 0),
+            "vendor": item.get("stock_vendor", 0)
+        }
+        for item in payload.get("items", [])
+    }
 
     sales_map = {
         str(item["etm_code"]): {
@@ -94,9 +100,24 @@ if os.path.exists("data.json"):
                 prev_v = prev_item.get("stock_vendor", 0)
                 cur_v = cur_item.get("stock_vendor", 0)
 
-                # Продажа засчитывается ТОЛЬКО если было реальное уменьшение с положительного остатка
-                sold_etm = (prev_etm - cur_etm) if (prev_etm > 0 and cur_etm < prev_etm) else 0
-                sold_v = (prev_v - cur_v) if (prev_v > 0 and cur_v < prev_v) else 0
+                # Продажи по складу ЭТМ
+                sold_etm = 0
+                if prev_etm > 0 and cur_etm < prev_etm:
+                    sold_etm = prev_etm - cur_etm
+
+                # Продажи по складу вендора
+                sold_v = 0
+                if prev_v > 0 and cur_v < prev_v:
+                    diff = prev_v - cur_v
+                    
+                    # ПРОВЕРКА: если остаток упал ровно в 0 при большой партии (> 50 шт),
+                    # а в текущем data.json остаток вендора снова равен этому числу (или > 0),
+                    # это было выпадение карточки/поступление, а не реальная продажа!
+                    now_stock_v = current_stocks.get(code_str, {}).get("vendor", 0)
+                    if cur_v == 0 and diff >= 50 and now_stock_v >= 50:
+                        sold_v = 0
+                    else:
+                        sold_v = diff
 
                 if days_from_end == 0:
                     metrics["etm_1d"] += sold_etm
@@ -108,7 +129,7 @@ if os.path.exists("data.json"):
                     metrics["etm_30d"] += sold_etm
                     metrics["vendor_30d"] += sold_v
 
-    # Обновляем структуру data.json
+    # Обновляем элементы в data.json
     yesterday_data = snapshots[-2][1] if num_snaps >= 2 else {}
 
     for item in payload.get("items", []):
@@ -137,4 +158,4 @@ if os.path.exists("data.json"):
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    print("Расчет завершен! data.json полностью обновлен.")
+    print("Расчет завершен! data.json успешно перезаписан с защитой от ложных поступлений.")
