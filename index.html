@@ -124,6 +124,36 @@
     .diff-cheaper { background-color: #dcfce7; color: #15803d; }
     .diff-expensive { background-color: #fee2e2; color: #b91c1c; }
     .diff-equal { background-color: #f1f5f9; color: #475569; }
+
+    /* Стили матрицы ABC/XYZ */
+    .abc-matrix-cell {
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #ffffff;
+    }
+    .abc-matrix-cell:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .abc-matrix-cell.active-cell {
+      border-color: #2563eb !important;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2) !important;
+    }
+    .cell-ax { background-color: #dcfce7; border-color: #86efac; }
+    .cell-ay, .cell-bx { background-color: #f0fdf4; border-color: #bbf7d0; }
+    .cell-az, .cell-by, .cell-cx { background-color: #fef9c3; border-color: #fde047; }
+    .cell-bz, .cell-cy { background-color: #ffedd5; border-color: #fdba74; }
+    .cell-cz { background-color: #fee2e2; border-color: #fca5a5; }
+    .badge-abc {
+      font-weight: 800;
+      font-size: 0.75rem;
+      padding: 0.25em 0.55em;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body class="py-4">
@@ -159,7 +189,7 @@
       <button class="btn btn-sm btn-outline-dark py-0" id="btn-reset-date">Вернуться к текущему дню</button>
     </div>
 
-    <!-- Переключатель режима -->
+    <!-- Переключатель режима (4 режима) -->
     <div class="d-flex align-items-center justify-content-between bg-white p-2 rounded shadow-sm border mb-4">
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-primary btn-sm btn-mode-toggle" id="btn-view-catalog">
@@ -170,6 +200,9 @@
         </button>
         <button type="button" class="btn btn-outline-primary btn-sm btn-mode-toggle" id="btn-view-cross">
           <i class="bi bi-bar-chart-steps"></i> Сравнение цен (Кросс-референс)
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-sm btn-mode-toggle" id="btn-view-abc">
+          <i class="bi bi-grid-3x3-gap"></i> ABC / XYZ Анализ
         </button>
       </div>
     </div>
@@ -284,7 +317,7 @@
             </select>
           </div>
 
-          <!-- Фильтр позиции КЭАЗ для крупного фокуса -->
+          <!-- Фильтр позиции КЭАЗ для фокуса (Кросс-референс) -->
           <div class="col-12 col-md-4 filter-cross-only d-none">
             <label class="form-label text-muted small mb-1 fw-bold text-primary">
               <i class="bi bi-zoom-in"></i> Фокус на артикуле КЭАЗ:
@@ -294,14 +327,27 @@
             </select>
           </div>
 
-          <!-- Фильтры каталога -->
-          <div class="col-12 col-md-2 filter-catalog-only">
+          <!-- Фильтр базы ABC/XYZ -->
+          <div class="col-12 col-md-2 filter-abc-only d-none">
+            <label class="form-label text-muted small mb-1 fw-bold text-success">
+              <i class="bi bi-cash-stack"></i> База ABC:
+            </label>
+            <select id="filter-abc-metric" class="form-select form-select-sm border-success">
+              <option value="revenue_retail" selected>Выручка (РРЦ ЭТМ)</option>
+              <option value="revenue_distr">Оборот дистрибьютора</option>
+              <option value="units">Объем в штуках</option>
+            </select>
+          </div>
+
+          <!-- Производитель (доступен в каталоге, продажах и ABC) -->
+          <div class="col-12 col-md-2 filter-general">
             <label class="form-label text-muted small mb-1 fw-bold">Производитель:</label>
             <select id="filter-brand" class="form-select form-select-sm">
               <option value="">Все бренды</option>
             </select>
           </div>
-          <div class="col-12 col-md-2 filter-catalog-only">
+
+          <div class="col-12 col-md-2 filter-general">
             <label class="form-label text-muted small mb-1 fw-bold">Тип оборудования:</label>
             <select id="filter-type" class="form-select form-select-sm">
               <option value="">Все типы</option>
@@ -315,7 +361,8 @@
               <option value="Other controller">Прочие контроллеры</option>
             </select>
           </div>
-          <div class="col-12 col-md-2 filter-sales-only d-none">
+
+          <div class="col-12 col-md-2 filter-period-block">
             <label class="form-label text-muted small mb-1 fw-bold text-primary">Период продаж:</label>
             <select id="filter-period" class="form-select form-select-sm border-primary">
               <option value="1d">1 сутки (День)</option>
@@ -323,6 +370,7 @@
               <option value="30d">30 дней (Месяц)</option>
             </select>
           </div>
+
           <div class="col-12 col-md-2 filter-catalog-only">
             <label class="form-label text-muted small mb-1 fw-bold">Наличие и фильтр:</label>
             <select id="filter-stock" class="form-select form-select-sm">
@@ -333,6 +381,7 @@
               <option value="in_etm">Только склад ЭТМ</option>
             </select>
           </div>
+
           <div class="col-12 col-md-1 d-flex align-items-end filter-catalog-only">
             <div class="form-check form-switch mb-1">
               <input class="form-check-input" type="checkbox" id="filter-relevant-only" checked>
@@ -345,8 +394,6 @@
 
     <!-- Вкладка 3: ДАШБОРД СРАВНЕНИЯ ЦЕН (КРОСС-РЕФЕРЕНС) -->
     <div id="cross-analytics-section" class="d-none mb-4">
-      
-      <!-- Легенда -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-body py-2 px-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
           <div class="d-flex flex-wrap align-items-center gap-3">
@@ -363,7 +410,6 @@
         </div>
       </div>
 
-      <!-- График 1: Розничная цена ЭТМ (РРЦ) -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
@@ -376,7 +422,6 @@
         </div>
       </div>
 
-      <!-- График 2: Дистрибьюторская цена -->
       <div class="card border-0 shadow-sm bg-white mb-3">
         <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
           <span class="fw-bold text-dark text-uppercase small">
@@ -389,7 +434,6 @@
         </div>
       </div>
 
-      <!-- Детализированная матрица -->
       <div class="card border-0 shadow-sm bg-white">
         <div class="card-header bg-transparent border-0 pt-3 pb-0">
           <span class="fw-bold text-dark text-uppercase small">
@@ -414,6 +458,143 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Вкладка 4: ДАШБОРД ABC / XYZ АНАЛИЗА (ВАРИАНТ 2) -->
+    <div id="abc-analytics-section" class="d-none mb-4">
+      
+      <!-- Карточки суммарного оборота ABC -->
+      <div class="row g-3 mb-3">
+        <div class="col-12 col-md-4">
+          <div class="card border-0 shadow-sm bg-white p-3 border-start border-4 border-success">
+            <div class="text-muted small fw-bold text-uppercase">Группа A (Ключевой оборот: 80%)</div>
+            <div class="h4 fw-bold text-success mb-1" id="kpi-abc-a">0 ₽</div>
+            <small class="text-muted" id="kpi-abc-a-sub">0 SKU (0% ассортимента)</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card border-0 shadow-sm bg-white p-3 border-start border-4 border-warning">
+            <div class="text-muted small fw-bold text-uppercase">Группа B (Поддержка: 15%)</div>
+            <div class="h4 fw-bold text-warning-emphasis mb-1" id="kpi-abc-b">0 ₽</div>
+            <small class="text-muted" id="kpi-abc-b-sub">0 SKU (0% ассортимента)</small>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="card border-0 shadow-sm bg-white p-3 border-start border-4 border-secondary">
+            <div class="text-muted small fw-bold text-uppercase">Группа C (Хвост: 5%)</div>
+            <div class="h4 fw-bold text-secondary mb-1" id="kpi-abc-c">0 ₽</div>
+            <small class="text-muted" id="kpi-abc-c-sub">0 SKU (0% ассортимента)</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Тепловая матрица 3x3 -->
+      <div class="card border-0 shadow-sm bg-white mb-3">
+        <div class="card-header bg-transparent border-0 pt-3 pb-0 d-flex justify-content-between align-items-center">
+          <span class="fw-bold text-dark text-uppercase small">
+            <i class="bi bi-grid-3x3 me-1"></i> Двумерная матрица ABC / XYZ (Клик по ячейке для быстрой фильтрации)
+          </span>
+          <button class="btn btn-sm btn-outline-secondary py-0" id="btn-reset-abc-filter">Сбросить выбор ячейки</button>
+        </div>
+        <div class="card-body p-3">
+          <div class="row g-2 text-center">
+            
+            <!-- Заголовки столбцов X, Y, Z -->
+            <div class="col-1 text-muted small fw-bold d-flex align-items-center justify-content-center"></div>
+            <div class="col text-muted small fw-bold">X (Стабильный спрос)</div>
+            <div class="col text-muted small fw-bold">Y (Колеблющийся спрос)</div>
+            <div class="col text-muted small fw-bold">Z (Редкий / Проектный)</div>
+
+            <!-- Ряд A -->
+            <div class="w-100 m-0"></div>
+            <div class="col-1 text-muted small fw-bold d-flex align-items-center justify-content-center">A (Топ 80%)</div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-ax" data-group="AX">
+                <div class="fw-bold text-success">AX</div>
+                <div class="small fw-semibold" id="cell-count-ax">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-ax">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-ay" data-group="AY">
+                <div class="fw-bold text-success">AY</div>
+                <div class="small fw-semibold" id="cell-count-ay">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-ay">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-az" data-group="AZ">
+                <div class="fw-bold text-warning-emphasis">AZ</div>
+                <div class="small fw-semibold" id="cell-count-az">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-az">0 ₽</div>
+              </div>
+            </div>
+
+            <!-- Ряд B -->
+            <div class="w-100 m-0"></div>
+            <div class="col-1 text-muted small fw-bold d-flex align-items-center justify-content-center">B (15%)</div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-bx" data-group="BX">
+                <div class="fw-bold text-success">BX</div>
+                <div class="small fw-semibold" id="cell-count-bx">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-bx">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-by" data-group="BY">
+                <div class="fw-bold text-warning-emphasis">BY</div>
+                <div class="small fw-semibold" id="cell-count-by">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-by">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-bz" data-group="BZ">
+                <div class="fw-bold text-danger">BZ</div>
+                <div class="small fw-semibold" id="cell-count-bz">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-bz">0 ₽</div>
+              </div>
+            </div>
+
+            <!-- Ряд C -->
+            <div class="w-100 m-0"></div>
+            <div class="col-1 text-muted small fw-bold d-flex align-items-center justify-content-center">C (5%)</div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-cx" data-group="CX">
+                <div class="fw-bold text-warning-emphasis">CX</div>
+                <div class="small fw-semibold" id="cell-count-cx">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-cx">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-cy" data-group="CY">
+                <div class="fw-bold text-danger">CY</div>
+                <div class="small fw-semibold" id="cell-count-cy">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-cy">0 ₽</div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="abc-matrix-cell cell-cz" data-group="CZ">
+                <div class="fw-bold text-secondary">CZ (Мертвый запас)</div>
+                <div class="small fw-semibold" id="cell-count-cz">0 SKU</div>
+                <div class="text-muted" style="font-size: 0.72rem;" id="cell-val-cz">0 ₽</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Таблица классификации ABC/XYZ -->
+      <div class="card border-0 shadow-sm bg-white">
+        <div class="card-header bg-transparent border-0 pt-3 pb-0">
+          <span class="fw-bold text-dark text-uppercase small">
+            <i class="bi bi-list-check me-1"></i> Реестр классификации ассортимента
+          </span>
+        </div>
+        <div class="card-body p-3">
+          <div id="grid-container-abc"></div>
+        </div>
+      </div>
 
     </div>
 
@@ -434,9 +615,6 @@
   <script>
     Chart.register(ChartDataLabels);
 
-    // ==========================================
-    // ТОЧНАЯ ТАБЛИЦА С ВАШИМИ НАИМЕНОВАНИЯМИ КЭАЗ
-    // ==========================================
     const CROSS_DATA = [
       { keaz: "293070", name: "OptiLogic L-CPU-1-M", competitors: ["ПЛК160-24.А-М", "", ""] },
       { keaz: "419012", name: "OptiLogic L-CPU-1-C", competitors: ["ПЛК160-24.А-М", "", ""] },
@@ -456,11 +634,11 @@
     ];
 
     const DISTR_FACTORS = {
-      "КЭАЗ": 0.68,   // -32%
-      "EKF": 0.70,    // -30%
-      "ОВЕН": 0.85,   // -15%
-      "ONI": 0.95,    // -5%
-      "DKC": 0.60,    // -40%
+      "КЭАЗ": 0.68,
+      "EKF": 0.70,
+      "ОВЕН": 0.85,
+      "ONI": 0.95,
+      "DKC": 0.60,
       "Другой": 1.00
     };
 
@@ -473,11 +651,10 @@
       "Другой": { bg: "#94a3b8", border: "#475569" }
     };
 
-    // Плагин рисования пунктирных линий уровня 100% КЭАЗ внутри каждой группы
     const keazBaselinePlugin = {
       id: 'keazBaselinePlugin',
       afterDatasetsDraw(chart) {
-        const { ctx, scales: { x, y } } = chart;
+        const { ctx } = chart;
         const metaList = chart.data.datasets.map((d, i) => chart.getDatasetMeta(i));
         const keazDatasetIndex = chart.data.datasets.findIndex(d => d.label === 'КЭАЗ');
         if (keazDatasetIndex === -1) return;
@@ -489,8 +666,6 @@
           if (!keazBar || chart.data.datasets[keazDatasetIndex].data[index] === null) return;
 
           const targetY = keazBar.y;
-
-          // Определяем левую и правую границу столбцов в пределах одного артикула
           let minX = Infinity;
           let maxX = -Infinity;
 
@@ -513,7 +688,6 @@
             ctx.lineTo(maxX + 4, targetY);
             ctx.stroke();
 
-            // Бейдж 100% у линии
             ctx.setLineDash([]);
             ctx.fillStyle = '#0284c7';
             ctx.font = 'bold 9px sans-serif';
@@ -529,6 +703,7 @@
     let displayedItems = [];
     let gridCatalog = null;
     let gridSales = null;
+    let gridAbc = null;
     let chartBrandsInstance = null;
     let chartTypesInstance = null;
     let chartCrossRetailInstance = null;
@@ -537,6 +712,7 @@
     let currentPeriod = '7d';
     let selectedDate = 'latest';
     let selectedCrossSku = 'all';
+    let selectedAbcCell = null;
     let globalPayload = {};
     const historicalCache = {};
 
@@ -571,6 +747,16 @@
         (i.vendor_code && String(i.vendor_code).toLowerCase() === cleanQ) ||
         (i.name && i.name.toLowerCase().includes(cleanQ))
       );
+    }
+
+    // ==========================================
+    // ДИНАМИЧЕСКИЙ РАСЧЕТ ПРОДАЖ (ОТ ВЫБРАННОЙ ДАТЫ)
+    // ==========================================
+    function getItemSales(item) {
+      const s = item.sales || {};
+      const se = s[`etm_${currentPeriod}`] || 0;
+      const sv = s[`vendor_${currentPeriod}`] || 0;
+      return { se, sv, total: se + sv };
     }
 
     function renderCatalogGrid(data) {
@@ -702,9 +888,7 @@
       const periodLabel = currentPeriod === '1d' ? 'сутки' : currentPeriod === '7d' ? '7 дн' : '30 дн';
       
       const formatted = data.map(item => {
-        const s = item.sales || {};
-        const se = s[`etm_${currentPeriod}`] || 0;
-        const sv = s[`vendor_${currentPeriod}`] || 0;
+        const sales = getItemSales(item);
         return [
           item.etm_code,
           item.brand,
@@ -713,9 +897,9 @@
           item.price,
           item.stock_etm,
           item.stock_vendor,
-          se,
-          sv,
-          (se + sv),
+          sales.se,
+          sales.sv,
+          sales.total,
           item.url
         ];
       });
@@ -822,9 +1006,9 @@
         summary[b].etm += (i.stock_etm || 0);
         summary[b].vendor += (i.stock_vendor || 0);
 
-        const sales = i.sales || {};
-        summary[b].soldEtm += (sales[`etm_${currentPeriod}`] || 0);
-        summary[b].soldVendor += (sales[`vendor_${currentPeriod}`] || 0);
+        const sales = getItemSales(i);
+        summary[b].soldEtm += sales.se;
+        summary[b].soldVendor += sales.sv;
       });
 
       const sorted = Object.entries(summary).sort((a, b) => (b[1].soldEtm + b[1].soldVendor) - (a[1].soldEtm + a[1].soldVendor));
@@ -947,7 +1131,6 @@
         const keazItem = findItemByCodeOrArticle(row.keaz);
         const keazPrice = keazItem && keazItem.price > 0 ? keazItem.price : 0;
         
-        // Четкое заводское наименование КЭАЗ из списка
         labels.push(`${row.keaz}\n${row.name}`);
 
         const rowRetail = { "КЭАЗ": keazPrice > 0 ? keazPrice : null, "ОВЕН": null, "EKF": null, "ONI": null, "DKC": null };
@@ -970,7 +1153,6 @@
           return { art, item: found, brand, price, distrPrice };
         });
 
-        // Расчет процентов
         Object.keys(seriesRetail).forEach(b => {
           const rP = rowRetail[b];
           const dP = rowDistr[b];
@@ -996,7 +1178,6 @@
           }
         });
 
-        // Строка матрицы
         function formatCell(comp) {
           if (!comp) return '<span class="text-muted fw-bold">—</span>';
           if (!comp.price) {
@@ -1009,7 +1190,6 @@
           }
 
           const colorInfo = BRAND_COLORS[comp.brand] || BRAND_COLORS["Другой"];
-          
           let diffRetailBadge = '';
           let diffDistrBadge = '';
 
@@ -1028,12 +1208,8 @@
           return `
             <div class="p-1 rounded text-start" style="border-left: 3px solid ${colorInfo.border};">
               <div class="fw-bold" style="color: ${colorInfo.border}; font-size: 0.82rem;">${comp.brand}: ${comp.art}</div>
-              <div class="small fw-semibold text-dark">
-                РРЦ: ${comp.price.toLocaleString('ru-RU')} ₽ ${diffRetailBadge}
-              </div>
-              <div class="small text-muted">
-                Дистр: ${comp.distrPrice.toLocaleString('ru-RU')} ₽ ${diffDistrBadge}
-              </div>
+              <div class="small fw-semibold text-dark">РРЦ: ${comp.price.toLocaleString('ru-RU')} ₽ ${diffRetailBadge}</div>
+              <div class="small text-muted">Дистр: ${comp.distrPrice.toLocaleString('ru-RU')} ₽ ${diffDistrBadge}</div>
             </div>
           `;
         }
@@ -1135,7 +1311,6 @@
         };
       }
 
-      // 1. График РРЦ с плагином базовой линии КЭАЗ
       const ctxRetail = document.getElementById('chartCrossRetail').getContext('2d');
       if (chartCrossRetailInstance) chartCrossRetailInstance.destroy();
       chartCrossRetailInstance = new Chart(ctxRetail, {
@@ -1145,7 +1320,6 @@
         plugins: [keazBaselinePlugin]
       });
 
-      // 2. График Дистрибьютора с плагином базовой линии КЭАЗ
       const ctxDistr = document.getElementById('chartCrossDistr').getContext('2d');
       if (chartCrossDistrInstance) chartCrossDistrInstance.destroy();
       chartCrossDistrInstance = new Chart(ctxDistr, {
@@ -1154,6 +1328,260 @@
         options: makeOptions(true),
         plugins: [keazBaselinePlugin]
       });
+    }
+
+    // ==========================================
+    // ЛОГИКА ДАШБОРДА ABC / XYZ АНАЛИЗА
+    // ==========================================
+    function calculateAbcXyz(items) {
+      const metricType = document.getElementById('filter-abc-metric').value;
+
+      // 1. Считаем базовую метрику для каждого товара
+      const enriched = items.map(item => {
+        const sales = getItemSales(item);
+        const units = sales.total;
+        let value = 0;
+
+        if (metricType === 'units') {
+          value = units;
+        } else if (metricType === 'revenue_distr') {
+          const discount = DISTR_FACTORS[item.brand] || 1.0;
+          value = Math.round(units * ((item.price || 0) * discount));
+        } else {
+          // revenue_retail
+          value = Math.round(units * (item.price || 0));
+        }
+
+        // Оценка стабильности XYZ: отношение продаж за 1 день к среднему дню в периоде
+        let variation = 0.5; // по умолчанию Y
+        if (units === 0) {
+          variation = 1.0; // Z
+        } else {
+          const dailyAvg = units / (currentPeriod === '1d' ? 1 : currentPeriod === '7d' ? 7 : 30);
+          const d1 = (item.sales && (item.sales.etm_1d + item.sales.vendor_1d)) || 0;
+          variation = Math.abs(d1 - dailyAvg) / (dailyAvg || 1);
+        }
+
+        let xyzGroup = 'Z';
+        if (units > 0) {
+          if (variation <= 0.25) xyzGroup = 'X';
+          else if (variation <= 0.65) xyzGroup = 'Y';
+          else xyzGroup = 'Z';
+        }
+
+        return { ...item, abc_metric: value, units: units, variation: variation, xyz_group: xyzGroup };
+      });
+
+      // 2. Сортируем по убыванию метрики для Парето-накопления
+      enriched.sort((a, b) => b.abc_metric - a.abc_metric);
+      const totalVolume = enriched.reduce((sum, i) => sum + i.abc_metric, 0);
+
+      let runningSum = 0;
+      enriched.forEach(i => {
+        runningSum += i.abc_metric;
+        const cumPct = totalVolume > 0 ? (runningSum / totalVolume) * 100 : 100;
+        i.cum_pct = cumPct;
+
+        if (i.abc_metric === 0) {
+          i.abc_group = 'C';
+        } else if (cumPct <= 80) {
+          i.abc_group = 'A';
+        } else if (cumPct <= 95) {
+          i.abc_group = 'B';
+        } else {
+          i.abc_group = 'C';
+        }
+
+        i.matrix_cell = `${i.abc_group}${i.xyz_group}`;
+      });
+
+      return { items: enriched, totalVolume };
+    }
+
+    function renderAbcDashboard(items) {
+      const { items: classified, totalVolume } = calculateAbcXyz(items);
+
+      // Сводка KPI
+      let valA = 0, countA = 0;
+      let valB = 0, countB = 0;
+      let valC = 0, countC = 0;
+
+      const matrixStats = {
+        AX: { count: 0, val: 0 }, AY: { count: 0, val: 0 }, AZ: { count: 0, val: 0 },
+        BX: { count: 0, val: 0 }, BY: { count: 0, val: 0 }, BZ: { count: 0, val: 0 },
+        CX: { count: 0, val: 0 }, CY: { count: 0, val: 0 }, CZ: { count: 0, val: 0 }
+      };
+
+      classified.forEach(i => {
+        if (i.abc_group === 'A') { valA += i.abc_metric; countA++; }
+        else if (i.abc_group === 'B') { valB += i.abc_metric; countB++; }
+        else { valC += i.abc_metric; countC++; }
+
+        const cell = i.matrix_cell;
+        if (matrixStats[cell]) {
+          matrixStats[cell].count++;
+          matrixStats[cell].val += i.abc_metric;
+        }
+      });
+
+      const totalCount = classified.length || 1;
+      const metricType = document.getElementById('filter-abc-metric').value;
+      const unitLabel = metricType === 'units' ? ' шт.' : ' ₽';
+
+      document.getElementById('kpi-abc-a').textContent = `${valA.toLocaleString('ru-RU')}${unitLabel}`;
+      document.getElementById('kpi-abc-a-sub').textContent = `${countA} SKU (${Math.round((countA/totalCount)*100)}% базы)`;
+
+      document.getElementById('kpi-abc-b').textContent = `${valB.toLocaleString('ru-RU')}${unitLabel}`;
+      document.getElementById('kpi-abc-b-sub').textContent = `${countB} SKU (${Math.round((countB/totalCount)*100)}% базы)`;
+
+      document.getElementById('kpi-abc-c').textContent = `${valC.toLocaleString('ru-RU')}${unitLabel}`;
+      document.getElementById('kpi-abc-c-sub').textContent = `${countC} SKU (${Math.round((countC/totalCount)*100)}% базы)`;
+
+      // Заполнение матрицы 3x3
+      Object.keys(matrixStats).forEach(cellKey => {
+        const cLower = cellKey.toLowerCase();
+        const stat = matrixStats[cellKey];
+        const countEl = document.getElementById(`cell-count-${cLower}`);
+        const valEl = document.getElementById(`cell-val-${cLower}`);
+        if (countEl) countEl.textContent = `${stat.count} SKU`;
+        if (valEl) valEl.textContent = `${stat.val.toLocaleString('ru-RU')}${unitLabel}`;
+      });
+
+      // Привязка клика по ячейке матрицы
+      document.querySelectorAll('.abc-matrix-cell').forEach(cell => {
+        cell.onclick = () => {
+          const group = cell.getAttribute('data-group');
+          if (selectedAbcCell === group) {
+            selectedAbcCell = null;
+            document.querySelectorAll('.abc-matrix-cell').forEach(c => c.classList.remove('active-cell'));
+          } else {
+            selectedAbcCell = group;
+            document.querySelectorAll('.abc-matrix-cell').forEach(c => c.classList.remove('active-cell'));
+            cell.classList.add('active-cell');
+          }
+          renderAbcGrid(classified);
+        };
+      });
+
+      document.getElementById('btn-reset-abc-filter').onclick = () => {
+        selectedAbcCell = null;
+        document.querySelectorAll('.abc-matrix-cell').forEach(c => c.classList.remove('active-cell'));
+        renderAbcGrid(classified);
+      };
+
+      renderAbcGrid(classified);
+    }
+
+    function renderAbcGrid(classifiedItems) {
+      let filtered = classifiedItems;
+      if (selectedAbcCell) {
+        filtered = classifiedItems.filter(i => i.matrix_cell === selectedAbcCell);
+      }
+
+      const metricType = document.getElementById('filter-abc-metric').value;
+      const metricColTitle = metricType === 'units' ? 'Объем продаж (шт)' : 'Оборот / Выручка (₽)';
+
+      const formatted = filtered.map(i => [
+        i.matrix_cell,
+        i.brand,
+        i.vendor_code,
+        i.name,
+        i.price,
+        i.units,
+        i.abc_metric,
+        i.cum_pct,
+        i.stock_etm + i.stock_vendor,
+        i.url,
+        i
+      ]);
+
+      const cols = [
+        {
+          name: "Группа",
+          width: "90px",
+          sort: true,
+          formatter: (cell) => {
+            let bg = 'bg-secondary';
+            if (cell.startsWith('A')) bg = 'bg-success';
+            else if (cell.startsWith('B')) bg = 'bg-warning text-dark';
+            return gridjs.html(`<span class="badge ${bg} badge-abc">${cell}</span>`);
+          }
+        },
+        {
+          name: "Производитель",
+          width: "130px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="fw-bold text-primary">${cell}</span>`)
+        },
+        {
+          name: "Артикул",
+          width: "140px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="font-monospace small">${cell || '—'}</span>`)
+        },
+        {
+          name: "Наименование позиции",
+          sort: true,
+          formatter: (cell, row) => gridjs.html(`<a href="${row.cells[9].data}" target="_blank" class="product-link">${cell}</a>`)
+        },
+        {
+          name: "РРЦ, ₽",
+          width: "125px",
+          sort: true,
+          formatter: (cell) => cell > 0 ? gridjs.html(`${Number(cell).toLocaleString('ru-RU')} ₽`) : gridjs.html('—')
+        },
+        {
+          name: "Продажи, шт.",
+          width: "125px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="badge bg-light text-dark border fw-bold">${cell} шт.</span>`)
+        },
+        {
+          name: metricColTitle,
+          width: "155px",
+          sort: true,
+          formatter: (cell) => {
+            const val = Number(cell) || 0;
+            return gridjs.html(`<span class="fw-bold text-dark">${val.toLocaleString('ru-RU')}${metricType === 'units' ? ' шт.' : ' ₽'}</span>`);
+          }
+        },
+        {
+          name: "Кумулятив %",
+          width: "120px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="text-muted small">${Math.round(cell)}%</span>`)
+        },
+        {
+          name: "Остаток общий",
+          width: "130px",
+          sort: true,
+          formatter: (cell) => gridjs.html(`<span class="badge bg-info text-dark badge-stock">${cell} шт.</span>`)
+        },
+        { name: "url", hidden: true },
+        { name: "raw_item", hidden: true }
+      ];
+
+      if (gridAbc) {
+        gridAbc.updateConfig({ columns: cols, data: formatted }).forceRender();
+        return;
+      }
+
+      gridAbc = new gridjs.Grid({
+        columns: cols,
+        data: formatted,
+        search: true,
+        pagination: { limit: 25 },
+        sort: true,
+        language: {
+          search: { placeholder: 'Поиск по матрице ABC...' },
+          pagination: {
+            previous: 'Назад', next: 'Вперед',
+            showing: 'Записи с', to: 'по', of: 'из', results: 'позиций'
+          },
+          loading: 'Загрузка...',
+          noRecordsFound: 'Позиции не найдены'
+        }
+      }).render(document.getElementById("grid-container-abc"));
     }
 
     function updateKPIs(items) {
@@ -1183,10 +1611,9 @@
         if (i.price_diff > 0) priceUp++;
         if (i.price_diff < 0) priceDown++;
 
-        if (i.sales) {
-          soldEtm += (i.sales[`etm_${currentPeriod}`] || 0);
-          soldVendor += (i.sales[`vendor_${currentPeriod}`] || 0);
-        }
+        const sales = getItemSales(i);
+        soldEtm += sales.se;
+        soldVendor += sales.sv;
       });
 
       document.getElementById('kpi-stock-etm').textContent = `${stockEtmTotal.toLocaleString('ru-RU')} шт.`;
@@ -1219,11 +1646,11 @@
         if (selectedBrand !== "" && item.brand !== selectedBrand) return false;
         if (selectedType !== "" && item.product_type !== selectedType) return false;
 
-        const sE = (item.sales && item.sales[`etm_${currentPeriod}`]) || 0;
-        const sV = (item.sales && item.sales[`vendor_${currentPeriod}`]) || 0;
+        const sales = getItemSales(item);
 
+        // СТРОГОЕ ИСПРАВЛЕНИЕ: фильтр «Только с продажами» проверяет реальные продажи > 0
         if (selectedStock === 'with_sales') {
-          if (sE <= 0 && sV <= 0) return false;
+          if (sales.total <= 0) return false;
         } else if (selectedStock === 'price_changed') {
           if (!item.price_diff || item.price_diff === 0) return false;
         } else if (selectedStock === 'in_stock') {
@@ -1244,6 +1671,8 @@
         renderVendorSalesSummary(displayedItems);
       } else if (currentMode === 'cross') {
         renderCrossDashboard();
+      } else if (currentMode === 'abc') {
+        renderAbcDashboard(displayedItems);
       }
     }
 
@@ -1307,162 +1736,13 @@
       renderCrossDashboard();
     });
 
+    document.getElementById('filter-abc-metric').addEventListener('change', () => {
+      applyFilters();
+    });
+
     function setViewMode(mode) {
       currentMode = mode;
       document.getElementById('btn-view-catalog').className = mode === 'catalog' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
       document.getElementById('btn-view-sales').className = mode === 'sales' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
       document.getElementById('btn-view-cross').className = mode === 'cross' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn btn-outline-primary btn-sm btn-mode-toggle";
-
-      // Скрываем все разделы
-      document.getElementById('catalog-analytics-section').classList.add('d-none');
-      document.getElementById('sales-analytics-section').classList.add('d-none');
-      document.getElementById('cross-analytics-section').classList.add('d-none');
-      document.getElementById('grid-wrapper-card').classList.add('d-none');
-      document.getElementById('grid-container-catalog').classList.add('d-none');
-      document.getElementById('grid-container-sales').classList.add('d-none');
-
-      document.querySelectorAll('.filter-catalog-only').forEach(el => el.classList.toggle('d-none', mode === 'cross'));
-      document.querySelectorAll('.filter-cross-only').forEach(el => el.classList.toggle('d-none', mode !== 'cross'));
-      document.querySelector('.filter-sales-only').classList.toggle('d-none', mode !== 'sales');
-
-      if (mode === 'catalog') {
-        document.getElementById('catalog-analytics-section').classList.remove('d-none');
-        document.getElementById('grid-wrapper-card').classList.remove('d-none');
-        document.getElementById('grid-container-catalog').classList.remove('d-none');
-      } else if (mode === 'sales') {
-        document.getElementById('sales-analytics-section').classList.remove('d-none');
-        document.getElementById('grid-wrapper-card').classList.remove('d-none');
-        document.getElementById('grid-container-sales').classList.remove('d-none');
-      } else if (mode === 'cross') {
-        document.getElementById('cross-analytics-section').classList.remove('d-none');
-      }
-
-      applyFilters();
-    }
-
-    document.getElementById('btn-view-catalog').addEventListener('click', () => setViewMode('catalog'));
-    document.getElementById('btn-view-sales').addEventListener('click', () => setViewMode('sales'));
-    document.getElementById('btn-view-cross').addEventListener('click', () => setViewMode('cross'));
-
-    fetch('data.json?t=' + new Date().getTime())
-      .then(res => {
-        if (!res.ok) throw new Error("Файл data.json не найден. Статус: " + res.status);
-        return res.json();
-      })
-      .then(payload => {
-        globalPayload = payload;
-        baseItems = payload.items || [];
-        currentViewItems = JSON.parse(JSON.stringify(baseItems));
-        
-        document.getElementById('update-date').textContent = 'Обновлено: ' + (payload.last_updated || '—');
-        document.getElementById('total-count').textContent = 'Всего в базе: ' + baseItems.length;
-
-        const dateSelect = document.getElementById('filter-date');
-        const availableDates = payload.available_dates || [];
-        availableDates.forEach(d => {
-          const opt = document.createElement('option');
-          opt.value = d;
-          opt.textContent = d;
-          dateSelect.appendChild(opt);
-        });
-
-        // Заполнение выпадающего списка артикулов КЭАЗ для фокуса
-        const crossSelect = document.getElementById('filter-cross-sku');
-        CROSS_DATA.forEach(row => {
-          const opt = document.createElement('option');
-          opt.value = row.keaz;
-          opt.textContent = `${row.keaz} - ${row.name}`;
-          crossSelect.appendChild(opt);
-        });
-
-        // Бренды для фильтра каталога
-        const brandSelect = document.getElementById('filter-brand');
-        const brands = Array.from(new Set(baseItems.map(i => i.brand))).filter(Boolean).sort();
-        brands.forEach(b => {
-          const opt = document.createElement('option');
-          opt.value = b;
-          opt.textContent = b;
-          brandSelect.appendChild(opt);
-        });
-
-        ['filter-brand', 'filter-type', 'filter-stock', 'filter-period', 'filter-relevant-only'].forEach(id => {
-          document.getElementById(id).addEventListener('change', applyFilters);
-        });
-
-        applyFilters();
-      })
-      .catch(err => {
-        document.getElementById('grid-container-catalog').innerHTML = 
-          `<div class="alert alert-warning mb-0">
-            <h6 class="fw-bold">Ожидание данных:</h6>${err.message}
-          </div>`;
-      });
-
-    document.getElementById('btn-export-csv').addEventListener('click', () => {
-      if (!displayedItems.length) {
-        alert("Нет данных для экспорта!");
-        return;
-      }
-
-      let headers = [];
-      let rows = [];
-      const dateTag = selectedDate === 'latest' ? 'current' : selectedDate;
-
-      if (currentMode === 'sales') {
-        const periodLabel = currentPeriod === '1d' ? '1д' : currentPeriod === '7d' ? '7д' : '30д';
-        headers = [
-          "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
-          `Склад ЭТМ (${dateTag})`, `Склад вендора (${dateTag})`,
-          `Продажи ЭТМ (${periodLabel})`, `Продажи Вендор (${periodLabel})`, `Всего продано (${periodLabel})`,
-          "Ссылка"
-        ];
-
-        rows = displayedItems.map(i => {
-          const s = i.sales || {};
-          const se = s[`etm_${currentPeriod}`] || 0;
-          const sv = s[`vendor_${currentPeriod}`] || 0;
-          return [
-            i.etm_code,
-            `"${(i.brand || '').replace(/"/g, '""')}"`,
-            `"${(TYPE_NAMES[i.product_type] || i.product_type || '').replace(/"/g, '""')}"`,
-            `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
-            `"${(i.name || '').replace(/"/g, '""')}"`,
-            i.price || 0,
-            i.stock_etm || 0,
-            i.stock_vendor || 0,
-            se,
-            sv,
-            (se + sv),
-            i.url
-          ];
-        });
-      } else {
-        headers = [
-          "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
-          `Склад ЭТМ (${dateTag})`, `Склад вендора (${dateTag})`,
-          "Ссылка"
-        ];
-
-        rows = displayedItems.map(i => [
-          i.etm_code,
-          `"${(i.brand || '').replace(/"/g, '""')}"`,
-          `"${(TYPE_NAMES[i.product_type] || i.product_type || '').replace(/"/g, '""')}"`,
-          `"${(i.vendor_code || '').replace(/"/g, '""')}"`,
-          `"${(i.name || '').replace(/"/g, '""')}"`,
-          i.price || 0,
-          i.stock_etm || 0,
-          i.stock_vendor || 0,
-          i.url
-        ]);
-      }
-
-      const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `etm_export_${currentMode}_${dateTag}_${new Date().toISOString().slice(0, 10)}.csv`;
-      link.click();
-    });
-  </script>
-</body>
-</html>
+      document.getElementById('btn-view-abc').className = mode === 'abc' ? "btn btn-primary btn-sm btn-mode-toggle" : "btn
