@@ -10716,15 +10716,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -70,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 70,
+        "vendor_7d": 0,
         "etm_30d": 0,
-        "vendor_30d": 70
+        "vendor_30d": 0
       }
     },
     {
