@@ -1,7 +1,7 @@
 {
-  "last_updated": "20.10.2026 06:49 UTC",
+  "last_updated": "20.10.2026 08:31 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1460.0,
+  "elapsed_seconds": 1524.0,
   "total_items": 642,
   "statistics": {
     "categories": 24,
@@ -8848,28 +8848,28 @@
       "vendor_code": "PLR-430-CPU-14U10R-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 8 DI 6 UI (0-10 В/DI) 10 RO 24В DC с экраном",
       "product_type": "Programmable relay",
-      "price": 37747.61,
+      "price": 25428.37,
       "stock_etm": 1,
-      "stock_vendor": 1916,
+      "stock_vendor": 1915,
       "stock_all": [
         1,
-        1916
+        1915
       ],
       "url": "https://www.etm.ru/cat/nn/6213129",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -12319.24,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -4,
+      "stock_vendor_diff": -5,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 4,
+        "vendor_1d": 5,
         "etm_7d": 0,
-        "vendor_7d": 23,
+        "vendor_7d": 24,
         "etm_30d": 0,
-        "vendor_30d": 27
+        "vendor_30d": 28
       }
     },
     {
@@ -9347,7 +9347,7 @@
       "vendor_code": "PLR-430-CPU-08D04R-0DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 8 DI 4 RO 24В DC без экрана",
       "product_type": "Programmable relay",
-      "price": 16268.13,
+      "price": 10958.89,
       "stock_etm": 0,
       "stock_vendor": 925,
       "stock_all": [
@@ -9357,7 +9357,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -5309.24,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9378,7 +9378,7 @@
       "vendor_code": "IOD-430-TB-16NP000",
       "name": "IOD 430 Модуль дискретного ввода 16 сигналов NPN/PNP",
       "product_type": "I/O module",
-      "price": 12126.46,
+      "price": 8168.89,
       "stock_etm": 0,
       "stock_vendor": 654,
       "stock_all": [
@@ -9388,7 +9388,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -3957.57,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -6,
       "is_new": false,
@@ -9409,7 +9409,7 @@
       "vendor_code": "PLR-430-CPU-12U06R-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 6 DI 6 UI (0-10 В/DI) 6 RO 24В DC с экраном",
       "product_type": "Programmable relay",
-      "price": 30379.87,
+      "price": 20465.16,
       "stock_etm": 0,
       "stock_vendor": 582,
       "stock_all": [
@@ -9419,7 +9419,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -9914.71,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -1,
       "is_new": false,
@@ -9440,7 +9440,7 @@
       "vendor_code": "IOD-430-TB-8NP000",
       "name": "IOD 430 Модуль дискретного ввода 8 сигналов NPN/PNP",
       "product_type": "I/O module",
-      "price": 8184.2,
+      "price": 5513.22,
       "stock_etm": 0,
       "stock_vendor": 507,
       "stock_all": [
@@ -9450,7 +9450,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -2670.98,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9471,7 +9471,7 @@
       "vendor_code": "PLR-430-EMA-04I000-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 4 AI (0-20 мА) 24В DC",
       "product_type": "I/O module",
-      "price": 25521.64,
+      "price": 17192.45,
       "stock_etm": 0,
       "stock_vendor": 385,
       "stock_all": [
@@ -9481,7 +9481,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -8329.19,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9502,7 +9502,7 @@
       "vendor_code": "IOD-430-TB-00004I",
       "name": "IOD 430 Модуль аналогового вывода 4 токовых сигнала",
       "product_type": "I/O module",
-      "price": 30784.57,
+      "price": 20737.78,
       "stock_etm": 0,
       "stock_vendor": 373,
       "stock_all": [
@@ -9512,7 +9512,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -10046.79,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9533,7 +9533,7 @@
       "vendor_code": "PLR-430-EMC-RS485I-0DC-00",
       "name": "ПЛК 430 Модуль расширения коммуникационных портов RS485 с гальванической развязкой 24В DC",
       "product_type": "Communication module",
-      "price": 11184.58,
+      "price": 7534.4,
       "stock_etm": 0,
       "stock_vendor": 335,
       "stock_all": [
@@ -9543,7 +9543,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -3650.18,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -2,
       "is_new": false,
@@ -9564,7 +9564,7 @@
       "vendor_code": "IOD-430-TB-04V000",
       "name": "IOD 430 Модуль аналогового ввода 4 сигнала напряжения",
       "product_type": "I/O module",
-      "price": 27555.93,
+      "price": 18562.84,
       "stock_etm": 0,
       "stock_vendor": 287,
       "stock_all": [
@@ -9574,7 +9574,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -8993.09,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9595,7 +9595,7 @@
       "vendor_code": "IOD-430-TB-00004V",
       "name": "IOD 430 Модуль аналогового вывода 4 сигнала напряжения",
       "product_type": "I/O module",
-      "price": 30784.57,
+      "price": 20737.78,
       "stock_etm": 0,
       "stock_vendor": 281,
       "stock_all": [
@@ -9605,7 +9605,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -10046.79,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9626,7 +9626,7 @@
       "vendor_code": "IOD-430-TB-04I000",
       "name": "IOD 430 Модуль аналогового ввода 4 токовых сигнала",
       "product_type": "I/O module",
-      "price": 27555.93,
+      "price": 18562.84,
       "stock_etm": 0,
       "stock_vendor": 276,
       "stock_all": [
@@ -9636,7 +9636,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -8993.09,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9657,7 +9657,7 @@
       "vendor_code": "IOD-430-TB-04T000",
       "name": "IOD 430 Модуль аналогового ввода 4 пассивных температурных сигнала",
       "product_type": "I/O module",
-      "price": 28832.38,
+      "price": 19422.71,
       "stock_etm": 0,
       "stock_vendor": 265,
       "stock_all": [
@@ -9667,7 +9667,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -9409.67,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9688,7 +9688,7 @@
       "vendor_code": "IOD-430-TB-00016P",
       "name": "IOD 430 Модуль дискретного вывода 16 сигналов PNP",
       "product_type": "I/O module",
-      "price": 15692.63,
+      "price": 10571.21,
       "stock_etm": 0,
       "stock_vendor": 263,
       "stock_all": [
@@ -9698,7 +9698,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -5121.42,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9719,7 +9719,7 @@
       "vendor_code": "PLC-430-CPU-12U06R-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 6 UI (0-10 В/DI) 2 UI (0-10 В/0-20 мА/DI) 6 RO 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 39721.76,
+      "price": 26758.25,
       "stock_etm": 0,
       "stock_vendor": 250,
       "stock_all": [
@@ -9781,7 +9781,7 @@
       "vendor_code": "IOD-430-ST-MI0000",
       "name": "IOD 430 Набор модулей Modbus TCP",
       "product_type": "Communication module",
-      "price": 36994.19,
+      "price": 24920.84,
       "stock_etm": 0,
       "stock_vendor": 241,
       "stock_all": [
@@ -9791,7 +9791,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -12073.35,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -1,
       "is_new": false,
@@ -9812,7 +9812,7 @@
       "vendor_code": "PLC-430-CPU-16U10U-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 12 UI (0-10 В/DI) 8 RO 2 AO (1 шт 0-10 В и 1 шт 0-20 мА) 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 68453.21,
+      "price": 46112.96,
       "stock_etm": 1,
       "stock_vendor": 1,
       "stock_all": [
@@ -9824,7 +9824,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -22340.25,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9845,7 +9845,7 @@
       "vendor_code": "IOD-430-PW-200000",
       "name": "IOD 430 Модуль питания 2А",
       "product_type": "Other module",
-      "price": 14618.92,
+      "price": 9847.91,
       "stock_etm": 0,
       "stock_vendor": 188,
       "stock_all": [
@@ -9855,7 +9855,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -4771.01,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -9876,7 +9876,7 @@
       "vendor_code": "PLR-430-ACS-USB-AM-000-00",
       "name": "ПЛК 430 Кабель USB разъём тип А папа",
       "product_type": "Programmable relay",
-      "price": 10206.35,
+      "price": 6875.42,
       "stock_etm": 0,
       "stock_vendor": 154,
       "stock_all": [
@@ -9938,7 +9938,7 @@
       "vendor_code": "PLR-430-CPU-12D06R-1AC-00",
       "name": "ПЛК 430 Модуль ЦПУ 12 DI 6 RO 220В AC с экраном",
       "product_type": "Programmable relay",
-      "price": 29882.01,
+      "price": 20129.78,
       "stock_etm": 0,
       "stock_vendor": 134,
       "stock_all": [
@@ -9948,7 +9948,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -9752.23,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -4,
       "is_new": false,
@@ -9969,7 +9969,7 @@
       "vendor_code": "PLR-430-EMA-04P000-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 4 входа Pt100/Pt1000 24В DC",
       "product_type": "I/O module",
-      "price": 21269.38,
+      "price": 14327.95,
       "stock_etm": 0,
       "stock_vendor": 131,
       "stock_all": [
@@ -9979,7 +9979,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -6941.43,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -5,
       "is_new": false,
@@ -10031,7 +10031,7 @@
       "vendor_code": "PLR-430-EMD-08D08R-0AC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 8 DI 8 RO 220В AC",
       "product_type": "I/O module",
-      "price": 22851.62,
+      "price": 15393.81,
       "stock_etm": 0,
       "stock_vendor": 130,
       "stock_all": [
@@ -10041,7 +10041,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -7457.81,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -3,
       "is_new": false,
@@ -10093,7 +10093,7 @@
       "vendor_code": "PLR-430-EMA-04U000-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 4 UI (0-20 мА/0-10 В) 24В DC",
       "product_type": "I/O module",
-      "price": 30420.93,
+      "price": 20492.82,
       "stock_etm": 0,
       "stock_vendor": 114,
       "stock_all": [
@@ -10103,7 +10103,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -9928.11,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -3,
       "is_new": false,
@@ -10155,7 +10155,7 @@
       "vendor_code": "PLR-430-EMA-00002U-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 2 UO (0-20 мА/0-10 В) 24В DC",
       "product_type": "I/O module",
-      "price": 25296.81,
+      "price": 17041.0,
       "stock_etm": 0,
       "stock_vendor": 111,
       "stock_all": [
@@ -10165,7 +10165,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -8255.81,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10186,7 +10186,7 @@
       "vendor_code": "IOD-430-ST-PN0000",
       "name": "IOD 430 Набор модулей PROFINET",
       "product_type": "Communication module",
-      "price": 42356.79,
+      "price": 28533.31,
       "stock_etm": 0,
       "stock_vendor": 96,
       "stock_all": [
@@ -10196,7 +10196,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -13823.48,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10217,7 +10217,7 @@
       "vendor_code": "PLR-430-EMD-16U000-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 12 DI 4 UI (0-10 В/DI) 24В DC",
       "product_type": "I/O module",
-      "price": 23244.6,
+      "price": 15658.54,
       "stock_etm": 0,
       "stock_vendor": 94,
       "stock_all": [
@@ -10227,7 +10227,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -7586.06,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10279,7 +10279,7 @@
       "vendor_code": "IOD-430-ST-EC0000",
       "name": "IOD 430 Набор модулей EtherCAT",
       "product_type": "Other",
-      "price": 42356.79,
+      "price": 28533.31,
       "stock_etm": 0,
       "stock_vendor": 83,
       "stock_all": [
@@ -10289,7 +10289,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -13823.48,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10310,7 +10310,7 @@
       "vendor_code": "PLR-430-EMD-00016R-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 16 RO 24В DC",
       "product_type": "I/O module",
-      "price": 32476.22,
+      "price": 21877.35,
       "stock_etm": 0,
       "stock_vendor": 76,
       "stock_all": [
@@ -10320,7 +10320,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -10598.87,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10341,7 +10341,7 @@
       "vendor_code": "PLC-W-ACS-MBRTU-USB",
       "name": "ПЛК W. Преобразователь интерфейсов USB-RS485",
       "product_type": "PLC",
-      "price": 10206.8,
+      "price": 6875.72,
       "stock_etm": 0,
       "stock_vendor": 66,
       "stock_all": [
@@ -10351,7 +10351,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -3331.08,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10434,7 +10434,7 @@
       "vendor_code": "IOD-430-TE-000000",
       "name": "IOD 430 Терминал общий расширенный",
       "product_type": "Other",
-      "price": 7522.62,
+      "price": 5067.55,
       "stock_etm": 0,
       "stock_vendor": 38,
       "stock_all": [
@@ -10444,7 +10444,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -2455.07,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10527,7 +10527,7 @@
       "vendor_code": "PLC-430-CPU-12U06T-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 6 UI (0-10 В/DI) 2 UI (0-10 В/0-20 мА/DI) 6 TO 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 40979.37,
+      "price": 27605.43,
       "stock_etm": 0,
       "stock_vendor": 24,
       "stock_all": [
@@ -10537,7 +10537,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -13373.94,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -4,
       "is_new": false,
@@ -10620,7 +10620,7 @@
       "vendor_code": "PLR-430-CPU-08D04R-0AC-00",
       "name": "ПЛК 430 Модуль ЦПУ 8 DI 4 RO 220В AC без экрана",
       "product_type": "Programmable relay",
-      "price": 17042.3,
+      "price": 11480.41,
       "stock_etm": 1,
       "stock_vendor": 10,
       "stock_all": [
@@ -10631,7 +10631,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -5561.89,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10714,7 +10714,7 @@
       "vendor_code": "PLC-430-CPU-16D10R-1AC-00",
       "name": "ПЛК 430 Модуль ЦПУ 16 DI 10 RO 220В AC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 60785.29,
+      "price": 40947.53,
       "stock_etm": 0,
       "stock_vendor": 1,
       "stock_all": [
@@ -10724,7 +10724,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -19837.76,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10892,7 +10892,7 @@
       "vendor_code": "IOD-430-TB-00008P",
       "name": "IOD 430 Модуль дискретного вывода 8 сигналов PNP",
       "product_type": "I/O module",
-      "price": 10136.38,
+      "price": 6828.29,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -10900,7 +10900,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -3308.09,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -10950,7 +10950,7 @@
       "vendor_code": "PLR-S-CPU-0804R-AC-NN",
       "name": "Логическое реле PLR-S. CPU0804(R) 220В AC без экрана",
       "product_type": "Programmable relay",
-      "price": 15618.23,
+      "price": 10521.1,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -10958,7 +10958,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -5097.13,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11153,7 +11153,7 @@
       "vendor_code": "IOD-430-RS-MR0000",
       "name": "IOD 430 Модуль интерфейсов RS-232 RS-422 и RS-485",
       "product_type": "Other module",
-      "price": 27201.61,
+      "price": 18324.14,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11161,7 +11161,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -8877.47,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11269,7 +11269,7 @@
       "vendor_code": "PLC-S-EXA-0202",
       "name": "Модуль расширения для ЦПУ на 2 аналоговых входа и 2 аналоговых выхода (ток/напряжение)",
       "product_type": "I/O module",
-      "price": 68375.1,
+      "price": 46060.34,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11277,7 +11277,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -22314.76,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11327,7 +11327,7 @@
       "vendor_code": "PLC-430-CPU-16U10S-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 12 UI (0-10 В/DI) 8 RO 2 TO 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 59579.24,
+      "price": 40135.08,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11335,7 +11335,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -19444.16,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11530,7 +11530,7 @@
       "vendor_code": "PLC-S-EXD-0016",
       "name": "Модуль расширения для ЦПУ на 16 дискретных выходов (реле до 2А)",
       "product_type": "I/O module",
-      "price": 37552.91,
+      "price": 25297.21,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11538,7 +11538,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -12255.7,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11646,7 +11646,7 @@
       "vendor_code": "PLC-S-EXD-3200",
       "name": "Модуль расширения для ЦПУ на 32 дискретных входа (Sink/Source)",
       "product_type": "I/O module",
-      "price": 45794.47,
+      "price": 30849.08,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11654,7 +11654,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -14945.39,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -11907,7 +11907,7 @@
       "vendor_code": "PLR-430-EMD-08U08T-0DC-00",
       "name": "ПЛК 430 Модуль расширения входов выходов 4 DI 4 UI (0-10 В/DI) 8 TO 24В DC",
       "product_type": "I/O module",
-      "price": 23570.96,
+      "price": 15878.39,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11915,7 +11915,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -7692.57,
       "stock_etm_diff": 0,
       "stock_vendor_diff": -77,
       "is_new": false,
@@ -11936,7 +11936,7 @@
       "vendor_code": "PLC-430-CPU-08U04R-1DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 4 DI 4 UI (0-10 В/DI) 4 RO 24В DC с Ethernet портом с экраном",
       "product_type": "Communication module",
-      "price": 29739.2,
+      "price": 20033.57,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11944,7 +11944,7 @@
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
-      "price_diff": 0.0,
+      "price_diff": -9705.63,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -12727,27 +12727,27 @@
       "vendor_code": "PLR-430-ACS-RS232E-000-00",
       "name": "ПЛК 430 Кабель RS-232 для обмена данными с внешними устройствами",
       "product_type": "Programmable relay",
-      "price": 10037.01,
+      "price": 6761.35,
       "stock_etm": 0,
-      "stock_vendor": 68,
+      "stock_vendor": 67,
       "stock_all": [
-        68
+        67
       ],
       "url": "https://www.etm.ru/cat/nn/5869308",
       "sources": [
         "ONI: Реле PLR"
       ],
-      "price_diff": 0.0,
+      "price_diff": -3275.66,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 28,
+        "vendor_7d": 29,
         "etm_30d": 0,
-        "vendor_30d": 42
+        "vendor_30d": 43
       }
     },
     {
@@ -12911,7 +12911,7 @@
       "vendor_code": "PLR-S-STK-1206R-DC-BE",
       "name": "Логическое реле PLR-S. Стартовый набор 24В DC",
       "product_type": "Programmable relay",
-      "price": 36226.59,
+      "price": 24403.76,
       "stock_etm": 44,
       "stock_vendor": 0,
       "stock_all": [
@@ -12921,7 +12921,7 @@
       "sources": [
         "ONI: Реле PLR"
       ],
-      "price_diff": 0.0,
+      "price_diff": -11822.83,
       "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
@@ -13640,10 +13640,10 @@
       "name": "Прибор цифровой измерительный комбинированный DMC на панель 96x96 (квадратный вырез) PROxima",
       "product_type": "Other",
       "price": 13242.71,
-      "stock_etm": 8,
+      "stock_etm": 9,
       "stock_vendor": 89,
       "stock_all": [
-        8,
+        9,
         89
       ],
       "url": "https://www.etm.ru/cat/nn/7458771",
@@ -13651,7 +13651,7 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": -1211.89,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": 1,
       "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
