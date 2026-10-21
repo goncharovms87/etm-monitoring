@@ -1,7 +1,7 @@
 {
-  "last_updated": "21.10.2026 05:54 UTC",
+  "last_updated": "21.10.2026 08:40 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1387.2,
+  "elapsed_seconds": 1683.6,
   "total_items": 640,
   "statistics": {
     "categories": 24,
@@ -2939,10 +2939,10 @@
       "name": "Модуль расширения дискретный 16 входов",
       "product_type": "I/O module",
       "price": 22952.62,
-      "stock_etm": 99,
+      "stock_etm": 97,
       "stock_vendor": 100,
       "stock_all": [
-        99,
+        97,
         100
       ],
       "url": "https://www.etm.ru/cat/nn/1392483",
@@ -2950,15 +2950,15 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -2,
       "stock_vendor_diff": -11,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 2,
         "vendor_1d": 11,
-        "etm_7d": 0,
+        "etm_7d": 2,
         "vendor_7d": 17,
-        "etm_30d": 3,
+        "etm_30d": 5,
         "vendor_30d": 154
       }
     },
@@ -2971,10 +2971,10 @@
       "name": "Модуль расширения дискретный 8 выходов",
       "product_type": "I/O module",
       "price": 19539.59,
-      "stock_etm": 92,
+      "stock_etm": 90,
       "stock_vendor": 203,
       "stock_all": [
-        92,
+        90,
         203
       ],
       "url": "https://www.etm.ru/cat/nn/5721502",
@@ -2982,15 +2982,15 @@
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -2,
       "stock_vendor_diff": -7,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 2,
         "vendor_1d": 7,
-        "etm_7d": 0,
+        "etm_7d": 2,
         "vendor_7d": 15,
-        "etm_30d": 0,
+        "etm_30d": 2,
         "vendor_30d": 244
       }
     },
@@ -13380,25 +13380,25 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6307.66,
-      "stock_etm": 18,
+      "stock_etm": 14,
       "stock_vendor": 0,
       "stock_all": [
-        18
+        14
       ],
       "url": "https://www.etm.ru/cat/nn/225594",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -4,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 4,
         "vendor_1d": 0,
-        "etm_7d": 6,
+        "etm_7d": 10,
         "vendor_7d": 0,
-        "etm_30d": 32,
+        "etm_30d": 36,
         "vendor_30d": 135
       }
     },
@@ -13507,10 +13507,10 @@
       "name": "Модуль дискретного ввода EMF 16 PRO-Logic PROxima",
       "product_type": "I/O module",
       "price": 7445.11,
-      "stock_etm": 2,
+      "stock_etm": 3,
       "stock_vendor": 131,
       "stock_all": [
-        2,
+        3,
         131
       ],
       "url": "https://www.etm.ru/cat/nn/5378313",
@@ -13518,15 +13518,15 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -2,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": 108,
       "is_new": false,
       "sales": {
-        "etm_1d": 2,
+        "etm_1d": 1,
         "vendor_1d": 0,
-        "etm_7d": 2,
+        "etm_7d": 1,
         "vendor_7d": 50,
-        "etm_30d": 4,
+        "etm_30d": 3,
         "vendor_30d": 104
       }
     },
@@ -13571,10 +13571,10 @@
       "name": "Прибор цифровой измерительный комбинированный DMC на панель 96x96 (квадратный вырез) PROxima",
       "product_type": "Other",
       "price": 13242.71,
-      "stock_etm": 9,
+      "stock_etm": 8,
       "stock_vendor": 86,
       "stock_all": [
-        9,
+        8,
         86
       ],
       "url": "https://www.etm.ru/cat/nn/7458771",
@@ -13582,15 +13582,15 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 3,
-        "etm_7d": 1,
+        "etm_7d": 2,
         "vendor_7d": 10,
-        "etm_30d": 3,
+        "etm_30d": 4,
         "vendor_30d": 60
       }
     },
