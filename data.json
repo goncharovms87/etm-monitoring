@@ -1,7 +1,7 @@
 {
-  "last_updated": "23.10.2026 07:38 UTC",
+  "last_updated": "23.10.2026 08:35 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1386.6,
+  "elapsed_seconds": 1483.0,
   "total_items": 643,
   "statistics": {
     "categories": 24,
@@ -2844,25 +2844,23 @@
       "name": "Модуль ввода/вывода дискретный, 24 VDC, 28 IO: 16 дискретных входов, 12 дискретных выходов (реле, 3 A)",
       "product_type": "I/O module",
       "price": 16018.75,
-      "stock_etm": 3,
+      "stock_etm": 0,
       "stock_vendor": 0,
-      "stock_all": [
-        3
-      ],
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/6502933",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -3,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 3,
         "vendor_1d": 0,
-        "etm_7d": 0,
+        "etm_7d": 3,
         "vendor_7d": 0,
-        "etm_30d": 0,
+        "etm_30d": 3,
         "vendor_30d": 0
       }
     },
