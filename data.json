@@ -1,7 +1,7 @@
 {
-  "last_updated": "02.11.2026 06:34 UTC",
+  "last_updated": "02.11.2026 10:48 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1461.2,
+  "elapsed_seconds": 1348.3,
   "total_items": 642,
   "statistics": {
     "categories": 24,
@@ -13451,10 +13451,10 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6307.66,
-      "stock_etm": 7,
+      "stock_etm": 6,
       "stock_vendor": 325,
       "stock_all": [
-        7,
+        6,
         325
       ],
       "url": "https://www.etm.ru/cat/nn/225594",
@@ -13462,15 +13462,15 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": -15,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 15,
-        "etm_7d": 14,
+        "etm_7d": 15,
         "vendor_7d": 118,
-        "etm_30d": 41,
+        "etm_30d": 42,
         "vendor_30d": 188
       }
     },
