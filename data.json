@@ -1,7 +1,7 @@
 {
-  "last_updated": "03.11.2026 06:29 UTC",
+  "last_updated": "03.11.2026 11:17 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1282.2,
+  "elapsed_seconds": 1368.5,
   "total_items": 643,
   "statistics": {
     "categories": 24,
@@ -5369,10 +5369,9 @@
       "name": "Программируемое реле ПР102-230.2416.01.1",
       "product_type": "Programmable relay",
       "price": 16036.9,
-      "stock_etm": 1,
+      "stock_etm": 0,
       "stock_vendor": 5,
       "stock_all": [
-        1,
         5
       ],
       "url": "https://www.etm.ru/cat/nn/2316828",
@@ -5380,15 +5379,15 @@
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 0,
-        "etm_7d": 0,
+        "etm_7d": 1,
         "vendor_7d": 2,
-        "etm_30d": 0,
+        "etm_30d": 1,
         "vendor_30d": 12
       }
     },
@@ -7661,15 +7660,17 @@
       "name": "Модуль дискретного ввода-вывода МК210-301",
       "product_type": "I/O module",
       "price": 15433.0,
-      "stock_etm": 0,
+      "stock_etm": 1,
       "stock_vendor": 0,
-      "stock_all": [],
+      "stock_all": [
+        1
+      ],
       "url": "https://www.etm.ru/cat/nn/5083012",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": 1,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
@@ -13576,10 +13577,10 @@
       "name": "Модуль дискретного ввода EMF 16 PRO-Logic PROxima",
       "product_type": "I/O module",
       "price": 7445.11,
-      "stock_etm": 7,
+      "stock_etm": 6,
       "stock_vendor": 93,
       "stock_all": [
-        7,
+        6,
         93
       ],
       "url": "https://www.etm.ru/cat/nn/5378313",
@@ -13587,15 +13588,15 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -1,
       "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 1,
         "vendor_1d": 2,
-        "etm_7d": 5,
+        "etm_7d": 6,
         "vendor_7d": 17,
-        "etm_30d": 7,
+        "etm_30d": 8,
         "vendor_30d": 129
       }
     },
@@ -13672,25 +13673,25 @@
       "name": "Прибор цифровой измерительный комбинированный DMC-r с интерфейсом RS-485 на панель 96x96 (квадратный вырез) PROxima",
       "product_type": "Other",
       "price": 16073.51,
-      "stock_etm": 3,
+      "stock_etm": 1,
       "stock_vendor": 0,
       "stock_all": [
-        3
+        1
       ],
       "url": "https://www.etm.ru/cat/nn/2776435",
       "sources": [
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": -1,
+      "stock_etm_diff": -3,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 1,
+        "etm_1d": 3,
         "vendor_1d": 0,
-        "etm_7d": 1,
+        "etm_7d": 3,
         "vendor_7d": 0,
-        "etm_30d": 1,
+        "etm_30d": 3,
         "vendor_30d": 5
       }
     },
