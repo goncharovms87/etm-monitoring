@@ -1,7 +1,7 @@
 {
-  "last_updated": "05.11.2026 06:32 UTC",
+  "last_updated": "05.11.2026 10:35 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1445.9,
+  "elapsed_seconds": 1360.6,
   "total_items": 643,
   "statistics": {
     "categories": 24,
@@ -2847,25 +2847,23 @@
       "name": "Контроллер логический программируемый S172, 24 VDC, дисплей, до 7 модулей расширения, 28 IO: 8 дискретных входов, 8 дискретных выходов (реле, 3 A), 8 аналоговых входов (NTC10K, PT1000, PT100, 0-10 V, 4-20 mA), 4 аналоговых выхода (0-10 V, 4-20 m",
       "product_type": "I/O module",
       "price": 28587.91,
-      "stock_etm": 2,
+      "stock_etm": 0,
       "stock_vendor": 0,
-      "stock_all": [
-        2
-      ],
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/5728070",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 0,
+      "stock_etm_diff": -2,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
-        "etm_1d": 0,
+        "etm_1d": 2,
         "vendor_1d": 0,
-        "etm_7d": 2,
+        "etm_7d": 4,
         "vendor_7d": 0,
-        "etm_30d": 6,
+        "etm_30d": 8,
         "vendor_30d": 37
       }
     },
@@ -12973,7 +12971,7 @@
       "vendor_code": "PLC-150-CPU-18U15U-1D",
       "name": "ПЛК 150 Модуль ЦПУ 18 UI 6 UIO 2 UO 7 DO 24В DC с экраном",
       "product_type": "PLC",
-      "price": 0.0,
+      "price": 13000.32,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -13481,10 +13479,10 @@
       "name": "Контроллер АВР на 2 ввода AVR-2 PROxima",
       "product_type": "Other controller",
       "price": 6307.66,
-      "stock_etm": 12,
+      "stock_etm": 6,
       "stock_vendor": 306,
       "stock_all": [
-        12,
+        6,
         306
       ],
       "url": "https://www.etm.ru/cat/nn/225594",
@@ -13492,7 +13490,7 @@
         "EKF: ПЛК PRO-Logic"
       ],
       "price_diff": 0.0,
-      "stock_etm_diff": 6,
+      "stock_etm_diff": 0,
       "stock_vendor_diff": -7,
       "is_new": false,
       "sales": {
@@ -13767,9 +13765,9 @@
       "product_type": "Other controller",
       "price": 7175.42,
       "stock_etm": 0,
-      "stock_vendor": 128,
+      "stock_vendor": 125,
       "stock_all": [
-        128
+        125
       ],
       "url": "https://www.etm.ru/cat/nn/6621724",
       "sources": [
@@ -13777,15 +13775,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 1,
+        "vendor_1d": 4,
         "etm_7d": 0,
-        "vendor_7d": 71,
+        "vendor_7d": 74,
         "etm_30d": 5,
-        "vendor_30d": 127
+        "vendor_30d": 130
       }
     },
     {
