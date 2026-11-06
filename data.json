@@ -1,7 +1,7 @@
 {
-  "last_updated": "06.11.2026 07:39 UTC",
+  "last_updated": "06.11.2026 10:39 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1448.3,
+  "elapsed_seconds": 1399.9,
   "total_items": 663,
   "statistics": {
     "categories": 24,
@@ -9426,27 +9426,25 @@
       "vendor_code": "PLR-430-CPU-08D04R-0DC-00",
       "name": "ПЛК 430 Модуль ЦПУ 8 DI 4 RO 24В DC без экрана",
       "product_type": "Programmable relay",
-      "price": 10958.89,
+      "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 923,
-      "stock_all": [
-        923
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/810677",
       "sources": [
         "ONI: ПЛК-410 и модули"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -923,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 923,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 925,
         "etm_30d": 0,
-        "vendor_30d": 53
+        "vendor_30d": 976
       }
     },
     {
@@ -10577,9 +10575,9 @@
       "product_type": "PLC",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 34,
+      "stock_vendor": 33,
       "stock_all": [
-        34
+        33
       ],
       "url": "https://www.etm.ru/cat/nn/359836",
       "sources": [
@@ -10730,12 +10728,11 @@
       "vendor_code": "PLR-430-CPU-08D04R-0AC-00",
       "name": "ПЛК 430 Модуль ЦПУ 8 DI 4 RO 220В AC без экрана",
       "product_type": "Programmable relay",
-      "price": 11480.41,
+      "price": 0.0,
       "stock_etm": 1,
-      "stock_vendor": 8,
+      "stock_vendor": 0,
       "stock_all": [
-        1,
-        8
+        1
       ],
       "url": "https://www.etm.ru/cat/nn/2286252",
       "sources": [
@@ -10743,15 +10740,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -8,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 8,
         "etm_7d": 0,
-        "vendor_7d": 2,
+        "vendor_7d": 10,
         "etm_30d": 0,
-        "vendor_30d": 15
+        "vendor_30d": 23
       }
     },
     {
@@ -10764,9 +10761,9 @@
       "product_type": "I/O module",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 8,
+      "stock_vendor": 3,
       "stock_all": [
-        8
+        3
       ],
       "url": "https://www.etm.ru/cat/nn/6995615",
       "sources": [
@@ -10774,15 +10771,15 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -5,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 5,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 5,
         "etm_30d": 0,
-        "vendor_30d": 3
+        "vendor_30d": 8
       }
     },
     {
@@ -10824,7 +10821,7 @@
       "vendor_code": "PLC-S-CPU-0806",
       "name": "Модуль ЦПУ со встроенными 8 дискретными входами (Sink/Source) и 6 дискретными выходами (реле). Интерфейсы 1хEthernet 10/100 Мб 1хRS232 1хRS485. Напряжение питания 24В DC",
       "product_type": "Communication module",
-      "price": 35399.93,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -10853,7 +10850,7 @@
       "vendor_code": "PLR-M-CPU-26R02ADC",
       "name": "Микро ПЛК . Расширяемая версия. Со встроенным экраном. 16 дискретных входов (4 как 0-20мА, 8 как 0-10В, 4 до 60кГц), 4 релейных выхода, 2 аналоговых выхода 0-20мА/0-10В. RTC. SD карта. 2хRS485. Ethernet. Напряжение питания 24В DC",
       "product_type": "Programmable relay",
-      "price": 56234.02,
+      "price": 0.0,
       "stock_etm": 76,
       "stock_vendor": 0,
       "stock_all": [
@@ -10884,7 +10881,7 @@
       "vendor_code": "PLC-TB-CABLE-32",
       "name": "Соединительный кабель для коммутации ПЛК S <-> терминальный блок. 32 канала ввода или вывода",
       "product_type": "I/O module",
-      "price": 5378.16,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -10913,7 +10910,7 @@
       "vendor_code": "PLC-TB",
       "name": "Терминальный блок для ПЛК S",
       "product_type": "PLC",
-      "price": 4142.69,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11087,7 +11084,7 @@
       "vendor_code": "PLR-S-CPU-0804R-AC-NN",
       "name": "Логическое реле PLR-S. CPU0804(R) 220В AC без экрана",
       "product_type": "Programmable relay",
-      "price": 10521.1,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11522,7 +11519,7 @@
       "vendor_code": "PLC-S-EXC-ETHERNET",
       "name": "Модуль коммуникационный с интерфейсом Ethernet 10/100Mbps UDP/TCP MODBUS TCP Master",
       "product_type": "Communication module",
-      "price": 44063.91,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11638,7 +11635,7 @@
       "vendor_code": "PLC-S-EXA-0202",
       "name": "Модуль расширения для ЦПУ на 2 аналоговых входа и 2 аналоговых выхода (ток/напряжение)",
       "product_type": "I/O module",
-      "price": 46060.34,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -11957,7 +11954,7 @@
       "vendor_code": "PLC-TB-CABLE-16",
       "name": "Соединительный кабель для коммутации ПЛК S <-> терминальный блок. 16 каналов ввода + 16 каналов вывода",
       "product_type": "I/O module",
-      "price": 6124.0,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -12073,7 +12070,7 @@
       "vendor_code": "PLC-S-RTD",
       "name": "Модуль расширения для ЦПУ на 4 канала ввода термосопротивлений PT100/PT1000/Ni1000/JPT100",
       "product_type": "I/O module",
-      "price": 58294.02,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -12102,7 +12099,7 @@
       "vendor_code": "PLC-S-EXC-2348",
       "name": "Модуль коммуникационный с интерфейсами 1хRS232C 1хRS422/485 MODBUS RTU Master",
       "product_type": "Communication module",
-      "price": 37749.47,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -12160,7 +12157,7 @@
       "vendor_code": "PLC-S-EXD-0016",
       "name": "Модуль расширения для ЦПУ на 16 дискретных выходов (реле до 2А)",
       "product_type": "I/O module",
-      "price": 25297.21,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -12218,7 +12215,7 @@
       "vendor_code": "PLC-S-EXD-3200",
       "name": "Модуль расширения для ЦПУ на 32 дискретных входа (Sink/Source)",
       "product_type": "I/O module",
-      "price": 30849.08,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -12305,7 +12302,7 @@
       "vendor_code": "PLR-S-EMD-0016NR-DC",
       "name": "Логическое реле PLR-S . Модуль расширения 16 каналами релейного вывода. Напряжение питания 12-24 В DC",
       "product_type": "I/O module",
-      "price": 20058.04,
+      "price": 0.0,
       "stock_etm": 76,
       "stock_vendor": 0,
       "stock_all": [
@@ -12423,7 +12420,7 @@
       "vendor_code": "PLC-S-EXA-0400",
       "name": "Модуль расширения для ЦПУ на 4 аналоговых входа (ток/напряжение)",
       "product_type": "I/O module",
-      "price": 36146.2,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -13334,27 +13331,25 @@
       "vendor_code": "PLR-S-EMA-0002",
       "name": "Логическое реле PLR-S. Модуль расширения 2 каналами аналогового вывода (0..10В/0..20мА) серии . Напряжение питания 12-24 В DC",
       "product_type": "I/O module",
-      "price": 17217.15,
+      "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/537914",
       "sources": [
         "ONI: Реле PLR"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
-        "vendor_1d": 0,
+        "vendor_1d": 1,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 0
+        "vendor_30d": 1
       }
     },
     {
@@ -13394,7 +13389,7 @@
       "vendor_code": "PLR-S-EMA-PT100",
       "name": "Логическое реле PLR-S. 3 RTD серии",
       "product_type": "Programmable relay",
-      "price": 12256.14,
+      "price": 0.0,
       "stock_etm": 0,
       "stock_vendor": 0,
       "stock_all": [],
@@ -13423,7 +13418,7 @@
       "vendor_code": "PLR-S-EMA-0400",
       "name": "Логическое реле PLR-S. Модуль расширения 4 каналами аналогового входа (0/4..20мА) серии . Напряжение питания 12-24 В DC",
       "product_type": "I/O module",
-      "price": 12949.52,
+      "price": 0.0,
       "stock_etm": 89,
       "stock_vendor": 0,
       "stock_all": [
@@ -13454,7 +13449,7 @@
       "vendor_code": "PLR-M-CPU-18R00ADC",
       "name": "Микро ПЛК PLR-M. CPU DI12/DO06(R) 24В DC",
       "product_type": "Programmable relay",
-      "price": 25282.69,
+      "price": 0.0,
       "stock_etm": 76,
       "stock_vendor": 0,
       "stock_all": [
@@ -13485,7 +13480,7 @@
       "vendor_code": "PLR-S-CPU-1410R-AC-BE",
       "name": "Логическое реле PLR-S. CPU1410(R) 220В AC с экраном",
       "product_type": "Programmable relay",
-      "price": 25474.38,
+      "price": 0.0,
       "stock_etm": 47,
       "stock_vendor": 0,
       "stock_all": [
@@ -13516,7 +13511,7 @@
       "vendor_code": "PLR-S-STK-1206R-DC-BE",
       "name": "Логическое реле PLR-S. Стартовый набор 24В DC",
       "product_type": "Programmable relay",
-      "price": 24403.76,
+      "price": 0.0,
       "stock_etm": 44,
       "stock_vendor": 0,
       "stock_all": [
@@ -13547,7 +13542,7 @@
       "vendor_code": "PLR-M-CPU-18R00AAC",
       "name": "Микро ПЛК PLR-M. CPU DI12/DO06(R) 220В AC",
       "product_type": "Programmable relay",
-      "price": 25848.54,
+      "price": 0.0,
       "stock_etm": 76,
       "stock_vendor": 0,
       "stock_all": [
