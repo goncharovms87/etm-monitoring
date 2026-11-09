@@ -1,7 +1,7 @@
 {
-  "last_updated": "09.11.2026 06:31 UTC",
+  "last_updated": "09.11.2026 11:10 UTC",
   "parser_version": "3.6-history-fixed",
-  "elapsed_seconds": 1601.3,
+  "elapsed_seconds": 1389.4,
   "total_items": 657,
   "statistics": {
     "categories": 24,
@@ -6325,17 +6325,15 @@
       "product_type": "I/O module",
       "price": 17319.0,
       "stock_etm": 0,
-      "stock_vendor": 1,
-      "stock_all": [
-        1
-      ],
+      "stock_vendor": 0,
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/114815",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 1,
+      "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
