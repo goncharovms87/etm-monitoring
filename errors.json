@@ -1,4 +1,149 @@
 {
-  "last_updated": "11.11.2026 06:34 UTC",
-  "errors": []
+  "last_updated": "11.11.2026 10:41 UTC",
+  "errors": [
+    {
+      "category": "КЭАЗ: OptiLogic",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 293070",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=293070&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 419012",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=419012&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 288026",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=288026&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 288019",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=288019&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 288025",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=288025&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 288023",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=288023&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "КЭАЗ: Артикул 288027",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog?searchValue=288027&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Rievtech: ПЛК и модули",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-4094_rievtech?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Rievtech: Реле",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-4094_rievtech?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Systeme Electric: ПЛК и реле",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-164_se_systeme?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "ОВЕН: ПЛК и модули МВ/МУ",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-2216_oven?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "ОВЕН: Программируемые реле ПР",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751025_programmiruemye_rele_moduli_rasshirenija-20_owen?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "ONI: ПЛК-410 и модули",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=ONI&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "ONI: Реле PLR",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-1775_oni?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "EKF: Реле PRO-Relay",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-760_ekf?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "EKF: ПЛК PRO-Logic",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=EKF&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "DKC: C1000",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-138_dkc?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Segnetics: Контроллеры",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=Segnetics&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Тракт-Автоматика: Контроллеры и модули",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=%D0%A2%D1%80%D0%B0%D0%BA%D1%82&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "ЕвроАвтоматика F&F",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele?searchValue=%D0%95%D0%B2%D1%80%D0%BE%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0&delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Schneider Electric: ПЛК",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-8_schneider_electric?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Schneider Electric: Zelio Logic",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-2282_se_schneider?delivery=all&rows=48",
+      "error": "navigation_failed"
+    },
+    {
+      "category": "Siemens: LOGO!",
+      "page": 1,
+      "url": "https://www.etm.ru/catalog/75102510_programmiruemye_rele-60000121_siemens?delivery=all&rows=48",
+      "error": "navigation_failed"
+    }
+  ]
 }
