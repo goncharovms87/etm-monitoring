@@ -1,11 +1,4 @@
 {
-  "last_updated": "13.11.2026 10:50 UTC",
-  "errors": [
-    {
-      "category": "EKF: ПЛК PRO-Logic",
-      "page": 15,
-      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye?searchValue=EKF&delivery=all&rows=48&page=15",
-      "error": "navigation_failed"
-    }
-  ]
+  "last_updated": "16.11.2026 06:34 UTC",
+  "errors": []
 }
