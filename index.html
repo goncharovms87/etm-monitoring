@@ -189,6 +189,11 @@
       <button class="btn btn-sm btn-outline-dark py-0" id="btn-reset-date">Вернуться к текущему дню</button>
     </div>
 
+    <div id="sales-quality-note" class="alert alert-info py-2 px-3 mb-3 small">
+      <strong>Методика продаж:</strong> оценка убыли остатков между качественными историческими снимками, а не подтвержденные продажи.
+      <span id="sales-quality-detail" class="d-block mt-1">Проверка качества истории при загрузке данных…</span>
+    </div>
+
     <!-- Переключатель режима (5 режимов) -->
     <div class="d-flex align-items-center justify-content-between bg-white p-2 rounded shadow-sm border mb-4">
       <div class="btn-group flex-wrap" role="group">
@@ -1931,6 +1936,21 @@
       })
       .then(payload => {
         globalPayload = payload;
+        const quality = payload.history_meta && payload.history_meta.snapshot_quality;
+        const qualityDetail = document.getElementById('sales-quality-detail');
+        if (qualityDetail && quality) {
+          const excluded = quality.excluded_snapshots || [];
+          const currentStatus = quality.current_snapshot_saved
+            ? 'снимок за ' + quality.current_date + ' принят'
+            : 'снимок за ' + quality.current_date + ' не принят (неполная выгрузка)';
+          qualityDetail.textContent = 'История: ' + quality.valid_snapshot_count + ' качественных снимков; исключено ' + excluded.length + '. Порог полноты: ' + quality.minimum_items + ' SKU. ' + currentStatus + '.';
+          if (!quality.current_snapshot_saved) {
+            const note = document.getElementById('sales-quality-note');
+            if (note) note.className = 'alert alert-warning py-2 px-3 mb-3 small';
+          }
+        } else if (qualityDetail) {
+          qualityDetail.textContent = 'Старый формат данных: показатели продаж могут быть рассчитаны по числу снимков, а не по календарным датам. Запустите обновленный scraper.py.';
+        }
         baseItems = payload.items || [];
         currentViewItems = JSON.parse(JSON.stringify(baseItems));
         
