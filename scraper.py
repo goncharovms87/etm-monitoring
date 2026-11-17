@@ -187,8 +187,8 @@ STOP_WORDS = [
 EXCLUDED_ETM_CODES = {"681404"}
 
 NOT_SUPPLIED_PATTERNS = [
-    r"товар\\s+не\\s+поставляется",
-    r"не\\s+поставляется",
+    r"товар\s+не\s+поставляется",
+    r"не\s+поставляется",
 ]
 
 
@@ -887,7 +887,7 @@ def save_with_history(payload):
         "warning": "Убыль запасов — косвенная оценка. Пополнение между снимками может скрывать продажи. Интервалы с пропусками не распределяются по отдельным дням.",
     }
 
-    payload["parser_version"] = "4.0-quality-intervals"
+    payload["parser_version"] = "4.1-quality-dedup-supply-filter"
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
@@ -982,7 +982,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "3.6-history-fixed",
+        "parser_version": "4.1-quality-dedup-supply-filter",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
