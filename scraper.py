@@ -25,6 +25,12 @@ CATEGORIES = [
         "name": "КЭАЗ: OptiLogic",
         "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz",
     },
+    # --- КЭАЗ: Дополнительная позиция вне стандартного раздела ПЛК ---
+    {
+        "brand_hint": "КЭАЗ",
+        "name": "КЭАЗ: Дополнительная позиция ETM 4437682",
+        "url": "https://www.etm.ru/catalog?searchValue=4437682",
+    },
     # --- КЭАЗ: Точечный сбор недостающих артикулов ---
     {
         "brand_hint": "КЭАЗ",
@@ -176,6 +182,15 @@ STOP_WORDS = [
     "варистор", "резистор", "транзистор", "электролитический",
     "косинусный", "предохранитель"
 ]
+
+# ETM product IDs explicitly excluded from the monitoring sample.
+EXCLUDED_ETM_CODES = {"681404"}
+
+NOT_SUPPLIED_PATTERNS = [
+    r"товар\\s+не\\s+поставляется",
+    r"не\\s+поставляется",
+]
+
 
 PRODUCT_TYPE_PATTERNS = {
     "PLC": [
@@ -575,6 +590,18 @@ def collect_category(page, category, collected, stats, errors):
 
         for card in cards:
             item = card_to_item(card, category)
+
+            # Исключаем конкретные ETM-коды по заданию пользователя.
+            if str(item.get("etm_code", "")).strip() in EXCLUDED_ETM_CODES:
+                continue
+
+            # Не включаем карточки, для которых ЭТМ явно указывает,
+            # что товар не поставляется. Это также убирает устаревшие
+            # дубли, если активная карточка имеет другой ETM-код.
+            card_status = normalize_text(card.get("card_text", "")).lower()
+            if any(re.search(pattern, card_status, re.IGNORECASE) for pattern in NOT_SUPPLIED_PATTERNS):
+                continue
+
             if item["product_type"] == "Excluded":
                 continue
 
