@@ -3,7 +3,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
 
@@ -605,49 +605,150 @@ def collect_category(page, category, collected, stats, errors):
 
 def save_with_history(payload):
     """
-    Сохраняет ежедневный срез в history/YYYY-MM-DD.json,
-    рассчитывает дельты за сутки и вычисляет чистую уходимость
-    (продажи) со складов ЭТМ и поставщиков за 1, 7 и 30 дней.
+    Создает качественный исторический срез и рассчитывает интервальную
+    убыль остатков. Пустые и неполные снимки сохраняются в архиве как есть,
+    но исключаются из расчетов и списка доступных дат.
     """
+    from statistics import median
+    from datetime import date
+    from math import ceil
+
     os.makedirs("history", exist_ok=True)
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    today = datetime.now(timezone.utc).date()
+    today_str = today.isoformat()
     today_history_file = os.path.join("history", f"{today_str}.json")
 
-    # 1. Формируем снимок за сегодня (все ключи строго str)
-    daily_snapshot = {}
-    for item in payload.get("items", []):
-        code = str(item.get("etm_code", ""))
-        if not code:
+    def as_number(value):
+        try:
+            number = float(value)
+            if number < 0:
+                return 0
+            return int(number) if number.is_integer() else number
+        except (TypeError, ValueError):
+            return 0
+
+    def build_snapshot(items):
+        snapshot = {}
+        for item in items:
+            code = str(item.get("etm_code", "")).strip()
+            if not code:
+                continue
+            snapshot[code] = {
+                "price": as_number(item.get("price", 0)),
+                "stock_etm": as_number(item.get("stock_etm", 0)),
+                "stock_vendor": as_number(item.get("stock_vendor", 0)),
+            }
+        return snapshot
+
+    # Читаем архив, не перезаписывая и не удаляя исходные файлы.
+    raw_snapshots = []
+    excluded_dates = []
+    for filename in sorted(os.listdir("history")):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}\.json", filename):
             continue
-        daily_snapshot[code] = {
-            "price": item.get("price", 0.0),
-            "stock_etm": item.get("stock_etm", 0),
-            "stock_vendor": item.get("stock_vendor", 0),
-        }
-
-    try:
-        with open(today_history_file, "w", encoding="utf-8") as f:
-            json.dump(daily_snapshot, f, ensure_ascii=False)
-    except Exception as e:
-        print(f"  Внимание: не удалось записать снимок {today_history_file}: {e}")
-
-    # 2. Загружаем все исторические файлы, отсортированные по дате
-    history_files = sorted(
-        [f for f in os.listdir("history") if f.endswith(".json")]
-    )
-
-    history_snapshots = []
-    for hf in history_files:
-        path = os.path.join("history", hf)
+        date_str = filename[:-5]
+        path = os.path.join("history", filename)
         try:
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if isinstance(data, dict):
-                    history_snapshots.append((hf.replace(".json", ""), data))
-        except Exception as e:
-            print(f"  Пропуск поврежденного файла {hf}: {e}")
+            if not isinstance(data, dict) or not data:
+                excluded_dates.append({"date": date_str, "reason": "Пустой или некорректный снимок", "items": 0})
+                continue
+            valid_rows = {
+                str(code): row for code, row in data.items()
+                if isinstance(row, dict)
+                and ("stock_etm" in row or "stock_vendor" in row)
+            }
+            if not valid_rows:
+                excluded_dates.append({"date": date_str, "reason": "Нет корректных строк остатков", "items": 0})
+                continue
+            raw_snapshots.append((date_str, valid_rows))
+        except Exception as exc:
+            excluded_dates.append({"date": date_str, "reason": f"Ошибка чтения JSON: {exc}", "items": 0})
+            print(f"  Пропуск поврежденного файла {filename}: {exc}")
 
-    # 3. Подготовка структур для подсчета уходимости (чистого расхода)
+    # Порог рассчитывается по медиане непустых снимков, чтобы единичные
+    # неполные выгрузки не искажали базу. 95% — допустимое отклонение.
+    counts = [len(snapshot) for _, snapshot in raw_snapshots]
+    baseline_count = int(median(counts)) if counts else len(payload.get("items", []))
+    minimum_items = max(100, ceil(baseline_count * 0.95)) if baseline_count else 100
+
+    valid_snapshots = []
+    for date_str, snapshot in raw_snapshots:
+        count = len(snapshot)
+        if count < minimum_items:
+            excluded_dates.append({
+                "date": date_str,
+                "reason": f"Неполный снимок: {count} позиций при минимуме {minimum_items}",
+                "items": count,
+            })
+        else:
+            valid_snapshots.append((date_str, snapshot))
+
+    # Проверяем текущую выгрузку до записи. При недостаточном количестве
+    # позиций не создаем новый снимок и не затираем существующий.
+    current_snapshot = build_snapshot(payload.get("items", []))
+    current_count = len(current_snapshot)
+    current_is_valid = current_count >= minimum_items
+    current_snapshot_saved = False
+
+    if current_is_valid:
+        try:
+            with open(today_history_file, "w", encoding="utf-8") as f:
+                json.dump(current_snapshot, f, ensure_ascii=False, separators=(",", ":"))
+            current_snapshot_saved = True
+            # Перечитываем через тот же путь, чтобы сегодняшняя точка
+            # участвовала в расчете точно так же, как архивные снимки.
+            valid_snapshots = [(d, s) for d, s in valid_snapshots if d != today_str]
+            valid_snapshots.append((today_str, current_snapshot))
+            valid_snapshots.sort(key=lambda x: x[0])
+        except Exception as exc:
+            print(f"  ОШИБКА записи исторического снимка: {exc}")
+    else:
+        reason = f"Текущая выгрузка неполная: {current_count} позиций при минимуме {minimum_items}"
+        print(f"  ВНИМАНИЕ: {reason}. Исторический снимок за {today_str} не записан.")
+        excluded_dates = [x for x in excluded_dates if x.get("date") != today_str]
+        excluded_dates.append({"date": today_str, "reason": reason, "items": current_count})
+
+    valid_snapshots.sort(key=lambda x: x[0])
+
+    # Строим интервалы только между двумя качественными снимками.
+    # Отсутствующий артикул не считается нулевым остатком.
+    interval_events = []
+    for index in range(1, len(valid_snapshots)):
+        start_date, prev_snapshot = valid_snapshots[index - 1]
+        end_date, cur_snapshot = valid_snapshots[index]
+        try:
+            interval_days = (date.fromisoformat(end_date) - date.fromisoformat(start_date)).days
+        except ValueError:
+            continue
+        if interval_days <= 0:
+            continue
+
+        common_codes = prev_snapshot.keys() & cur_snapshot.keys()
+        for code in common_codes:
+            prev_row = prev_snapshot[code]
+            cur_row = cur_snapshot[code]
+            prev_etm = as_number(prev_row.get("stock_etm", 0))
+            cur_etm = as_number(cur_row.get("stock_etm", 0))
+            prev_vendor = as_number(prev_row.get("stock_vendor", 0))
+            cur_vendor = as_number(cur_row.get("stock_vendor", 0))
+
+            sold_etm = max(0, prev_etm - cur_etm) if prev_etm > 0 else 0
+            sold_vendor = max(0, prev_vendor - cur_vendor) if prev_vendor > 0 else 0
+
+            interval_events.append({
+                "etm_code": str(code),
+                "start_date": start_date,
+                "end_date": end_date,
+                "interval_days": interval_days,
+                "etm": sold_etm,
+                "vendor": sold_vendor,
+                "method": "stock_depletion_estimate",
+            })
+
+    # Окна считаются по календарным датам, а не по порядковому номеру файла.
+    # 1d включает только фактический однодневный интервал.
     sales_map = {}
     for item in payload.get("items", []):
         code = str(item.get("etm_code", ""))
@@ -657,60 +758,43 @@ def save_with_history(payload):
             "etm_30d": 0, "vendor_30d": 0,
         }
 
-    num_snaps = len(history_snapshots)
-    if num_snaps >= 2:
-        for i in range(1, num_snaps):
-            prev_snap = history_snapshots[i - 1][1]
-            cur_snap = history_snapshots[i][1]
-            days_from_end = num_snaps - 1 - i  # 0 - вчера -> сегодня
+    for event in interval_events:
+        code = event["etm_code"]
+        if code not in sales_map:
+            sales_map[code] = {
+                "etm_1d": 0, "vendor_1d": 0,
+                "etm_7d": 0, "vendor_7d": 0,
+                "etm_30d": 0, "vendor_30d": 0,
+            }
+        try:
+            start = date.fromisoformat(event["start_date"])
+            end = date.fromisoformat(event["end_date"])
+        except ValueError:
+            continue
 
-            for code, cur_data in cur_snap.items():
-                code_str = str(code)
-                if code_str not in prev_snap:
-                    continue
+        if current_snapshot_saved and end == today and event["interval_days"] == 1:
+            sales_map[code]["etm_1d"] += event["etm"]
+            sales_map[code]["vendor_1d"] += event["vendor"]
 
-                if code_str not in sales_map:
-                    sales_map[code_str] = {
-                        "etm_1d": 0, "vendor_1d": 0,
-                        "etm_7d": 0, "vendor_7d": 0,
-                        "etm_30d": 0, "vendor_30d": 0,
-                    }
+        days_7 = (today - end).days
+        if days_7 >= 0 and start >= today - timedelta(days=7):
+            sales_map[code]["etm_7d"] += event["etm"]
+            sales_map[code]["vendor_7d"] += event["vendor"]
 
-                prev_data = prev_snap[code_str]
-                prev_etm = prev_data.get("stock_etm", 0)
-                cur_etm = cur_data.get("stock_etm", 0)
-                prev_v = prev_data.get("stock_vendor", 0)
-                cur_v = cur_data.get("stock_vendor", 0)
+        days_30 = (today - end).days
+        if days_30 >= 0 and start >= today - timedelta(days=30):
+            sales_map[code]["etm_30d"] += event["etm"]
+            sales_map[code]["vendor_30d"] += event["vendor"]
 
-                # Если в предыдущий день остаток был 0, либо текущий остаток вырос — это поступление, продажи = 0!
-# Продажи вендора
-                if prev_v > 0 and cur_v < prev_v:
-                    sold_v = prev_v - cur_v
-                else:
-                    sold_v = 0
+    # Сравнение текущих цен и остатков — с последним качественным снимком,
+    # а не с предыдущим файлом, который мог быть пустым/неполным.
+    previous_snapshot = {}
+    previous_date = None
+    for date_str, snapshot in reversed(valid_snapshots):
+        if date_str != today_str:
+            previous_date, previous_snapshot = date_str, snapshot
+            break
 
-                # Продажи склада ЭТМ
-                if prev_etm > 0 and cur_etm < prev_etm:
-                    sold_etm = prev_etm - cur_etm
-                else:
-                    sold_etm = 0
-
-                if days_from_end == 0:
-                    sales_map[code_str]["etm_1d"] += sold_etm
-                    sales_map[code_str]["vendor_1d"] += sold_v
-
-                if days_from_end < 7:
-                    sales_map[code_str]["etm_7d"] += sold_etm
-                    sales_map[code_str]["vendor_7d"] += sold_v
-
-                if days_from_end < 30:
-                    sales_map[code_str]["etm_30d"] += sold_etm
-                    sales_map[code_str]["vendor_30d"] += sold_v
-
-    # 4. Получаем данные вчерашнего дня (предпоследний срез)
-    yesterday_data = history_snapshots[-2][1] if num_snaps >= 2 else {}
-
-    # 5. Обогащаем товары метриками
     default_sales = {
         "etm_1d": 0, "vendor_1d": 0,
         "etm_7d": 0, "vendor_7d": 0,
@@ -719,31 +803,50 @@ def save_with_history(payload):
 
     for item in payload.get("items", []):
         code = str(item.get("etm_code", ""))
-        prev = yesterday_data.get(code)
-
+        prev = previous_snapshot.get(code)
         if prev:
-            old_price = prev.get("price", 0.0)
-            cur_price = item.get("price", 0.0)
+            old_price = as_number(prev.get("price", 0))
+            cur_price = as_number(item.get("price", 0))
             item["price_diff"] = round(cur_price - old_price, 2) if old_price > 0 and cur_price > 0 else 0.0
-            item["stock_etm_diff"] = item.get("stock_etm", 0) - prev.get("stock_etm", 0)
-            item["stock_vendor_diff"] = item.get("stock_vendor", 0) - prev.get("stock_vendor", 0)
+            item["stock_etm_diff"] = as_number(item.get("stock_etm", 0)) - as_number(prev.get("stock_etm", 0))
+            item["stock_vendor_diff"] = as_number(item.get("stock_vendor", 0)) - as_number(prev.get("stock_vendor", 0))
             item["is_new"] = False
         else:
             item["price_diff"] = 0.0
             item["stock_etm_diff"] = 0
             item["stock_vendor_diff"] = 0
-            item["is_new"] = bool(yesterday_data)
+            item["is_new"] = bool(previous_snapshot)
 
-        # Безопасное присвоение структуры продаж
         item["sales"] = sales_map.get(code, default_sales)
+        item["sales_history"] = [
+            {k: v for k, v in event.items() if k != "etm_code"}
+            for event in interval_events if event["etm_code"] == code
+        ]
 
-    # Формируем список доступных дат из папки history (от новых к старым)
-    payload["available_dates"] = sorted(
-        [hf.replace(".json", "") for hf in os.listdir("history") if hf.endswith(".json")],
-        reverse=True
-    )
+    valid_dates = [d for d, _ in valid_snapshots]
+    payload["available_dates"] = sorted(valid_dates, reverse=True)
+    payload["history_meta"] = {
+        "schema_version": 3,
+        "timezone": "UTC",
+        "sales_method": "stock_depletion_estimate",
+        "sales_method_description": "Оценка убыли остатков между двумя качественными снимками; не является подтвержденными продажами.",
+        "snapshot_quality": {
+            "baseline_items_median": baseline_count,
+            "minimum_items": minimum_items,
+            "current_items": current_count,
+            "current_snapshot_saved": current_snapshot_saved,
+            "current_date": today_str,
+            "previous_valid_snapshot": previous_date,
+            "valid_snapshot_count": len(valid_snapshots),
+            "excluded_snapshots": sorted(excluded_dates, key=lambda x: x["date"]),
+        },
+        "intervals_count": len(interval_events),
+        "coverage_start": valid_dates[0] if valid_dates else None,
+        "coverage_end": valid_dates[-1] if valid_dates else None,
+        "warning": "Убыль запасов — косвенная оценка. Пополнение между снимками может скрывать продажи. Интервалы с пропусками не распределяются по отдельным дням.",
+    }
 
-    # 6. Сохраняем data.json
+    payload["parser_version"] = "4.0-quality-intervals"
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
