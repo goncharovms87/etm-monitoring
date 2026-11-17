@@ -380,6 +380,7 @@
               <option value="180d">180 дней (Полгода)</option>
               <option value="custom">Произвольный период</option>
             </select>
+            <div id="sales-period-note" class="small text-muted mt-1"></div>
           </div>
           <div class="col-12 col-md-3 filter-period-block d-none" id="custom-period-controls">
             <label class="form-label text-muted small mb-1 fw-bold text-primary">Произвольный период (включительно):</label>
@@ -827,14 +828,24 @@
 
     function getItemSales(item) {
       if (!item) return { se: 0, sv: 0, total: 0 };
-      if (currentPeriod === 'custom') {
-        const from = document.getElementById('sales-date-from')?.value;
-        const to = document.getElementById('sales-date-to')?.value;
+      if (currentPeriod === 'custom' || currentPeriod === '90d' || currentPeriod === '180d') {
+        let from = '', to = '';
+        if (currentPeriod === 'custom') {
+          from = document.getElementById('sales-date-from')?.value || '';
+          to = document.getElementById('sales-date-to')?.value || '';
+        } else {
+          to = globalPayload.history_meta?.coverage_end || '';
+          const days = currentPeriod === '90d' ? 90 : 180;
+          if (to) {
+            const boundary = new Date(to + 'T00:00:00Z');
+            boundary.setUTCDate(boundary.getUTCDate() - days);
+            from = boundary.toISOString().slice(0, 10);
+          }
+        }
         if (!from || !to || from > to) return { se: 0, sv: 0, total: 0 };
         let se = 0, sv = 0;
         (item.sales_history || []).forEach(event => {
-          // Консервативно учитываем только интервалы, целиком лежащие
-          // внутри выбранного диапазона; пропуски не распределяем по дням.
+          // Учитываем только интервалы, целиком лежащие внутри диапазона.
           if (event.start_date >= from && event.end_date <= to) {
             se += Number(event.etm) || 0;
             sv += Number(event.vendor) || 0;
@@ -865,6 +876,23 @@
           ? 'Ошибка: дата начала позже даты окончания.'
           : 'Выбрано: ' + getPeriodLabel() + '. Учитываются только полные интервалы внутри диапазона.';
       status.className = 'small mt-1 ' + (valid ? 'text-muted' : 'text-danger');
+      const periodNote = document.getElementById('sales-period-note');
+      if (periodNote) {
+        const days = currentPeriod === '90d' ? 90 : currentPeriod === '180d' ? 180 : 0;
+        if (days && globalPayload.history_meta) {
+          const coverageStart = globalPayload.history_meta.coverage_start || '';
+          const coverageEnd = globalPayload.history_meta.coverage_end || '';
+          const availableDays = coverageStart && coverageEnd
+            ? Math.max(1, Math.round((Date.parse(coverageEnd + 'T00:00:00Z') - Date.parse(coverageStart + 'T00:00:00Z')) / 86400000) + 1)
+            : 0;
+          periodNote.textContent = availableDays < days
+            ? 'Внимание: в архиве пока только ' + availableDays + ' календарных дней истории; период будет рассчитан по доступным данным.'
+            : 'Расчет по полным интервалам в календарном окне.';
+          periodNote.className = 'small mt-1 ' + (availableDays < days ? 'text-warning-emphasis' : 'text-muted');
+        } else {
+          periodNote.textContent = '';
+        }
+      }
     }
 
     function renderCatalogGrid(data) {
