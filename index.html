@@ -816,7 +816,7 @@
       const from = document.getElementById('sales-date-from')?.value;
       const to = document.getElementById('sales-date-to')?.value;
       if (!from || !to || from > to) return 1;
-      return Math.max(1, Math.round((Date.parse(to + 'T00:00:00Z') - Date.parse(from + 'T00:00:00Z')) / 86400000));
+      return Math.max(1, Math.round((Date.parse(to + 'T00:00:00Z') - Date.parse(from + 'T00:00:00Z')) / 86400000) + 1);
     }
 
     function getItemSales(item) {
@@ -2108,7 +2108,7 @@
       const dateTag = selectedDate === 'latest' ? 'current' : selectedDate;
 
       if (currentMode === 'sales') {
-        const periodLabel = currentPeriod === '1d' ? '1д' : currentPeriod === '7d' ? '7д' : '30д';
+        const periodLabel = getPeriodLabel();
         headers = [
           "Код ЭТМ", "Бренд", "Тип", "Артикул", "Наименование", "Цена (руб)",
           `Склад ЭТМ (${dateTag})`, `Склад вендора (${dateTag})`,
