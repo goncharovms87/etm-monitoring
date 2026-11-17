@@ -376,6 +376,8 @@
               <option value="1d">1 сутки (День)</option>
               <option value="7d" selected>7 дней (Неделя)</option>
               <option value="30d">30 дней (Месяц)</option>
+              <option value="90d">90 дней (Квартал)</option>
+              <option value="180d">180 дней (Полгода)</option>
               <option value="custom">Произвольный период</option>
             </select>
           </div>
@@ -804,6 +806,8 @@
       if (currentPeriod === '1d') return '1д';
       if (currentPeriod === '7d') return '7д';
       if (currentPeriod === '30d') return '30д';
+      if (currentPeriod === '90d') return '90д';
+      if (currentPeriod === '180d') return '180д';
       const from = document.getElementById('sales-date-from')?.value;
       const to = document.getElementById('sales-date-to')?.value;
       return from && to ? `${from.split('-').reverse().join('.')}–${to.split('-').reverse().join('.')}` : 'произвольный период';
@@ -813,6 +817,8 @@
       if (currentPeriod === '1d') return 1;
       if (currentPeriod === '7d') return 7;
       if (currentPeriod === '30d') return 30;
+      if (currentPeriod === '90d') return 90;
+      if (currentPeriod === '180d') return 180;
       const from = document.getElementById('sales-date-from')?.value;
       const to = document.getElementById('sales-date-to')?.value;
       if (!from || !to || from > to) return 1;
