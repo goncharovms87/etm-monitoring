@@ -756,6 +756,8 @@ def save_with_history(payload):
             "etm_1d": 0, "vendor_1d": 0,
             "etm_7d": 0, "vendor_7d": 0,
             "etm_30d": 0, "vendor_30d": 0,
+            "etm_90d": 0, "vendor_90d": 0,
+            "etm_180d": 0, "vendor_180d": 0,
         }
 
     for event in interval_events:
@@ -765,6 +767,8 @@ def save_with_history(payload):
                 "etm_1d": 0, "vendor_1d": 0,
                 "etm_7d": 0, "vendor_7d": 0,
                 "etm_30d": 0, "vendor_30d": 0,
+            "etm_90d": 0, "vendor_90d": 0,
+            "etm_180d": 0, "vendor_180d": 0,
             }
         try:
             start = date.fromisoformat(event["start_date"])
@@ -786,6 +790,14 @@ def save_with_history(payload):
             sales_map[code]["etm_30d"] += event["etm"]
             sales_map[code]["vendor_30d"] += event["vendor"]
 
+        if days_30 >= 0 and start >= today - timedelta(days=90):
+            sales_map[code]["etm_90d"] += event["etm"]
+            sales_map[code]["vendor_90d"] += event["vendor"]
+
+        if days_30 >= 0 and start >= today - timedelta(days=180):
+            sales_map[code]["etm_180d"] += event["etm"]
+            sales_map[code]["vendor_180d"] += event["vendor"]
+
     # Сравнение текущих цен и остатков — с последним качественным снимком,
     # а не с предыдущим файлом, который мог быть пустым/неполным.
     previous_snapshot = {}
@@ -799,6 +811,8 @@ def save_with_history(payload):
         "etm_1d": 0, "vendor_1d": 0,
         "etm_7d": 0, "vendor_7d": 0,
         "etm_30d": 0, "vendor_30d": 0,
+            "etm_90d": 0, "vendor_90d": 0,
+            "etm_180d": 0, "vendor_180d": 0,
     }
 
     for item in payload.get("items", []):
