@@ -376,7 +376,17 @@
               <option value="1d">1 сутки (День)</option>
               <option value="7d" selected>7 дней (Неделя)</option>
               <option value="30d">30 дней (Месяц)</option>
+              <option value="custom">Произвольный период</option>
             </select>
+          </div>
+          <div class="col-12 col-md-3 filter-period-block d-none" id="custom-period-controls">
+            <label class="form-label text-muted small mb-1 fw-bold text-primary">Произвольный период (включительно):</label>
+            <div class="d-flex gap-1 align-items-center">
+              <input type="date" id="sales-date-from" class="form-control form-control-sm" aria-label="Начало периода">
+              <span class="text-muted small">—</span>
+              <input type="date" id="sales-date-to" class="form-control form-control-sm" aria-label="Конец периода">
+            </div>
+            <div id="sales-date-status" class="small text-muted mt-1">Учитываются только полные интервалы внутри выбранного диапазона.</div>
           </div>
 
           <div class="col-12 col-md-2 filter-catalog-only">
@@ -790,12 +800,65 @@
       );
     }
 
+    function getPeriodLabel() {
+      if (currentPeriod === '1d') return '1д';
+      if (currentPeriod === '7d') return '7д';
+      if (currentPeriod === '30d') return '30д';
+      const from = document.getElementById('sales-date-from')?.value;
+      const to = document.getElementById('sales-date-to')?.value;
+      return from && to ? `${from.split('-').reverse().join('.')}–${to.split('-').reverse().join('.')}` : 'произвольный период';
+    }
+
+    function getPeriodDays() {
+      if (currentPeriod === '1d') return 1;
+      if (currentPeriod === '7d') return 7;
+      if (currentPeriod === '30d') return 30;
+      const from = document.getElementById('sales-date-from')?.value;
+      const to = document.getElementById('sales-date-to')?.value;
+      if (!from || !to || from > to) return 1;
+      return Math.max(1, Math.round((Date.parse(to + 'T00:00:00Z') - Date.parse(from + 'T00:00:00Z')) / 86400000));
+    }
+
     function getItemSales(item) {
       if (!item) return { se: 0, sv: 0, total: 0 };
+      if (currentPeriod === 'custom') {
+        const from = document.getElementById('sales-date-from')?.value;
+        const to = document.getElementById('sales-date-to')?.value;
+        if (!from || !to || from > to) return { se: 0, sv: 0, total: 0 };
+        let se = 0, sv = 0;
+        (item.sales_history || []).forEach(event => {
+          // Консервативно учитываем только интервалы, целиком лежащие
+          // внутри выбранного диапазона; пропуски не распределяем по дням.
+          if (event.start_date >= from && event.end_date <= to) {
+            se += Number(event.etm) || 0;
+            sv += Number(event.vendor) || 0;
+          }
+        });
+        return { se, sv, total: se + sv };
+      }
       const s = item.sales || {};
       const se = Number(s[`etm_${currentPeriod}`]) || 0;
       const sv = Number(s[`vendor_${currentPeriod}`]) || 0;
       return { se, sv, total: se + sv };
+    }
+
+    function updateCustomPeriodControls() {
+      const isCustom = currentPeriod === 'custom';
+      const controls = document.getElementById('custom-period-controls');
+      if (controls) controls.classList.toggle('d-none', !isCustom);
+      const fromEl = document.getElementById('sales-date-from');
+      const toEl = document.getElementById('sales-date-to');
+      const status = document.getElementById('sales-date-status');
+      if (!fromEl || !toEl || !status) return;
+      const valid = !!fromEl.value && !!toEl.value && fromEl.value <= toEl.value;
+      fromEl.classList.toggle('is-invalid', !!fromEl.value && !!toEl.value && fromEl.value > toEl.value);
+      toEl.classList.toggle('is-invalid', !!fromEl.value && !!toEl.value && fromEl.value > toEl.value);
+      status.textContent = !fromEl.value || !toEl.value
+        ? 'Укажите обе даты. Учитываются только полные интервалы внутри диапазона.'
+        : fromEl.value > toEl.value
+          ? 'Ошибка: дата начала позже даты окончания.'
+          : 'Выбрано: ' + getPeriodLabel() + '. Учитываются только полные интервалы внутри диапазона.';
+      status.className = 'small mt-1 ' + (valid ? 'text-muted' : 'text-danger');
     }
 
     function renderCatalogGrid(data) {
@@ -927,7 +990,7 @@
     }
 
     function renderSalesGrid(data) {
-      const periodLabel = currentPeriod === '1d' ? 'сутки' : currentPeriod === '7d' ? '7 дн' : '30 дн';
+      const periodLabel = getPeriodLabel();
       
       const formatted = data.map(item => {
         const sales = getItemSales(item);
@@ -1057,7 +1120,7 @@
       const tbody = document.getElementById("vendor-sales-summary-body");
       tbody.innerHTML = "";
 
-      const periodLabel = currentPeriod === '1d' ? '1д' : currentPeriod === '7d' ? '7д' : '30д';
+      const periodLabel = getPeriodLabel();
       document.getElementById("th-sales-etm").textContent = `Продажи ЭТМ (${periodLabel})`;
       document.getElementById("th-sales-vendor").textContent = `Продажи Вендор (${periodLabel})`;
       document.getElementById("th-sales-total").textContent = `Всего продано (${periodLabel})`;
@@ -1391,7 +1454,7 @@
         if (units === 0) {
           variation = 1.0;
         } else {
-          const dailyAvg = units / (currentPeriod === '1d' ? 1 : currentPeriod === '7d' ? 7 : 30);
+          const dailyAvg = units / getPeriodDays();
           const d1 = (item.sales && (item.sales.etm_1d + item.sales.vendor_1d)) || 0;
           variation = Math.abs(d1 - dailyAvg) / (dailyAvg || 1);
         }
@@ -1766,7 +1829,7 @@
         document.getElementById('kpi-metric-value').textContent = priceUp + priceDown;
         document.getElementById('kpi-metric-sub').textContent = `Подорожало: ${priceUp} | Подешевело: ${priceDown}`;
       } else {
-        const periodLabel = currentPeriod === '1d' ? '1 дн' : currentPeriod === '7d' ? '7 дн' : '30 дн';
+        const periodLabel = getPeriodLabel();
         document.getElementById('kpi-metric-title').textContent = `Продажи (${periodLabel})`;
         document.getElementById('kpi-metric-value').textContent = `${(soldEtm + soldVendor).toLocaleString('ru-RU')} шт.`;
         document.getElementById('kpi-metric-sub').textContent = `ЭТМ: ${soldEtm} | Вендор: ${soldVendor}`;
@@ -1779,6 +1842,7 @@
       const selectedStock = document.getElementById('filter-stock').value;
       const excludeOther = document.getElementById('filter-relevant-only').checked;
       currentPeriod = document.getElementById('filter-period').value;
+      updateCustomPeriodControls();
 
       displayedItems = currentViewItems.filter(item => {
         if (excludeOther && item.product_type === 'Other') return false;
@@ -1983,11 +2047,41 @@
           brandSelect.appendChild(opt);
         });
 
-        ['filter-brand', 'filter-type', 'filter-stock', 'filter-period', 'filter-relevant-only'].forEach(id => {
+        ['filter-brand', 'filter-type', 'filter-stock', 'filter-relevant-only'].forEach(id => {
           const el = document.getElementById(id);
           if (el) el.addEventListener('change', applyFilters);
         });
-
+        const periodSelect = document.getElementById('filter-period');
+        const dateFrom = document.getElementById('sales-date-from');
+        const dateTo = document.getElementById('sales-date-to');
+        const historyStart = payload.history_meta?.coverage_start || (availableDates.length ? availableDates[availableDates.length - 1] : '');
+        const historyEnd = payload.history_meta?.coverage_end || (availableDates.length ? availableDates[0] : '');
+        if (dateFrom && dateTo && historyEnd) {
+          dateFrom.max = historyEnd;
+          dateTo.max = historyEnd;
+          if (historyStart) {
+            dateFrom.min = historyStart;
+            dateTo.min = historyStart;
+          }
+          dateTo.value = historyEnd;
+          const defaultFrom = new Date(historyEnd + 'T00:00:00Z');
+          defaultFrom.setUTCDate(defaultFrom.getUTCDate() - 7);
+          dateFrom.value = defaultFrom.toISOString().slice(0, 10);
+          if (historyStart && dateFrom.value < historyStart) dateFrom.value = historyStart;
+        }
+        if (periodSelect) periodSelect.addEventListener('change', () => {
+          currentPeriod = periodSelect.value;
+          updateCustomPeriodControls();
+          applyFilters();
+        });
+        [dateFrom, dateTo].forEach(el => {
+          if (el) el.addEventListener('change', () => {
+            updateCustomPeriodControls();
+            applyFilters();
+          });
+        });
+        currentPeriod = periodSelect ? periodSelect.value : '7d';
+        updateCustomPeriodControls();
         applyFilters();
       })
       .catch(err => {
