@@ -698,11 +698,24 @@ def save_with_history(payload):
     # неполные выгрузки не искажали базу. 95% — допустимое отклонение.
     counts = [len(snapshot) for _, snapshot in raw_snapshots]
     baseline_count = int(median(counts)) if counts else len(payload.get("items", []))
-    minimum_items = max(100, ceil(baseline_count * 0.95)) if baseline_count else 100
+    # После исключения карточек "не поставляется" общий размер выборки
+    # закономерно уменьшился. Используем более мягкий порог 70% от медианы:
+    # это принимает текущую базу около 498 SKU, но отсекает прежний
+    # явно неполный снимок на 426 SKU. Известный проблемный срез 08.10
+    # исключаем отдельно, поскольку его дефект подтвержден сравнением соседних дат.
+    minimum_items = max(100, ceil(baseline_count * 0.70)) if baseline_count else 100
+    known_incomplete_dates = {"2026-10-08"}
 
     valid_snapshots = []
     for date_str, snapshot in raw_snapshots:
         count = len(snapshot)
+        if date_str in known_incomplete_dates:
+            excluded_dates.append({
+                "date": date_str,
+                "reason": "Ранее подтвержден неполный снимок (исключен вручную)",
+                "items": count,
+            })
+            continue
         if count < minimum_items:
             excluded_dates.append({
                 "date": date_str,
@@ -887,7 +900,7 @@ def save_with_history(payload):
         "warning": "Убыль запасов — косвенная оценка. Пополнение между снимками может скрывать продажи. Интервалы с пропусками не распределяются по отдельным дням.",
     }
 
-    payload["parser_version"] = "4.1-quality-dedup-supply-filter"
+    payload["parser_version"] = "4.2-adaptive-quality-threshold"
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
@@ -982,7 +995,7 @@ def main():
 
     payload = {
         "last_updated": datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC"),
-        "parser_version": "4.1-quality-dedup-supply-filter",
+        "parser_version": "4.2-adaptive-quality-threshold",
         "elapsed_seconds": round(elapsed, 1),
         "total_items": len(items),
         "statistics": {
