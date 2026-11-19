@@ -1,41 +1,4 @@
 {
-  "last_updated": "18.11.2026 11:22 UTC",
-  "errors": [
-    {
-      "category": "КЭАЗ: OptiLogic",
-      "page": 1,
-      "url": "https://www.etm.ru/catalog/751010_kontrollery_i_moduli_svobodnoprogrammiruemye-23_keaz?delivery=all&rows=48",
-      "error": "navigation_failed"
-    },
-    {
-      "category": "КЭАЗ: Дополнительная позиция ETM 4437682",
-      "page": 1,
-      "url": "https://www.etm.ru/catalog?searchValue=4437682&delivery=all&rows=48",
-      "error": "navigation_failed"
-    },
-    {
-      "category": "КЭАЗ: Артикул 293070",
-      "page": 2,
-      "url": "https://www.etm.ru/catalog?searchValue=293070&delivery=all&rows=48&page=2",
-      "error": "navigation_failed"
-    },
-    {
-      "category": "КЭАЗ: Артикул 419012",
-      "page": 1,
-      "url": "https://www.etm.ru/catalog?searchValue=419012&delivery=all&rows=48",
-      "error": "navigation_failed"
-    },
-    {
-      "category": "КЭАЗ: Артикул 288019",
-      "page": 1,
-      "url": "https://www.etm.ru/catalog?searchValue=288019&delivery=all&rows=48",
-      "error": "navigation_failed"
-    },
-    {
-      "category": "КЭАЗ: Артикул 288025",
-      "page": 1,
-      "url": "https://www.etm.ru/catalog?searchValue=288025&delivery=all&rows=48",
-      "error": "navigation_failed"
-    }
-  ]
+  "last_updated": "19.11.2026 06:33 UTC",
+  "errors": []
 }
