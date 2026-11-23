@@ -1,7 +1,7 @@
 {
-  "last_updated": "23.11.2026 05:33 UTC",
+  "last_updated": "23.11.2026 12:48 UTC",
   "parser_version": "4.2-adaptive-quality-threshold",
-  "elapsed_seconds": 1112.4,
+  "elapsed_seconds": 1228.2,
   "total_items": 469,
   "statistics": {
     "categories": 25,
@@ -30386,9 +30386,9 @@
       "product_type": "Other controller",
       "price": 95285.58,
       "stock_etm": 0,
-      "stock_vendor": 37,
+      "stock_vendor": 157,
       "stock_all": [
-        37
+        157
       ],
       "url": "https://www.etm.ru/cat/nn/5398567",
       "sources": [
@@ -30396,19 +30396,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -4,
+      "stock_vendor_diff": 116,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 16,
+        "vendor_7d": 12,
         "etm_30d": 0,
-        "vendor_30d": 68,
+        "vendor_30d": 64,
         "etm_90d": 8,
-        "vendor_90d": 102,
+        "vendor_90d": 98,
         "etm_180d": 8,
-        "vendor_180d": 102
+        "vendor_180d": 98
       },
       "sales_history": [
         {
@@ -30656,7 +30656,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 4,
+          "vendor": 0,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -34511,9 +34511,9 @@
       "product_type": "Other module",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 200,
+      "stock_vendor": 248,
       "stock_all": [
-        200
+        248
       ],
       "url": "https://www.etm.ru/cat/nn/5115874",
       "sources": [
@@ -34521,7 +34521,7 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 48,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -56711,15 +56711,17 @@
       "product_type": "Other controller",
       "price": 0.0,
       "stock_etm": 0,
-      "stock_vendor": 0,
-      "stock_all": [],
+      "stock_vendor": 54,
+      "stock_all": [
+        54
+      ],
       "url": "https://www.etm.ru/cat/nn/8744998",
       "sources": [
         "Systeme Electric: ПЛК и реле"
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": 54,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
@@ -66890,17 +66892,15 @@
       "name": "Модуль дискретного ввода-вывода МК210-312",
       "product_type": "I/O module",
       "price": 16043.0,
-      "stock_etm": 3,
+      "stock_etm": 0,
       "stock_vendor": 0,
-      "stock_all": [
-        3
-      ],
+      "stock_all": [],
       "url": "https://www.etm.ru/cat/nn/2003089",
       "sources": [
         "ОВЕН: ПЛК и модули МВ/МУ"
       ],
       "price_diff": 0,
-      "stock_etm_diff": 3,
+      "stock_etm_diff": 0,
       "stock_vendor_diff": 0,
       "is_new": false,
       "sales": {
@@ -125542,9 +125542,9 @@
       "product_type": "Programmable relay",
       "price": 11555.02,
       "stock_etm": 0,
-      "stock_vendor": 203,
+      "stock_vendor": 202,
       "stock_all": [
-        203
+        202
       ],
       "url": "https://www.etm.ru/cat/nn/2146759",
       "sources": [
@@ -125552,19 +125552,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 20,
+        "vendor_7d": 21,
         "etm_30d": 0,
-        "vendor_30d": 271,
+        "vendor_30d": 272,
         "etm_90d": 0,
-        "vendor_90d": 321,
+        "vendor_90d": 322,
         "etm_180d": 0,
-        "vendor_180d": 321
+        "vendor_180d": 322
       },
       "sales_history": [
         {
@@ -125964,7 +125964,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 1,
+          "vendor": 2,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -128162,9 +128162,9 @@
       "product_type": "PLC",
       "price": 12589.78,
       "stock_etm": 0,
-      "stock_vendor": 41,
+      "stock_vendor": 40,
       "stock_all": [
-        41
+        40
       ],
       "url": "https://www.etm.ru/cat/nn/973873",
       "sources": [
@@ -128172,19 +128172,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -3,
+      "stock_vendor_diff": -4,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 21,
+        "vendor_7d": 22,
         "etm_30d": 5,
-        "vendor_30d": 34,
+        "vendor_30d": 35,
         "etm_90d": 10,
-        "vendor_90d": 34,
+        "vendor_90d": 35,
         "etm_180d": 10,
-        "vendor_180d": 34
+        "vendor_180d": 35
       },
       "sales_history": [
         {
@@ -128496,7 +128496,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 3,
+          "vendor": 4,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -133870,9 +133870,9 @@
       "product_type": "Other module",
       "price": 8309.35,
       "stock_etm": 0,
-      "stock_vendor": 548,
+      "stock_vendor": 547,
       "stock_all": [
-        548
+        547
       ],
       "url": "https://www.etm.ru/cat/nn/858077",
       "sources": [
@@ -133880,19 +133880,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": -1,
+      "stock_vendor_diff": -2,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 3,
+        "vendor_7d": 4,
         "etm_30d": 0,
-        "vendor_30d": 590,
+        "vendor_30d": 591,
         "etm_90d": 0,
-        "vendor_90d": 622,
+        "vendor_90d": 623,
         "etm_180d": 0,
-        "vendor_180d": 622
+        "vendor_180d": 623
       },
       "sales_history": [
         {
@@ -134236,7 +134236,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 1,
+          "vendor": 2,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -135125,9 +135125,9 @@
       "product_type": "PLC",
       "price": 17618.46,
       "stock_etm": 0,
-      "stock_vendor": 165,
+      "stock_vendor": 162,
       "stock_all": [
-        165
+        162
       ],
       "url": "https://www.etm.ru/cat/nn/5600475",
       "sources": [
@@ -135135,19 +135135,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -3,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 3,
         "etm_30d": 0,
-        "vendor_30d": 37,
+        "vendor_30d": 40,
         "etm_90d": 0,
-        "vendor_90d": 54,
+        "vendor_90d": 57,
         "etm_180d": 0,
-        "vendor_180d": 54
+        "vendor_180d": 57
       },
       "sales_history": [
         {
@@ -135547,7 +135547,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 0,
+          "vendor": 3,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -162940,9 +162940,9 @@
       "product_type": "Other module",
       "price": 26745.04,
       "stock_etm": 0,
-      "stock_vendor": 34,
+      "stock_vendor": 33,
       "stock_all": [
-        34
+        33
       ],
       "url": "https://www.etm.ru/cat/nn/382885",
       "sources": [
@@ -162950,19 +162950,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 3,
+        "vendor_30d": 4,
         "etm_90d": 0,
-        "vendor_90d": 13,
+        "vendor_90d": 14,
         "etm_180d": 0,
-        "vendor_180d": 13
+        "vendor_180d": 14
       },
       "sales_history": [
         {
@@ -163362,7 +163362,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 0,
+          "vendor": 1,
           "method": "stock_depletion_estimate"
         }
       ]
@@ -163814,9 +163814,9 @@
       "product_type": "I/O module",
       "price": 11103.53,
       "stock_etm": 0,
-      "stock_vendor": 22,
+      "stock_vendor": 21,
       "stock_all": [
-        22
+        21
       ],
       "url": "https://www.etm.ru/cat/nn/4066713",
       "sources": [
@@ -163824,19 +163824,19 @@
       ],
       "price_diff": 0.0,
       "stock_etm_diff": 0,
-      "stock_vendor_diff": 0,
+      "stock_vendor_diff": -1,
       "is_new": false,
       "sales": {
         "etm_1d": 0,
         "vendor_1d": 0,
         "etm_7d": 0,
-        "vendor_7d": 0,
+        "vendor_7d": 1,
         "etm_30d": 0,
-        "vendor_30d": 2,
+        "vendor_30d": 3,
         "etm_90d": 0,
-        "vendor_90d": 17,
+        "vendor_90d": 18,
         "etm_180d": 0,
-        "vendor_180d": 17
+        "vendor_180d": 18
       },
       "sales_history": [
         {
@@ -164236,7 +164236,7 @@
           "end_date": "2026-11-23",
           "interval_days": 3,
           "etm": 0,
-          "vendor": 0,
+          "vendor": 1,
           "method": "stock_depletion_estimate"
         }
       ]
